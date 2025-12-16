@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UGC Studio - Connexion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        padding: 40px;
+        width: 100%;
+        max-width: 450px;
+    }
+    
+    .logo {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+    }
+    
+    h1 {
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        color: #1a202c;
+        margin-bottom: 10px;
+    }
+    
+    .subtitle {
+        text-align: center;
+        color: #718096;
+        margin-bottom: 30px;
+    }
+    
+    label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #4a5568;
+        margin-bottom: 8px;
+    }
+    
+    input {
+        width: 100%;
+        padding: 14px 16px;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: border-color 0.2s;
+    }
+    
+    input:focus {
+        border-color: #667eea;
+    }
+    
+    button {
+        width: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-weight: 600;
+        padding: 14px;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: transform 0.2s;
+    }
+    
+    button:hover {
+        transform: translateY(-2px);
+    }
+    
+    button:disabled {
+        background: #cbd5e0;
+        cursor: not-allowed;
+        transform: none;
+    }
+    
+    .info {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 13px;
+        color: #718096;
+    }
+    
+    .info strong {
+        color: #667eea;
+        font-family: monospace;
+    }
+    
+    .quota-info {
+        background: #edf2f7;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    
+    .quota-info h3 {
+        font-size: 18px;
+        color: #1a202c;
+        margin-bottom: 10px;
+    }
+    
+    .quota-number {
+        font-size: 48px;
+        font-weight: bold;
+        color: #48bb78;
+    }
+    
+    .quota-text {
+        color: #718096;
+        margin-top: 5px;
+    }
+    
+    .error {
+        background: #fed7d7;
+        border: 2px solid #fc8181;
+        color: #742a2a;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 15px;
+        text-align: center;
+        font-weight: 600;
+    }
+    
+    .success {
+        background: #c6f6d5;
+        border: 2px solid #68d391;
+        color: #22543d;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 15px;
+        text-align: center;
+        font-weight: 600;
+    }
+    
+    .admin-panel {
+        background: #f7fafc;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    
+    .admin-panel h2 {
+        font-size: 20px;
+        color: #1a202c;
+        margin-bottom: 15px;
+    }
+    
+    .student-input {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .student-input input {
+        flex: 1;
+    }
+    
+    .student-input button {
+        width: auto;
+        padding: 14px 20px;
+        margin: 0;
+    }
+    
+    .student-list {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .student-item {
+        background: white;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .student-item strong {
+        color: #667eea;
+        font-family: monospace;
+    }
+    
+    .btn-delete {
+        background: #fc8181;
+        padding: 6px 12px;
+        font-size: 12px;
+        margin: 0;
+        width: auto;
+    }
+    
+    .btn-logout {
+        background: #718096;
+        margin-top: 10px;
+    }
+</style>
+```
+
+</head>
+<body>
+    <div class="container" id="loginContainer">
+        <div class="logo">🎨</div>
+        <h1>UGC Studio</h1>
+        <p class="subtitle">Générateur d'images IA</p>
+
+```
+    <div id="loginForm">
+        <label for="codeInput">Code d'accès</label>
+        <input 
+            type="text" 
+            id="codeInput" 
+            placeholder="Entrez votre code"
+            maxlength="10"
+        />
+        <button onclick="handleLogin()">🔓 Se connecter</button>
+        
+        <div class="info">
+            <p>Élève ? Utilisez le code fourni par votre enseignant</p>
+            <p style="margin-top: 5px;">Enseignant ? Code: <strong>ADMIN2024</strong></p>
+        </div>
+    </div>
+    
+    <div id="studentView" style="display: none;"></div>
+    <div id="adminView" style="display: none;"></div>
+</div>
+
+<script>
+    // ⚠️ CONFIGURATION - REMPLACE PAR TON VRAI LIEN UGC STUDIO
+    const UGC_APP_URL = 'https://copy-of-ugc-studio-522430809084.us-west1.run.app/
+';
+    const DAILY_LIMIT = 6;
+    
+    // Stockage local
+    const STORAGE_KEYS = {
+        students: 'ugc_students',
+        usage: 'ugc_usage',
+        currentUser: 'ugc_current_user'
+    };
+    
+    // Initialisation
+    document.getElementById('codeInput').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleLogin();
+    });
+    
+    // Charger l'utilisateur actuel au démarrage
+    window.addEventListener('load', () => {
+        const savedUser = localStorage.getItem(STORAGE_KEYS.currentUser);
+        if (savedUser) {
+            const user = JSON.parse(savedUser);
+            showStudentView(user);
+        }
+    });
+    
+    function handleLogin() {
+        const code = document.getElementById('codeInput').value.trim().toUpperCase();
+        
+        if (!code) {
+            alert('❌ Veuillez entrer un code');
+            return;
+        }
+        
+        if (code === 'ADMIN2024') {
+            showAdminView();
+            return;
+        }
+        
+        const students = getStudents();
+        const student = students.find(s => s.code === code);
+        
+        if (student) {
+            localStorage.setItem(STORAGE_KEYS.currentUser, JSON.stringify(student));
+            showStudentView(student);
+        } else {
+            alert('❌ Code invalide ! Vérifiez votre code ou contactez votre enseignant.');
+        }
+    }
+    
+    function showStudentView(student) {
+        cleanOldUsage();
+        const remaining = getRemainingQuota(student.code);
+        
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('adminView').style.display = 'none';
+        
+        const view = document.getElementById('studentView');
+        view.style.display = 'block';
+        
+        if (remaining > 0) {
+            view.innerHTML = `
+                <div class="quota-info">
+                    <h3>👋 Bonjour ${student.name} !</h3>
+                    <div class="quota-number">${remaining}</div>
+                    <div class="quota-text">génération${remaining > 1 ? 's' : ''} restante${remaining > 1 ? 's' : ''} aujourd'hui</div>
+                </div>
+                <div id="message"></div>
+                <button onclick="launchApp('${student.code}')">🚀 Lancer UGC Studio</button>
+                <button onclick="logout()" style="background: #718096; margin-top: 10px;">🚪 Déconnexion</button>
+            `;
+        } else {
+            view.innerHTML = `
+                <div class="quota-info">
+                    <h3>👋 Bonjour ${student.name} !</h3>
+                    <div style="font-size: 60px; margin: 20px 0;">⏰</div>
+                    <h3 style="color: #e53e3e;">Quota journalier atteint</h3>
+                    <p style="margin-top: 10px; color: #718096;">
+                        Vous avez utilisé vos ${DAILY_LIMIT} générations pour aujourd'hui.<br>
+                        Revenez demain !
+                    </p>
+                </div>
+                <button onclick="logout()" style="background: #718096;">🚪 Déconnexion</button>
+            `;
+        }
+    }
+    
+    function launchApp(code) {
+        const remaining = getRemainingQuota(code);
+        
+        if (remaining <= 0) {
+            alert('⚠️ Quota épuisé ! Revenez demain.');
+            return;
+        }
+        
+        // Consommer une utilisation
+        useQuota(code);
+        
+        // Afficher message de confirmation
+        const newRemaining = getRemainingQuota(code);
+        document.getElementById('message').innerHTML = `
+            <div class="success">
+                ✅ Quota utilisé ! Il vous reste ${newRemaining} génération${newRemaining > 1 ? 's' : ''}<br>
+                🔄 Redirection dans 3 secondes...
+            </div>
+        `;
+        
+        // Rediriger vers l'app après 3 secondes
+        setTimeout(() => {
+            window.location.href = UGC_APP_URL;
+        }, 3000);
+    }
+    
+    function showAdminView() {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('studentView').style.display = 'none';
+        
+        const view = document.getElementById('adminView');
+        view.style.display = 'block';
+        
+        renderAdminPanel();
+    }
+    
+    function renderAdminPanel() {
+        const students = getStudents();
+        const totalUsage = getTotalUsageToday();
+        
+        const view = document.getElementById('adminView');
+        view.innerHTML = `
+            <div class="admin-panel">
+                <h2>🛡️ Administration</h2>
+                
+                <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 14px; color: #718096;">Générations aujourd'hui</div>
+                    <div style="font-size: 32px; font-weight: bold; color: #667eea;">${totalUsage}</div>
+                    <div style="font-size: 14px; color: #718096;">${students.length} élèves inscrits</div>
+                </div>
+                
+                <div class="student-input">
+                    <input 
+                        type="text" 
+                        id="newStudentName" 
+                        placeholder="Nom de l'élève"
+                        style="text-transform: none; font-weight: normal; letter-spacing: normal;"
+                    />
+                    <button onclick="addStudent()">➕ Ajouter</button>
+                </div>
+                
+                <div class="student-list" id="studentList"></div>
+                
+                <button onclick="logout()" class="btn-logout">🚪 Déconnexion</button>
+            </div>
+        `;
+        
+        renderStudentList();
+        
+        document.getElementById('newStudentName').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addStudent();
+        });
+    }
+    
+    function renderStudentList() {
+        const students = getStudents();
+        const list = document.getElementById('studentList');
+        
+        if (students.length === 0) {
+            list.innerHTML = '<p style="text-align: center; color: #718096; padding: 20px;">Aucun élève ajouté</p>';
+            return;
+        }
+        
+        list.innerHTML = students.map(s => {
+            const remaining = getRemainingQuota(s.code);
+            const used = DAILY_LIMIT - remaining;
+            return `
+                <div class="student-item">
+                    <div>
+                        <div style="font-weight: 600; color: #1a202c;">${s.name}</div>
+                        <div style="font-size: 12px; color: #718096;">
+                            Code: <strong>${s.code}</strong> | 
+                            ${used}/${DAILY_LIMIT} utilisées
+                        </div>
+                    </div>
+                    <button onclick="deleteStudent(${s.id})" class="btn-delete">🗑️</button>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    function addStudent() {
+        const input = document.getElementById('newStudentName');
+        const name = input.value.trim();
+        
+        if (!name) {
+            alert('❌ Entrez un nom d\'élève');
+            return;
+        }
+        
+        const students = getStudents();
+        const code = generateCode();
+        
+        const newStudent = {
+            id: Date.now(),
+            name: name,
+            code: code,
+            createdAt: new Date().toISOString()
+        };
+        
+        students.push(newStudent);
+        localStorage.setItem(STORAGE_KEYS.students, JSON.stringify(students));
+        
+        input.value = '';
+        renderAdminPanel();
+        
+        alert(`✅ Élève ajouté !\n\nNom: ${name}\nCode: ${code}\n\nDonnez ce code à l'élève.`);
+    }
+    
+    function deleteStudent(id) {
+        if (!confirm('❌ Supprimer cet élève ?')) return;
+        
+        let students = getStudents();
+        students = students.filter(s => s.id !== id);
+        localStorage.setItem(STORAGE_KEYS.students, JSON.stringify(students));
+        renderAdminPanel();
+    }
+    
+    function logout() {
+        localStorage.removeItem(STORAGE_KEYS.currentUser);
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('studentView').style.display = 'none';
+        document.getElementById('adminView').style.display = 'none';
+        document.getElementById('codeInput').value = '';
+    }
+    
+    // Fonctions utilitaires
+    function generateCode() {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        let code = '';
+        for (let i = 0; i < 6; i++) {
+            code += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return code;
+    }
+    
+    function getStudents() {
+        const data = localStorage.getItem(STORAGE_KEYS.students);
+        return data ? JSON.parse(data) : [];
+    }
+    
+    function getUsage() {
+        const data = localStorage.getItem(STORAGE_KEYS.usage);
+        return data ? JSON.parse(data) : {};
+    }
+    
+    function getRemainingQuota(code) {
+        const today = new Date().toDateString();
+        const usage = getUsage();
+        
+        if (!usage[code] || usage[code].date !== today) {
+            return DAILY_LIMIT;
+        }
+        
+        return Math.max(0, DAILY_LIMIT - usage[code].count);
+    }
+    
+    function useQuota(code) {
+        const today = new Date().toDateString();
+        const usage = getUsage();
+        
+        if (!usage[code] || usage[code].date !== today) {
+            usage[code] = { date: today, count: 0 };
+        }
+        
+        usage[code].count++;
+        localStorage.setItem(STORAGE_KEYS.usage, JSON.stringify(usage));
+    }
+    
+    function getTotalUsageToday() {
+        const today = new Date().toDateString();
+        const usage = getUsage();
+        let total = 0;
+        
+        Object.values(usage).forEach(u => {
+            if (u.date === today) total += u.count;
+        });
+        
+        return total;
+    }
+    
+    function cleanOldUsage() {
+        const today = new Date().toDateString();
+        const usage = getUsage();
+        let cleaned = false;
+        
+        Object.keys(usage).forEach(code => {
+            if (usage[code].date !== today) {
+                delete usage[code];
+                cleaned = true;
+            }
+        });
+        
+        if (cleaned) {
+            localStorage.setItem(STORAGE_KEYS.usage, JSON.stringify(usage));
+        }
+    }
+</script>
+```
+
+</body>
+</html>

@@ -56,4 +56,192 @@ label{
   display:block;
   font-size:14px;
   font-weight:600;
-  color:#4a556
+  color:#4a5568;
+  margin-bottom:8px
+}
+
+input{
+  width:100%;
+  padding:14px 16px;
+  border:2px solid #e2e8f0;
+  border-radius:10px;
+  font-size:16px;
+  text-transform:uppercase;
+  font-weight:600
+}
+
+button{
+  width:100%;
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  color:#fff;
+  font-weight:600;
+  padding:14px;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:20px
+}
+
+.info{
+  margin-top:20px;
+  text-align:center;
+  font-size:13px;
+  color:#718096
+}
+
+.quota-info{
+  background:#edf2f7;
+  padding:15px;
+  border-radius:10px;
+  margin-top:20px;
+  text-align:center
+}
+
+.quota-number{
+  font-size:48px;
+  font-weight:bold;
+  color:#48bb78
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <div id="app"></div>
+</div>
+
+<script>
+/* =========================
+   CONFIGURATION
+========================= */
+
+const CONFIG = {
+  ugcAppUrl: "https://ugc-studio-159307107966.us-west1.run.app",
+  dailyLimit: 6,
+  adminCode: "ADMIN2024",
+
+  studentCodes: [
+    "MEL6A2", // Mélissa
+    "STE9Q4", // Steffy
+    "CHR8P7", // Christelle
+    "MAR9F4"  // Marie
+  ]
+};
+
+/* =========================
+   ÉTAT
+========================= */
+
+let usage = JSON.parse(localStorage.getItem("ugc_usage") || "{}");
+let currentCode = null;
+
+/* =========================
+   UTILS
+========================= */
+
+function today(){
+  return new Date().toDateString();
+}
+
+function remainingQuota(code){
+  if(!usage[code] || usage[code].date !== today()){
+    return CONFIG.dailyLimit;
+  }
+  return Math.max(0, CONFIG.dailyLimit - usage[code].count);
+}
+
+function consumeQuota(code){
+  if(!usage[code] || usage[code].date !== today()){
+    usage[code] = { date: today(), count: 0 };
+  }
+  usage[code].count++;
+  localStorage.setItem("ugc_usage", JSON.stringify(usage));
+}
+
+/* =========================
+   VUES
+========================= */
+
+function renderLogin(){
+  document.getElementById("app").innerHTML = `
+    <div class="logo">🎨</div>
+    <h1>UGC Studio</h1>
+    <p class="subtitle">Générateur d’images IA</p>
+
+    <label>Code d’accès</label>
+    <input id="codeInput" placeholder="Entrez votre code">
+    <button onclick="login()">Se connecter</button>
+
+    <div class="info">
+      Utilisez le code fourni par votre enseignante
+    </div>
+  `;
+}
+
+function renderStudent(){
+  const remaining = remainingQuota(currentCode);
+
+  document.getElementById("app").innerHTML = `
+    <div class="quota-info">
+      <h3>Accès autorisé</h3>
+      <div class="quota-number">${remaining}</div>
+      générations restantes aujourd’hui
+    </div>
+
+    <button onclick="launch()">Lancer UGC Studio</button>
+    <button onclick="logout()" style="background:#718096;margin-top:10px">
+      Déconnexion
+    </button>
+  `;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+function login(){
+  const code = document.getElementById("codeInput").value.trim().toUpperCase();
+
+  if(!code){
+    alert("Entre un code");
+    return;
+  }
+
+  if(code === CONFIG.adminCode){
+    alert("Connexion admin OK");
+    return;
+  }
+
+  if(!CONFIG.studentCodes.includes(code)){
+    alert("❌ Code invalide");
+    return;
+  }
+
+  currentCode = code;
+  renderStudent();
+}
+
+function launch(){
+  if(remainingQuota(currentCode) <= 0){
+    alert("Quota atteint pour aujourd’hui");
+    return;
+  }
+
+  consumeQuota(currentCode);
+  window.location.href = CONFIG.ugcAppUrl;
+}
+
+function logout(){
+  currentCode = null;
+  renderLogin();
+}
+
+/* =========================
+   INIT
+========================= */
+
+renderLogin();
+</script>
+</body>
+</html>

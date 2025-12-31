@@ -140,7 +140,8 @@ const CONFIG = {
     "LAE6T9", // Laetitia
     "MAR8T6", // Marita
     "DIA7N5", // Diane
-    "ALI7C8"  // Alicia
+    "ALI7C8", // Alicia
+    "ERI6Y4"  // Eridye
   ]
 };
 
@@ -167,4 +168,96 @@ function remainingQuota(code){
 }
 
 function consumeQuota(code){
-  if(!usage[code] || usage[code].date !== today
+  if(!usage[code] || usage[code].date !== today()){
+    usage[code] = { date: today(), count: 0 };
+  }
+  usage[code].count++;
+  localStorage.setItem("ugc_usage", JSON.stringify(usage));
+}
+
+/* =========================
+   VUES
+========================= */
+
+function renderLogin(){
+  document.getElementById("app").innerHTML = `
+    <div class="logo">🎨</div>
+    <h1>UGC Studio</h1>
+    <p class="subtitle">Générateur d’images IA</p>
+
+    <label>Code d’accès</label>
+    <input id="codeInput" placeholder="Entrez votre code">
+    <button onclick="login()">Se connecter</button>
+
+    <div class="info">
+      Utilisez le code fourni par votre enseignante
+    </div>
+  `;
+}
+
+function renderStudent(){
+  const remaining = remainingQuota(currentCode);
+
+  document.getElementById("app").innerHTML = `
+    <div class="quota-info">
+      <h3>Accès autorisé</h3>
+      <div class="quota-number">${remaining}</div>
+      générations restantes aujourd’hui
+    </div>
+
+    <button onclick="launch()">Lancer UGC Studio</button>
+    <button onclick="logout()" style="background:#718096;margin-top:10px">
+      Déconnexion
+    </button>
+  `;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+function login(){
+  const code = document.getElementById("codeInput").value.trim().toUpperCase();
+
+  if(!code){
+    alert("Entre un code");
+    return;
+  }
+
+  if(code === CONFIG.adminCode){
+    alert("Connexion admin OK");
+    return;
+  }
+
+  if(!CONFIG.studentCodes.includes(code)){
+    alert("❌ Code invalide");
+    return;
+  }
+
+  currentCode = code;
+  renderStudent();
+}
+
+function launch(){
+  if(remainingQuota(currentCode) <= 0){
+    alert("Quota atteint pour aujourd’hui");
+    return;
+  }
+
+  consumeQuota(currentCode);
+  window.location.href = CONFIG.ugcAppUrl;
+}
+
+function logout(){
+  currentCode = null;
+  renderLogin();
+}
+
+/* =========================
+   INIT
+========================= */
+
+renderLogin();
+</script>
+</body>
+</html>

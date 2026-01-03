@@ -14,7 +14,6 @@
     
     <script type="text/babel">
         const { useState, useEffect } = React;
-        const { Upload, Lock, Sparkles, Download, AlertCircle, CheckCircle, Loader, Image } = window.lucide;
 
         const StudioScene = () => {
           const [apiKey, setApiKey] = useState('');
@@ -266,7 +265,7 @@ same continuous moment, consistent scene, unchanged environment, professional ph
             return React.createElement('div', { className: "min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4" },
               React.createElement('div', { className: "bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full" },
                 React.createElement('div', { className: "flex items-center justify-center mb-6" },
-                  React.createElement('div', { className: "w-12 h-12 text-purple-600 flex items-center justify-center text-4xl" }, '🔒')
+                  React.createElement('div', { className: "text-6xl" }, '🔒')
                 ),
                 React.createElement('h1', { className: "text-2xl font-bold text-center mb-2 text-gray-800" }, 'Studio Scène'),
                 React.createElement('p', { className: "text-center text-gray-600 mb-6" }, 'Application de continuité visuelle 4K'),
@@ -311,10 +310,10 @@ same continuous moment, consistent scene, unchanged environment, professional ph
 
           return React.createElement('div', { className: "min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white p-4" },
             React.createElement('div', { className: "container mx-auto max-w-6xl" },
-              React.createElement('div', { className: "flex justify-between items-center mb-8" },
+              React.createElement('div', { className: "flex justify-between items-center mb-8 flex-wrap gap-4" },
                 React.createElement('div', null,
-                  React.createElement('h1', { className: "text-4xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent" }, 'Studio Scène'),
-                  React.createElement('p', { className: "text-purple-200" }, 'Continuité visuelle avec IA • Génération 4K')
+                  React.createElement('h1', { className: "text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent" }, 'Studio Scène'),
+                  React.createElement('p', { className: "text-purple-200 text-sm md:text-base" }, 'Continuité visuelle avec IA • Génération 4K')
                 ),
                 React.createElement('button', {
                   onClick: resetApiKey,
@@ -323,11 +322,11 @@ same continuous moment, consistent scene, unchanged environment, professional ph
               ),
 
               error && React.createElement('div', { className: "mb-6 bg-red-500/20 border border-red-500/50 rounded-lg p-4" },
-                React.createElement('p', { className: "text-red-200" }, error)
+                React.createElement('p', { className: "text-red-200 text-sm" }, error)
               ),
 
               success && React.createElement('div', { className: "mb-6 bg-green-500/20 border border-green-500/50 rounded-lg p-4" },
-                React.createElement('p', { className: "text-green-200" }, success)
+                React.createElement('p', { className: "text-green-200 text-sm" }, success)
               ),
 
               React.createElement('div', { className: "grid grid-cols-1 lg:grid-cols-2 gap-6" },
@@ -337,10 +336,10 @@ same continuous moment, consistent scene, unchanged environment, professional ph
                     
                     !referenceImageUrl ? 
                       React.createElement('label', { className: "block cursor-pointer" },
-                        React.createElement('div', { className: "border-2 border-dashed border-purple-400/50 rounded-xl p-12 text-center hover:border-purple-400 transition-colors" },
-                          React.createElement('div', { className: "text-6xl mb-4" }, '🖼️'),
-                          React.createElement('p', { className: "text-purple-200 mb-2" }, 'Glissez votre image ici'),
-                          React.createElement('p', { className: "text-sm text-purple-300" }, 'ou cliquez pour sélectionner'),
+                        React.createElement('div', { className: "border-2 border-dashed border-purple-400/50 rounded-xl p-8 md:p-12 text-center hover:border-purple-400 transition-colors" },
+                          React.createElement('div', { className: "text-5xl md:text-6xl mb-4" }, '🖼️'),
+                          React.createElement('p', { className: "text-purple-200 mb-2 text-sm md:text-base" }, 'Glissez votre image ici'),
+                          React.createElement('p', { className: "text-xs md:text-sm text-purple-300" }, 'ou cliquez pour sélectionner'),
                           React.createElement('p', { className: "text-xs text-purple-400 mt-2" }, 'JPG, PNG • Max 10MB')
                         ),
                         React.createElement('input', {
@@ -379,17 +378,17 @@ same continuous moment, consistent scene, unchanged environment, professional ph
                     React.createElement('div', { className: "space-y-3 text-sm" },
                       React.createElement('div', { className: "bg-white/5 rounded-lg p-3" },
                         React.createElement('p', { className: "text-purple-300 font-semibold mb-1" }, '👤 Personnage'),
-                        React.createElement('p', { className: "text-purple-100" }, analysisData.personnage.origine + ', ' + analysisData.personnage.age),
+                        React.createElement('p', { className: "text-purple-100 text-sm" }, analysisData.personnage.origine + ', ' + analysisData.personnage.age),
                         React.createElement('p', { className: "text-purple-200 text-xs mt-1" }, analysisData.personnage.vetements_haut)
                       ),
                       React.createElement('div', { className: "bg-white/5 rounded-lg p-3" },
                         React.createElement('p', { className: "text-purple-300 font-semibold mb-1" }, '📍 Lieu'),
-                        React.createElement('p', { className: "text-purple-100" }, analysisData.lieu.type),
+                        React.createElement('p', { className: "text-purple-100 text-sm" }, analysisData.lieu.type),
                         React.createElement('p', { className: "text-purple-200 text-xs mt-1" }, analysisData.lieu.murs + ' • ' + analysisData.lieu.sol)
                       ),
                       React.createElement('div', { className: "bg-white/5 rounded-lg p-3" },
                         React.createElement('p', { className: "text-purple-300 font-semibold mb-1" }, '💡 Lumière'),
-                        React.createElement('p', { className: "text-purple-100" }, analysisData.lumiere.type + ' • ' + analysisData.lumiere.ambiance)
+                        React.createElement('p', { className: "text-purple-100 text-sm" }, analysisData.lumiere.type + ' • ' + analysisData.lumiere.ambiance)
                       )
                     )
                   )
@@ -415,12 +414,20 @@ same continuous moment, consistent scene, unchanged environment, professional ph
                     ),
 
                     generatedImages.length > 0 && React.createElement('div', { className: "bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20" },
-                      React.createElement('h2', { className: "text-xl font-semibold mb-4" }, 'Prompts générés'),
+                      React.createElement('h2', { className: "text-xl font-semibold mb-4" }, '📋 Prompts générés'),
                       React.createElement('div', { className: "space-y-4" },
                         generatedImages.map((img, index) =>
                           React.createElement('div', { key: img.id, className: "bg-white/5 rounded-lg p-4" },
                             React.createElement('p', { className: "text-sm text-purple-300 mb-2 font-semibold" }, `Variation ${index + 1}: ${img.prompt}`),
-                            React.createElement('pre', { className: "text-xs text-purple-100 bg-black/30 p-3 rounded overflow-x-auto whitespace-pre-wrap" }, img.fullPrompt)
+                            React.createElement('pre', { className: "text-xs text-purple-100 bg-black/30 p-3 rounded overflow-x-auto whitespace-pre-wrap break-words" }, img.fullPrompt),
+                            React.createElement('button', {
+                              onClick: () => {
+                                navigator.clipboard.writeText(img.fullPrompt);
+                                setSuccess('Prompt copié !');
+                                setTimeout(() => setSuccess(''), 2000);
+                              },
+                              className: "mt-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded text-sm"
+                            }, '📋 Copier le prompt')
                           )
                         )
                       )
@@ -437,26 +444,3 @@ same continuous moment, consistent scene, unchanged environment, professional ph
     </script>
 </body>
 </html>
-```
-
----
-
-### **ÉTAPE 2 : Uploader sur GitHub**
-
-1. **Allez sur votre repository existant** (celui que vous avez déjà déployé)
-2. **Cliquez sur "Add file" → "Upload files"**
-3. **Glissez votre fichier `index.html`** (ou créez un dossier `studio-scene/` puis mettez index.html dedans)
-4. **Commit** les changements
-
----
-
-### **ÉTAPE 3 : Voir votre application**
-
-**Attendez 2-3 minutes** puis allez sur :
-```
-https://VOTRE-USERNAME.github.io/VOTRE-REPO-NAME/
-```
-
-Ou si vous avez créé un sous-dossier :
-```
-https://VOTRE-USERNAME.github.io/VOTRE-REPO-NAME/studio-scene/

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Scène - Continuité Visuelle 4K</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        // COPIEZ ICI LE CODE DE L'ARTIFACT REACT CI-DESSUS
+        // (tout le code depuis "import React..." jusqu'à "export default StudioScene")
+    </script>
+</body>
+</html>
+```
+
+---
+
+### **ÉTAPE 2 : Créer un repository GitHub**
+
+1. **Allez sur GitHub** : https://github.com
+2. **Cliquez sur "New repository"** (bouton vert en haut à droite)
+3. **Remplissez :**
+   - Repository name : `studio-scene`
+   - Description : "Application de continuité visuelle 4K avec IA"
+   - **Cochez "Public"**
+   - **Cochez "Add a README file"**
+4. **Cliquez sur "Create repository"**
+
+---
+
+### **ÉTAPE 3 : Upload le fichier HTML**
+
+1. **Dans votre repository**, cliquez sur **"Add file" → "Upload files"**
+2. **Glissez votre fichier `index.html`**
+3. **Écrivez un message** : "Initial commit - Studio Scène"
+4. **Cliquez sur "Commit changes"**
+
+---
+
+### **ÉTAPE 4 : Activer GitHub Pages**
+
+1. **Dans votre repository**, cliquez sur **"Settings"** (en haut)
+2. **Dans le menu de gauche**, cliquez sur **"Pages"**
+3. **Sous "Source"**, sélectionnez **"Deploy from a branch"**
+4. **Sous "Branch"**, sélectionnez **"main"** puis **"/ (root)"**
+5. **Cliquez sur "Save"**
+6. **Attendez 1-2 minutes**
+7. **Rafraîchissez la page**, vous verrez :
+```
+   ✅ Your site is live at https://[votre-username].github.io/studio-scene/
+```
+
+---
+
+### **ÉTAPE 5 : Partager le lien**
+
+**Votre application est maintenant en ligne !**
+
+Vous pouvez partager ce lien à vos clients/étudiants :
+```
+https://[votre-username].github.io/studio-scene/

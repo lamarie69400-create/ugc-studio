@@ -7,7 +7,6 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 body{
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
@@ -17,7 +16,6 @@ body{
   justify-content:center;
   padding:20px
 }
-
 .container{
   background:#fff;
   border-radius:20px;
@@ -26,83 +24,32 @@ body{
   width:100%;
   max-width:450px
 }
-
 .logo{
-  width:80px;
-  height:80px;
+  width:80px;height:80px;
   background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
   border-radius:50%;
   margin:0 auto 20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:flex;align-items:center;justify-content:center;
   font-size:40px
 }
-
-h1{
-  text-align:center;
-  font-size:32px;
-  color:#1a202c;
-  margin-bottom:10px
-}
-
-.subtitle{
-  text-align:center;
-  color:#718096;
-  margin-bottom:30px
-}
-
-label{
-  display:block;
-  font-size:14px;
-  font-weight:600;
-  color:#4a5568;
-  margin-bottom:8px
-}
-
+h1{text-align:center;font-size:32px;color:#1a202c;margin-bottom:10px}
+.subtitle{text-align:center;color:#718096;margin-bottom:30px}
+label{display:block;font-size:14px;font-weight:600;color:#4a5568;margin-bottom:8px}
 input{
-  width:100%;
-  padding:14px 16px;
-  border:2px solid #e2e8f0;
-  border-radius:10px;
-  font-size:16px;
-  text-transform:uppercase;
-  font-weight:600
+  width:100%;padding:14px 16px;border:2px solid #e2e8f0;
+  border-radius:10px;font-size:16px;text-transform:uppercase;font-weight:600
 }
-
 button{
-  width:100%;
-  background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
-  color:#fff;
-  font-weight:600;
-  padding:14px;
-  border-radius:10px;
-  border:none;
-  font-size:16px;
-  cursor:pointer;
-  margin-top:20px
+  width:100%;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  color:#fff;font-weight:600;padding:14px;border-radius:10px;
+  border:none;font-size:16px;cursor:pointer;margin-top:20px
 }
-
-.info{
-  margin-top:20px;
-  text-align:center;
-  font-size:13px;
-  color:#718096
-}
-
+.info{margin-top:20px;text-align:center;font-size:13px;color:#718096}
 .quota-info{
-  background:#edf2f7;
-  padding:15px;
-  border-radius:10px;
-  margin-top:20px;
-  text-align:center
+  background:#edf2f7;padding:15px;border-radius:10px;
+  margin-top:20px;text-align:center
 }
-
-.quota-number{
-  font-size:48px;
-  font-weight:bold;
-  color:#48bb78
-}
+.quota-number{font-size:48px;font-weight:bold;color:#48bb78}
 </style>
 </head>
 
@@ -112,63 +59,27 @@ button{
 </div>
 
 <script>
-/* =========================
-   CONFIGURATION
-========================= */
-
 const CONFIG = {
   ugcAppUrl: "https://ugc-studio-159307107966.us-west1.run.app",
   dailyLimit: 10,
   adminCode: "ADMIN2024",
-
   studentCodes: [
-    "MEL6A2", // Mélissa
-    "STE9Q4", // Steffy
-    "CHR8P7", // Christelle
-    "MAR9F4", // Marie
-    "VAN5Q8", // Vanessa
-    "CEL4M8", // Céline
-    "VAN8O3", // Vanessa O
-    "ALI6Y9", // Alissya
-    "JOH7A4", // Johanna
-    "AUR6R9", // Aurore
-    "SAR7H2", // Sarah
-    "VIR8G6", // Virginie
-    "LIO5R8", // Liora
-    "ADE7L4", // Adeline
-    "SHA9R6", // Sharaf
-    "LAE6T9", // Laetitia
-    "MAR8T6", // Marita
-    "DIA7N5", // Diane
-    "ALI7C8", // Alicia
-    "ERI6Y4", // Eridye
-    "MARH9E", // Marie Hélène
-    "MEL9N7", // Mélanie
-    "AUD7R5", // Audrey
-    "FAN6N4", // Fanny
-    "ALI8C5"  // Alicia (2)
+    "MEL6A2","STE9Q4","CHR8P7","MAR9F4","VAN5Q8","CEL4M8","VAN8O3",
+    "ALI6Y9","JOH7A4","AUR6R9","SAR7H2","VIR8G6","LIO5R8","ADE7L4",
+    "SHA9R6","LAE6T9","MAR8T6","DIA7N5","ALI7C8","ERI6Y4","MARH9E",
+    "MEL9N7","AUD7R5","FAN6N4","ALI8C5",
+    "STE4P8", // Stéphanie
+    "AGN6S9"  // Agness
   ]
 };
-
-/* =========================
-   ÉTAT
-========================= */
 
 let usage = JSON.parse(localStorage.getItem("ugc_usage") || "{}");
 let currentCode = null;
 
-/* =========================
-   UTILS
-========================= */
-
-function today(){
-  return new Date().toDateString();
-}
+function today(){ return new Date().toDateString(); }
 
 function remainingQuota(code){
-  if(!usage[code] || usage[code].date !== today()){
-    return CONFIG.dailyLimit;
-  }
+  if(!usage[code] || usage[code].date !== today()) return CONFIG.dailyLimit;
   return Math.max(0, CONFIG.dailyLimit - usage[code].count);
 }
 
@@ -180,87 +91,46 @@ function consumeQuota(code){
   localStorage.setItem("ugc_usage", JSON.stringify(usage));
 }
 
-/* =========================
-   VUES
-========================= */
-
 function renderLogin(){
   document.getElementById("app").innerHTML = `
     <div class="logo">🎨</div>
     <h1>UGC Studio</h1>
     <p class="subtitle">Générateur d’images IA</p>
-
     <label>Code d’accès</label>
     <input id="codeInput" placeholder="Entrez votre code">
     <button onclick="login()">Se connecter</button>
-
-    <div class="info">
-      Utilisez le code fourni par votre enseignante
-    </div>
+    <div class="info">Utilisez le code fourni par votre enseignante</div>
   `;
 }
 
 function renderStudent(){
-  const remaining = remainingQuota(currentCode);
-
+  const r = remainingQuota(currentCode);
   document.getElementById("app").innerHTML = `
     <div class="quota-info">
       <h3>Accès autorisé</h3>
-      <div class="quota-number">${remaining}</div>
+      <div class="quota-number">${r}</div>
       générations restantes aujourd’hui
     </div>
-
     <button onclick="launch()">Lancer UGC Studio</button>
-    <button onclick="logout()" style="background:#718096;margin-top:10px">
-      Déconnexion
-    </button>
+    <button onclick="logout()" style="background:#718096;margin-top:10px">Déconnexion</button>
   `;
 }
 
-/* =========================
-   ACTIONS
-========================= */
-
 function login(){
   const code = document.getElementById("codeInput").value.trim().toUpperCase();
-
-  if(!code){
-    alert("Entre un code");
-    return;
-  }
-
-  if(code === CONFIG.adminCode){
-    alert("Connexion admin OK");
-    return;
-  }
-
-  if(!CONFIG.studentCodes.includes(code)){
-    alert("❌ Code invalide");
-    return;
-  }
-
-  currentCode = code;
-  renderStudent();
+  if(!code) return alert("Entre un code");
+  if(code === CONFIG.adminCode) return alert("Connexion admin OK");
+  if(!CONFIG.studentCodes.includes(code)) return alert("❌ Code invalide");
+  currentCode = code; renderStudent();
 }
 
 function launch(){
-  if(remainingQuota(currentCode) <= 0){
-    alert("Quota atteint pour aujourd’hui");
-    return;
-  }
-
+  if(remainingQuota(currentCode) <= 0) return alert("Quota atteint pour aujourd’hui");
   consumeQuota(currentCode);
   window.location.href = CONFIG.ugcAppUrl;
 }
 
-function logout(){
-  currentCode = null;
-  renderLogin();
-}
-
-/* =========================
-   INIT
-========================= */
+function logout(){ currentCode = null; renderLogin(); }
 
 renderLogin();
 </script>

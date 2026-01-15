@@ -40,16 +40,23 @@ input{
   border-radius:10px;font-size:16px;text-transform:uppercase;font-weight:600
 }
 button{
-  width:100%;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
-  color:#fff;font-weight:600;padding:14px;border-radius:10px;
+  width:100%;
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  color:#fff;
+  font-weight:600;padding:14px;border-radius:10px;
   border:none;font-size:16px;cursor:pointer;margin-top:20px
 }
-.info{margin-top:20px;text-align:center;font-size:13px;color:#718096}
+.info{
+  margin-top:20px;
+  text-align:center;font-size:13px;color:#718096
+}
 .quota-info{
   background:#edf2f7;padding:15px;border-radius:10px;
   margin-top:20px;text-align:center
 }
-.quota-number{font-size:48px;font-weight:bold;color:#48bb78}
+.quota-number{
+  font-size:48px;font-weight:bold;color:#48bb78
+}
 </style>
 </head>
 
@@ -60,16 +67,14 @@ button{
 
 <script>
 const CONFIG = {
-  ugcAppUrl: "https://ugc-studio-159307107966.us-west1.run.app",
+  ugcAppUrl: "https://ai.studio/apps/drive/1KXgr3unYl8C0Ph-osZDxuG3e_UxB4yOL",
   dailyLimit: 10,
   adminCode: "ADMIN2024",
   studentCodes: [
     "MEL6A2","STE9Q4","CHR8P7","MAR9F4","VAN5Q8","CEL4M8","VAN8O3",
     "ALI6Y9","JOH7A4","AUR6R9","SAR7H2","VIR8G6","LIO5R8","ADE7L4",
     "SHA9R6","LAE6T9","MAR8T6","DIA7N5","ALI7C8","ERI6Y4","MARH9E",
-    "MEL9N7","AUD7R5","FAN6N4","ALI8C5",
-    "STE4P8", // Stéphanie
-    "AGN6S9"  // Agness
+    "MEL9N7","AUD7R5","FAN6N4","ALI8C5","STE4P8","AGN6S9"
   ]
 };
 
@@ -112,7 +117,9 @@ function renderStudent(){
       générations restantes aujourd’hui
     </div>
     <button onclick="launch()">Lancer UGC Studio</button>
-    <button onclick="logout()" style="background:#718096;margin-top:10px">Déconnexion</button>
+    <button onclick="logout()" style="background:#718096;margin-top:10px">
+      Déconnexion
+    </button>
   `;
 }
 
@@ -121,7 +128,8 @@ function login(){
   if(!code) return alert("Entre un code");
   if(code === CONFIG.adminCode) return alert("Connexion admin OK");
   if(!CONFIG.studentCodes.includes(code)) return alert("❌ Code invalide");
-  currentCode = code; renderStudent();
+  currentCode = code;
+  renderStudent();
 }
 
 function launch(){
@@ -130,7 +138,10 @@ function launch(){
   window.location.href = CONFIG.ugcAppUrl;
 }
 
-function logout(){ currentCode = null; renderLogin(); }
+function logout(){
+  currentCode = null;
+  renderLogin();
+}
 
 renderLogin();
 </script>

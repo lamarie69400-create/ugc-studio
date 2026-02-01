@@ -24,14 +24,40 @@ body{
   width:100%;
   max-width:450px
 }
+.app-fullscreen{
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background:#fff;
+  z-index:1000;
+  display:none;
+  flex-direction:column
+}
+.app-fullscreen.active{display:flex}
+.app-header{
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  color:#fff;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-shrink:0
+}
+.app-content{
+  flex:1;
+  overflow:auto;
+  background:#f7fafc
+}
+iframe{
+  width:100%;
+  height:100%;
+  border:none
+}
 .logo{
   width:80px;height:80px;
   background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
   border-radius:50%;
   margin:0 auto 20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:flex;align-items:center;justify-content:center;
   font-size:40px
 }
 h1{text-align:center;font-size:32px;color:#1a202c;margin-bottom:10px}
@@ -76,6 +102,24 @@ button{
   font-weight:bold;
   color:#48bb78
 }
+.quota-badge{
+  background:rgba(255,255,255,.2);
+  padding:5px 15px;
+  border-radius:20px;
+  font-size:14px;
+  margin-left:10px
+}
+.close-btn{
+  background:rgba(255,255,255,.2);
+  padding:8px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  border:none;
+  color:#fff;
+  font-size:14px;
+  width:auto;
+  margin:0
+}
 </style>
 </head>
 
@@ -84,31 +128,40 @@ button{
   <div id="app"></div>
 </div>
 
+<div class="app-fullscreen" id="appFullscreen">
+  <div class="app-header">
+    <div>
+      <strong>🎨 UGC Studio</strong>
+      <span class="quota-badge" id="quotaBadge"></span>
+    </div>
+    <button class="close-btn" onclick="closeApp()">← Retour</button>
+  </div>
+  <div class="app-content">
+    <iframe id="ugcFrame"></iframe>
+  </div>
+</div>
+
 <script>
 const CONFIG = {
-  ugcAppUrl: "https://studio-ugc-ai-2-0-spi-ia-940458966046.us-west1.run.app",
+  // LIEN GOOGLE AI STUDIO DÉPLOYÉ (NOUVEAU)
+  ugcAppUrl: "https://ai.studio/apps/drive/1llTQ5DYiQhHnWlUPP1kN_5fhZOUSCrxk",
   dailyLimit: 10,
   adminCode: "ADMIN2024",
   studentCodes: [
     "MEL6A2","STE9Q4","CHR8P7","MAR9F4","VAN5Q8","CEL4M8","VAN8O3",
     "ALI6Y9","JOH7A4","AUR6R9","SAR7H2","VIR8G6","LIO5R8","ADE7L4",
-    "SHA9R6","LAE6T9","MAR8T6","DIA7N5","ALI7C8","ERI6Y4",
-    "MEL9N7","AUD7R5","FAN6N4","ALI8C5","STE4P8","AGN6S9",
-    "MAN7U9"
+    "SHA9R6","LAE6T9","MAR8T6","DIA7N5","ALI7C8","ERI6Y4","MARH9E",
+    "MEL9N7","AUD7R5","FAN6N4","ALI8C5","STE4P8","AGN6S9","MAN7U9"
   ]
 };
 
 let usage = JSON.parse(localStorage.getItem("ugc_usage") || "{}");
 let currentCode = null;
 
-function today(){
-  return new Date().toDateString();
-}
+function today(){ return new Date().toDateString(); }
 
 function remainingQuota(code){
-  if(!usage[code] || usage[code].date !== today()){
-    return CONFIG.dailyLimit;
-  }
+  if(!usage[code] || usage[code].date !== today()) return CONFIG.dailyLimit;
   return Math.max(0, CONFIG.dailyLimit - usage[code].count);
 }
 
@@ -124,35 +177,72 @@ function renderLogin(){
   document.getElementById("app").innerHTML = `
     <div class="logo">🎨</div>
     <h1>UGC Studio</h1>
-    <p class="subtitle">Générateur d’images IA</p>
-
-    <label>Code d’accès</label>
-    <input id="codeInput" placeholder="Entrez votre code">
+    <p class="subtitle">Générateur d'images IA</p>
+    <label>Code d'accès</label>
+    <input id="codeInput" placeholder="Entrez votre code" onkeypress="if(event.key==='Enter')login()">
     <button onclick="login()">Se connecter</button>
-
-    <div class="info">
-      Utilisez le code fourni par votre enseignante
-    </div>
+    <div class="info">Utilisez le code fourni par votre enseignante</div>
   `;
+  setTimeout(() => document.getElementById("codeInput")?.focus(), 100);
 }
 
 function renderStudent(){
-  const remaining = remainingQuota(currentCode);
+  const r = remainingQuota(currentCode);
   document.getElementById("app").innerHTML = `
     <div class="quota-info">
-      <h3>Accès autorisé</h3>
-      <div class="quota-number">${remaining}</div>
-      générations restantes aujourd’hui
+      <h3>✅ Accès autorisé</h3>
+      <div class="quota-number">${r}</div>
+      <p style="margin-top:10px;color:#718096">générations restantes aujourd'hui</p>
     </div>
-
-    <button onclick="launch()">Lancer UGC Studio</button>
+    <button onclick="launch()">🚀 Lancer UGC Studio</button>
     <button onclick="logout()" style="background:#718096;margin-top:10px">
-      Déconnexion
+      ← Déconnexion
     </button>
   `;
 }
 
 function login(){
   const code = document.getElementById("codeInput").value.trim().toUpperCase();
-  if(!code){
-    alert("Ent
+  if(!code) return alert("⚠️ Merci d'entrer un code d'accès");
+  if(code === CONFIG.adminCode) {
+    alert("✅ Connexion administrateur réussie");
+    currentCode = code;
+    renderStudent();
+    return;
+  }
+  if(!CONFIG.studentCodes.includes(code)) return alert("❌ Code invalide. Vérifiez votre code auprès de votre enseignante.");
+  currentCode = code;
+  renderStudent();
+}
+
+function launch(){
+  const remaining = remainingQuota(currentCode);
+  if(remaining <= 0) {
+    alert("⚠️ Quota journalier atteint (10 générations max/jour).\n\nRevenez demain pour continuer ! 😊");
+    return;
+  }
+  
+  consumeQuota(currentCode);
+  document.getElementById("ugcFrame").src = CONFIG.ugcAppUrl;
+  document.getElementById("appFullscreen").classList.add("active");
+  document.getElementById("quotaBadge").textContent = `${remainingQuota(currentCode)} restantes`;
+}
+
+function closeApp(){
+  document.getElementById("appFullscreen").classList.remove("active");
+  document.getElementById("ugcFrame").src = "";
+  renderStudent();
+}
+
+function logout(){
+  if(confirm("Êtes-vous sûr(e) de vouloir vous déconnecter ?")) {
+    currentCode = null;
+    renderLogin();
+  }
+}
+
+// Auto-start
+renderLogin();
+</script>
+</body>
+</html>

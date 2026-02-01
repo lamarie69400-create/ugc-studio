@@ -86,7 +86,7 @@ button{
 
 <script>
 const CONFIG = {
-  ugcAppUrl: "https://studio-ugc-ai-2-0-spi-940458966046.us-west1.run.app",
+  ugcAppUrl: "https://studio-ugc-ai-2-0-spi-ia-940458966046.us-west1.run.app",
   dailyLimit: 10,
   adminCode: "ADMIN2024",
   studentCodes: [
@@ -155,36 +155,4 @@ function renderStudent(){
 function login(){
   const code = document.getElementById("codeInput").value.trim().toUpperCase();
   if(!code){
-    alert("Entre un code");
-    return;
-  }
-  if(code === CONFIG.adminCode){
-    alert("Connexion admin OK");
-    return;
-  }
-  if(!CONFIG.studentCodes.includes(code)){
-    alert("❌ Code invalide");
-    return;
-  }
-  currentCode = code;
-  renderStudent();
-}
-
-function launch(){
-  if(remainingQuota(currentCode) <= 0){
-    alert("Quota atteint pour aujourd’hui");
-    return;
-  }
-  consumeQuota(currentCode);
-  window.location.href = CONFIG.ugcAppUrl;
-}
-
-function logout(){
-  currentCode = null;
-  renderLogin();
-}
-
-renderLogin();
-</script>
-</body>
-</html>
+    alert("Ent

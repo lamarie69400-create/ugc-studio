@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PinStudio AI — Stratégie Pinterest 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #FF4D00;
+      --black: #0A0A0A;
+      --white: #F5F0EB;
+      --grey: rgba(245,240,235,0.12);
+      --grey-border: rgba(245,240,235,0.15);
+      --card-bg: #F5F0EB;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      background: var(--orange);
+      overflow: hidden;
+      padding: 10px 0;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 18s linear infinite;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      color: #000;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero { text-align: center; padding: 80px 24px 60px; }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 14vw, 148px);
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--orange); font-style: italic; }
+    .hero p {
+      font-size: clamp(16px, 2vw, 20px);
+      color: rgba(245,240,235,0.65);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    /* ── MAIN GRID ── */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      padding: 0 24px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr; } }
+
+    /* ── UPLOAD ZONE ── */
+    .upload-zone {
+      aspect-ratio: 4/5;
+      border: 2px dashed var(--grey-border);
+      border-radius: 20px;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      transition: border-color .3s;
+      background: var(--grey);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .upload-zone:hover { border-color: rgba(245,240,235,0.45); }
+    .upload-zone.has-image { border-color: var(--orange); }
+    .upload-zone input { display: none; }
+    .upload-placeholder { text-align: center; padding: 32px; }
+    .upload-placeholder svg { width: 48px; height: 48px; color: rgba(245,240,235,0.3); margin-bottom: 16px; display: block; margin: 0 auto 16px; }
+    .upload-placeholder p { font-size: 16px; margin-bottom: 6px; }
+    .upload-placeholder small { color: rgba(245,240,235,0.35); font-size: 13px; }
+    .upload-zone img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+    .upload-hover-overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,0.5);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .3s;
+      font-weight: 700; font-size: 15px;
+    }
+    .upload-zone:hover .upload-hover-overlay { opacity: 1; }
+
+    /* ── CTA BUTTON ── */
+    .btn-analyze {
+      width: 100%;
+      padding: 22px;
+      background: var(--orange);
+      color: #000;
+      border: none;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .25s;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      margin-top: 16px;
+      border-radius: 4px;
+    }
+    .btn-analyze:hover:not(:disabled) { background: var(--white); }
+    .btn-analyze:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── WHY CARD ── */
+    .why-card {
+      background: var(--card-bg);
+      color: #000;
+      border-radius: 20px;
+      padding: 40px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 400px;
+    }
+    .why-card h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .why-item { display: flex; gap: 16px; margin-bottom: 24px; }
+    .why-num {
+      width: 40px; height: 40px; border-radius: 50%; background: #000; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 16px; flex-shrink: 0;
+    }
+    .why-item h3 { font-weight: 700; text-transform: uppercase; font-size: 13px; margin-bottom: 4px; }
+    .why-item p { font-size: 13px; color: rgba(0,0,0,0.6); line-height: 1.5; }
+
+    /* ── ERROR ── */
+    .error-box {
+      margin: 0 24px 40px;
+      max-width: 1152px;
+      margin-left: auto; margin-right: auto;
+      padding: 16px 20px;
+      background: rgba(239,68,68,0.15);
+      border: 1px solid rgba(239,68,68,0.5);
+      border-radius: 12px;
+      color: #fca5a5;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px;
+    }
+    .error-box.hidden { display: none; }
+
+    /* ── SPINNER ── */
+    .spinner {
+      width: 20px; height: 20px;
+      border: 2px solid currentColor;
+      border-top-color: transparent;
+      border-radius: 50%;
+      display: inline-block;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 40px;
+      font-style: italic;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 28px;
+    }
+    .section-title svg { color: var(--orange); }
+
+    /* ── ANALYSIS GRID ── */
+    .analysis-section {
+      max-width: 1200px; margin: 0 auto 60px; padding: 0 24px;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .5s, transform .5s;
+    }
+    .analysis-section.visible { opacity: 1; transform: translateY(0); }
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 640px) { .analysis-grid { grid-template-columns: repeat(2, 1fr); } }
+    .analysis-chip {
+      padding: 14px 16px;
+      background: var(--grey);
+      border: 1px solid var(--grey-border);
+      border-radius: 12px;
+    }
+    .analysis-chip .label {
+      font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em;
+      color: rgba(245,240,235,0.35); margin-bottom: 4px;
+    }
+    .analysis-chip .val { font-size: 14px; font-weight: 400; }
+    .lever-box {
+      padding: 20px 24px;
+      background: rgba(255,77,0,0.1);
+      border: 1px solid rgba(255,77,0,0.2);
+      border-radius: 12px;
+    }
+    .lever-box .label {
+      font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--orange); margin-bottom: 8px;
+    }
+    .lever-box p { font-size: 16px; font-style: italic; }
+
+    /* ── STRATEGIES SECTION ── */
+    .strategies-section {
+      max-width: 1200px; margin: 0 auto 80px; padding: 0 24px;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .6s .1s, transform .6s .1s;
+    }
+    .strategies-section.visible { opacity: 1; transform: translateY(0); }
+    .strategies-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    @media (max-width: 900px) { .strategies-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
+
+    /* ── PIN CARD ── */
+    .pin-card { display: flex; flex-direction: column; }
+    .pin-visual {
+      aspect-ratio: 2/3;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 24px;
+      border: 2px solid rgba(245,240,235,0.12);
+    }
+    .pin-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .pin-badge {
+      position: absolute; top: 14px; left: 14px;
+      padding: 4px 10px; border-radius: 999px;
+      font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+      color: #fff; backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .badge-recherche { background: rgba(59,130,246,0.55); }
+    .badge-projection { background: rgba(236,72,153,0.55); }
+    .badge-micro { background: rgba(16,185,129,0.55); }
+    .pin-overlay-text {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      line-height: 1.1;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .pin-title { font-size: 19px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+    .pin-desc { font-size: 13px; color: rgba(245,240,235,0.55); line-height: 1.6; margin-bottom: 12px; }
+    .hashtags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .hashtag { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--orange); }
+
+    /* ── SCORE CARD ── */
+    .score-card {
+      background: var(--card-bg);
+      color: #000;
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .score-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 16px; }
+    .score-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.45; font-weight: 700; }
+    .score-overall { font-family: 'Bebas Neue', sans-serif; font-size: 36px; line-height: 1; }
+    .score-bars { margin-bottom: 16px; }
+    .score-bar-row { margin-bottom: 8px; }
+    .score-bar-header { display: flex; justify-content: space-between; font-size: 9px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+    .score-bar-track { height: 3px; background: rgba(0,0,0,0.1); border-radius: 99px; overflow: hidden; }
+    .score-bar-fill { height: 100%; background: var(--orange); border-radius: 99px; }
+    .score-analysis { font-size: 11px; font-style: italic; opacity: 0.6; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 12px; line-height: 1.55; }
+
+    /* ── LOADING OVERLAY ── */
+    #loading-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(4px);
+      display: none; flex-direction: column;
+      align-items: center; justify-content: center; gap: 20px;
+    }
+    #loading-overlay.active { display: flex; }
+    .loading-spinner-big {
+      width: 56px; height: 56px;
+      border: 3px solid rgba(255,77,0,0.25);
+      border-top-color: var(--orange);
+      border-radius: 50%;
+      animation: spin .9s linear infinite;
+    }
+    #loading-step {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+    }
+    #loading-sub { font-size: 13px; color: rgba(245,240,235,0.4); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--grey-border);
+      padding: 48px 24px;
+      background: rgba(245,240,235,0.03);
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 24px;
+    }
+    footer h2 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; margin-bottom: 4px; }
+    footer small { font-size: 12px; color: rgba(245,240,235,0.3); }
+    .footer-stats { display: flex; gap: 40px; }
+    .stat p:first-child { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--orange); }
+    .stat p:last-child { font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.3; }
+  </style>
+</head>
+<body>
+
+<!-- Loading Overlay -->
+<div id="loading-overlay">
+  <div class="loading-spinner-big"></div>
+  <div id="loading-step">Initialisation...</div>
+  <div id="loading-sub">L'IA analyse votre contenu</div>
+</div>
+
+<!-- Marquee -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    PINSTUDIO AI &nbsp;•&nbsp; STRATÉGIE PINTEREST 2026 &nbsp;•&nbsp; 1 PHOTO = 3 OPPORTUNITÉS &nbsp;•&nbsp; PINSTUDIO AI &nbsp;•&nbsp; STRATÉGIE PINTEREST 2026 &nbsp;•&nbsp; 1 PHOTO = 3 OPPORTUNITÉS &nbsp;•&nbsp; PINSTUDIO AI &nbsp;•&nbsp; STRATÉGIE PINTEREST 2026 &nbsp;•&nbsp; 1 PHOTO = 3 OPPORTUNITÉS &nbsp;•&nbsp; PINSTUDIO AI &nbsp;•&nbsp; STRATÉGIE PINTEREST 2026 &nbsp;•&nbsp; 1 PHOTO = 3 OPPORTUNITÉS &nbsp;•&nbsp;
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>Pin<span>Studio</span> AI</h1>
+  <p>Ne postez plus au hasard. Transformez une seule photo en une machine de guerre algorithmique.</p>
+</section>
+
+<!-- Main Grid -->
+<div class="main-grid">
+  <!-- Upload -->
+  <div>
+    <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()">
+      <div class="upload-placeholder" id="upload-placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+        </svg>
+        <p>Déposez votre photo ici</p>
+        <small>JPG, PNG ou WebP</small>
+      </div>
+      <img id="preview-img" src="" alt="" style="display:none;" />
+      <div class="upload-hover-overlay" id="upload-hover" style="display:none;">Changer la photo</div>
+      <input type="file" id="file-input" accept="image/*" onchange="handleFileUpload(event)" />
+    </div>
+
+    <button class="btn-analyze" id="btn-analyze" onclick="processImage()" style="display:none;">
+      Lancer l'analyse stratégique
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    </button>
+  </div>
+
+  <!-- Why Card -->
+  <div class="why-card">
+    <div>
+      <h2>
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3"/></svg>
+        Pourquoi cette approche ?
+      </h2>
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <div>
+          <h3>SEO Recherche</h3>
+          <p>Capter les recherches intentionnelles ("tenue automne").</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <div>
+          <h3>Inspiration</h3>
+          <p>Générer des enregistrements (Saves) par l'esthétique.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <div>
+          <h3>Micro-Focus</h3>
+          <p>Attirer les niches ultra-spécifiques par le détail.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Error Box -->
+<div class="container">
+  <div class="error-box hidden" id="error-box">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01"/></svg>
+    <span id="error-msg"></span>
+  </div>
+</div>
+
+<!-- Analysis Section -->
+<section class="analysis-section" id="analysis-section" style="display:none;">
+  <div class="section-title">
+    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35"/></svg>
+    Analyse Visuelle Profonde
+  </div>
+  <div class="analysis-grid" id="analysis-grid"></div>
+  <div class="lever-box" id="lever-box"></div>
+</section>
+
+<!-- Strategies Section -->
+<section class="strategies-section" id="strategies-section" style="display:none;">
+  <div class="section-title">
+    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+    Génération des 3 Angles
+  </div>
+  <div class="strategies-grid" id="strategies-grid"></div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h2>PinStudio AI</h2>
+      <small>© 2026 • Powered by Claude AI</small>
+    </div>
+    <div class="footer-stats">
+      <div class="stat"><p>100%</p><p>Stratégique</p></div>
+      <div class="stat"><p>AI</p><p>Native</p></div>
+      <div class="stat"><p>2026</p><p>Ready</p></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── STATE ───────────────────────────────────────────────
+  let currentImageBase64 = null;
+
+  // ─── FILE UPLOAD ─────────────────────────────────────────
+  function handleFileUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      currentImageBase64 = reader.result;
+      const zone = document.getElementById('upload-zone');
+      const img = document.getElementById('preview-img');
+      const placeholder = document.getElementById('upload-placeholder');
+      const hover = document.getElementById('upload-hover');
+      const btn = document.getElementById('btn-analyze');
+
+      img.src = reader.result;
+      img.style.display = 'block';
+      placeholder.style.display = 'none';
+      hover.style.display = 'flex';
+      zone.classList.add('has-image');
+      btn.style.display = 'flex';
+
+      // Reset results
+      document.getElementById('analysis-section').style.display = 'none';
+      document.getElementById('strategies-section').style.display = 'none';
+      hideError();
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ─── LOADING ─────────────────────────────────────────────
+  function showLoading(step, sub) {
+    document.getElementById('loading-overlay').classList.add('active');
+    document.getElementById('loading-step').textContent = step || '';
+    document.getElementById('loading-sub').textContent = sub || 'L\'IA analyse votre contenu';
+  }
+  function hideLoading() {
+    document.getElementById('loading-overlay').classList.remove('active');
+  }
+
+  // ─── ERROR ────────────────────────────────────────────────
+  function showError(msg) {
+    const box = document.getElementById('error-box');
+    document.getElementById('error-msg').textContent = msg;
+    box.classList.remove('hidden');
+  }
+  function hideError() {
+    document.getElementById('error-box').classList.add('hidden');
+  }
+
+  // ─── CLAUDE API ───────────────────────────────────────────
+  async function callClaude(prompt, imageBase64 = null) {
+    const messages = [];
+    const content = [];
+
+    if (imageBase64) {
+      const base64Data = imageBase64.includes(',') ? imageBase64.split(',')[1] : imageBase64;
+      const mimeType = imageBase64.startsWith('data:image/png') ? 'image/png' : 'image/jpeg';
+      content.push({
+        type: 'image',
+        source: { type: 'base64', media_type: mimeType, data: base64Data }
+      });
+    }
+    content.push({ type: 'text', text: prompt });
+
+    messages.push({ role: 'user', content });
+
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages
+      })
+    });
+
+    if (!response.ok) throw new Error(`API Error: ${response.status}`);
+    const data = await response.json();
+    return data.content[0].text;
+  }
+
+  // ─── ANALYZE IMAGE ────────────────────────────────────────
+  async function analyzeImage(base64Image) {
+    const prompt = `Analyse cette photo pour une stratégie Pinterest.
+Retourne UNIQUEMENT un objet JSON valide (sans markdown) avec ces clés exactes:
+{
+  "mainPiece": "...",
+  "secondaryPiece": "...",
+  "accessories": "...",
+  "season": "...",
+  "vibe": "...",
+  "location": "...",
+  "moment": "...",
+  "style": "...",
+  "pinterestLever": "..."
+}
+Sois concis, max 5 mots par valeur. pinterestLever = insight clé pour Pinterest (1 phrase).`;
+
+    const text = await callClaude(prompt, base64Image);
+    const clean = text.replace(/```json\n?|```/g, '').trim();
+    return JSON.parse(clean);
+  }
+
+  // ─── GENERATE STRATEGIES ─────────────────────────────────
+  async function generateStrategies(analysis) {
+    const prompt = `En tant qu'expert Pinterest 2026, génère 3 stratégies DISTINCTES basées sur: ${JSON.stringify(analysis)}.
+
+STRUCTURE IMPOSÉE:
+1. PIN 1 — Recherche: Capter une requête. Angle explicatif.
+2. PIN 2 — Projection: Générer des saves. Angle contexte de vie.
+3. PIN 3 — Micro-focus: Niche ou détail ultra-précis.
+
+TON: Simple, naturel, comme une recommandation à une amie. Phrases courtes.
+
+Retourne UNIQUEMENT un tableau JSON valide (sans markdown) de 3 objets:
+[{
+  "intention": "Recherche",
+  "title": "...",
+  "overlay": "3-5 mots",
+  "description": "1-2 phrases naturelles",
+  "hashtags": ["tag1", "tag2", "tag3"],
+  "score": {
+    "mobileReadability": 8,
+    "keywordStrength": 7,
+    "intentionClarity": 9,
+    "visualContrast": 7,
+    "overall": 8,
+    "analysis": "Courte analyse stratégique du pin."
+  }
+}]
+Les 3 objets: intention "Recherche", "Projection", "Micro-focus".`;
+
+    const text = await callClaude(prompt);
+    const clean = text.replace(/```json\n?|```/g, '').trim();
+    return JSON.parse(clean);
+  }
+
+  // ─── RENDER ANALYSIS ─────────────────────────────────────
+  function renderAnalysis(data) {
+    const fields = [
+      { label: 'Pièce Forte', key: 'mainPiece' },
+      { label: 'Pièce Secondaire', key: 'secondaryPiece' },
+      { label: 'Accessoires', key: 'accessories' },
+      { label: 'Saison', key: 'season' },
+      { label: 'Vibe', key: 'vibe' },
+      { label: 'Lieu', key: 'location' },
+      { label: 'Moment', key: 'moment' },
+      { label: 'Style', key: 'style' },
+    ];
+    const grid = document.getElementById('analysis-grid');
+    grid.innerHTML = fields.map(f => `
+      <div class="analysis-chip">
+        <div class="label">${f.label}</div>
+        <div class="val">${data[f.key] || '—'}</div>
+      </div>
+    `).join('');
+
+    document.getElementById('lever-box').innerHTML = `
+      <div class="label">Levier Stratégique Pinterest</div>
+      <p>"${data.pinterestLever}"</p>
+    `;
+
+    const section = document.getElementById('analysis-section');
+    section.style.display = 'block';
+    requestAnimationFrame(() => section.classList.add('visible'));
+  }
+
+  // ─── RENDER STRATEGIES ───────────────────────────────────
+  function renderStrategies(strategies) {
+    const badgeClass = { 'Recherche': 'badge-recherche', 'Projection': 'badge-projection', 'Micro-focus': 'badge-micro' };
+
+    const grid = document.getElementById('strategies-grid');
+    grid.innerHTML = strategies.map((s, i) => `
+      <div class="pin-card" style="animation-delay:${i*0.12}s">
+        <div class="pin-visual">
+          <img src="${currentImageBase64}" alt="${s.title}" />
+          <span class="pin-badge ${badgeClass[s.intention] || 'badge-recherche'}">${s.intention}</span>
+          <div class="pin-overlay-text">${s.overlay}</div>
+        </div>
+        <div>
+          <div class="pin-title">${s.title}</div>
+          <div class="pin-desc">${s.description}</div>
+          <div class="hashtags">${s.hashtags.map(t => `<span class="hashtag">#${t}</span>`).join('')}</div>
+          <div class="score-card">
+            <div class="score-header">
+              <div class="score-label">Score Stratégique</div>
+              <div class="score-overall">${s.score.overall}/10</div>
+            </div>
+            <div class="score-bars">
+              ${[
+                ['Lisibilité Mobile', s.score.mobileReadability],
+                ['Force Mot-Clé', s.score.keywordStrength],
+                ['Clarté Intention', s.score.intentionClarity],
+                ['Contraste Visuel', s.score.visualContrast],
+              ].map(([label, val]) => `
+                <div class="score-bar-row">
+                  <div class="score-bar-header"><span>${label}</span><span>${val}/10</span></div>
+                  <div class="score-bar-track"><div class="score-bar-fill" style="width:${val*10}%"></div></div>
+                </div>
+              `).join('')}
+            </div>
+            <div class="score-analysis">${s.score.analysis}</div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    const section = document.getElementById('strategies-section');
+    section.style.display = 'block';
+    requestAnimationFrame(() => section.classList.add('visible'));
+  }
+
+  // ─── MAIN PROCESS ─────────────────────────────────────────
+  async function processImage() {
+    if (!currentImageBase64) return;
+    hideError();
+
+    const btn = document.getElementById('btn-analyze');
+    btn.disabled = true;
+
+    try {
+      showLoading('Analyse visuelle profonde...', 'L\'IA examine votre photo');
+      const analysis = await analyzeImage(currentImageBase64);
+      renderAnalysis(analysis);
+
+      showLoading('Génération des 3 stratégies...', 'Construction de vos angles Pinterest');
+      const strategies = await generateStrategies(analysis);
+      renderStrategies(strategies);
+
+      hideLoading();
+      btn.style.display = 'none';
+
+      document.getElementById('analysis-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    } catch (err) {
+      console.error(err);
+      hideLoading();
+      showError("Une erreur est survenue. Vérifiez votre connexion et réessayez.");
+      btn.disabled = false;
+    }
+  }
+</script>
+</body>
+</html>

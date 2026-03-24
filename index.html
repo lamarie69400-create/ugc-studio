@@ -385,19 +385,40 @@ textarea.s-textarea::placeholder{color:var(--text3)}
     </div>
   </div>
 
-  <!-- SCENES -->
-  <div class="card" id="sceneCard">
+  <!-- CATEGORIE PRODUIT -->
+  <div class="card active-purple" id="sceneCard">
     <div class="card-header">
       <div class="card-title-group">
-        <div class="card-icon card-icon-purple">🏠</div>
-        <div><div class="card-title">2. Scènes</div><div class="card-sub">Optionnel — max 4</div></div>
+        <div class="card-icon card-icon-purple">🏷️</div>
+        <div><div class="card-title">2. Catégorie Produit</div><div class="card-sub">Sélectionne jusqu'à 2</div></div>
       </div>
     </div>
     <div class="scene-grid" id="sceneGrid"></div>
-    <div id="carModelWrap" style="display:none;margin-top:0.75rem">
-      <label class="card-sub" style="display:block;margin-bottom:0.4rem">Modèle de Voiture</label>
-      <input type="text" id="carModel" value="Tesla Model 3" class="s-input">
+  </div>
+
+  <!-- ÉMOTION -->
+  <div class="card active-rose" id="emotionCard">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-rose">🎭</div>
+        <div><div class="card-title">Émotion</div><div class="card-sub">Optionnel — 1 seule</div></div>
+      </div>
     </div>
+    <div class="pill-grid" id="emotionGrid"></div>
+  </div>
+
+  <!-- TYPE CONTENU + STYLE -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-indigo">🎬</div>
+        <div><div class="card-title">Type & Style</div><div class="card-sub">Optionnel</div></div>
+      </div>
+    </div>
+    <label class="card-sub" style="display:block;margin-bottom:0.5rem">Type de contenu</label>
+    <div class="pill-grid" id="contentTypeGrid" style="margin-bottom:0.75rem"></div>
+    <label class="card-sub" style="display:block;margin-bottom:0.5rem">Style visuel</label>
+    <div class="pill-grid" id="visualStyleGrid"></div>
   </div>
 
   <!-- SHOTS -->
@@ -499,6 +520,9 @@ const state = {
   av1Mime: 'image/jpeg', av2Mime: 'image/jpeg', prodMime: 'image/jpeg',
   locMime: 'image/jpeg', dress1Mime: 'image/jpeg', dress2Mime: 'image/jpeg',
   scenes: [], shots: [], action: '',
+  selectedEmotion: null,
+  contentType: 'ugc',
+  visualStyle: 'naturel',
   aspectRatio: '9:16',
   identityLocked: true, styleScandinavian: true,
   isDuo: false, dressEnabled: false, backstageEnabled: false,
@@ -512,43 +536,87 @@ const state = {
 
 // ── DATA ──
 const SCENES = [
-  { id: 'reception_colis', name: 'Réception Colis', emoji: '📦' },
-  { id: 'vanity_moderne', name: 'Vanity Moderne', emoji: '💄' },
-  { id: 'salle_de_bain', name: 'Douche Italienne', emoji: '🚿' },
-  { id: 'chambre_cosy', name: 'Chambre Cosy', emoji: '🛏️' },
-  { id: 'cuisine_moderne', name: 'Cuisine Moderne', emoji: '🍳' },
-  { id: 'salon_chaleureux', name: 'Salon Chaleureux', emoji: '🛋️' },
-  { id: 'dressing', name: 'Dressing / Miroir', emoji: '👗' },
-  { id: 'voiture', name: 'Intérieur Voiture', emoji: '🚗' },
-  { id: 'backstage_ugc', name: 'Backstage UGC', emoji: '🎬' },
+  { id: 'beaute', name: 'Beauté & Cosmétique', emoji: '💄' },
+  { id: 'mode', name: 'Mode', emoji: '👗' },
+  { id: 'sport', name: 'Sport & Bien-être', emoji: '🏃‍♀️' },
+  { id: 'food', name: 'Food & Boisson', emoji: '🍽️' },
+  { id: 'maison', name: 'Maison & Lifestyle', emoji: '🏠' },
+  { id: 'tech', name: 'Tech & Digital', emoji: '📱' },
+  { id: 'famille', name: 'Famille', emoji: '👨‍👩‍👧' },
+  { id: 'animaux', name: 'Animaux', emoji: '🐾' },
+  { id: 'voyage', name: 'Voyage', emoji: '✈️' },
+  { id: 'education', name: 'Éducation / Business', emoji: '📚' },
+  { id: 'autre', name: 'Autre', emoji: '✨' },
 ];
 const SHOT_CATS = [
-  { name: '🔥 Les Indispensables UGC', shots: [
+  { name: '🔥 Storytelling', shots: [
     { id: 'hook', label: '1. Face Cam + Produit (Hook)' },
-    { id: 'demo', label: '2. Application (Instant Figé)' },
-    { id: 'glow', label: '3. Résultat / After (Glow)' },
+    { id: 'problem', label: '2. Plan Problème' },
+    { id: 'application', label: '3. Application Produit' },
+    { id: 'result', label: '4. Résultat / After' },
   ]},
-  { name: '📸 Flat-Lays Urbains', shots: [
-    { id: 'flatlay', label: '4. Flat Lay (Main qui tient)' },
-    { id: 'flatlay_urban', label: 'Flat-lay Urban Cotton' },
-    { id: 'flatlay_studio', label: 'Flat-lay Studio Wood' },
-    { id: 'flatlay_shadow', label: 'Flat-lay Urban Shadow' },
+  { name: '🎬 Interaction Produit', shots: [
+    { id: 'held', label: '5. Produit en Main' },
+    { id: 'opening', label: '6. Ouverture Produit' },
+    { id: 'unboxing', label: '7. Unboxing' },
   ]},
-  { name: '📦 Vues Produit 4K', shots: [
-    { id: 'macro', label: '5. Close-Up / Macro' },
-    { id: 'held', label: '6. Produit en Main' },
-    { id: 'mirror', label: '7. Miroir / Reflet' },
-    { id: 'hero_hand', label: '12. Plan Hero Produit (Main 1er plan)' },
+  { name: '🔬 Esthétique', shots: [
+    { id: 'macro', label: '8. Macro Texture' },
+    { id: 'flatlay', label: '9. Flat Lay' },
+    { id: 'hero', label: '10. Produit Clean (Hero)' },
   ]},
-  { name: '✨ Storytelling & Réalisme', shots: [
-    { id: 'context', label: '8. Produit en Contexte' },
-    { id: 'opened', label: '9. Packaging Ouvert' },
-    { id: 'gesture', label: '10. Ouverture du Produit (Geste clé)' },
-    { id: 'split', label: '11. Plan Split Avant / Après' },
-    { id: 'unboxing', label: '14. Unboxing (Ouverture Colis)' },
-    { id: 'zenithal', label: '13. Plan Zénithal Immersif' },
+  { name: '🏠 Immersion', shots: [
+    { id: 'context', label: '11. Produit en Contexte' },
+    { id: 'mirror', label: '12. Miroir / Reflet' },
+    { id: 'zenithal', label: '13. Zénithal Action' },
+    { id: 'pov', label: '14. POV' },
+  ]},
+  { name: '🧠 Conversion', shots: [
+    { id: 'split', label: '15. Avant / Après' },
+    { id: 'reaction', label: '16. Réaction Humaine' },
+    { id: 'proof', label: '17. Preuve Visuelle' },
   ]},
 ];
+
+// ── ÉMOTIONS ──
+const EMOTIONS = [
+  { id: 'frustration', label: '😤 Frustration', type: 'negative', desc: 'sourcils froncés, tension visage' },
+  { id: 'doute', label: '😔 Doute', type: 'negative', desc: 'regard bas, hésitation' },
+  { id: 'gene', label: '😳 Gêne', type: 'negative', desc: 'micro-expression, inconfort' },
+  { id: 'curiosite', label: '🤔 Curiosité', type: 'neutral', desc: 'regard caméra, léger tilt tête' },
+  { id: 'concentration', label: '🎯 Concentration', type: 'neutral', desc: 'regard focus, gestes précis' },
+  { id: 'soulagement', label: '😌 Soulagement', type: 'positive', desc: 'visage relâché' },
+  { id: 'bienetre', label: '🧘 Bien-être', type: 'positive', desc: 'yeux doux / fermés' },
+  { id: 'satisfaction', label: '😍 Satisfaction', type: 'positive', desc: 'sourire léger' },
+  { id: 'confiance', label: '💁 Confiance', type: 'positive', desc: 'posture droite' },
+  { id: 'excitation', label: '🤩 Excitation', type: 'positive', desc: 'énergie, sourire large' },
+];
+
+// Règles d'association plan → émotion recommandée
+const SHOT_EMOTION_RULES = {
+  'hook': ['curiosite','excitation'],
+  'problem': ['frustration','doute','gene'],
+  'application': ['soulagement','bienetre','concentration'],
+  'result': ['satisfaction','confiance'],
+  'unboxing': ['excitation','curiosite'],
+  'reaction': ['satisfaction','excitation','soulagement'],
+};
+
+// ── TYPE DE CONTENU ──
+const CONTENT_TYPES = [
+  { id: 'ugc', label: 'UGC', desc: 'naturel, imparfait, spontané' },
+  { id: 'ads', label: 'ADS', desc: 'structuré, produit visible' },
+  { id: 'lifestyle', label: 'Lifestyle', desc: 'esthétique, ambiance' },
+];
+
+// ── STYLE VISUEL ──
+const VISUAL_STYLES = [
+  { id: 'naturel', label: '🌿 Naturel' },
+  { id: 'lumineux', label: '☀️ Lumineux' },
+  { id: 'cosy', label: '🕯️ Cosy' },
+  { id: 'minimaliste', label: '⬜ Minimaliste' },
+];
+
 const RITUAL_KW = ['shampoo','shampoing','coloration','masque','mask','huile','oil','soin','gommage','scrub'];
 const FITTING_KW = ['robe','veste','t-shirt','pantalon','jean','jupe','top','haut','vêtement','dress','jacket','shirt'];
 const MANICURE_KW = ['ongles','nails','manucure','vernis','french','manicure','ongle','pose','gel','capsules'];
@@ -595,17 +663,24 @@ const STUDENTS = {
 const VALID_CODES = new Set(Object.keys(STUDENTS));
 
 // ── SPLASH ──
-document.getElementById('codeInput').addEventListener('input', function() {
-  const val = this.value.trim().toUpperCase();
-  const valid = VALID_CODES.has(val);
-  document.getElementById('startBtn').disabled = !valid;
-  if (val.length >= 4 && !valid) {
-    document.getElementById('codeError').style.display = 'block';
-  } else {
-    document.getElementById('codeError').style.display = 'none';
-  }
+// Fix validation — runs after page load
+window.addEventListener('load', function() {
+  const input = document.getElementById('codeInput');
+  const btn = document.getElementById('startBtn');
+  if (!input || !btn) return;
+  
+  input.addEventListener('input', function() {
+    const val = this.value.trim().toUpperCase();
+    const valid = VALID_CODES.has(val);
+    btn.disabled = !valid;
+    const err = document.getElementById('codeError');
+    if (err) err.style.display = (val.length >= 4 && !valid) ? 'block' : 'none';
+  });
+  
+  input.addEventListener('keydown', function(e) { 
+    if (e.key === 'Enter') startApp(); 
+  });
 });
-document.getElementById('codeInput').addEventListener('keydown', e => { if (e.key === 'Enter') startApp(); });
 
 function startApp() {
   const code = document.getElementById('codeInput').value.trim().toUpperCase();
@@ -658,7 +733,62 @@ function goSplash() {
 
 // ── INIT ──
 function initUI() {
-  buildScenes(); buildShots(); buildMultiSteps(); updateBadges();
+  buildScenes(); buildShots(); buildMultiSteps(); buildEmotions(); buildContentTypes(); buildVisualStyles(); updateBadges();
+}
+
+function buildEmotions() {
+  const grid = document.getElementById('emotionGrid');
+  if (!grid) return;
+  grid.innerHTML = EMOTIONS.map(e =>
+    '<button class="pill-btn" id="emo_'+e.id+'" onclick="selectEmotion(''+e.id+'')" title="'+e.desc+'">'+e.label+'</button>'
+  ).join('');
+}
+
+function selectEmotion(id) {
+  if (state.selectedEmotion === id) {
+    state.selectedEmotion = null;
+    document.getElementById('emo_'+id).className = 'pill-btn';
+  } else {
+    if (state.selectedEmotion) document.getElementById('emo_'+state.selectedEmotion).className = 'pill-btn';
+    state.selectedEmotion = id;
+    document.getElementById('emo_'+id).className = 'pill-btn sel-purple';
+  }
+}
+
+function buildContentTypes() {
+  const grid = document.getElementById('contentTypeGrid');
+  if (!grid) return;
+  grid.innerHTML = CONTENT_TYPES.map(c =>
+    '<button class="pill-btn'+(c.id==='ugc'?' sel-indigo':'')+'" id="ct_'+c.id+'" onclick="selectContentType(''+c.id+'')" title="'+c.desc+'">'+c.label+'</button>'
+  ).join('');
+}
+
+function selectContentType(id) {
+  CONTENT_TYPES.forEach(c => {
+    const btn = document.getElementById('ct_'+c.id);
+    if (btn) btn.className = 'pill-btn';
+  });
+  state.contentType = id;
+  const btn = document.getElementById('ct_'+id);
+  if (btn) btn.className = 'pill-btn sel-indigo';
+}
+
+function buildVisualStyles() {
+  const grid = document.getElementById('visualStyleGrid');
+  if (!grid) return;
+  grid.innerHTML = VISUAL_STYLES.map(s =>
+    '<button class="pill-btn'+(s.id==='naturel'?' sel-emerald':'')+'" id="vs_'+s.id+'" onclick="selectVisualStyle(''+s.id+'')">'+s.label+'</button>'
+  ).join('');
+}
+
+function selectVisualStyle(id) {
+  VISUAL_STYLES.forEach(s => {
+    const btn = document.getElementById('vs_'+s.id);
+    if (btn) btn.className = 'pill-btn';
+  });
+  state.visualStyle = id;
+  const btn = document.getElementById('vs_'+id);
+  if (btn) btn.className = 'pill-btn sel-emerald';
 }
 
 function buildScenes() {
@@ -741,7 +871,7 @@ function toggleScene(id, name) {
   if (state.scenes.includes(name)) {
     state.scenes = state.scenes.filter(x => x !== name);
     btn.className = 'scene-btn';
-  } else if (state.scenes.length < 4) {
+  } else if (state.scenes.length < 2) {
     state.scenes.push(name);
     btn.className = 'scene-btn sel';
   }
@@ -896,7 +1026,23 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 // ── SYSTEM PROMPT ── (identique à l'original)
 function buildSystemPrompt() {
-  return `Tu es l'IA de "Studio UGC AI". Tu génères des instructions de prompt pour des photos UGC ultra-réalistes 4K.
+  return `Tu es l'IA de "UGC AI Studio". Tu génères des images UGC ultra-réalistes.
+
+🚨 STRUCTURE OBLIGATOIRE : TYPE CONTENU → PRODUIT → INTENTION → PLAN → ÉMOTION → DIRECTION VISUELLE → IMAGE
+
+🚨 DIRECTIVES IA (TOUJOURS RESPECTER) :
+✅ FAIRE : environnement réel, lumière naturelle, imperfections, cadrage imparfait, expression subtile
+❌ INTERDIT : rendu publicitaire, sur-retouche, pose fake, faux avis/messages, perfection studio
+
+🚨 RÈGLES D'ASSOCIATION ÉMOTION/PLAN :
+- HOOK → surprise / curiosité (JAMAIS frustration)
+- PROBLÈME → frustration / doute / gêne (JAMAIS sourire)
+- APPLICATION → soulagement / bien-être / concentration
+- RÉSULTAT → satisfaction / confiance
+
+🚨 TEMPLATE PROMPT (utiliser pour chaque image) :
+"Generate a realistic UGC-style image. Environment: real-life setting, natural lighting, slightly imperfect. Framing: close or medium shot, slightly off-centered, handheld feel. The image must feel authentic, not like an advertisement. Avoid overly polished or artificial visuals. The viewer should emotionally connect with the scene."
+ Tu génères des instructions de prompt pour des photos UGC ultra-réalistes 4K.
 
 🚨 RÈGLE LIEU (PRIORITÉ ABSOLUE) :
 Si une photo de lieu est fournie, la scène doit se dérouler EXACTEMENT dans ce décor.
@@ -965,7 +1111,12 @@ async function buildPrompt(scene, shot, specialMode, seqInfo, btsType) {
     modeStr = 'Scène: '+(scene||'Contexte neutre')+', Plan: '+(shot||'Vue standard UGC')+'.';
   }
 
-  const prompt = 'Génère instruction UGC 4K : '+modeStr+' Action="'+action+'". '+identLock+' '+styleStr+' '+locStr+' '+locationStr+' '+dressStr+' '+duoStr+' '+carStr;
+  // Émotion sélectionnée
+  const emotionObj = state.selectedEmotion ? EMOTIONS.find(e => e.id === state.selectedEmotion) : null;
+  const emotionStr = emotionObj ? '🎭 ÉMOTION: '+emotionObj.label+' ('+emotionObj.desc+'). Respect STRICT des règles d'association plan/émotion.' : '';
+  const contentTypeStr = '🎬 TYPE: '+state.contentType.toUpperCase()+'. STYLE: '+state.visualStyle+'.';
+
+  const prompt = 'Generate a realistic UGC-style image. '+contentTypeStr+' '+emotionStr+' '+modeStr+' Action="'+action+'". '+identLock+' '+styleStr+' '+locStr+' '+locationStr+' '+dressStr+' '+duoStr+' Natural lighting, slightly imperfect. Handheld feel. NOT a commercial ad. NOT overly polished. Natural imperfections. Realistic environment.';
   parts.push({ text: prompt });
 
   const analyzeRes = await callProxy(MODEL_ANALYZE, {
@@ -1114,9 +1265,10 @@ function showError(msg) { const b = document.getElementById('errorBox'); b.textC
 function hideError() { document.getElementById('errorBox').style.display = 'none'; }
 
 // ── AUTO-RESTORE CODE ──
+// This listener is merged above — keeping quota restore only
 window.addEventListener('load', () => {
   const saved = localStorage.getItem('ugc_student_code');
-  if (saved) {
+  if (saved && VALID_CODES.has(saved.toUpperCase())) {
     document.getElementById('codeInput').value = saved;
     document.getElementById('startBtn').disabled = false;
   }

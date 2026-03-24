@@ -192,7 +192,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
     <p class="splash-sub">Crée ton shooting UGC comme si tu y étais.</p>
     <div class="api-box">
       <span class="api-label">🔑 Ton code d'accès UGC AI Studio</span>
-      <input type="text" id="codeInput" class="api-input" placeholder="Ex: MEL6A2" autocomplete="off" maxlength="20">
+      <input type="text" id="codeInput" class="api-input" placeholder="Ex: MEL6A2" autocomplete="off" maxlength="20" oninput="validateCode(this.value)" onkeydown="if(event.key==='Enter')startApp()">
       <div class="quota-preview" id="quotaPreview"></div>
     </div>
     <button id="startBtn" class="start-btn" disabled onclick="startApp()">Lancer le Studio →</button>
@@ -503,7 +503,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
   </div>
 </div>
 
-<script>
+<script charset="utf-8">
 // ════════════════════════════════════════════════════════════
 // ⚠️  SEUL PARAMÈTRE À MODIFIER : L'URL DE TA CLOUD FUNCTION
 // Tu la trouveras après déploiement dans Google Cloud Console
@@ -629,12 +629,12 @@ const MODEL_IMAGE = 'gemini-3-pro-image-preview';
 // ── CODES ÉLÈVES + PRÉNOMS ──
 const STUDENTS = {
   "ADMIN2024": "Marie",
-  "MEL6A2": "Mélanie",
-  "STE9Q4": "Stéphanie",
+  "MEL6A2": "Melanie",
+  "STE9Q4": "Stephanie",
   "CHR8P7": "Christine",
   "MAR9F4": "Marie",
   "VAN5Q8": "Vanessa",
-  "CEL4M8": "Céline",
+  "CEL4M8": "Celine",
   "VAN8O3": "Vanessa",
   "ALI6Y9": "Alicia",
   "JOH7A4": "Johanna",
@@ -649,12 +649,12 @@ const STUDENTS = {
   "DIA7N5": "Dee Dee",
   "ALI7C8": "Alicia",
   "ERI6Y4": "Eridye",
-  "MEL9N7": "Mélanie",
+  "MEL9N7": "Melanie",
   "AUD7R5": "Audrey",
   "FAN6N4": "Fanny",
   "ALI8C5": "Alicia",
-  "STE4P8": "Stéphanie",
-  "AGN6S9": "Agnès",
+  "STE4P8": "Stephanie",
+  "AGN6S9": "Agnes",
   "MAN7U9": "Manuella",
   "AMA8D3": "Amandine",
   "LIS5A4": "Lisa",
@@ -681,6 +681,15 @@ window.addEventListener('load', function() {
     if (e.key === 'Enter') startApp(); 
   });
 });
+
+function validateCode(val) {
+  val = val.trim().toUpperCase();
+  const btn = document.getElementById('startBtn');
+  const err = document.getElementById('codeError');
+  const valid = VALID_CODES.has(val);
+  btn.disabled = !valid;
+  if (err) err.style.display = (val.length >= 4 && !valid) ? 'block' : 'none';
+}
 
 function startApp() {
   const code = document.getElementById('codeInput').value.trim().toUpperCase();

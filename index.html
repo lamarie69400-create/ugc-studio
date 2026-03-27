@@ -195,7 +195,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
     </div>
     <div class="api-box">
       <span class="api-label">🔑 Ton code d'accès UGC AI Studio</span>
-      <input type="text" id="codeInput" class="api-input" placeholder="Ex: MEL6A2" autocomplete="off" maxlength="20">
+      <input type="text" id="codeInput" class="api-input" placeholder="Ex: VOTRECODE" autocomplete="off" maxlength="20">
       <div class="quota-preview" id="quotaPreview"></div>
     </div>
     <button id="startBtn" class="start-btn" disabled onclick="startApp()">Lancer le Studio →</button>
@@ -712,6 +712,11 @@ function startApp() {
   localStorage.setItem('ugc_student_code', code);
   document.getElementById('splash').style.display = 'none';
   document.getElementById('app').classList.add('visible');
+  // Rebuild grids now that app is visible
+  buildEmotions();
+  buildContentTypes();
+  buildVisualStyles();
+  buildProductShots();
   document.getElementById('codeDisplay').textContent = state.studentName;
   // Charger quota depuis localStorage
   const savedQuota = getLocalQuota(code);
@@ -1248,7 +1253,10 @@ async function generate() {
       addImageToGallery(imgUrl, count);
       const newQ = incrementLocalQuota(state.studentCode);
       updateQuotaWidget(newQ, 10);
-    } catch(err) { console.error(err); showError(err.message); }
+    } catch(err) { 
+      console.error('Generation error:', err);
+      showError(err.message || 'Erreur de connexion au serveur. Verifie que le serveur est actif.');
+    }
   };
 
   try {

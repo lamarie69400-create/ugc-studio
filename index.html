@@ -519,11 +519,10 @@ textarea.s-textarea::placeholder{color:var(--text3)}
 
 <script>
 // ════════════════════════════════════════════════════════════
-// ⚠️  SEUL PARAMÈTRE À MODIFIER : L'URL DE TA CLOUD FUNCTION
-// Tu la trouveras après déploiement dans Google Cloud Console
+// ⚠️  TA CLE API VERTEX (reste cachee dans le HTML)
 // ════════════════════════════════════════════════════════════
-const CLOUD_FUNCTION_URL = 'https://ugc-proxy-738708455173.europe-west1.run.app';
-// Exemple réel : 'https://europe-west1-test-credit-gratuit.cloudfunctions.net/ugcProxy'
+const VERTEX_API_KEY = localStorage.getItem('ugc_vertex_key') || '';
+const VERTEX_BASE = 'https://aiplatform.googleapis.com/v1/publishers/google/models';
 
 // ── STATE ──
 const state = {
@@ -707,6 +706,11 @@ document.addEventListener('DOMContentLoaded', function() {
 function startApp() {
   const code = document.getElementById('codeInput').value.trim().toUpperCase();
   if (!code || !VALID_CODES.has(code)) return;
+  // Recuperer la cle API si fournie (admin seulement)
+  const keyInput = document.getElementById('adminKeyInput');
+  if (keyInput && keyInput.value.trim()) {
+    localStorage.setItem('ugc_vertex_key', keyInput.value.trim());
+  }
   state.studentCode = code;
   state.studentName = STUDENTS[code] || 'Élève';
   localStorage.setItem('ugc_student_code', code);
@@ -1066,7 +1070,10 @@ function calcTotal() {
   return base;
 }
 
-// ── APPEL CLOUD FUNCTION (remplace callVertex) ──
+// ── APPEL DIRECT VERTEX AI ──
+// URL du serveur Cloud Run
+const CLOUD_FUNCTION_URL = 'https://ugc-proxy-738708455173.europe-west1.run.app';
+
 async function callProxy(model, body) {
   const waitTimes = [5000, 10000, 20000, 40000];
   let lastErr;
@@ -1075,19 +1082,18 @@ async function callProxy(model, body) {
       const res = await fetch(CLOUD_FUNCTION_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ studentCode: state.studentCode, model, body })
+        body: JSON.stringify({ studentCode: state.studentCode, model: model, body: body })
       });
       if (!res.ok) {
         const txt = await res.text();
         let d; try { d = JSON.parse(txt); } catch(_) {}
         const msg = (d && d.error) || txt;
-        if (res.status === 429) throw new Error(msg); // Quota = pas de retry
-        if (res.status === 401) throw new Error('Code élève invalide : ' + state.studentCode);
+        if (res.status === 429) throw new Error(msg);
+        if (res.status === 401) throw new Error('Code invalide : ' + state.studentCode);
         if (msg.includes('503') || msg.includes('overloaded')) throw new Error('RETRY:' + msg);
         throw new Error('Erreur ' + res.status + ': ' + msg);
       }
       const data = await res.json();
-      // Mettre à jour le quota si l'info est dans la réponse
       if (data._quota) updateQuotaWidget(data._quota.used, data._quota.max);
       return data;
     } catch(err) {

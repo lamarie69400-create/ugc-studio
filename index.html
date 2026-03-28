@@ -276,6 +276,14 @@ textarea.s-textarea::placeholder{color:var(--text3)}
           <span class="toggle-track"></span>
         </label>
       </div>
+      <div class="toggle-row">
+        <span class="toggle-row-label">💄 Vanity Moderne</span>
+        <label class="toggle-wrap" style="--active-color:var(--pink)">
+          <input type="checkbox" id="toggleVanity" onchange="toggleVanity()">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
     </div>
   </div>
 
@@ -533,7 +541,7 @@ const state = {
   av1Mime: 'image/jpeg', av2Mime: 'image/jpeg', prodMime: 'image/jpeg',
   locMime: 'image/jpeg', dress1Mime: 'image/jpeg', dress2Mime: 'image/jpeg',
   scenes: [], shots: [], action: '',
-  selectedEmotion: null, contentType: 'organique', visualStyle: 'naturel', selectedProductShot: null,
+  selectedEmotion: null, contentType: 'organique', visualStyle: 'naturel', selectedProductShot: null, vanityMode: false,
   aspectRatio: '9:16',
   identityLocked: true, styleScandinavian: true,
   isDuo: false, dressEnabled: false, backstageEnabled: false,
@@ -591,17 +599,25 @@ const SHOT_CATS = [
 ];
 
 var EMOTIONS = [
-  { id: 'frustration', label: 'Frustration' },
-  { id: 'doute', label: 'Doute' },
-  { id: 'gene', label: 'Gene' },
-  { id: 'curiosite', label: 'Curiosite' },
-  { id: 'concentration', label: 'Concentration' },
-  { id: 'soulagement', label: 'Soulagement' },
-  { id: 'bienetre', label: 'Bien-etre' },
-  { id: 'satisfaction', label: 'Satisfaction' },
-  { id: 'confiance', label: 'Confiance' },
-  { id: 'excitation', label: 'Excitation' },
+  { id: 'frustration', label: 'Frustration', group: 'negative', prompt: 'EMOTION: Frustration. Slightly furrowed brows, pinched lips or sigh, tired or annoyed gaze. Hand on face or forehead. Real environment. No smile. Natural but visible emotion.' },
+  { id: 'doute', label: 'Doute', group: 'negative', prompt: 'EMOTION: Doubt. Hesitant gaze, slightly raised eyebrows, neutral mouth. Product held in front, looking at product. Subtle, not exaggerated.' },
+  { id: 'gene', label: 'Gene', group: 'negative', prompt: 'EMOTION: Embarrassment. Avoided gaze, slight discomfort, micro grimace. Slightly closed body, touching problem area. Realistic, not dramatic.' },
+  { id: 'fatigue', label: 'Fatigue', group: 'negative', prompt: 'EMOTION: Fatigue. Slightly closed or tired eyes, relaxed face. Body slightly slumped, slow movements. Morning or end of day, soft light. Slow ambiance.' },
+  { id: 'agacement', label: 'Agacement', group: 'negative', prompt: 'EMOTION: Irritation. Eyes slightly rolled, tight mouth. Quick or abrupt gesture. Negative interaction with product. Short energy, not theatrical.' },
+  { id: 'curiosite', label: 'Curiosite', group: 'neutral', prompt: 'EMOTION: Curiosity. Attentive gaze, slightly raised eyebrows. Product observed closely. Product discovery. Intrigue without strong emotion.' },
+  { id: 'concentration', label: 'Concentration', group: 'neutral', prompt: 'EMOTION: Concentration. Fixed gaze, neutral face. Precise gesture during application. Focus on action.' },
+  { id: 'hesitation', label: 'Hesitation', group: 'neutral', prompt: 'EMOTION: Hesitation. Micro doubt in gaze, slowed movement. Interrupted gesture. Between problem and solution. Maximum subtlety.' },
+  { id: 'observation', label: 'Observation', group: 'neutral', prompt: 'EMOTION: Observation. Mirror gaze, self-analysis. Touching face or area. In front of mirror. Introspection.' },
+  { id: 'soulagement', label: 'Soulagement', group: 'positive', prompt: 'EMOTION: Relief. Released breath, soft or closed eyes. Body relaxation. After product use. Sensation of feeling better.' },
+  { id: 'bienetre', label: 'Bien-etre', group: 'positive', prompt: 'EMOTION: Well-being. Natural slight smile, serene face. Gentle gestures. Pleasant routine. No exaggerated smile.' },
+  { id: 'satisfaction', label: 'Satisfaction', group: 'positive', prompt: 'EMOTION: Satisfaction. Natural visible smile, confident gaze. Product held with confidence. Visible result. Credible, not fake ad.' },
+  { id: 'confiance', label: 'Confiance', group: 'positive', prompt: 'EMOTION: Confidence. Assured gaze, straight posture. Strong presence. After transformation. Not arrogant, just self-assured.' },
+  { id: 'joie', label: 'Joie', group: 'positive', prompt: 'EMOTION: Joy. Frank smile, visible energy. Natural movement. Positive moment. Spontaneous, not posed.' },
+  { id: 'surprise', label: 'Surprise', group: 'positive', prompt: 'EMOTION: Positive surprise. Open eyes, slightly open mouth. Immediate reaction. Result discovery. Short and natural.' },
+  { id: 'seduction', label: 'Seduction', group: 'positive', prompt: 'EMOTION: Seduction. Soft gaze, micro smile. Delicate gestures. Aesthetic moment. Subtle, never forced.' },
 ];
+
+var EMOTION_RULE = 'ONE main emotion per image. Expression visible but natural. Body must reflect emotion. Environment must reinforce emotion. No contradictory emotions.';
 var CONTENT_TYPES = [
   { id: 'organique', label: 'Contenu Organique' },
   { id: 'ads', label: 'ADS' },
@@ -637,9 +653,50 @@ var PRODUCT_SHOTS = [
   { id: 'coupe', label: '✂️ Plan Coupe', usage: 'intrigue' },
   { id: 'profondeur', label: '🌫 Profondeur de Champ', usage: 'focus + esthetique' },
   { id: 'flou_mouvement', label: '🌀 Flou de Mouvement', usage: 'stop scroll' },
-  { id: 'superposition', label: '🧊 Superposition', usage: 'richesse visuelle' },
+  { id: 'superposition', label: '🧊 Superposition', usage: 'richesse visuelle', prompt: 'PRODUCT SHOT: Superposition / Layered depth. Composition with 3 levels: 1) FOREGROUND slightly blurred (plant, curtain, object, hand) 2) SUBJECT and PRODUCT sharp and clear in the middle 3) BACKGROUND slightly blurred. Elements must overlap visually. Sensation of looking through something. NOT flat, NOT studio. Immersive, natural, realistic. Avoid empty or too clean framing.' },
   { id: 'cadre_cadre', label: '🔳 Cadre dans Cadre', usage: 'composition forte' },
 ];
+
+
+// ══════════════════════════════════════════════════════
+// HUMAN PERSPECTIVE ENGINE v1 - MODULE INTERNE INVISIBLE
+// ══════════════════════════════════════════════════════
+
+// ── AVANT / APRES DIRECTIVE ──
+var AVANT_APRES_DIRECTIVE = 'BEFORE/AFTER UGC RULE: Generate 2 contrasted states. BEFORE = visible problem, negative emotion, no solution. AFTER = same person + resolved situation + visible result + positive natural emotion. Contrast must be immediate, visible without text in under 2 seconds. FORBIDDEN: similar states, invisible transformation, emotion-only change without situation change.';
+
+var HPE_POSITIVE = 'human eye perspective, imperfect framing, slightly off-center composition, natural camera tilt, subtle motion presence, uneven focus falloff, realistic depth imperfections, handheld capture feel, slight sensor noise, minor lens imperfections, candid real-life moment, visible skin texture, realistic pores, micro skin irregularities, natural skin grain, peach fuzz, subtle uneven skin tone, authentic hair strands, realistic material texture, natural light falloff, imperfect focus transition, slight lens imperfections, subtle sensor noise, unretouched human detail, micro skin relief, local redness, non-uniform brilliance, thin stray hairs, irregular density, micro fabric wrinkles, textile tension, natural lip lines, irregular moisture, credible fabric behavior';
+
+var HPE_NEGATIVE = 'plastic skin, over-smoothed face, waxy texture, CGI look, beauty filter effect, perfect symmetry, sterile lighting, over-polished rendering, artificial gloss, fake fabric, unrealistic hair mass, uniform skin, too-clean hair, perfect sharpness everywhere, beauty ad lighting, too-sharp contours, 3D lip gloss, flat clothing, sterile background, too-perfect symmetry, surface without material noise, studio lighting, centered framing, ultra sharp everywhere, perfect composition';
+
+var HPE_FRAME_BREAKER = 'subject offset 15-30% from center, slight camera tilt 1-5 degrees, imperfect crop (head slightly cut OR arm partially out of frame OR object cropped), sensation of captured moment not composed shot';
+
+var HPE_DEPTH = 'main focus sharp, secondary zones slightly soft, irregular falloff, micro blur on edges, non-uniform depth, never everything sharp, never perfect bokeh';
+
+var HPE_MOTION = 'micro movement present: hand in motion OR hair slightly displaced OR clothing in tension, intensity 5-15% max, subtle not fake';
+
+var HPE_SENSOR = 'slight noise, micro optical aberration, slightly unstable exposure, micro flare or reflection, real smartphone device simulation';
+
+var HPE_ULTRA_REALISM = 'ultra photorealistic RAW image, extreme human realism, visible skin texture, realistic pores, natural skin grain, authentic hair strands, realistic material texture, natural light falloff, candid real-life realism, unretouched human detail';
+
+var HPE_PERCEPTUAL_BIAS = 'prioritize local detail over global cleanliness, biological variation over uniformity, credible optics over perfect sharpness, organic light over studio beauty lighting, living material over synthetic surface';
+
+// Profils automatiques selon categorie
+function getHPEProfile(scenes, shots) {
+  var sceneStr = scenes.join(' ').toLowerCase();
+  var shotStr = shots.join(' ').toLowerCase();
+  
+  if (sceneStr.includes('beaute') || sceneStr.includes('vanity') || shotStr.includes('visage') || shotStr.includes('face')) {
+    return 'SCENE PROFILE: BEAUTY/FACE. Priority: skin texture, lips, hair, micro focus, face lighting. ' + HPE_ULTRA_REALISM;
+  }
+  if (sceneStr.includes('sport')) {
+    return 'SCENE PROFILE: SPORT/OUTDOOR. Priority: outdoor light, textile in tension, slightly active skin, less static hair, micro natural contrasts.';
+  }
+  if (shotStr.includes('produit') || shotStr.includes('main') || shotStr.includes('held') || shotStr.includes('hand')) {
+    return 'SCENE PROFILE: PRODUCT IN HAND. Priority: product readability, hand/skin material, contact shadows, local focus, packaging/light coherence.';
+  }
+  return 'SCENE PROFILE: LIFESTYLE/UGC. Priority: textile, natural posture, ambient light, credible skin, lived environment.';
+}
 
 const RITUAL_KW = ['shampoo','shampoing','coloration','masque','mask','huile','oil','soin','gommage','scrub'];
 const FITTING_KW = ['robe','veste','t-shirt','pantalon','jean','jupe','top','haut','vêtement','dress','jacket','shirt'];
@@ -771,9 +828,9 @@ function buildEmotions() {
   var grid = document.getElementById('emotionGrid');
   if (!grid) return;
   var groups = [
-    { label: 'Negatif', ids: ['frustration','doute','gene'] },
-    { label: 'Neutre', ids: ['curiosite','concentration'] },
-    { label: 'Positif', ids: ['soulagement','bienetre','satisfaction','confiance','excitation'] },
+    { label: 'Negatif', ids: ['frustration','doute','gene','fatigue','agacement'] },
+    { label: 'Neutre', ids: ['curiosite','concentration','hesitation','observation'] },
+    { label: 'Positif', ids: ['soulagement','bienetre','satisfaction','confiance','joie','surprise_positive','seduction'] },
   ];
   var html = '';
   for (var g = 0; g < groups.length; g++) {
@@ -934,6 +991,11 @@ function toggleBackstage() {
   document.getElementById('backstageCard').style.display = state.backstageEnabled ? 'block' : 'none';
   updateBadges();
 }
+
+function toggleVanity() {
+  state.vanityMode = document.getElementById('toggleVanity').checked;
+  updateBadges();
+}
 function toggleBTS(id) {
   const btn = document.getElementById(id);
   const key = id.replace('bts_', '');
@@ -988,6 +1050,7 @@ function updateBadges() {
   if (state.isDuo) badges.push('<div class="badge badge-purple">👯 Mode Duo</div>');
   if (state.dressEnabled) badges.push('<div class="badge badge-amber">👗 Dress Code</div>');
   if (state.styleScandinavian) badges.push('<div class="badge badge-emerald">🏠 Bois & Blanc</div>');
+  if (state.vanityMode) badges.push('<div class="badge badge-rose">💄 Vanity</div>');
   if (state.locationEnabled) {
     const city = document.getElementById('locationCity').value;
     const country = document.getElementById('locationCountry').value;
@@ -1088,13 +1151,32 @@ async function callProxy(model, body) {
         const txt = await res.text();
         let d; try { d = JSON.parse(txt); } catch(_) {}
         const msg = (d && d.error) || txt;
-        if (res.status === 429) throw new Error(msg);
+        if (res.status === 429) {
+          // Forcer le quota a 0 restant visuellement
+          updateQuotaWidget(10, 10);
+          throw new Error(msg);
+        }
         if (res.status === 401) throw new Error('Code invalide : ' + state.studentCode);
         if (msg.includes('503') || msg.includes('overloaded')) throw new Error('RETRY:' + msg);
         throw new Error('Erreur ' + res.status + ': ' + msg);
       }
       const data = await res.json();
-      if (data._quota) updateQuotaWidget(data._quota.used, data._quota.max);
+      // Toujours prendre le MAX entre serveur et localStorage
+      // Le serveur peut redemarrer et perdre sa memoire
+      var serverUsed = data._quota ? data._quota.used : 0;
+      var localUsed = getLocalQuota(state.studentCode);
+      var realUsed = Math.max(serverUsed, localUsed);
+      // Sync localStorage avec la vraie valeur
+      var today = new Date().toISOString().slice(0,10);
+      localStorage.setItem('quota_' + state.studentCode + '_' + today, realUsed);
+      updateQuotaWidget(realUsed, 10);
+      if (realUsed >= 10) {
+        var btn = document.getElementById('genBtn');
+        if (btn) {
+          btn.disabled = true;
+          document.getElementById('genLabel').textContent = 'Quota atteint - Reviens demain';
+        }
+      }
       return data;
     } catch(err) {
       lastErr = err;
@@ -1178,7 +1260,17 @@ async function buildPrompt(scene, shot, specialMode, seqInfo, btsType) {
   } else if (seqInfo) {
     modeStr = 'Séquence étape '+seqInfo.current+'/'+seqInfo.total+': "'+seqInfo.step+'".';
   } else {
-    modeStr = 'Scène: '+(scene||'Contexte neutre')+', Plan: '+(shot||'Vue standard UGC')+'.';
+    // Directive speciale Avant / Apres
+    if (shot && (shot.toLowerCase().includes('avant') || shot.toLowerCase().includes('apres') || shot.includes('split'))) {
+      modeStr = 'AVANT/APRES MODE - GENERATE 2 SCENES: ' +
+        'BEFORE STATE: Real person in real context. Visible problem immediately (skin issue, hair problem, discomfort). Negative emotion visible (frustration, doubt, discomfort). NO product, NO solution element. Problem understandable without text. ' +
+        'AFTER STATE: Same person, same context. Visible result. Positive natural emotion (satisfaction, confidence, relief). Transformed behavior opposite to before. ' +
+        'MANDATORY CONTRAST: problem->resolved, blockage->fluidity, discomfort->comfort. Difference visible in under 2 seconds, without text, without audio. ' +
+        'FORBIDDEN: before and after too similar, invisible transformation, emotion absent, after = just a smile without situation change. ' +
+        'Scene: ' + (scene||'real environment') + '.';
+    } else {
+      modeStr = 'Scène: '+(scene||'Contexte neutre')+', Plan: '+(shot||'Vue standard UGC')+'.';
+    }
   }
 
   const prompt = 'Génère instruction UGC 4K : '+modeStr+' Action="'+action+'". '+identLock+' '+styleStr+' '+locStr+' '+locationStr+' '+dressStr+' '+duoStr+' '+carStr;
@@ -1257,7 +1349,8 @@ async function generate() {
       const imgUrl = await generateImage(prompt);
       generatedImages.push(imgUrl);
       addImageToGallery(imgUrl, count);
-      const newQ = incrementLocalQuota(state.studentCode);
+      var newQ = incrementLocalQuota(state.studentCode);
+      state.quotaUsed = newQ;
       updateQuotaWidget(newQ, 10);
     } catch(err) { 
       console.error('Generation error:', err);

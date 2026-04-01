@@ -1174,8 +1174,7 @@ function calcTotal() {
     return workflows[state.specialMode] || 1;
   }
   // Sinon : 1 image par plan selectionne, minimum 1
-  var shots = state.shots.length > 0 ? state.shots.length : 1;
-  return base;
+  return state.shots.length > 0 ? state.shots.length : 1;
 }
 
 // ── APPEL DIRECT VERTEX AI ──

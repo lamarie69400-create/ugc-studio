@@ -1060,15 +1060,15 @@ function toggleLocationMode() {
   updateBadges();
 }
 function toggleScene(id, name) {
-  const btn = document.getElementById('scene_'+id);
+  var btn = document.getElementById('scene_'+id);
+  if (!btn) return;
   if (state.scenes.includes(name)) {
-    state.scenes = state.scenes.filter(x => x !== name);
+    state.scenes = state.scenes.filter(function(x) { return x !== name; });
     btn.className = 'scene-btn';
-  } else if (state.scenes.length < 4) {
+  } else if (state.scenes.length < 2) {
     state.scenes.push(name);
     btn.className = 'scene-btn sel';
   }
-  document.getElementById('carModelWrap').style.display = state.scenes.includes('Intérieur Voiture') ? 'block' : 'none';
 }
 function toggleShot(id, label) {
   const btn = document.getElementById('shot_'+id);
@@ -1162,18 +1162,7 @@ function detectProductType(name) {
 }
 
 function calcTotal() {
-  // Mode special = workflow fixe
-  if (state.specialMode) {
-    var workflows = {
-      'mascara': 3,
-      'haircare': 4,
-      'bodywash': 2,
-      'fitting': 4,
-      'manicure': 5,
-    };
-    return workflows[state.specialMode] || 1;
-  }
-  // Sinon : 1 image par plan selectionne, minimum 1
+  // 1 image par plan selectionne, minimum 1
   return state.shots.length > 0 ? state.shots.length : 1;
 }
 
@@ -1371,12 +1360,9 @@ async function generate() {
   // Vérifier quota restant
   const total = calcTotal();
   const localUsed = getLocalQuota(state.studentCode);
-  if (localUsed >= state.quotaMax) {
-    showError('🌙 Tu as atteint tes 10 générations du jour ' + state.studentName + ' ! Reviens demain pour continuer.');
-    return;
-  }
-  if (localUsed + total > state.quotaMax) {
-    showError('⚠️ Tu n as plus que ' + (state.quotaMax - localUsed) + ' génération(s) disponible(s) aujourd hui.');
+  if (localUsed >= 10) {
+    showError('Tu as atteint tes 10 generatons du jour. Reviens demain !');
+    updateQuotaWidget(10, 10);
     return;
   }
 

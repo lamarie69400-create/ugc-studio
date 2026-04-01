@@ -276,6 +276,13 @@ textarea.s-textarea::placeholder{color:var(--text3)}
           <span class="toggle-track"></span>
         </label>
       </div>
+      <div class="toggle-row">
+        <span class="toggle-row-label">💄 Vanity Moderne</span>
+        <label class="toggle-wrap" style="--active-color:var(--pink)">
+          <input type="checkbox" id="toggleVanity" onchange="toggleVanity()">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
 
     </div>
   </div>
@@ -387,6 +394,24 @@ textarea.s-textarea::placeholder{color:var(--text3)}
         <div class="uploader-overlay"><button class="rm-btn" onclick="removeImg(event,'dress2')">✕</button></div>
       </div>
     </div>
+  </div>
+
+  <!-- MODES SPECIAUX -->
+  <div class="card active-amber">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-amber">⚡</div>
+        <div><div class="card-title">Mode Special</div><div class="card-sub">Workflow dedie — 1 seul a la fois</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem" id="specialModeGrid">
+      <button class="pill-btn" data-mode="mascara" style="margin:0.15rem">💋 Mascara (3 imgs)</button>
+      <button class="pill-btn" data-mode="haircare" style="margin:0.15rem">💆 Haircare (4 imgs)</button>
+      <button class="pill-btn" data-mode="bodywash" style="margin:0.15rem">🚿 Body Wash (2 imgs)</button>
+      <button class="pill-btn" data-mode="fitting" style="margin:0.15rem">👗 Fitting (4 imgs)</button>
+      <button class="pill-btn" data-mode="manicure" style="margin:0.15rem">💅 Manicure (5 imgs)</button>
+    </div>
+    <div id="specialModeLabel" style="display:none;margin-top:0.6rem;font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber)"></div>
   </div>
 
   <!-- CATEGORIE PRODUIT -->
@@ -534,7 +559,8 @@ const state = {
   av1Mime: 'image/jpeg', av2Mime: 'image/jpeg', prodMime: 'image/jpeg',
   locMime: 'image/jpeg', dress1Mime: 'image/jpeg', dress2Mime: 'image/jpeg',
   scenes: [], shots: [], action: '',
-  selectedEmotion: null, contentType: 'organique', visualStyle: 'naturel', selectedProductShot: null,
+  selectedEmotion: null, contentType: 'organique', visualStyle: 'naturel', selectedProductShot: null, vanityMode: false,
+  specialMode: null, isAdmin: false, quotaMax: 10,
   aspectRatio: '9:16',
   identityLocked: true, styleScandinavian: true,
   isDuo: false, dressEnabled: false, backstageEnabled: false,
@@ -559,7 +585,6 @@ const SCENES = [
   { id: 'voyage', name: 'Voyage', emoji: '✈' },
   { id: 'education', name: 'Education et Business', emoji: '📚' },
   { id: 'autre', name: 'Autre', emoji: '✨' },
-  { id: 'vanity', name: 'Vanity Moderne', emoji: '💄' },
 ];
 
 const SHOT_CATS = [
@@ -655,6 +680,9 @@ var PRODUCT_SHOTS = [
 // ══════════════════════════════════════════════════════
 // HUMAN PERSPECTIVE ENGINE v1 - MODULE INTERNE INVISIBLE
 // ══════════════════════════════════════════════════════
+
+// ── AVANT / APRES DIRECTIVE ──
+var AVANT_APRES_DIRECTIVE = 'BEFORE/AFTER UGC RULE: Generate 2 contrasted states. BEFORE = visible problem, negative emotion, no solution. AFTER = same person + resolved situation + visible result + positive natural emotion. Contrast must be immediate, visible without text in under 2 seconds. FORBIDDEN: similar states, invisible transformation, emotion-only change without situation change.';
 
 var HPE_POSITIVE = 'human eye perspective, imperfect framing, slightly off-center composition, natural camera tilt, subtle motion presence, uneven focus falloff, realistic depth imperfections, handheld capture feel, slight sensor noise, minor lens imperfections, candid real-life moment, visible skin texture, realistic pores, micro skin irregularities, natural skin grain, peach fuzz, subtle uneven skin tone, authentic hair strands, realistic material texture, natural light falloff, imperfect focus transition, slight lens imperfections, subtle sensor noise, unretouched human detail, micro skin relief, local redness, non-uniform brilliance, thin stray hairs, irregular density, micro fabric wrinkles, textile tension, natural lip lines, irregular moisture, credible fabric behavior';
 
@@ -769,6 +797,7 @@ function startApp() {
   buildContentTypes();
   buildVisualStyles();
   buildProductShots();
+  initSpecialModes();
   document.getElementById('codeDisplay').textContent = state.studentName;
   // Charger quota depuis localStorage
   const savedQuota = getLocalQuota(code);
@@ -812,7 +841,7 @@ function goSplash() {
 
 // ── INIT ──
 function initUI() {
-  buildScenes(); buildShots(); buildMultiSteps(); buildEmotions(); buildContentTypes(); buildVisualStyles(); buildProductShots(); updateBadges();
+  buildScenes(); buildShots(); buildMultiSteps(); buildEmotions(); buildContentTypes(); buildVisualStyles(); buildProductShots(); initSpecialModes(); updateBadges();
 }
 
 function buildEmotions() {
@@ -923,6 +952,33 @@ function buildProductShots() {
   }
 }
 
+function initSpecialModes() {
+  var grid = document.getElementById('specialModeGrid');
+  if (!grid) return;
+  var btns = grid.getElementsByTagName('button');
+  for (var j = 0; j < btns.length; j++) {
+    (function(b) {
+      b.onclick = function() {
+        var mode = b.getAttribute('data-mode');
+        var allBtns = document.getElementById('specialModeGrid').getElementsByTagName('button');
+        for (var k = 0; k < allBtns.length; k++) allBtns[k].className = 'pill-btn';
+        var label = document.getElementById('specialModeLabel');
+        if (state.specialMode === mode) {
+          state.specialMode = null;
+          label.style.display = 'none';
+        } else {
+          state.specialMode = mode;
+          b.className = 'pill-btn sel-amber';
+          var workflows = { 'mascara': '3 images generees', 'haircare': '4 images generees', 'bodywash': '2 images generees', 'fitting': '4 images generees', 'manicure': '5 images generees' };
+          label.textContent = 'Mode actif : ' + mode.toUpperCase() + ' — ' + (workflows[mode] || '');
+          label.style.display = 'block';
+        }
+        updateBadges();
+      };
+    })(btns[j]);
+  }
+}
+
 function buildScenes() {
   const grid = document.getElementById('sceneGrid');
   grid.innerHTML = SCENES.map(s =>
@@ -982,6 +1038,11 @@ function toggleBackstage() {
   document.getElementById('backstageCard').style.display = state.backstageEnabled ? 'block' : 'none';
   updateBadges();
 }
+
+function toggleVanity() {
+  state.vanityMode = document.getElementById('toggleVanity').checked;
+  updateBadges();
+}
 function toggleBTS(id) {
   const btn = document.getElementById(id);
   const key = id.replace('bts_', '');
@@ -999,15 +1060,15 @@ function toggleLocationMode() {
   updateBadges();
 }
 function toggleScene(id, name) {
-  const btn = document.getElementById('scene_'+id);
+  var btn = document.getElementById('scene_'+id);
+  if (!btn) return;
   if (state.scenes.includes(name)) {
-    state.scenes = state.scenes.filter(x => x !== name);
+    state.scenes = state.scenes.filter(function(x) { return x !== name; });
     btn.className = 'scene-btn';
-  } else if (state.scenes.length < 4) {
+  } else if (state.scenes.length < 2) {
     state.scenes.push(name);
     btn.className = 'scene-btn sel';
   }
-  document.getElementById('carModelWrap').style.display = state.scenes.includes('Intérieur Voiture') ? 'block' : 'none';
 }
 function toggleShot(id, label) {
   const btn = document.getElementById('shot_'+id);
@@ -1036,6 +1097,7 @@ function updateBadges() {
   if (state.isDuo) badges.push('<div class="badge badge-purple">👯 Mode Duo</div>');
   if (state.dressEnabled) badges.push('<div class="badge badge-amber">👗 Dress Code</div>');
   if (state.styleScandinavian) badges.push('<div class="badge badge-emerald">🏠 Bois & Blanc</div>');
+  if (state.vanityMode) badges.push('<div class="badge badge-rose">💄 Vanity</div>');
   if (state.locationEnabled) {
     const city = document.getElementById('locationCity').value;
     const country = document.getElementById('locationCountry').value;
@@ -1100,22 +1162,8 @@ function detectProductType(name) {
 }
 
 function calcTotal() {
-  if (!state.dressEnabled && state.autoMode) {
-    if (state.isMascara) return 3;
-    if (state.isHairCare) return 4;
-    if (state.isBodyWash) return 2;
-    if (state.isRitual) return 5;
-    if (state.isFitting) return 4;
-    if (state.isManicure) return 5;
-  }
-  const scenes = state.scenes.length || 1;
-  const shots = state.shots.length || 1;
-  let base = scenes * shots;
-  if (state.backstageEnabled) base += state.btsTypes.length;
-  if (state.multiMode !== 'off') {
-    base += state.multiMode === 'auto' ? 4 : state.manualSteps.filter(s => s.trim()).length;
-  }
-  return base;
+  // 1 image par plan selectionne, minimum 1
+  return state.shots.length > 0 ? state.shots.length : 1;
 }
 
 // ── APPEL DIRECT VERTEX AI ──
@@ -1146,15 +1194,20 @@ async function callProxy(model, body) {
         throw new Error('Erreur ' + res.status + ': ' + msg);
       }
       const data = await res.json();
-      if (data._quota) {
-        updateQuotaWidget(data._quota.used, data._quota.max);
-        // Si quota atteint, bloquer le bouton
-        if (data._quota.remaining <= 0) {
-          var btn = document.getElementById('genBtn');
-          if (btn) {
-            btn.disabled = true;
-            document.getElementById('genLabel').textContent = 'Quota journalier atteint - Reviens demain';
-          }
+      // Toujours prendre le MAX entre serveur et localStorage
+      // Le serveur peut redemarrer et perdre sa memoire
+      var serverUsed = data._quota ? data._quota.used : 0;
+      var localUsed = getLocalQuota(state.studentCode);
+      var realUsed = Math.max(serverUsed, localUsed);
+      // Sync localStorage avec la vraie valeur
+      var today = new Date().toISOString().slice(0,10);
+      localStorage.setItem('quota_' + state.studentCode + '_' + today, realUsed);
+      updateQuotaWidget(realUsed, 10);
+      if (realUsed >= 10) {
+        var btn = document.getElementById('genBtn');
+        if (btn) {
+          btn.disabled = true;
+          document.getElementById('genLabel').textContent = 'Quota atteint - Reviens demain';
         }
       }
       return data;
@@ -1240,7 +1293,17 @@ async function buildPrompt(scene, shot, specialMode, seqInfo, btsType) {
   } else if (seqInfo) {
     modeStr = 'Séquence étape '+seqInfo.current+'/'+seqInfo.total+': "'+seqInfo.step+'".';
   } else {
-    modeStr = 'Scène: '+(scene||'Contexte neutre')+', Plan: '+(shot||'Vue standard UGC')+'.';
+    // Directive speciale Avant / Apres
+    if (shot && (shot.toLowerCase().includes('avant') || shot.toLowerCase().includes('apres') || shot.includes('split'))) {
+      modeStr = 'AVANT/APRES MODE - GENERATE 2 SCENES: ' +
+        'BEFORE STATE: Real person in real context. Visible problem immediately (skin issue, hair problem, discomfort). Negative emotion visible (frustration, doubt, discomfort). NO product, NO solution element. Problem understandable without text. ' +
+        'AFTER STATE: Same person, same context. Visible result. Positive natural emotion (satisfaction, confidence, relief). Transformed behavior opposite to before. ' +
+        'MANDATORY CONTRAST: problem->resolved, blockage->fluidity, discomfort->comfort. Difference visible in under 2 seconds, without text, without audio. ' +
+        'FORBIDDEN: before and after too similar, invisible transformation, emotion absent, after = just a smile without situation change. ' +
+        'Scene: ' + (scene||'real environment') + '.';
+    } else {
+      modeStr = 'Scène: '+(scene||'Contexte neutre')+', Plan: '+(shot||'Vue standard UGC')+'.';
+    }
   }
 
   const prompt = 'Génère instruction UGC 4K : '+modeStr+' Action="'+action+'". '+identLock+' '+styleStr+' '+locStr+' '+locationStr+' '+dressStr+' '+duoStr+' '+carStr;
@@ -1297,12 +1360,9 @@ async function generate() {
   // Vérifier quota restant
   const total = calcTotal();
   const localUsed = getLocalQuota(state.studentCode);
-  if (localUsed >= state.quotaMax) {
-    showError('🌙 Tu as atteint tes 10 générations du jour ' + state.studentName + ' ! Reviens demain pour continuer.');
-    return;
-  }
-  if (localUsed + total > state.quotaMax) {
-    showError('⚠️ Tu n as plus que ' + (state.quotaMax - localUsed) + ' génération(s) disponible(s) aujourd hui.');
+  if (localUsed >= 10) {
+    showError('Tu as atteint tes 10 generatons du jour. Reviens demain !');
+    updateQuotaWidget(10, 10);
     return;
   }
 
@@ -1319,7 +1379,8 @@ async function generate() {
       const imgUrl = await generateImage(prompt);
       generatedImages.push(imgUrl);
       addImageToGallery(imgUrl, count);
-      const newQ = incrementLocalQuota(state.studentCode);
+      var newQ = incrementLocalQuota(state.studentCode);
+      state.quotaUsed = newQ;
       updateQuotaWidget(newQ, 10);
     } catch(err) { 
       console.error('Generation error:', err);
@@ -1328,20 +1389,28 @@ async function generate() {
   };
 
   try {
-    if (!state.dressEnabled && state.autoMode) {
-      if (state.isMascara) { for (const s of ['APPLICATION','GLOW','CONTEXT_HELD']) await runOne('','',{type:'MASCARA',stage:s},null,null); goto_done(); return; }
-      if (state.isHairCare) { for (const s of ['APPLICATION_CHEVEUX','PRODUIT_EN_ACTION','LAVAGE_DOUCHE_DOS','RESULTAT_MIROIR']) await runOne('','',{type:'HAIRCARE',stage:s},null,null); goto_done(); return; }
-      if (state.isBodyWash) { for (const s of ['PRODUIT_SALLE_DE_BAIN','UTILISATION_DOUCHE']) await runOne('','',{type:'BODYWASH',stage:s},null,null); goto_done(); return; }
-      if (state.isRitual) { for (const s of ['APPLICATION','POSE_TEXTURE','RINÇAGE_DOUCHE_DOS','RESULTAT_MIROIR','STYLING_FINAL']) await runOne('','',{type:'RITUAL',stage:s},null,null); goto_done(); return; }
-      if (state.isFitting) { for (const s of ['CHOIX_SUR_LIT','ENFILAGE_ACTION','DETAIL_AJUSTEMENT','LOOK_FINAL']) await runOne('','',{type:'FITTING',stage:s},null,null); goto_done(); return; }
-      if (state.isManicure) { for (const s of ['ZOOM_TABLE','ACCESSOIRE_MAIN','POSE_VISAGE','CHEVEUX_NATURELS','LIFESTYLE_FOCUS']) await runOne('','',{type:'MANICURE',stage:s},null,null); goto_done(); return; }
+    // Modes speciaux - actives manuellement uniquement
+    if (state.specialMode) {
+      var specialWorkflows = {
+        'mascara': ['APPLICATION','GLOW','CONTEXT_HELD'],
+        'haircare': ['APPLICATION_CHEVEUX','PRODUIT_EN_ACTION','LAVAGE_DOUCHE_DOS','RESULTAT_MIROIR'],
+        'bodywash': ['PRODUIT_SALLE_DE_BAIN','UTILISATION_DOUCHE'],
+        'fitting': ['CHOIX_SUR_LIT','ENFILAGE_ACTION','DETAIL_AJUSTEMENT','LOOK_FINAL'],
+        'manicure': ['ZOOM_TABLE','ACCESSOIRE_MAIN','POSE_VISAGE','CHEVEUX_NATURELS','LIFESTYLE_FOCUS'],
+      };
+      var stages = specialWorkflows[state.specialMode] || [];
+      for (var si = 0; si < stages.length; si++) {
+        await runOne('','',{type:state.specialMode.toUpperCase(),stage:stages[si]},null,null);
+      }
+      goto_done(); return;
     }
 
-    const finalScenes = state.scenes.length > 0 ? state.scenes : [''];
-    const finalShots = state.shots.length > 0 ? state.shots : ['Vue standard UGC'];
-    for (const scene of finalScenes)
-      for (const shot of finalShots)
-        await runOne(scene, shot, null, null, null);
+    // Generation normale : 1 image par plan selectionne (minimum 1)
+    var finalShots = state.shots.length > 0 ? state.shots : ['Vue standard UGC'];
+    var scene = state.scenes.length > 0 ? state.scenes[0] : '';
+    for (var si2 = 0; si2 < finalShots.length; si2++) {
+      await runOne(scene, finalShots[si2], null, null, null);
+    }
 
     if (state.backstageEnabled && state.btsTypes.length > 0)
       for (const bts of state.btsTypes)

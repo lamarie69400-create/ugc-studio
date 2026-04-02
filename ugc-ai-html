@@ -1,0 +1,393 @@
+import React, { useState } from 'react';
+import { Camera, Sparkles, Loader2, Package, User, Zap, Hand, Layout, Fullscreen, Video, ChevronDown, ChevronUp, Users, Droplets, CheckCircle2, Eye, ShieldCheck, Split } from 'lucide-react';
+
+const SCENES = [
+  { id: 'top_down_beauty', name: "Top-Down Beauty Flat Lay", emoji: "📸" },
+  { id: 'reception_colis', name: "Réception de colis", emoji: "📦" },
+  { id: 'vanity_moderne', name: "Vanity Bois & Blanc", emoji: "💄" },
+  { id: 'salle_de_bain', name: "Salle de Bain IKEA", emoji: "🛁" },
+  { id: 'backstage_creation', name: "Backstage — Création UGC", emoji: "🎬" },
+  { id: 'chambre_cosy', name: "Chambre Scandinave", emoji: "🛏️" },
+  { id: 'cuisine_moderne', name: "Cuisine Épurée", emoji: "🍳" },
+  { id: 'salon_chaleureux', name: "Salon Minimaliste", emoji: "🛋️" },
+  { id: 'dressing', name: "Dressing Blanc", emoji: "👗" },
+  { id: 'voiture', name: "Intérieur Voiture Blanc", emoji: "🚗" },
+];
+
+const STRATEGIC_UGC = [
+  { id: 'strat_face_cam', name: "1. Photo Face Caméra + Produit", icon: <User size={16} />, color: "text-blue-400", desc: "Authenticité, proximité, storytelling.", options: [{ id: 'smile_complice', label: 'Sourire Complice', desc: 'Regard objectif, produit en main.' }] },
+  { id: 'strat_hand', name: "2. Photo "Produit dans la main"", icon: <Hand size={16} />, color: "text-orange-400", desc: "Focus total sur le packaging.", options: [{ id: 'hand_focus_strat', label: 'Main visible', desc: 'Focus packaging et émotion.' }] },
+  { id: 'strat_app', name: "3. Photo Application Produit", icon: <Droplets size={16} />, color: "text-pink-400", desc: "Ultra engageant, montre le geste.", options: [{ id: 'action_gesture_strat', label: 'En pleine action', desc: 'Montre le geste : application crème/sérum.' }] },
+  { id: 'strat_glow', name: "4. Photo Résultat "Après" / Glow", icon: <Sparkles size={16} />, color: "text-amber-400", desc: "Teint glowy, sourire naturel.", options: [{ id: 'after_glow_strat', label: 'Glow Final', desc: 'Post-usage, radiant.' }] },
+  { id: 'strat_unboxing', name: "5. Photo Unboxing / Ouverture", icon: <Package size={16} />, color: "text-emerald-400", desc: "Logo, stickers visibles.", options: [{ id: 'unboxing_detail_strat', label: 'Ouverture Colis', desc: 'Mains soulèvent le couvercle.' }] },
+  { id: 'strat_lifestyle', name: "6. Photo en contexte d'usage", icon: <Layout size={16} />, color: "text-indigo-400", desc: "Environnement réel.", options: [{ id: 'lifestyle_real_strat', label: 'Usage Lifestyle', desc: 'Salle de bain, lit, cuisine.' }] },
+  { id: 'strat_split', name: "7. Photo Avant/Après (Split)", icon: <Split size={16} />, color: "text-purple-400", desc: "Résultat immédiat.", options: [{ id: 'split_wow_strat', label: 'Plan Split Screen', desc: 'Avant / Après vertical.' }] },
+  { id: 'strat_emotion', name: "8. Photo Emotion / Réaction", icon: <Zap size={16} />, color: "text-cyan-400", desc: "Surprise, satisfaction.", options: [{ id: 'reaction_wow_strat', label: 'Réaction Émotionnelle', desc: 'Rire ou "wow".' }] }
+];
+
+const TECHNICAL_ANGLES = [
+  { id: 'tech_face', name: "Face caméra (selfie)", icon: <User size={16} />, color: "text-slate-400", options: [{ id: 'selfie_static', label: 'Face Caméra', desc: 'Direct à l\'objectif.' }] },
+  { id: 'tech_close', name: "Serré (close-up)", icon: <Fullscreen size={16} />, color: "text-slate-400", options: [{ id: 'close_up_prod', label: 'Close-up / Macro', desc: 'Détail technique.' }] },
+  { id: 'tech_med', name: "Moyen (buste)", icon: <Layout size={16} />, color: "text-slate-400", options: [{ id: 'waist_up', label: 'Plan Buste', desc: 'Cadrage classique.' }] },
+  { id: 'tech_wide', name: "Large (environnement)", icon: <Eye size={16} />, color: "text-slate-400", options: [{ id: 'context_room', label: 'Plan Large', desc: 'Montre toute la pièce.' }] },
+  { id: 'tech_ots', name: "Over-the-shoulder", icon: <Video size={16} />, color: "text-slate-400", options: [{ id: 'ots_shot', label: 'Angle OTS', desc: 'Par-dessus l\'épaule.' }] },
+  { id: 'tech_pov', name: "POV", icon: <Eye size={16} />, color: "text-slate-400", options: [{ id: 'pov_exp', label: 'Angle POV', desc: 'À travers vos yeux.' }] },
+  { id: 'tech_hand', name: "Main only", icon: <Hand size={16} />, color: "text-slate-400", options: [{ id: 'hand_only', label: 'Main Seule', desc: 'Action précise.' }] }
+];
+
+const CLOTHING_KEYWORDS = ["t-shirt", "tshirt", "shirt", "chemise", "hoodie", "sweat", "pull", "dress", "robe", "jupe", "pants", "pantalon", "jean", "jacket", "veste", "shoes", "chaussures", "hat", "bag", "sac"];
+
+export default function App() {
+  const [avatar, setAvatar] = useState(null);
+  const [product, setProduct] = useState(null);
+  const [secondAvatar, setSecondAvatar] = useState(null);
+  const [secondProduct, setSecondProduct] = useState(null);
+  const [isDuo, setIsDuo] = useState(false);
+  const [lockIdentity, setLockIdentity] = useState(true);
+  const [scenes, setScenes] = useState([]);
+  const [shots, setShots] = useState([STRATEGIC_UGC[0].options[0].label]);
+  const [aspect, setAspect] = useState('9:16');
+  const [images, setImages] = useState([]);
+  const [status, setStatus] = useState('idle');
+  const [currentStep, setCurrentStep] = useState(0);
+  const [totalSteps, setTotalSteps] = useState(0);
+  const [error, setError] = useState('');
+  const [activeCategory, setActiveCategory] = useState(STRATEGIC_UGC[0].id);
+
+  const fileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+    });
+  };
+
+  const detectProductType = (file) => {
+    if (!file) return 'PRODUCT';
+    const name = file.name.toLowerCase();
+    return CLOTHING_KEYWORDS.some(k => name.includes(k)) ? 'CLOTHING' : 'PRODUCT';
+  };
+
+  const buildPrompt = async (scene, shot, productType) => {
+    const isClothing = productType === 'CLOTHING';
+    const isBackstage = scene.toLowerCase().includes("backstage");
+    const isSplit = shot.toLowerCase().includes("split");
+
+    let productInstr = isClothing 
+      ? (isDuo ? "Both influencers are wearing the exact garment from the product reference image. The clothing fits naturally." : "The influencer is wearing the exact garment from the product reference image. The clothing fits naturally.")
+      : (isDuo ? "Each influencer holds their own instance of the exact product shown in the reference image. Product details must be 100% identical (shape, color, text, logo)." : "The influencer holds/displays the exact product from the reference image. Product details must be 100% identical (shape, color, text, logo).");
+
+    let duoText = isDuo ? `\n\nDUO MODE: TWO distinct influencers in ONE natural scene. Both are doing the action: "${shot}". Natural interaction, same lighting.` : "";
+    let backstageText = isBackstage ? `\n\nBACKSTAGE: iPhone 16 Pro Max on tripod visible, screen ON showing camera interface. Influencer(s) are filming.` : "";
+    let splitText = isSplit ? `\n\nSPLIT SCREEN: Perfect vertical division (50/50). Left: Before (raw). Right: After (glow). Same lighting and angle.` : "";
+    let identityText = lockIdentity ? "\n\nIDENTITY LOCK: Facial features MUST match the reference avatar EXACTLY. No variations." : "";
+
+    return `Professional UGC Photography Shoot
+
+SCENE: ${scene}
+SHOT TYPE: ${shot}
+PRODUCT TYPE: ${productType}
+
+${productInstr}${duoText}${backstageText}${splitText}${identityText}
+
+TECHNICAL REQUIREMENTS:
+- Resolution: 4K ultra-realistic
+- Lighting: Natural indoor light, soft shadows
+- Skin: Raw texture, realistic (no over-smoothing)
+- Product: Sharp focus, readable text, visible textures
+- Aspect Ratio: ${aspect}
+- Environment: ${scene} with natural props
+
+CRITICAL RULES:
+1. Product MUST be 100% identical to reference
+2. ${isClothing ? 'Clothing MUST be worn naturally' : 'Product held/displayed clearly'}
+3. ${lockIdentity ? 'Face MUST match reference exactly' : 'Natural features'}
+4. No watermarks, no text overlays
+5. Authentic spontaneous UGC style
+
+Generate ONE cohesive professional UGC image respecting ALL requirements.`;
+  };
+
+  const generateImage = async (prompt, refImages) => {
+    const parts = [];
+    
+    if (refImages.avatar) {
+      const base64 = await fileToBase64(refImages.avatar);
+      parts.push({
+        type: "image",
+        source: { type: "base64", media_type: refImages.avatar.type, data: base64 }
+      });
+    }
+    
+    if (refImages.product) {
+      const base64 = await fileToBase64(refImages.product);
+      parts.push({
+        type: "image",
+        source: { type: "base64", media_type: refImages.product.type, data: base64 }
+      });
+    }
+    
+    if (refImages.secondAvatar) {
+      const base64 = await fileToBase64(refImages.secondAvatar);
+      parts.push({
+        type: "image",
+        source: { type: "base64", media_type: refImages.secondAvatar.type, data: base64 }
+      });
+    }
+    
+    if (refImages.secondProduct) {
+      const base64 = await fileToBase64(refImages.secondProduct);
+      parts.push({
+        type: "image",
+        source: { type: "base64", media_type: refImages.secondProduct.type, data: base64 }
+      });
+    }
+
+    parts.push({ type: "text", text: prompt });
+
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: parts }]
+      })
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error?.message || "Erreur API");
+    }
+
+    const data = await response.json();
+    const textContent = data.content.find(c => c.type === 'text');
+    
+    // Simuler la génération d'image (placeholder)
+    return `data:image/svg+xml,${encodeURIComponent(`
+      <svg width="720" height="1280" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:rgb(79,70,229);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgb(219,39,119);stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="720" height="1280" fill="url(#bg)"/>
+        <text x="360" y="600" text-anchor="middle" fill="white" font-size="32" font-weight="bold">UGC SHOOT</text>
+        <text x="360" y="650" text-anchor="middle" fill="white" font-size="18">${prompt.split('\n')[2]}</text>
+        <text x="360" y="700" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="14">Image générée - ${new Date().toLocaleTimeString()}</text>
+      </svg>
+    `)}`;
+  };
+
+  const handleGenerate = async () => {
+    if (!product) return setError('Produit requis.');
+    if (isDuo && !secondAvatar) return setError('Seconde influenceuse requise.');
+    
+    setStatus('generating');
+    setError('');
+    
+    try {
+      const localImages = [];
+      const refImages = { avatar, product, secondAvatar, secondProduct };
+      const productType = detectProductType(product);
+      const finalSteps = [];
+
+      for (const scene of scenes) {
+        for (const shot of shots) {
+          finalSteps.push({ scene, shot });
+        }
+      }
+
+      setTotalSteps(finalSteps.length);
+
+      for (let i = 0; i < finalSteps.length; i++) {
+        setCurrentStep(i + 1);
+        const { scene, shot } = finalSteps[i];
+        
+        const prompt = await buildPrompt(scene, shot, productType);
+        const img = await generateImage(prompt, refImages);
+        
+        localImages.push(img);
+        setImages([...localImages]);
+        
+        await new Promise(r => setTimeout(r, 500));
+      }
+      
+      setStatus('idle');
+    } catch (e) {
+      setError(e.message || "Erreur production");
+      setStatus('error');
+    }
+  };
+
+  const renderCategory = (cat) => (
+    <div key={cat.id} className="border border-slate-800 rounded-xl overflow-hidden bg-slate-950/30">
+      <button 
+        onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
+        className={`w-full p-3 flex flex-col items-start transition-colors ${activeCategory === cat.id ? 'bg-slate-800/50' : 'hover:bg-slate-800/20'}`}
+      >
+        <div className="w-full flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className={`${cat.color} bg-slate-900 p-2 rounded-lg`}>{cat.icon}</span>
+            <span className="text-[10px] font-black text-slate-200 uppercase tracking-widest">{cat.name}</span>
+          </div>
+          {activeCategory === cat.id ? <ChevronUp size={14} className="text-slate-500" /> : <ChevronDown size={14} className="text-slate-500" />}
+        </div>
+        {cat.desc && <p className="text-[8px] text-slate-500 font-bold uppercase ml-11 mt-1">{cat.desc}</p>}
+      </button>
+      
+      {activeCategory === cat.id && (
+        <div className="p-3 grid gap-2">
+          {cat.options.map(opt => (
+            <button 
+              key={opt.id} 
+              onClick={() => setShots(prev => prev.includes(opt.label) ? (prev.length > 1 ? prev.filter(x => x !== opt.label) : prev) : (prev.length < 3 ? [...prev, opt.label] : prev))} 
+              className={`p-3 rounded-xl border-2 text-left transition-all ${shots.includes(opt.label) ? 'bg-blue-900/30 border-blue-500 text-white shadow-lg' : 'bg-slate-900 border-slate-900 text-slate-600 hover:bg-slate-800'}`}
+            >
+              <div className="flex items-center justify-between mb-1">
+                <p className="text-[9px] font-black uppercase">{opt.label}</p>
+                {shots.includes(opt.label) && <CheckCircle2 size={10} className="text-blue-400" />}
+              </div>
+              <p className="text-[8px] text-slate-500 italic">{opt.desc}</p>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
+      <div className="max-w-[1600px] mx-auto p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="lg:col-span-4 space-y-6 overflow-y-auto max-h-[calc(100vh-120px)]">
+          
+          <div className="space-y-3">
+            <div className={`p-4 rounded-2xl border-2 flex items-center justify-between ${lockIdentity ? 'bg-emerald-600/10 border-emerald-500/50' : 'bg-amber-600/10 border-amber-500/50'}`}>
+              <div className="flex items-center gap-3">
+                <div className={`p-2 rounded-xl ${lockIdentity ? 'bg-emerald-500' : 'bg-amber-500'}`}><ShieldCheck size={20}/></div>
+                <div>
+                  <p className="text-[10px] font-black uppercase leading-none mb-1">Identité Verrouillée</p>
+                  <p className={`text-[9px] font-bold uppercase ${lockIdentity ? 'text-emerald-400' : 'text-amber-400'}`}>{lockIdentity ? 'Fidélité 100%' : 'Variable'}</p>
+                </div>
+              </div>
+              <button onClick={() => setLockIdentity(!lockIdentity)} className="px-3 py-1.5 rounded-lg text-[9px] font-black uppercase bg-slate-800 hover:bg-slate-700">CHG</button>
+            </div>
+
+            <div className={`p-4 rounded-2xl border-2 flex items-center justify-between ${isDuo ? 'bg-indigo-600/10 border-indigo-500/50' : 'bg-slate-800/50 border-slate-700/50'}`}>
+              <div className="flex items-center gap-3">
+                <div className={`p-2 rounded-xl ${isDuo ? 'bg-indigo-500' : 'bg-slate-700 text-slate-400'}`}><Users size={20}/></div>
+                <div>
+                  <p className="text-[10px] font-black uppercase leading-none mb-1">Mode Duo Réel</p>
+                  <p className="text-[9px] font-bold uppercase text-slate-500">{isDuo ? '2 créatrices' : 'Solo'}</p>
+                </div>
+              </div>
+              <button onClick={() => setIsDuo(!isDuo)} className={`px-4 py-1.5 rounded-lg text-[9px] font-black uppercase ${isDuo ? 'bg-indigo-500 text-white' : 'bg-slate-700 text-slate-400'}`}>
+                {isDuo ? 'DÉSACTIVER' : 'ACTIVER'}
+              </button>
+            </div>
+          </div>
+
+          <div className="bg-slate-900 p-5 rounded-2xl border border-slate-800 space-y-5">
+            <h2 className="text-md font-bold text-purple-400 uppercase flex gap-2 items-center"><Camera size={18}/> 1. Casting & Look</h2>
+            <div className={`grid ${isDuo ? 'grid-cols-2' : 'grid-cols-1'} gap-4`}>
+              <div className="space-y-1">
+                <p className="text-[8px] uppercase font-black text-slate-500">Influencer 1</p>
+                <div className="border-2 border-dashed border-slate-800 p-3 rounded-xl relative h-28 flex items-center justify-center bg-slate-950/30">
+                  <input type="file" accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer z-10" onChange={e => setAvatar(e.target.files?.[0] || null)} />
+                  {avatar ? <img src={URL.createObjectURL(avatar)} className="w-full h-full object-cover rounded-lg" alt="" /> : <User className="opacity-20" size={32} />}
+                </div>
+              </div>
+              {isDuo && (
+                <div className="space-y-1">
+                  <p className="text-[8px] uppercase font-black text-slate-500">Influencer 2</p>
+                  <div className="border-2 border-dashed border-slate-800 p-3 rounded-xl relative h-28 flex items-center justify-center bg-slate-950/30">
+                    <input type="file" accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer z-10" onChange={e => setSecondAvatar(e.target.files?.[0] || null)} />
+                    {secondAvatar ? <img src={URL.createObjectURL(secondAvatar)} className="w-full h-full object-cover rounded-lg" alt="" /> : <Users className="opacity-20" size={32} />}
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className={`grid ${isDuo ? 'grid-cols-2' : 'grid-cols-1'} gap-4 pt-2 border-t border-slate-800/50`}>
+              <div className="space-y-1">
+                <p className="text-[8px] uppercase font-black text-indigo-400">Produit Principal</p>
+                <div className="border-2 border-dashed border-slate-800 p-3 rounded-xl relative h-28 flex items-center justify-center bg-slate-950/30">
+                  <input type="file" accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer z-10" onChange={e => setProduct(e.target.files?.[0] || null)} />
+                  {product ? <img src={URL.createObjectURL(product)} className="w-full h-full object-cover rounded-lg" alt="" /> : <Package className="opacity-20" size={32} />}
+                </div>
+              </div>
+              {isDuo && (
+                <div className="space-y-1">
+                  <p className="text-[8px] uppercase font-black text-pink-400">Produit Duo</p>
+                  <div className="border-2 border-dashed border-slate-800 p-3 rounded-xl relative h-28 flex items-center justify-center bg-slate-950/30">
+                    <input type="file" accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer z-10" onChange={e => setSecondProduct(e.target.files?.[0] || null)} />
+                    {secondProduct ? <img src={URL.createObjectURL(secondProduct)} className="w-full h-full object-cover rounded-lg" alt="" /> : <Package className="opacity-10" size={24} />}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="bg-slate-900 p-5 rounded-2xl border border-slate-800 space-y-4">
+            <h2 className="text-md font-bold text-amber-400 uppercase flex gap-2 items-center">📐 2. Formats & Décors</h2>
+            <div className="grid grid-cols-3 gap-2">
+              {['9:16', '16:9', '1:1'].map(asp => (
+                <button key={asp} onClick={() => setAspect(asp)} className={`p-2.5 rounded-xl border-2 text-[9px] font-black uppercase transition-all ${aspect === asp ? 'bg-amber-900/20 border-amber-500 text-white' : 'bg-slate-800 border-slate-800 text-slate-500'}`}>{asp}</button>
+              ))}
+            </div>
+            <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto">
+              {SCENES.map(s => (
+                <button key={s.id} onClick={() => setScenes(prev => prev.includes(s.name) ? prev.filter(x => x !== s.name) : [...prev, s.name])} className={`p-3 rounded-xl border-2 text-[8px] font-black uppercase transition-all ${scenes.includes(s.name) ? 'bg-emerald-900/30 border-emerald-500 text-white' : 'bg-slate-800/50 border-slate-800 text-slate-600'}`}>
+                  {s.emoji} {s.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-slate-900 p-5 rounded-2xl border border-slate-800 space-y-4">
+            <h2 className="text-md font-bold text-blue-400 uppercase flex gap-2 items-center"><Zap size={18}/> 3. Prises UGC</h2>
+            <div className="space-y-3">
+              {STRATEGIC_UGC.map(renderCategory)}
+            </div>
+          </div>
+
+          <div className="bg-slate-900 p-5 rounded-2xl border border-slate-800 space-y-4">
+            <h2 className="text-md font-bold text-slate-400 uppercase flex gap-2 items-center">🎯 4. Angles</h2>
+            <div className="space-y-3">
+              {TECHNICAL_ANGLES.map(renderCategory)}
+            </div>
+          </div>
+
+          {error && (
+            <div className="bg-red-900/20 border-2 border-red-500/50 rounded-xl p-4">
+              <p className="text-red-300 text-sm font-bold">{error}</p>
+            </div>
+          )}
+
+          <button 
+            onClick={handleGenerate} 
+            disabled={status === 'generating'} 
+            className={`w-full py-5 rounded-2xl font-black text-xs uppercase tracking-[0.4em] flex items-center justify-center gap-4 transition-all ${status === 'generating' ? 'bg-slate-800 text-slate-600 cursor-not-allowed' : 'bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-2xl hover:scale-[1.02]'}`}
+          >
+            {status === 'generating' ? <><Loader2 className="animate-spin w-5 h-5" /> PRODUCTION {currentStep}/{totalSteps}</> : <><Sparkles size={20} className="animate-pulse" /> LANCER LE SHOOTING 4K</>}
+          </button>
+        </div>
+
+        <div className="lg:col-span-8 bg-slate-950/50 rounded-[3rem] border-2 border-slate-900 p-8 h-[calc(100vh-120px)] overflow-y-auto">
+          <div className="mb-10 flex justify-between items-end border-b border-slate-800 pb-8">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.5em]">Live Studio</span>
+              </div>
+              <h2 className="text-5xl font-black uppercase tracking-tighter">UGC GALLERY</h2>
+            </div>
+            <div className="bg-slate-900/80 px-4 py-2 rounded-2xl border border-slate-800">
+              <span className="text-[10px] font-black uppercase tracking-widest">Ultra HD 4K</span>
+            </div>
+          </div>
+          
+          {images.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pb-20">
+              {

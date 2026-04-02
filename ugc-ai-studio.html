@@ -35,10 +35,7 @@ button,input,select,textarea{font:inherit}
 .api-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:0.75rem;padding:0.9rem 1rem;font-size:0.95rem;color:var(--text);outline:none;transition:border-color 0.2s;letter-spacing:0.15em;text-transform:uppercase}
 .api-input::placeholder{color:rgba(255,255,255,0.15);text-transform:none;letter-spacing:normal}
 .api-input:focus{border-color:var(--purple)}
-
-/* Quota bar sur la splash */
 .quota-preview{display:none;margin-top:1rem;padding:0.75rem 1rem;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:0.75rem;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--emerald);text-align:center}
-
 .start-btn{width:100%;padding:1.2rem;border-radius:1.25rem;font-family:'Syne',sans-serif;font-weight:800;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.2em;border:none;cursor:pointer;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;transition:all 0.2s;opacity:0.3}
 .start-btn:not(:disabled){opacity:1}
 .start-btn:not(:disabled):hover{transform:scale(1.02);box-shadow:0 20px 40px rgba(168,85,247,0.3)}
@@ -59,8 +56,6 @@ button,input,select,textarea{font:inherit}
 .badge-emerald{background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.4);color:var(--emerald)}
 .badge-purple{background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.4);color:var(--purple)}
 .badge-indigo{background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.4);color:var(--indigo)}
-
-/* Quota widget dans le header */
 .quota-widget{display:flex;align-items:center;gap:0.6rem;padding:0.4rem 0.9rem;border-radius:999px;border:1px solid rgba(16,185,129,0.4);background:rgba(16,185,129,0.08)}
 .quota-widget.warning{border-color:rgba(245,158,11,0.4);background:rgba(245,158,11,0.08)}
 .quota-widget.critical{border-color:rgba(239,68,68,0.4);background:rgba(239,68,68,0.08)}
@@ -74,7 +69,6 @@ button,input,select,textarea{font:inherit}
 .quota-text.critical{color:var(--red)}
 .header-key-btn{font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;padding:0.4rem 0.9rem;border-radius:999px;cursor:pointer;border:1px solid rgba(245,158,11,0.4);color:var(--amber);background:rgba(245,158,11,0.1);transition:all 0.2s}
 .header-key-btn.active{border-color:rgba(16,185,129,0.4);color:var(--emerald);background:rgba(16,185,129,0.1)}
-
 .studio-layout{flex:1;max-width:1600px;margin:0 auto;width:100%;padding:1.5rem;display:grid;grid-template-columns:380px 1fr;gap:1.5rem}
 @media(max-width:1100px){.studio-layout{grid-template-columns:1fr}}
 @media(max-width:640px){.studio-layout{padding:0.75rem;gap:0.75rem}}
@@ -125,6 +119,7 @@ button,input,select,textarea{font:inherit}
 .pill-btn.sel-indigo{background:rgba(99,102,241,0.2);border-color:var(--indigo);color:#fff}
 .pill-btn.sel-orange{background:rgba(249,115,22,0.2);border-color:#f97316;color:#fff}
 .pill-btn.sel-emerald{background:rgba(16,185,129,0.2);border-color:var(--emerald);color:#fff}
+.pill-btn.sel-amber{background:rgba(245,158,11,0.2);border-color:var(--amber);color:#fff}
 .scene-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
 .scene-btn{padding:0.75rem 0.5rem;border-radius:0.9rem;border:1px solid var(--border);background:rgba(255,255,255,0.03);font-size:0.6rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);cursor:pointer;transition:all 0.2s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:0.3rem}
 .scene-btn .scene-emoji{font-size:1.1rem}
@@ -190,9 +185,12 @@ textarea.s-textarea::placeholder{color:var(--text3)}
       <span class="line2">UGC AI</span>
     </div>
     <p class="splash-sub">Crée ton shooting UGC comme si tu y étais.</p>
+    <div style="margin:1.5rem auto;max-width:320px;border-radius:1.5rem;overflow:hidden;box-shadow:0 30px 60px rgba(168,85,247,0.25);border:1px solid rgba(255,255,255,0.1)">
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCADIAMgDASIAAhEBAxEB/8QAGwABAAMBAQEBAAAAAAAAAAAAAAQFBgMCAQf/xAAzEAABBAEDAwIEBAYDAQAAAAABAAIDBAURITESQVFhBhMicRQyQoGRobEjUsHR4fAV/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAeEQEBAQEAAgMBAQAAAAAAAAAAARECITESQVH/2gAMAwEAAiEDEQA/AP38REBERAREQEREBERARYt1kq1V0kUEtyVv3YWcuP8AH7qkv6hvkc6PS6UkjB/uJhloPsO0f3CZaRbqKxt9S6dpylm8vBvP3IPYf3K0paiSGbddTsY6IbpnxgO7B3GzI9PJW5LSTXTaREWCIiAiIgIiICIiAiIgIiICIiAiIg8kiRq3LS3XU9+sLmOc0+gBPb8lVan1L3ZIWuJ8OMDCtp2yKOCY+bpBIfs3H+FXXqcNqNr5+3sWjzA9iFz83bXFtyuqiIupkREQEREBERAREQEREBERAREQEREBERBq9P6ojoQvr26ss1cuLy1juWb/MDyPdTWb2sXmxSXZYLbGnlpqANIPqN7A/qvNiCDkHB9V4hpNhls1W7cNHLAScjP1CrlW2rHZ6PAXTN/qDiAe9jY/AHJ+SqNR1KPT2DujM9h+6qB5W+3i7b8gHj2HJXJcHFzhH2tvB7WAgevsOT7nssMc8c0RfFG4HxXdxH4Ac5/ssRmfadpN7bREW0CIiAiIgIiICIiAiIgIiICIiAiIgIiIM2zVFuKxUkJDJoyxx9nuGCPgg/ZZ2gWpZi+neJMrQGscTk7Afld+r8+cjXk9zn6exVDS3sVrNUPc1rHyNZz+8d/kMrl81Jyc9L6rKY98LCPqHJP0XNTMZR05+7IefQ8H+hK1bWlW6LYnRzb5GFpBdgnGTjkDC1KulUorDpYmPe5zt/3zHdx6nv8AJb+T1J5Zb2rNcCLVJfxBNwGiNvzk5H0AVS5j2uLXsLXDkFwwQt9/Km6vDaqOIiK6CIiAiIgIiICIiAiIgIiICIiAiIgLPtQk23vDsZe/wDTGVoKqvudNWafeIn+JCtc2MVOVP0r4a8MjXPYIy7LuN2MDGce3A+iss7KclgRSx5bjZ5xjuQR3HuFT6mBJWnLQ5+5gy3HPIIPYr3S7l5uQyMbWMja0EyMwOdp4aR/I4ytXmvTfHj0oCIiugiIgIiICIiAiIgIiICIiAiIgIiICqry7TZo/Nj4x7mTH2yFaqqm5oFuN8ZG7M8f0VLjqdvjI1DQYY5P5iJxHsf9FjdVaS/XNMmN+jJLZj8muDiQT6diPquiN2yaSGB2cYcx3IP07iFa6nDZl06wKVuOjYcN2LzXMxyO4Ow+R81y5e3z8V6RaRF2kiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiD/2Q==" alt="UGC Creator" style="width:100%;display:block;object-fit:cover;max-height:420px">
+    </div>
     <div class="api-box">
       <span class="api-label">🔑 Ton code d'accès UGC AI Studio</span>
-      <input type="text" id="codeInput" class="api-input" placeholder="Ex: MEL6A2" autocomplete="off" maxlength="20">
+      <input type="text" id="codeInput" class="api-input" placeholder="Ex: VOTRECODE" autocomplete="off" maxlength="20">
       <div class="quota-preview" id="quotaPreview"></div>
     </div>
     <button id="startBtn" class="start-btn" disabled onclick="startApp()">Lancer le Studio →</button>
@@ -217,7 +215,6 @@ textarea.s-textarea::placeholder{color:var(--text3)}
         <span class="app-logo-text">Studio UGC AI</span>
       </div>
       <div class="header-badges" id="activeBadges"></div>
-      <!-- Quota widget -->
       <div class="quota-widget" id="quotaWidget">
         <div class="quota-dots" id="quotaDots"></div>
         <span class="quota-text" id="quotaText">— / 10</span>
@@ -270,6 +267,13 @@ textarea.s-textarea::placeholder{color:var(--text3)}
         <span class="toggle-row-label">🎥 Mode Backstage</span>
         <label class="toggle-wrap" style="--active-color:#f97316">
           <input type="checkbox" id="toggleBackstage" onchange="toggleBackstage()">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-row-label">💄 Vanity Moderne</span>
+        <label class="toggle-wrap" style="--active-color:var(--pink)">
+          <input type="checkbox" id="toggleVanity" onchange="toggleVanity()">
           <span class="toggle-track"></span>
         </label>
       </div>
@@ -385,19 +389,69 @@ textarea.s-textarea::placeholder{color:var(--text3)}
     </div>
   </div>
 
-  <!-- SCENES -->
-  <div class="card" id="sceneCard">
+  <!-- MODES SPECIAUX -->
+  <div class="card active-amber">
     <div class="card-header">
       <div class="card-title-group">
-        <div class="card-icon card-icon-purple">🏠</div>
-        <div><div class="card-title">2. Scènes</div><div class="card-sub">Optionnel — max 4</div></div>
+        <div class="card-icon card-icon-amber">⚡</div>
+        <div><div class="card-title">Mode Special</div><div class="card-sub">Workflow dedie — 1 seul a la fois</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem" id="specialModeGrid">
+      <button class="pill-btn" data-mode="mascara" style="margin:0.15rem">💋 Mascara (3 imgs)</button>
+      <button class="pill-btn" data-mode="haircare" style="margin:0.15rem">💆 Haircare (4 imgs)</button>
+      <button class="pill-btn" data-mode="bodywash" style="margin:0.15rem">🚿 Body Wash (2 imgs)</button>
+      <button class="pill-btn" data-mode="fitting" style="margin:0.15rem">👗 Fitting (4 imgs)</button>
+      <button class="pill-btn" data-mode="manicure" style="margin:0.15rem">💅 Manicure (5 imgs)</button>
+    </div>
+    <div id="specialModeLabel" style="display:none;margin-top:0.6rem;font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber)"></div>
+  </div>
+
+  <!-- CATEGORIE PRODUIT -->
+  <div class="card active-purple" id="sceneCard">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-purple">🏷️</div>
+        <div><div class="card-title">2. Categorie Produit</div><div class="card-sub">Max 2</div></div>
       </div>
     </div>
     <div class="scene-grid" id="sceneGrid"></div>
-    <div id="carModelWrap" style="display:none;margin-top:0.75rem">
-      <label class="card-sub" style="display:block;margin-bottom:0.4rem">Modèle de Voiture</label>
-      <input type="text" id="carModel" value="Tesla Model 3" class="s-input">
+  </div>
+
+  <!-- EMOTION -->
+  <div class="card active-rose">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-rose">🎭</div>
+        <div><div class="card-title">Emotion</div><div class="card-sub">1 seule — optionnel</div></div>
+      </div>
     </div>
+    <div id="emotionGrid" style="display:flex;flex-wrap:wrap;gap:0.3rem;padding-top:0.3rem"></div>
+  </div>
+
+  <!-- TYPE DE CONTENU -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-indigo">🎬</div>
+        <div><div class="card-title">Type et Style</div><div class="card-sub">Optionnel</div></div>
+      </div>
+    </div>
+    <div class="card-sub" style="margin-bottom:0.4rem">Type de contenu</div>
+    <div id="contentTypeGrid" style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.75rem"></div>
+    <div class="card-sub" style="margin-bottom:0.4rem">Style visuel</div>
+    <div id="visualStyleGrid" style="display:flex;flex-wrap:wrap;gap:0.3rem"></div>
+  </div>
+
+  <!-- PLANS PRODUIT -->
+  <div class="card active-indigo">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-indigo">📸</div>
+        <div><div class="card-title">Plans Produit</div><div class="card-sub">1 seul — optionnel</div></div>
+      </div>
+    </div>
+    <div id="productShotGrid" style="display:flex;flex-wrap:wrap;gap:0.3rem;padding-top:0.3rem"></div>
   </div>
 
   <!-- SHOTS -->
@@ -483,22 +537,21 @@ textarea.s-textarea::placeholder{color:var(--text3)}
 </div>
 
 <script>
-// ════════════════════════════════════════════════════════════
-// ⚠️  SEUL PARAMÈTRE À MODIFIER : L'URL DE TA CLOUD FUNCTION
-// Tu la trouveras après déploiement dans Google Cloud Console
-// ════════════════════════════════════════════════════════════
-const CLOUD_FUNCTION_URL = 'https://ugc-proxy-738708455173.europe-west1.run.app';
-// Exemple réel : 'https://europe-west1-test-credit-gratuit.cloudfunctions.net/ugcProxy'
-
-// ── STATE ──
+// ════════════════════════════════════════════════════
+// STATE — FIX: suppression du quotaMax en double
+// ════════════════════════════════════════════════════
 const state = {
   studentCode: '',
   studentName: '',
-  quotaUsed: 0, quotaMax: 10,
+  quotaUsed: 0,
+  quotaMax: 10,          // ← UNE SEULE déclaration (bug #1 corrigé)
   av1: '', av2: '', prod: '', loc: '', dress1: '', dress2: '',
   av1Mime: 'image/jpeg', av2Mime: 'image/jpeg', prodMime: 'image/jpeg',
   locMime: 'image/jpeg', dress1Mime: 'image/jpeg', dress2Mime: 'image/jpeg',
   scenes: [], shots: [], action: '',
+  selectedEmotion: null, contentType: 'organique', visualStyle: 'naturel',
+  selectedProductShot: null, vanityMode: false,
+  specialMode: null, isAdmin: false,
   aspectRatio: '9:16',
   identityLocked: true, styleScandinavian: true,
   isDuo: false, dressEnabled: false, backstageEnabled: false,
@@ -512,53 +565,115 @@ const state = {
 
 // ── DATA ──
 const SCENES = [
-  { id: 'reception_colis', name: 'Réception Colis', emoji: '📦' },
-  { id: 'vanity_moderne', name: 'Vanity Moderne', emoji: '💄' },
-  { id: 'salle_de_bain', name: 'Douche Italienne', emoji: '🚿' },
-  { id: 'chambre_cosy', name: 'Chambre Cosy', emoji: '🛏️' },
-  { id: 'cuisine_moderne', name: 'Cuisine Moderne', emoji: '🍳' },
-  { id: 'salon_chaleureux', name: 'Salon Chaleureux', emoji: '🛋️' },
-  { id: 'dressing', name: 'Dressing / Miroir', emoji: '👗' },
-  { id: 'voiture', name: 'Intérieur Voiture', emoji: '🚗' },
-  { id: 'backstage_ugc', name: 'Backstage UGC', emoji: '🎬' },
+  { id: 'beaute', name: 'Beaute et Cosmetique', emoji: '💄' },
+  { id: 'mode', name: 'Mode', emoji: '👗' },
+  { id: 'sport', name: 'Sport et Bien-etre', emoji: '🏃' },
+  { id: 'food', name: 'Food et Boisson', emoji: '🍽' },
+  { id: 'maison', name: 'Maison et Lifestyle', emoji: '🏠' },
+  { id: 'tech', name: 'Tech et Digital', emoji: '📱' },
+  { id: 'famille', name: 'Famille', emoji: '👨‍👩‍👧' },
+  { id: 'animaux', name: 'Animaux', emoji: '🐾' },
+  { id: 'voyage', name: 'Voyage', emoji: '✈' },
+  { id: 'education', name: 'Education et Business', emoji: '📚' },
+  { id: 'autre', name: 'Autre', emoji: '✨' },
 ];
-const SHOT_CATS = [
-  { name: '🔥 Les Indispensables UGC', shots: [
-    { id: 'hook', label: '1. Face Cam + Produit (Hook)' },
-    { id: 'demo', label: '2. Application (Instant Figé)' },
-    { id: 'glow', label: '3. Résultat / After (Glow)' },
-  ]},
-  { name: '📸 Flat-Lays Urbains', shots: [
-    { id: 'flatlay', label: '4. Flat Lay (Main qui tient)' },
-    { id: 'flatlay_urban', label: 'Flat-lay Urban Cotton' },
-    { id: 'flatlay_studio', label: 'Flat-lay Studio Wood' },
-    { id: 'flatlay_shadow', label: 'Flat-lay Urban Shadow' },
-  ]},
-  { name: '📦 Vues Produit 4K', shots: [
-    { id: 'macro', label: '5. Close-Up / Macro' },
-    { id: 'held', label: '6. Produit en Main' },
-    { id: 'mirror', label: '7. Miroir / Reflet' },
-    { id: 'hero_hand', label: '12. Plan Hero Produit (Main 1er plan)' },
-  ]},
-  { name: '✨ Storytelling & Réalisme', shots: [
-    { id: 'context', label: '8. Produit en Contexte' },
-    { id: 'opened', label: '9. Packaging Ouvert' },
-    { id: 'gesture', label: '10. Ouverture du Produit (Geste clé)' },
-    { id: 'split', label: '11. Plan Split Avant / Après' },
-    { id: 'unboxing', label: '14. Unboxing (Ouverture Colis)' },
-    { id: 'zenithal', label: '13. Plan Zénithal Immersif' },
-  ]},
-];
-const RITUAL_KW = ['shampoo','shampoing','coloration','masque','mask','huile','oil','soin','gommage','scrub'];
-const FITTING_KW = ['robe','veste','t-shirt','pantalon','jean','jupe','top','haut','vêtement','dress','jacket','shirt'];
-const MANICURE_KW = ['ongles','nails','manucure','vernis','french','manicure','ongle','pose','gel','capsules'];
-const MASCARA_KW = ['mascara'];
-const HAIRCARE_KW = ['shampoing','shampoo','coloration','masque capillaire','bain huile','soin cheveux','apres-shampoing','après-shampoing','conditioner'];
-const BODYWASH_KW = ['gel douche','gel nettoyant','savon liquide','nettoyant visage','nettoyant corps','shower gel','body wash'];
-const MODEL_ANALYZE = 'gemini-3-pro-preview';
-const MODEL_IMAGE = 'gemini-3-pro-image-preview';
 
-// ── CODES ÉLÈVES + PRÉNOMS ──
+const SHOT_CATS = [
+  { name: '🔥 Storytelling', shots: [
+    { id: 'hook', label: '1. Face Cam + Produit (Hook)' },
+    { id: 'problem', label: '2. Plan Probleme' },
+    { id: 'application', label: '3. Application Produit' },
+    { id: 'result', label: '4. Resultat / After' },
+  ]},
+  { name: '🎬 Interaction Produit', shots: [
+    { id: 'held', label: '5. Produit en Main' },
+    { id: 'opening', label: '6. Ouverture Produit' },
+    { id: 'unboxing', label: '7. Unboxing' },
+  ]},
+  { name: '🔬 Esthetique', shots: [
+    { id: 'macro', label: '8. Macro Texture' },
+    { id: 'flatlay', label: '9. Flat Lay' },
+    { id: 'hero', label: '10. Produit Clean (Hero)' },
+  ]},
+  { name: '🏠 Immersion', shots: [
+    { id: 'context', label: '11. Produit en Contexte' },
+    { id: 'mirror', label: '12. Miroir / Reflet' },
+    { id: 'zenithal', label: '13. Zenithal Action' },
+    { id: 'pov', label: '14. POV' },
+  ]},
+  { name: '🧠 Conversion', shots: [
+    { id: 'split', label: '15. Avant / Apres' },
+    { id: 'reaction', label: '16. Reaction Humaine' },
+    { id: 'proof', label: '17. Preuve Visuelle' },
+  ]},
+];
+
+var EMOTIONS = [
+  { id: 'frustration', label: 'Frustration', group: 'negative', prompt: 'EMOTION: Frustration. Slightly furrowed brows, pinched lips or sigh, tired or annoyed gaze. Hand on face or forehead. Real environment. No smile. Natural but visible emotion.' },
+  { id: 'doute', label: 'Doute', group: 'negative', prompt: 'EMOTION: Doubt. Hesitant gaze, slightly raised eyebrows, neutral mouth. Product held in front, looking at product. Subtle, not exaggerated.' },
+  { id: 'gene', label: 'Gene', group: 'negative', prompt: 'EMOTION: Embarrassment. Avoided gaze, slight discomfort, micro grimace. Slightly closed body, touching problem area. Realistic, not dramatic.' },
+  { id: 'fatigue', label: 'Fatigue', group: 'negative', prompt: 'EMOTION: Fatigue. Slightly closed or tired eyes, relaxed face. Body slightly slumped, slow movements. Morning or end of day, soft light. Slow ambiance.' },
+  { id: 'agacement', label: 'Agacement', group: 'negative', prompt: 'EMOTION: Irritation. Eyes slightly rolled, tight mouth. Quick or abrupt gesture. Negative interaction with product. Short energy, not theatrical.' },
+  { id: 'curiosite', label: 'Curiosite', group: 'neutral', prompt: 'EMOTION: Curiosity. Attentive gaze, slightly raised eyebrows. Product observed closely. Product discovery. Intrigue without strong emotion.' },
+  { id: 'concentration', label: 'Concentration', group: 'neutral', prompt: 'EMOTION: Concentration. Fixed gaze, neutral face. Precise gesture during application. Focus on action.' },
+  { id: 'hesitation', label: 'Hesitation', group: 'neutral', prompt: 'EMOTION: Hesitation. Micro doubt in gaze, slowed movement. Interrupted gesture. Between problem and solution. Maximum subtlety.' },
+  { id: 'observation', label: 'Observation', group: 'neutral', prompt: 'EMOTION: Observation. Mirror gaze, self-analysis. Touching face or area. In front of mirror. Introspection.' },
+  { id: 'soulagement', label: 'Soulagement', group: 'positive', prompt: 'EMOTION: Relief. Released breath, soft or closed eyes. Body relaxation. After product use. Sensation of feeling better.' },
+  { id: 'bienetre', label: 'Bien-etre', group: 'positive', prompt: 'EMOTION: Well-being. Natural slight smile, serene face. Gentle gestures. Pleasant routine. No exaggerated smile.' },
+  { id: 'satisfaction', label: 'Satisfaction', group: 'positive', prompt: 'EMOTION: Satisfaction. Natural visible smile, confident gaze. Product held with confidence. Visible result. Credible, not fake ad.' },
+  { id: 'confiance', label: 'Confiance', group: 'positive', prompt: 'EMOTION: Confidence. Assured gaze, straight posture. Strong presence. After transformation. Not arrogant, just self-assured.' },
+  { id: 'joie', label: 'Joie', group: 'positive', prompt: 'EMOTION: Joy. Frank smile, visible energy. Natural movement. Positive moment. Spontaneous, not posed.' },
+  { id: 'surprise', label: 'Surprise', group: 'positive', prompt: 'EMOTION: Positive surprise. Open eyes, slightly open mouth. Immediate reaction. Result discovery. Short and natural.' },
+  { id: 'seduction', label: 'Seduction', group: 'positive', prompt: 'EMOTION: Seduction. Soft gaze, micro smile. Delicate gestures. Aesthetic moment. Subtle, never forced.' },
+];
+
+var CONTENT_TYPES = [
+  { id: 'organique', label: 'Contenu Organique' },
+  { id: 'ads', label: 'ADS' },
+  { id: 'lifestyle', label: 'Lifestyle' },
+];
+
+var CONTENT_TYPE_PROMPTS = {
+  'organique': 'UGC organic style. Spontaneous, unscripted. Natural expression, not exaggerated. Visible imperfections (light, framing). Real environment (bedroom, bathroom, car). Slightly unstable or off-center framing. Strong human interaction (face, gestures, gaze). Product integrated naturally, not aggressively highlighted. Emotion: subtle, authentic, felt not performed. FORBIDDEN: commercial render, too clean/perfect, frozen pose.',
+  'ads': 'Ad style. Product + message > feeling. Clear, structured. Product visible and prominent. Clean but not overly polished.',
+  'lifestyle': 'Lifestyle style. Beautiful but credible. Real-life scene (bedroom, cafe, outdoor, bed, bathroom). Harmonious visual composition. Movement or captured moment (not frozen). Soft pleasant light. Product integrated in a life moment, not at center. Emotion: well-being, calm, pleasure, soft satisfaction. Natural props (book, coffee, towel, bag). FORBIDDEN: product too prominent, advertising pose, forced expression, too commercial.',
+};
+
+var VISUAL_STYLES = [
+  { id: 'naturel', label: 'Naturel' },
+  { id: 'lumineux', label: 'Lumineux' },
+  { id: 'cosy', label: 'Cosy' },
+  { id: 'minimaliste', label: 'Minimaliste' },
+];
+
+var PRODUCT_SHOTS = [
+  { id: 'macro_extreme', label: '🔍 Macro Extreme', usage: 'sensoriel / luxe' },
+  { id: 'gros_plan', label: '🔎 Gros Plan (Close-Up)', usage: 'focus produit' },
+  { id: 'plan_rapproche', label: '🎯 Plan Rapproche', usage: 'UGC classique' },
+  { id: 'plan_moyen', label: '🧍 Plan Moyen', usage: 'lifestyle' },
+  { id: 'plan_large', label: '🌍 Plan Large', usage: 'storytelling' },
+  { id: 'plongee', label: '⬆️ Plongee (Top View)', usage: 'esthetique' },
+  { id: 'contre_plongee', label: '⬇️ Contre-Plongee', usage: 'effet puissance' },
+  { id: 'pov', label: '👁 POV (Subjectif)', usage: 'immersion' },
+  { id: 'detail_insert', label: '🎥 Plan Detail (Insert)', usage: 'precision' },
+  { id: 'fixe_centre', label: '🧱 Plan Fixe Centre', usage: 'lisibilite ads' },
+  { id: 'decentre', label: '⚖️ Plan Decentre', usage: 'moderne' },
+  { id: 'rotation', label: '🔄 Angle 3/4', usage: 'naturel' },
+  { id: 'coupe', label: '✂️ Plan Coupe', usage: 'intrigue' },
+  { id: 'profondeur', label: '🌫 Profondeur de Champ', usage: 'focus + esthetique' },
+  { id: 'flou_mouvement', label: '🌀 Flou de Mouvement', usage: 'stop scroll' },
+  { id: 'superposition', label: '🧊 Superposition', usage: 'richesse visuelle' },
+  { id: 'cadre_cadre', label: '🔳 Cadre dans Cadre', usage: 'composition forte' },
+];
+
+// ── HPE ENGINE ──
+var HPE_POSITIVE = 'human eye perspective, imperfect framing, slightly off-center composition, natural camera tilt, subtle motion presence, uneven focus falloff, realistic depth imperfections, handheld capture feel, slight sensor noise, minor lens imperfections, candid real-life moment, visible skin texture, realistic pores, micro skin irregularities, natural skin grain, peach fuzz, subtle uneven skin tone, authentic hair strands, realistic material texture, natural light falloff, imperfect focus transition, slight lens imperfections, subtle sensor noise, unretouched human detail, micro skin relief, local redness, non-uniform brilliance, thin stray hairs, irregular density, micro fabric wrinkles, textile tension, natural lip lines, irregular moisture, credible fabric behavior';
+
+var HPE_NEGATIVE = 'plastic skin, over-smoothed face, waxy texture, CGI look, beauty filter effect, perfect symmetry, sterile lighting, over-polished rendering, artificial gloss, fake fabric, unrealistic hair mass, uniform skin, too-clean hair, perfect sharpness everywhere, beauty ad lighting, too-sharp contours, 3D lip gloss, flat clothing, sterile background, too-perfect symmetry, surface without material noise, studio lighting, centered framing, ultra sharp everywhere, perfect composition';
+
+var HPE_ULTRA_REALISM = 'ultra photorealistic RAW image, extreme human realism, visible skin texture, realistic pores, natural skin grain, authentic hair strands, realistic material texture, natural light falloff, candid real-life realism, unretouched human detail';
+
+// ── CODES ÉLÈVES ──
 const STUDENTS = {
   "ADMIN2024": "Marie",
   "MEL6A2": "Mélanie",
@@ -594,18 +709,21 @@ const STUDENTS = {
 };
 const VALID_CODES = new Set(Object.keys(STUDENTS));
 
+const CLOUD_FUNCTION_URL = 'https://ugc-proxy-738708455173.europe-west1.run.app';
+const MODEL_ANALYZE = 'gemini-3-pro-preview';
+const MODEL_IMAGE = 'gemini-3-pro-image-preview';
+
 // ── SPLASH ──
-document.getElementById('codeInput').addEventListener('input', function() {
-  const val = this.value.trim().toUpperCase();
-  const valid = VALID_CODES.has(val);
-  document.getElementById('startBtn').disabled = !valid;
-  if (val.length >= 4 && !valid) {
-    document.getElementById('codeError').style.display = 'block';
-  } else {
-    document.getElementById('codeError').style.display = 'none';
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  const ci = document.getElementById('codeInput');
+  ci.addEventListener('input', function() {
+    const val = this.value.trim().toUpperCase();
+    const valid = VALID_CODES.has(val);
+    document.getElementById('startBtn').disabled = !valid;
+    document.getElementById('codeError').style.display = (val.length >= 4 && !valid) ? 'block' : 'none';
+  });
+  ci.addEventListener('keydown', e => { if (e.key === 'Enter') startApp(); });
 });
-document.getElementById('codeInput').addEventListener('keydown', e => { if (e.key === 'Enter') startApp(); });
 
 function startApp() {
   const code = document.getElementById('codeInput').value.trim().toUpperCase();
@@ -615,14 +733,15 @@ function startApp() {
   localStorage.setItem('ugc_student_code', code);
   document.getElementById('splash').style.display = 'none';
   document.getElementById('app').classList.add('visible');
+  buildEmotions(); buildContentTypes(); buildVisualStyles(); buildProductShots(); initSpecialModes();
   document.getElementById('codeDisplay').textContent = state.studentName;
-  // Charger quota depuis localStorage
   const savedQuota = getLocalQuota(code);
   updateQuotaWidget(savedQuota, 10);
   showWelcomeToast(state.studentName, savedQuota);
   initUI();
 }
 
+// ── QUOTA LOCAL (basé sur la date du jour) ──
 function getLocalQuota(code) {
   const today = new Date().toISOString().slice(0,10);
   const key = 'quota_' + code + '_' + today;
@@ -632,19 +751,21 @@ function getLocalQuota(code) {
 function incrementLocalQuota(code) {
   const today = new Date().toISOString().slice(0,10);
   const key = 'quota_' + code + '_' + today;
-  const n = getLocalQuota(code) + 1;
+  // FIX bug #3 : plafonner à 10, jamais au-delà
+  const current = getLocalQuota(code);
+  const n = Math.min(current + 1, 10);
   localStorage.setItem(key, n);
   return n;
 }
 
 function showWelcomeToast(name, used) {
-  const remaining = 10 - used;
+  const remaining = Math.max(0, 10 - used);
   const toast = document.getElementById('welcomeToast');
   const msg = document.getElementById('welcomeMsg');
   if (remaining <= 0) {
-    msg.innerHTML = '👋 Bonjour <strong>' + name + '</strong> ! Tu as utilisé toutes tes générations aujourd'hui. Reviens demain ! 🌙';
+    msg.innerHTML = '👋 Bonjour <strong>' + name + '</strong> ! Tu as utilisé toutes tes générations aujourd\'hui. Reviens demain ! 🌙';
   } else {
-    msg.innerHTML = '👋 Bienvenue <strong>' + name + '</strong> ! Tu peux générer <strong>' + remaining + ' image' + (remaining > 1 ? 's' : '') + '</strong> aujourd'hui ✨';
+    msg.innerHTML = '👋 Bienvenue <strong>' + name + '</strong> ! Tu peux générer <strong>' + remaining + ' image' + (remaining > 1 ? 's' : '') + '</strong> aujourd\'hui ✨';
   }
   toast.style.display = 'flex';
   setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => { toast.style.display = 'none'; toast.style.opacity = '1'; }, 600); }, 5000);
@@ -658,7 +779,7 @@ function goSplash() {
 
 // ── INIT ──
 function initUI() {
-  buildScenes(); buildShots(); buildMultiSteps(); updateBadges();
+  buildScenes(); buildShots(); buildMultiSteps(); buildEmotions(); buildContentTypes(); buildVisualStyles(); buildProductShots(); initSpecialModes(); updateBadges();
 }
 
 function buildScenes() {
@@ -683,13 +804,148 @@ function buildMultiSteps() {
   ).join('');
 }
 
+function buildEmotions() {
+  var grid = document.getElementById('emotionGrid');
+  if (!grid) return;
+  var groups = [
+    { label: 'Negatif', ids: ['frustration','doute','gene','fatigue','agacement'] },
+    { label: 'Neutre', ids: ['curiosite','concentration','hesitation','observation'] },
+    { label: 'Positif', ids: ['soulagement','bienetre','satisfaction','confiance','joie','surprise','seduction'] },
+  ];
+  var html = '';
+  for (var g = 0; g < groups.length; g++) {
+    html += '<div style="width:100%;font-size:0.55rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.3);margin:0.4rem 0 0.3rem">' + groups[g].label + '</div>';
+    for (var k = 0; k < groups[g].ids.length; k++) {
+      var eid = groups[g].ids[k];
+      var elabel = '';
+      for (var m = 0; m < EMOTIONS.length; m++) { if (EMOTIONS[m].id === eid) elabel = EMOTIONS[m].label; }
+      html += '<button class="pill-btn" id="emo_' + eid + '" data-eid="' + eid + '" style="margin:0.15rem">' + elabel + '</button>';
+    }
+  }
+  grid.innerHTML = html;
+  var btns = grid.getElementsByTagName('button');
+  for (var j = 0; j < btns.length; j++) {
+    (function(b) {
+      b.onclick = function() {
+        var eid = b.getAttribute('data-eid');
+        var all = document.getElementById('emotionGrid').getElementsByTagName('button');
+        for (var i = 0; i < all.length; i++) all[i].className = 'pill-btn';
+        if (state.selectedEmotion === eid) { state.selectedEmotion = null; }
+        else { state.selectedEmotion = eid; b.className = 'pill-btn sel-purple'; }
+      };
+    })(btns[j]);
+  }
+}
+
+function buildContentTypes() {
+  var grid = document.getElementById('contentTypeGrid');
+  if (!grid) return;
+  var html = '';
+  for (var i = 0; i < CONTENT_TYPES.length; i++) {
+    var c = CONTENT_TYPES[i];
+    var cls = c.id === 'organique' ? 'pill-btn sel-indigo' : 'pill-btn';
+    html += '<button class="' + cls + '" id="ct_' + c.id + '" data-cid="' + c.id + '" style="margin:0.15rem">' + c.label + '</button>';
+  }
+  grid.innerHTML = html;
+  var btns = grid.getElementsByTagName('button');
+  for (var j = 0; j < btns.length; j++) {
+    (function(b) {
+      b.onclick = function() {
+        var cid = b.getAttribute('data-cid');
+        var all = document.getElementById('contentTypeGrid').getElementsByTagName('button');
+        for (var i = 0; i < all.length; i++) all[i].className = 'pill-btn';
+        state.contentType = cid;
+        b.className = 'pill-btn sel-indigo';
+      };
+    })(btns[j]);
+  }
+}
+
+function buildVisualStyles() {
+  var grid = document.getElementById('visualStyleGrid');
+  if (!grid) return;
+  var html = '';
+  for (var i = 0; i < VISUAL_STYLES.length; i++) {
+    var s = VISUAL_STYLES[i];
+    var cls = s.id === 'naturel' ? 'pill-btn sel-emerald' : 'pill-btn';
+    html += '<button class="' + cls + '" id="vs_' + s.id + '" data-vsid="' + s.id + '" style="margin:0.15rem">' + s.label + '</button>';
+  }
+  grid.innerHTML = html;
+  var btns = grid.getElementsByTagName('button');
+  for (var j = 0; j < btns.length; j++) {
+    (function(b) {
+      b.onclick = function() {
+        var vsid = b.getAttribute('data-vsid');
+        var all = document.getElementById('visualStyleGrid').getElementsByTagName('button');
+        for (var i = 0; i < all.length; i++) all[i].className = 'pill-btn';
+        state.visualStyle = vsid;
+        b.className = 'pill-btn sel-emerald';
+      };
+    })(btns[j]);
+  }
+}
+
+function buildProductShots() {
+  var grid = document.getElementById('productShotGrid');
+  if (!grid) return;
+  var html = '';
+  for (var i = 0; i < PRODUCT_SHOTS.length; i++) {
+    var s = PRODUCT_SHOTS[i];
+    html += '<button class="pill-btn" id="ps_' + s.id + '" data-psid="' + s.id + '" title="Usage: ' + s.usage + '" style="margin:0.15rem;font-size:0.55rem">' + s.label + '</button>';
+  }
+  grid.innerHTML = html;
+  var btns = grid.getElementsByTagName('button');
+  for (var j = 0; j < btns.length; j++) {
+    (function(b) {
+      b.onclick = function() {
+        var psid = b.getAttribute('data-psid');
+        var all = document.getElementById('productShotGrid').getElementsByTagName('button');
+        for (var i = 0; i < all.length; i++) all[i].className = 'pill-btn';
+        if (state.selectedProductShot === psid) {
+          state.selectedProductShot = null;
+        } else {
+          state.selectedProductShot = psid;
+          b.className = 'pill-btn sel-indigo';
+        }
+      };
+    })(btns[j]);
+  }
+}
+
+function initSpecialModes() {
+  var grid = document.getElementById('specialModeGrid');
+  if (!grid) return;
+  var btns = grid.getElementsByTagName('button');
+  for (var j = 0; j < btns.length; j++) {
+    (function(b) {
+      b.onclick = function() {
+        var mode = b.getAttribute('data-mode');
+        var allBtns = document.getElementById('specialModeGrid').getElementsByTagName('button');
+        for (var k = 0; k < allBtns.length; k++) allBtns[k].className = 'pill-btn';
+        var label = document.getElementById('specialModeLabel');
+        if (state.specialMode === mode) {
+          state.specialMode = null;
+          label.style.display = 'none';
+        } else {
+          state.specialMode = mode;
+          b.className = 'pill-btn sel-amber';
+          var workflows = { 'mascara': '3 images generees', 'haircare': '4 images generees', 'bodywash': '2 images generees', 'fitting': '4 images generees', 'manicure': '5 images generees' };
+          label.textContent = 'Mode actif : ' + mode.toUpperCase() + ' — ' + (workflows[mode] || '');
+          label.style.display = 'block';
+        }
+        updateBadges();
+      };
+    })(btns[j]);
+  }
+}
+
 // ── QUOTA WIDGET ──
 function updateQuotaWidget(used, max) {
   state.quotaUsed = used; state.quotaMax = max;
   const widget = document.getElementById('quotaWidget');
   const dots = document.getElementById('quotaDots');
   const text = document.getElementById('quotaText');
-  const remaining = max - used;
+  const remaining = Math.max(0, max - used);
   const pct = used / max;
   const cls = pct >= 0.9 ? 'critical' : pct >= 0.6 ? 'warning' : '';
   widget.className = 'quota-widget' + (cls ? ' '+cls : '');
@@ -720,6 +976,10 @@ function toggleBackstage() {
   document.getElementById('backstageCard').style.display = state.backstageEnabled ? 'block' : 'none';
   updateBadges();
 }
+function toggleVanity() {
+  state.vanityMode = document.getElementById('toggleVanity').checked;
+  updateBadges();
+}
 function toggleBTS(id) {
   const btn = document.getElementById(id);
   const key = id.replace('bts_', '');
@@ -737,15 +997,15 @@ function toggleLocationMode() {
   updateBadges();
 }
 function toggleScene(id, name) {
-  const btn = document.getElementById('scene_'+id);
+  var btn = document.getElementById('scene_'+id);
+  if (!btn) return;
   if (state.scenes.includes(name)) {
-    state.scenes = state.scenes.filter(x => x !== name);
+    state.scenes = state.scenes.filter(function(x) { return x !== name; });
     btn.className = 'scene-btn';
-  } else if (state.scenes.length < 4) {
+  } else if (state.scenes.length < 2) {
     state.scenes.push(name);
     btn.className = 'scene-btn sel';
   }
-  document.getElementById('carModelWrap').style.display = state.scenes.includes('Intérieur Voiture') ? 'block' : 'none';
 }
 function toggleShot(id, label) {
   const btn = document.getElementById('shot_'+id);
@@ -774,6 +1034,7 @@ function updateBadges() {
   if (state.isDuo) badges.push('<div class="badge badge-purple">👯 Mode Duo</div>');
   if (state.dressEnabled) badges.push('<div class="badge badge-amber">👗 Dress Code</div>');
   if (state.styleScandinavian) badges.push('<div class="badge badge-emerald">🏠 Bois & Blanc</div>');
+  if (state.vanityMode) badges.push('<div class="badge badge-rose">💄 Vanity</div>');
   if (state.locationEnabled) {
     const city = document.getElementById('locationCity').value;
     const country = document.getElementById('locationCountry').value;
@@ -817,6 +1078,14 @@ function removeImg(e, key) {
     const input = up.querySelector('input[type=file]'); if (input) input.value = '';
   }
 }
+
+const RITUAL_KW = ['shampoo','shampoing','coloration','masque','mask','huile','oil','soin','gommage','scrub'];
+const FITTING_KW = ['robe','veste','t-shirt','pantalon','jean','jupe','top','haut','vêtement','dress','jacket','shirt'];
+const MANICURE_KW = ['ongles','nails','manucure','vernis','french','manicure','ongle','pose','gel','capsules'];
+const MASCARA_KW = ['mascara'];
+const HAIRCARE_KW = ['shampoing','shampoo','coloration','masque capillaire','bain huile','soin cheveux','apres-shampoing','après-shampoing','conditioner'];
+const BODYWASH_KW = ['gel douche','gel nettoyant','savon liquide','nettoyant visage','nettoyant corps','shower gel','body wash'];
+
 function detectProductType(name) {
   state.isRitual = RITUAL_KW.some(k => name.includes(k));
   state.isFitting = FITTING_KW.some(k => name.includes(k));
@@ -838,25 +1107,19 @@ function detectProductType(name) {
 }
 
 function calcTotal() {
-  if (!state.dressEnabled && state.autoMode) {
-    if (state.isMascara) return 3;
-    if (state.isHairCare) return 4;
-    if (state.isBodyWash) return 2;
-    if (state.isRitual) return 5;
-    if (state.isFitting) return 4;
-    if (state.isManicure) return 5;
+  if (state.specialMode) {
+    var counts = { 'mascara':3, 'haircare':4, 'bodywash':2, 'fitting':4, 'manicure':5 };
+    return counts[state.specialMode] || 1;
   }
-  const scenes = state.scenes.length || 1;
-  const shots = state.shots.length || 1;
-  let base = scenes * shots;
-  if (state.backstageEnabled) base += state.btsTypes.length;
-  if (state.multiMode !== 'off') {
-    base += state.multiMode === 'auto' ? 4 : state.manualSteps.filter(s => s.trim()).length;
-  }
-  return base;
+  var base = state.shots.length > 0 ? state.shots.length : 1;
+  var bts = state.backstageEnabled ? state.btsTypes.length : 0;
+  var multi = 0;
+  if (state.multiMode === 'auto') multi = 4;
+  else if (state.multiMode === 'manual') multi = state.manualSteps.filter(s => s.trim()).length;
+  return base + bts + multi;
 }
 
-// ── APPEL CLOUD FUNCTION (remplace callVertex) ──
+// ── APPEL PROXY ──
 async function callProxy(model, body) {
   const waitTimes = [5000, 10000, 20000, 40000];
   let lastErr;
@@ -865,23 +1128,34 @@ async function callProxy(model, body) {
       const res = await fetch(CLOUD_FUNCTION_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ studentCode: state.studentCode, model, body })
+        body: JSON.stringify({ studentCode: state.studentCode, model: model, body: body })
       });
       if (!res.ok) {
         const txt = await res.text();
         let d; try { d = JSON.parse(txt); } catch(_) {}
-        const msg = (d && d.error) || txt;
-        if (res.status === 429) throw new Error(msg); // Quota = pas de retry
-        if (res.status === 401) throw new Error('Code élève invalide : ' + state.studentCode);
+        const msg = (d && d.error) || txt || ('HTTP ' + res.status);
+        console.error('[UGC Proxy] Erreur', res.status, msg);
+        if (res.status === 429 && (msg.includes('quota') || msg.includes('limit') || msg.includes('Quota'))) {
+          updateQuotaWidget(10, 10);
+          throw new Error('Quota journalier atteint. Reviens demain !');
+        }
+        if (res.status === 429) throw new Error('RETRY:Trop de requetes - ' + msg);
+        if (res.status === 401) throw new Error('Code invalide : ' + state.studentCode);
         if (msg.includes('503') || msg.includes('overloaded')) throw new Error('RETRY:' + msg);
-        throw new Error('Erreur ' + res.status + ': ' + msg);
+        throw new Error('Erreur serveur ' + res.status + ': ' + msg.substring(0, 200));
       }
       const data = await res.json();
-      // Mettre à jour le quota si l'info est dans la réponse
-      if (data._quota) updateQuotaWidget(data._quota.used, data._quota.max);
+      console.log('[UGC Proxy] Reponse OK, data keys:', Object.keys(data));
+      var serverUsed = (data._quota && data._quota.used != null) ? data._quota.used : 0;
+      var localUsed = getLocalQuota(state.studentCode);
+      var realUsed = Math.min(Math.max(serverUsed, localUsed), 10);
+      var today = new Date().toISOString().slice(0,10);
+      localStorage.setItem('quota_' + state.studentCode + '_' + today, realUsed);
+      updateQuotaWidget(realUsed, 10);
       return data;
     } catch(err) {
       lastErr = err;
+      console.error('[UGC Proxy] Catch:', err.message);
       if (String(err.message).startsWith('RETRY:') && attempt < waitTimes.length) {
         await sleep(waitTimes[attempt]); continue;
       }
@@ -894,7 +1168,6 @@ async function callProxy(model, body) {
 function makePart(b64, mime) { return { inlineData: { data: b64, mimeType: mime } }; }
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-// ── SYSTEM PROMPT ── (identique à l'original)
 function buildSystemPrompt() {
   return `Tu es l'IA de "Studio UGC AI". Tu génères des instructions de prompt pour des photos UGC ultra-réalistes 4K.
 
@@ -930,7 +1203,6 @@ Scene MUST be in bathroom or shower ONLY. Mandatory: visible water presence.
 Smartphone on tripod, screen ON. LED ring light ON. Avatar interacting naturally.`;
 }
 
-// ── BUILD PROMPT ──
 async function buildPrompt(scene, shot, specialMode, seqInfo, btsType) {
   const parts = [];
   if (state.av1) parts.push(makePart(state.av1, state.av1Mime));
@@ -946,7 +1218,6 @@ async function buildPrompt(scene, shot, specialMode, seqInfo, btsType) {
   const dressStr = state.dressEnabled ? '🚨 DRESS CODE ACTIF — reproduire EXACTEMENT la tenue.' : '';
   const duoStr = state.isDuo ? 'MODE DUO : 2 avatars.' : '';
   const action = document.getElementById('actionText').value;
-  const carStr = state.scenes.includes('Intérieur Voiture') ? 'Voiture: ' + document.getElementById('carModel').value + '.' : '';
   let locationStr = '';
   if (state.locationEnabled) {
     const city = document.getElementById('locationCity').value;
@@ -962,10 +1233,14 @@ async function buildPrompt(scene, shot, specialMode, seqInfo, btsType) {
   } else if (seqInfo) {
     modeStr = 'Séquence étape '+seqInfo.current+'/'+seqInfo.total+': "'+seqInfo.step+'".';
   } else {
-    modeStr = 'Scène: '+(scene||'Contexte neutre')+', Plan: '+(shot||'Vue standard UGC')+'.';
+    if (shot && (shot.toLowerCase().includes('avant') || shot.toLowerCase().includes('apres') || shot.includes('split'))) {
+      modeStr = 'AVANT/APRES MODE — GENERATE 2 CONTRASTED STATES: BEFORE=problem visible, negative emotion, no solution. AFTER=same person+resolved situation+positive natural emotion. Scène: ' + (scene||'real environment') + '.';
+    } else {
+      modeStr = 'Scène: '+(scene||'Contexte neutre')+', Plan: '+(shot||'Vue standard UGC')+'.';
+    }
   }
 
-  const prompt = 'Génère instruction UGC 4K : '+modeStr+' Action="'+action+'". '+identLock+' '+styleStr+' '+locStr+' '+locationStr+' '+dressStr+' '+duoStr+' '+carStr;
+  const prompt = 'Génère instruction UGC 4K : '+modeStr+' Action="'+action+'". '+identLock+' '+styleStr+' '+locStr+' '+locationStr+' '+dressStr+' '+duoStr;
   parts.push({ text: prompt });
 
   const analyzeRes = await callProxy(MODEL_ANALYZE, {
@@ -976,7 +1251,6 @@ async function buildPrompt(scene, shot, specialMode, seqInfo, btsType) {
   return (txt && txt.find(p => p.text)?.text) || prompt;
 }
 
-// ── GENERATE IMAGE ──
 async function generateImage(prompt) {
   const parts = [];
   if (state.av1) parts.push(makePart(state.av1, state.av1Mime));
@@ -993,8 +1267,14 @@ async function generateImage(prompt) {
   });
 
   const cParts = res.candidates && res.candidates[0]?.content?.parts;
+  console.log('[UGC Image] candidates:', res.candidates ? res.candidates.length : 0, 'parts:', cParts ? cParts.length : 0);
+  if (cParts) cParts.forEach((p,i) => console.log('[UGC Image] part['+i+'] type:', p.inlineData ? 'IMAGE' : p.text ? 'TEXT('+p.text.substring(0,50)+')' : 'AUTRE'));
   const imgData = cParts && cParts.find(p => p.inlineData);
-  if (!imgData) throw new Error('Aucune image dans la réponse.');
+  if (!imgData) {
+    const textPart = cParts && cParts.find(p => p.text);
+    const errMsg = textPart ? 'Serveur : ' + textPart.text.substring(0, 150) : 'Aucune image dans la reponse du modele.';
+    throw new Error(errMsg);
+  }
   const b64 = imgData.inlineData.data;
   const mime = imgData.inlineData.mimeType || 'image/png';
   const binary = atob(b64);
@@ -1016,24 +1296,29 @@ async function generate() {
   if (state.isDuo && (!state.av1 || !state.av2)) { showError('Deux avatars requis pour le Mode Duo.'); return; }
   if (state.dressEnabled && !state.dress1) { showError('Importez au moins une référence de tenue.'); return; }
 
-  // Vérifier quota restant
-  const total = calcTotal();
+  // Vérification quota STRICTE avant tout appel
   const localUsed = getLocalQuota(state.studentCode);
-  if (localUsed >= state.quotaMax) {
-    showError('🌙 Tu as atteint tes 10 générations du jour ' + state.studentName + ' ! Reviens demain pour continuer.');
-    return;
-  }
-  if (localUsed + total > state.quotaMax) {
-    showError('⚠️ Tu n'as plus que ' + (state.quotaMax - localUsed) + ' génération(s) disponible(s) aujourd'hui.');
+  if (localUsed >= 10) {
+    showError('Tu as atteint tes 10 générations du jour. Reviens demain !');
+    updateQuotaWidget(10, 10);
+    const btn = document.getElementById('genBtn');
+    btn.disabled = true;
+    document.getElementById('genLabel').textContent = 'Quota atteint - Reviens demain';
     return;
   }
 
+  const total = calcTotal();
   hideError(); isGenerating = true; generatedImages = []; showLoading();
   const btn = document.getElementById('genBtn'); btn.disabled = true;
   document.getElementById('genLabel').textContent = 'Génération en cours...';
 
   let count = 0;
   const runOne = async (scene, shot, specialMode, seqInfo, btsType) => {
+    // Vérification quota à chaque image
+    if (getLocalQuota(state.studentCode) >= 10) {
+      showError('Quota atteint en cours de génération.');
+      return;
+    }
     count++;
     updateProgress(count, total, 'Photo '+count+'/'+total+'...');
     try {
@@ -1041,46 +1326,85 @@ async function generate() {
       const imgUrl = await generateImage(prompt);
       generatedImages.push(imgUrl);
       addImageToGallery(imgUrl, count);
-      const newQ = incrementLocalQuota(state.studentCode);
+      var newQ = incrementLocalQuota(state.studentCode);
+      state.quotaUsed = newQ;
       updateQuotaWidget(newQ, 10);
-    } catch(err) { console.error(err); showError(err.message); }
+      // Bloquer le bouton si quota atteint
+      if (newQ >= 10) {
+        document.getElementById('genBtn').disabled = true;
+        document.getElementById('genLabel').textContent = 'Quota atteint - Reviens demain';
+      }
+    } catch(err) {
+      console.error('Generation error:', err);
+      showError(err.message || 'Erreur de connexion au serveur.');
+    }
   };
 
   try {
-    if (!state.dressEnabled && state.autoMode) {
-      if (state.isMascara) { for (const s of ['APPLICATION','GLOW','CONTEXT_HELD']) await runOne('','',{type:'MASCARA',stage:s},null,null); goto_done(); return; }
-      if (state.isHairCare) { for (const s of ['APPLICATION_CHEVEUX','PRODUIT_EN_ACTION','LAVAGE_DOUCHE_DOS','RESULTAT_MIROIR']) await runOne('','',{type:'HAIRCARE',stage:s},null,null); goto_done(); return; }
-      if (state.isBodyWash) { for (const s of ['PRODUIT_SALLE_DE_BAIN','UTILISATION_DOUCHE']) await runOne('','',{type:'BODYWASH',stage:s},null,null); goto_done(); return; }
-      if (state.isRitual) { for (const s of ['APPLICATION','POSE_TEXTURE','RINÇAGE_DOUCHE_DOS','RESULTAT_MIROIR','STYLING_FINAL']) await runOne('','',{type:'RITUAL',stage:s},null,null); goto_done(); return; }
-      if (state.isFitting) { for (const s of ['CHOIX_SUR_LIT','ENFILAGE_ACTION','DETAIL_AJUSTEMENT','LOOK_FINAL']) await runOne('','',{type:'FITTING',stage:s},null,null); goto_done(); return; }
-      if (state.isManicure) { for (const s of ['ZOOM_TABLE','ACCESSOIRE_MAIN','POSE_VISAGE','CHEVEUX_NATURELS','LIFESTYLE_FOCUS']) await runOne('','',{type:'MANICURE',stage:s},null,null); goto_done(); return; }
+    // Modes speciaux
+    if (state.specialMode) {
+      var specialWorkflows = {
+        'mascara': ['APPLICATION','GLOW','CONTEXT_HELD'],
+        'haircare': ['APPLICATION_CHEVEUX','PRODUIT_EN_ACTION','LAVAGE_DOUCHE_DOS','RESULTAT_MIROIR'],
+        'bodywash': ['PRODUIT_SALLE_DE_BAIN','UTILISATION_DOUCHE'],
+        'fitting': ['CHOIX_SUR_LIT','ENFILAGE_ACTION','DETAIL_AJUSTEMENT','LOOK_FINAL'],
+        'manicure': ['ZOOM_TABLE','ACCESSOIRE_MAIN','POSE_VISAGE','CHEVEUX_NATURELS','LIFESTYLE_FOCUS'],
+      };
+      var stages = specialWorkflows[state.specialMode] || [];
+      for (var si = 0; si < stages.length; si++) {
+        await runOne('', '', {type: state.specialMode.toUpperCase(), stage: stages[si]}, null, null);
+      }
+      goto_done(); return;
     }
 
-    const finalScenes = state.scenes.length > 0 ? state.scenes : [''];
-    const finalShots = state.shots.length > 0 ? state.shots : ['Vue standard UGC'];
-    for (const scene of finalScenes)
-      for (const shot of finalShots)
-        await runOne(scene, shot, null, null, null);
+    // Génération normale : 1 image par plan sélectionné
+    var finalShots = state.shots.length > 0 ? state.shots : ['Vue standard UGC'];
+    // FIX bug #2: utiliser state.scenes[0] au lieu de la variable inexistante finalScenes
+    var firstScene = state.scenes.length > 0 ? state.scenes[0] : '';
 
-    if (state.backstageEnabled && state.btsTypes.length > 0)
-      for (const bts of state.btsTypes)
-        await runOne(finalScenes[0]||'','Backstage Action',null,null,bts);
+    for (var si2 = 0; si2 < finalShots.length; si2++) {
+      await runOne(firstScene, finalShots[si2], null, null, null);
+    }
 
+    // Backstage — FIX bug #2: remplacer finalScenes[0] par firstScene
+    if (state.backstageEnabled && state.btsTypes.length > 0) {
+      for (var bi = 0; bi < state.btsTypes.length; bi++) {
+        await runOne(firstScene, 'Backstage Action', null, null, state.btsTypes[bi]);
+      }
+    }
+
+    // Multi-scène — FIX bug #2: remplacer finalScenes[0] par firstScene
     if (state.multiMode !== 'off') {
-      const steps = state.multiMode === 'auto' ? ['Ouverture','Préparation','Application','Résultat'] : state.manualSteps.filter(s => s.trim());
-      for (let i = 0; i < steps.length; i++)
-        await runOne(finalScenes[0]||'',steps[i],null,{current:i+1,total:steps.length,step:steps[i]},null);
+      const steps = state.multiMode === 'auto'
+        ? ['Ouverture', 'Préparation', 'Application', 'Résultat']
+        : state.manualSteps.filter(s => s.trim());
+      for (let i = 0; i < steps.length; i++) {
+        await runOne(firstScene, steps[i], null, {current: i+1, total: steps.length, step: steps[i]}, null);
+      }
     }
-  } catch(err) { showError(err.message || 'Erreur de génération.'); }
+
+  } catch(err) {
+    showError(err.message || 'Erreur de génération.');
+  }
 
   goto_done();
 }
 
 function goto_done() {
   isGenerating = false;
-  const btn = document.getElementById('genBtn'); btn.disabled = false;
-  document.getElementById('genLabel').textContent = 'Générer les Photos UGC ('+calcTotal()+')';
-  if (generatedImages.length === 0) showError('Aucune image générée. Vérifie ton code ou ton quota.');
+  const btn = document.getElementById('genBtn');
+  const localUsed = getLocalQuota(state.studentCode);
+  if (localUsed >= 10) {
+    btn.disabled = true;
+    document.getElementById('genLabel').textContent = 'Quota atteint - Reviens demain';
+  } else {
+    btn.disabled = false;
+    document.getElementById('genLabel').textContent = 'Générer les Photos UGC';
+  }
+  // FIX: condition était inversée (double négation) — maintenant correcte
+  if (generatedImages.length === 0 && document.getElementById('errorBox').style.display === 'none') {
+    showError('Aucune image générée. Vérifie ta connexion au serveur proxy.');
+  }
 }
 
 // ── GALLERY UI ──
@@ -1116,7 +1440,7 @@ function hideError() { document.getElementById('errorBox').style.display = 'none
 // ── AUTO-RESTORE CODE ──
 window.addEventListener('load', () => {
   const saved = localStorage.getItem('ugc_student_code');
-  if (saved) {
+  if (saved && VALID_CODES.has(saved)) {
     document.getElementById('codeInput').value = saved;
     document.getElementById('startBtn').disabled = false;
   }

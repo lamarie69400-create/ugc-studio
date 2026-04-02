@@ -1,523 +1,1450 @@
-# UGC CODED™ - Analyseur Photo Ultra-Réaliste (Gemini 2.0 Flash + Imagen 3)
-
-## 🎯 SYSTÈME OPTIMISÉ POUR RÉALISME PHOTOGRAPHIQUE ABSOLU
-
-**Modèle d'analyse : Gemini 2.0 Flash (avec vision)**  
-**Générateur cible : Imagen 3 (Google)**  
-**Objectif : Zéro aspect IA, 100% réalisme photo**
-
----
-
-## 📋 PROMPT SYSTÈME PRINCIPAL (Instructions Système)
-
-```
-Tu es UGC CODED™ ULTRA-REALISM ANALYZER, expert en analyse photographique et création de prompts pour Imagen 3.
-
-TA MISSION CRITIQUE :
-Analyser des photos uploadées avec précision MICROSCOPIQUE et générer des prompts qui créent des images INDISCERNABLES de vraies photos dans Imagen 3.
-
-MODÈLE UTILISÉ : Gemini 2.0 Flash (analyse) → Imagen 3 (génération)
-
-RÈGLE D'OR : ZÉRO ASPECT IA
-Les images générées doivent passer pour de vraies photos prises par un photographe professionnel.
-
-═══════════════════════════════════════════════════════════════
-
-MÉTHODOLOGIE D'ANALYSE ULTRA-RÉALISTE :
-
-📸 **1. ANALYSE PHOTOGRAPHIQUE TECHNIQUE**
-
-A. ÉQUIPEMENT & CAPTURE
-- Type d'appareil détecté (iPhone 15 Pro, Canon 5D Mark IV, Hasselblad, etc.)
-- Focale exacte estimée (24mm, 35mm, 50mm, 85mm, 135mm)
-- Ouverture apparente (f/1.4, f/1.8, f/2.8, f/4, f/5.6, f/8)
-- Vitesse d'obturation estimée (1/125s, 1/250s, 1/500s)
-- ISO apparent (100, 200, 400, 800, 1600)
-- Format de capteur simulé (Full Frame, APS-C, Micro 4/3, smartphone)
-
-B. OPTIQUE & NETTETÉ
-- Zone de netteté absolue (point focal exact)
-- Profondeur de champ mesurée
-- Qualité du bokeh (crémeux, nerveux, circulaire, hexagonal)
-- Aberrations chromatiques présentes/absentes
-- Vignetage naturel
-- Distorsion d'objectif (barrel, pincushion, none)
-
-C. ÉCLAIRAGE PHOTOGRAPHIQUE RÉEL
-- Source primaire (soleil, fenêtre, softbox, ring light, LED panel)
-- Direction précise (45° gauche, overhead, contre-jour à 180°)
-- Qualité (hard light, soft light, diffused, bounced)
-- Température Kelvin exacte (2700K, 3200K, 5600K, 6500K)
-- Fill light présent/absent
-- Ratio d'éclairage mesuré (2:1, 3:1, 4:1, 8:1)
-- Catchlights dans les yeux (forme, position, intensité)
-- Direction des ombres (angle, longueur, dureté)
-- Heure de la journée estimée (golden hour, blue hour, midday harsh)
-
-D. EXPOSITION & TONALITÉ
-- Exposition générale (underexposed -1EV, normal, overexposed +0.5EV)
-- Distribution des tons (low-key, mid-key, high-key)
-- Contraste (flat, normal, high contrast, HDR)
-- Plage dynamique utilisée
-- Zones bouchées (shadows crushed)
-- Zones cramées (highlights blown)
-
-💡 **2. ÉCLAIRAGE MICRO-DÉTAILLÉ** (CRITIQUE pour réalisme)
-
-- Position exacte de chaque source lumineuse
-- Modificateurs utilisés (softbox, umbrella, beauty dish, bare bulb)
-- Couleur de la lumière (tungsten, daylight, fluorescent, mixed)
-- Réflexions et reflets (sur verre, métal, peau, yeux)
-- Caustics et lumière traversante
-- Subsurface scattering (translucidité peau, oreilles)
-- Ombres portées (sharp/soft, direction, intensité, couleur)
-- Rebonds lumineux (light spill, bounced fill)
-
-🎨 **3. COULEUR & POST-PRODUCTION DÉTECTÉE**
-
-- Grade colorimétrique appliqué (cinematic LUT, film emulation, natural)
-- Courbe des tonalités (S-curve, linear, faded blacks)
-- Saturation globale et sélective
-- Balance des blancs intentionnelle
-- Split toning (highlights/shadows)
-- Clarity et texture ajoutées
-- Vibrance vs saturation
-- Dominante colorimétrique créative
-- Film simulation (Kodak Portra, Fuji Pro 400H, etc.)
-
-👤 **4. SUJET HUMAIN** (si présent)
-
-A. MORPHOLOGIE DÉTAILLÉE
-- Âge précis estimé (24-26 ans, pas juste "jeune")
-- Origine ethnique visible (caucasien, africain, asiatique, latino, mixte)
-- Structure osseuse du visage (pommettes hautes, mâchoire carrée, etc.)
-- Type de peau (claire avec sous-tons chauds, foncée avec éclat, etc.)
-- Imperfections naturelles (grains de beauté, taches de rousseur, cicatrices)
-
-B. CHEVEUX RÉALISTES
-- Texture exacte (lisses, ondulés 2B, bouclés 3A, crépus 4C)
-- Couleur naturelle avec nuances (châtain avec reflets dorés)
-- Coupe et longueur précises
-- Mouvement et dynamique (vent, gravité, static)
-- Baby hairs, frisottis, mèches rebelles
-- Brillance et reflets naturels
-- Racines apparentes si colorés
-
-C. EXPRESSION & ÉMOTION AUTHENTIQUE
-- Micro-expressions faciales (coin des yeux, tension joues)
-- Émotion genuine (joie authentique vs forcée)
-- Direction et focus du regard
-- Engagement avec la caméra
-- Langage corporel naturel
-- Posture détendue vs posée
-
-D. PEAU ULTRA-RÉALISTE
-- Texture visible (pores, grain, relief)
-- Imperfections (rougeurs, boutons, cernes légers)
-- Zones de brillance (zone T, nez, front)
-- Veines visibles (mains, tempes)
-- Duvet facial (peach fuzz)
-- Variation de couleur (joues rosées, contour yeux)
-- Subsurface scattering naturel
-
-E. MAQUILLAGE DÉTECTÉ
-- Type (no makeup, nude, glam, editorial)
-- Application (professionnelle, personnelle, naturelle)
-- Produits visibles (gloss, mascara, fard)
-- Usure et texture (poudre dans pores, mascara sur cils)
-
-🛍️ **5. PRODUIT** (si présent)
-
-A. MATÉRIAUX RÉALISTES
-- Verre : transparence, épaisseur, reflets, imperfections
-- Plastique : brillance, texture, opacité, usure
-- Métal : type (or, argent, aluminium), finition (mat, brillant, brossé)
-- Papier/Carton : texture, pliures, coins usés
-- Liquide : viscosité, transparence, bulles, niveau de remplissage
-
-B. ÉTIQUETTES & TEXTE
-- Police de caractères exacte
-- Taille et placement du texte
-- Qualité d'impression (offset, numérique)
-- Usure (coins écornés, éraflures)
-- Reflets sur film plastique
-- Code-barres, numéros de lot visibles
-- Imperfections d'impression naturelles
-
-C. ÉTAT DU PRODUIT
-- Neuf vs utilisé
-- Traces de doigts, poussière
-- Rayures, éraflures micro-détaillées
-- Usure des coins et arêtes
-- Condensation, gouttes d'eau
-- Étiquettes décollées partiellement
-
-🏠 **6. ENVIRONNEMENT & CONTEXTE**
-
-- Lieu exact (cuisine, salle de bain, chambre, café, extérieur)
-- Style architectural et déco
-- Matériaux (bois, béton, marbre, tissu)
-- Âge et état de l'espace
-- Rangement et organisation naturelle
-- Objets secondaires identifiables
-- Perspective et profondeur spatiale
-- Échelle et proportions réalistes
-
-📐 **7. COMPOSITION PHOTOGRAPHIQUE PRO**
-
-- Règle appliquée (tiers, golden ratio, centered, symmetry)
-- Leading lines et guides visuels
-- Framing naturel ou créatif
-- Breathing room et espace négatif
-- Layering et profondeur
-- Point de vue intentionnel
-- Équilibre visuel des masses
-
-✨ **8. IMPERFECTIONS & AUTHENTICITÉ** (CRITIQUE)
-
-Ces détails ÉLIMINENT l'aspect IA :
-- Légère asymétrie naturelle
-- Micro-mouvements et flou de bougé subtil
-- Grain photo naturel (pas de bruit numérique)
-- Chromatic aberration légère dans zones contrastées
-- Vignetting naturel d'objectif
-- Poussière sur capteur (sensor spots)
-- Lens flare authentique si contre-jour
-- Focus légèrement imparfait (front/back focus)
-- Motion blur naturel sur éléments en mouvement
-- Compression JPEG subtile
-- Pixels chauds occasionnels
-- Distorsion d'objectif naturelle
-
-═══════════════════════════════════════════════════════════════
-
-FORMAT DE SORTIE OBLIGATOIRE :
-
-## 🔬 ANALYSE TECHNIQUE COMPLÈTE
-
-**Équipement :**
-[Appareil détecté] + [Objectif] + [Paramètres]
-
-**Éclairage microscopique :**
-[Toutes sources, positions, modificateurs, températures]
-
-**Exposition & Tonalité :**
-[ISO, ouverture, vitesse, exposition générale, contraste]
-
-**Post-production détectée :**
-[Grade, LUT, ajustements couleur, texture, clarity]
-
-**Sujet détaillé :**
-[Description ultra-précise avec tous micro-détails]
-
-**Produit analysé :**
-[Matériaux, état, texte, usure, imperfections]
-
-**Environnement :**
-[Lieu, style, objets, contexte complet]
-
-**Imperfections authentiques :**
-[Liste de tous les détails qui rendent la photo RÉELLE]
-
----
-
-## 🤖 PROMPT IMAGEN 3 - ULTRA-RÉALISME
-
-**[SECTION 1 : SETUP TECHNIQUE]**
-Professional photography captured with [appareil exact] using [objectif exact], 
-shot at [ISO], [ouverture], [vitesse d'obturation], [focale]mm focal length, 
-[format capteur], [profondeur de champ description]
-
-**[SECTION 2 : ÉCLAIRAGE DÉTAILLÉ]**
-Lighting setup: [source primaire] positioned at [angle exact] and [distance], 
-[température Kelvin]K color temperature, [qualité lumière], [modificateur] creating 
-[type d'ombres], [ratio éclairage], [fill light si présent], [rebonds lumineux], 
-[catchlights description], natural [moment de la journée]
-
-**[SECTION 3 : SUJET PRINCIPAL]**
-[Description ultra-détaillée avec TOUS les micro-détails : âge précis, origine, 
-structure osseuse, type de peau avec imperfections, texture cheveux exacte, 
-expression micro-détaillée, posture naturelle, vêtements avec textures, bijoux, 
-maquillage détaillé si présent]
-
-**[SECTION 4 : PRODUIT SI PRÉSENT]**
-[Type exact], [matériau avec finition], [dimensions], [état et usure], 
-[étiquette avec texte visible], [reflets et transparences], [imperfections], 
-positioned [position exacte] at [angle précis] showing [éléments visibles]
-
-**[SECTION 5 : ENVIRONNEMENT]**
-Background: [lieu exact], [style architectural], [matériaux visibles], 
-[objets secondaires], [profondeur spatiale], [perspective], out of focus at 
-[ouverture] creating [description bokeh], [ambiance générale]
-
-**[SECTION 6 : COULEUR & GRADE]**
-Color grading: [type de grade], [dominante colorimétrique], [saturation level], 
-[contraste], [tonalité générale], [split toning si présent], [film emulation si détecté], 
-[température générale]
-
-**[SECTION 7 : COMPOSITION]**
-Composition: [type de plan], [règle appliquée], [angle de vue], [ratio aspect], 
-[sujet occupe X% du cadre], [breathing room], [layering], [point focal]
-
-**[SECTION 8 : IMPERFECTIONS RÉALISTES - CRITIQUE]**
-Natural imperfections: subtle [grain type] grain texture, slight [vignetting naturel], 
-micro [focus imperfection], natural skin texture with visible pores and [imperfections], 
-slight [asymétrie naturelle], [lens characteristics], [chromatic aberration minime si présent], 
-authentic [moment capturé naturel], [compression artifacts légers], [tous détails réalistes]
-
-**[SECTION 9 : STYLE & RÉFÉRENCE]**
-Photographic style: [style exact], aesthetic similar to [photographe ou magazine référence], 
-[mood et atmosphère], professional [contexte usage], authentic [type de contenu], 
-shot for [plateforme cible]
-
-**[SECTION 10 : QUALITÉS FINALES]**
-High resolution professional photography, photorealistic quality, natural authentic 
-moment, zero AI appearance, indistinguishable from real photograph, 8K quality, 
-professional color science, authentic human capture
-
----
-
-## 💡 RECOMMANDATIONS TÉCHNIQUES
-
-**Format optimal Imagen 3 :** [1:1 / 3:4 / 9:16 selon analyse]
-**Niveau de détail :** Ultra-high (prompts 400-600 mots)
-**Points critiques surveillés :** [liste éléments à vérifier]
-**Ajustements suggérés :** [variations possibles]
-
-═══════════════════════════════════════════════════════════════
-
-RÈGLES ABSOLUES RÉALISME :
-
-✓ TOUJOURS mentionner les imperfections naturelles
-✓ TOUJOURS spécifier l'équipement photo exact
-✓ TOUJOURS décrire l'éclairage en détail microscopique
-✓ TOUJOURS inclure texture de peau réaliste avec pores
-✓ TOUJOURS ajouter grain photo naturel
-✓ TOUJOURS préciser les asymétries naturelles
-✓ TOUJOURS mentionner les micro-imperfections d'objectif
-✓ JAMAIS de descriptions parfaites (peau parfaite, éclairage parfait = IA)
-✓ JAMAIS de symétrie absolue (= IA)
-✓ JAMAIS oublier les catchlights dans les yeux
-✓ JAMAIS oublier la direction et dureté des ombres
-✓ Prompts minimum 400 mots, optimal 500-600 mots
-```
-
----
-
-## 🎯 PROMPT D'ACCUEIL
-
-```
-🎬 **UGC CODED™ ULTRA-REALISM ANALYZER**
-
-Système d'analyse photographique microscopique optimisé pour Imagen 3.
-
-**Mon expertise :**
-✓ Analyse technique de niveau professionnel
-✓ Détection équipement, optique, éclairage
-✓ Génération de prompts 500+ mots ultra-détaillés
-✓ Réalisme photographique absolu (zéro aspect IA)
-✓ Optimisé spécifiquement pour Imagen 3
-
-**Objectif :** Créer des images INDISCERNABLES de vraies photos.
-
-**Je détecte et reproduis :**
-- Micro-imperfections qui rendent une photo réelle
-- Caractéristiques d'objectif authentiques
-- Éclairage avec sources, angles, températures exactes
-- Texture de peau naturelle avec pores et imperfections
-- Grain photo réel (pas bruit numérique IA)
-- Asymétries naturelles du visage et corps
-- Usure et imperfections sur produits
-- Profondeur de champ réaliste avec bokeh authentique
-
-**📸 Upload ta photo maintenant**
-Je vais l'analyser avec précision microscopique et te générer un prompt de 500+ mots 
-pour reproduction ultra-réaliste dans Imagen 3.
-
-**Formats optimaux :** JPG ou PNG haute résolution
-```
-
----
-
-## 📚 EXEMPLE COMPLET D'ANALYSE ULTRA-RÉALISTE
-
-### Photo analysée : Créatrice UGC avec produit skincare
-
-```
-🔬 ANALYSE TECHNIQUE COMPLÈTE
-
-**Équipement :**
-iPhone 15 Pro en mode Portrait, objectif principal équivalent 26mm f/1.78, 
-capteur 48MP avec pixel binning actif, computational photography avec Deep Fusion, 
-Smart HDR 5 activé, ISO 320, vitesse 1/120s, ouverture simulée f/2.2
-
-**Éclairage microscopique :**
-Source primaire : Lumière naturelle indirecte provenant d'une fenêtre positionnée à 
-45° gauche à 2 mètres du sujet, diffusée par rideau blanc semi-transparent créant 
-softbox naturel 1.5m x 2m, température couleur 5800K (nuageux matinal), qualité 
-wraparound soft avec ratio 2:1, ombres douces s'estompant progressivement côté droit 
-du visage, fill naturel par réflexion sur mur blanc adjacent à droite créant rebond 
-subtil température 6200K, catchlights rectangulaires visibles dans les deux yeux 
-positionnés à 10h et 2h révélant source fenêtre, léger rim light naturel sur cheveux 
-côté gauche de 0.3 EV, pas de lumière artificielle additionnelle, heure estimée 
-9h30-10h00 matinée, ciel couvert créant lumière enveloppante
-
-**Exposition & Tonalité :**
-Exposition générale +0.3 EV (légèrement overexposed pour esthétique lumineuse), 
-distribution mid-key à high-key, contraste modéré réduit par Smart HDR, plage 
-dynamique compressée style computational photography, aucune zone bouchée, légers 
-highlights préservés sur produit, tonalité aérée et douce
-
-**Post-production détectée :**
-Grade colorimétrique naturel iOS avec léger warmth boost (+5), courbe douce sans 
-blacks écrasés (lifted shadows style Instagram), saturation globale -5 pour effet 
-sophistiqué, vibrance +10 sur tons chair, clarity subtile +15 sur zone produit, 
-texture peau légèrement lissée (beauty filter iOS 20%), split toning absent, 
-température générale tirée vers warm (+200K), pas de LUT cinematic, esthétique 
-"clean Instagram feed", slight sharpening sur produit uniquement
-
-**Sujet détaillé :**
-Femme caucasienne 28 ans, structure osseuse ovale avec pommettes modérément 
-définies, mâchoire arrondie, front moyen, nez fin légèrement retroussé avec 
-arête droite, peau claire type II Fitzpatrick avec sous-tons neutres tirant 
-légèrement rosés, texture de peau visible avec pores apparents sur zone T 
-(nez et front), 3-4 taches de rousseur discrètes sur nez et joues, grain de 
-peau naturel non entièrement lissé, légères rougeurs naturelles sur pommettes, 
-cernes très légers sous yeux couleur mauve pâle, micro-imperfections (petit 
-bouton cicatrisant tempe droite, léger eczéma coin lèvre inférieure), 
-duvet facial visible en lumière rasante sur joues et au-dessus lèvre supérieure, 
-cheveux châtain moyen longueur épaules texture ondulée type 2B avec reflets 
-dorés naturels sous lumière, raie centrale légèrement décentrée à droite, 
-mèche avant droite tombant devant œil avec mouvement naturel, 3-4 baby hairs 
-rebelles sur ligne frontale, texture capillaire mate non grasse, racines 
-légèrement plus foncées (2 semaines de repousse), yeux marron noisette avec 
-hétérochromie subtile (œil gauche légèrement plus vert), iris détaillé avec 
-stries radiaires visibles, sclera blanche pure avec micro-vaisseaux à peine 
-perceptibles, cils naturels mascara léger noir créant séparation sans paquets 
-sur 70% des cils, cils inférieurs non maquillés, sourcils châtain foncé forme 
-naturelle arquée modérément fournis avec quelques poils rebelles non épilés, 
-sourcils légèrement dissymétriques (droit 2mm plus haut que gauche), 
-maquillage nude minimal (BB cream légère couvrance laissant transparaître 
-taches de rousseur, pas de contouring, blush pêche crème sur pommettes, 
-highlighter absent, lèvres nude rosé naturel mat avec léger baume brillant 
-au centre), expression faciale authentique avec sourire léger naturel sans 
-montrer dents (coins bouche relevés 3mm, léger plissement yeux coin externe 
-pattes d'oie naissantes), regard direct caméra avec engagement naturel et 
-confiance tranquille, tête inclinée 5° vers droite avec léger menton rentré 
-(angle flatteur), posture détendue épaules basses, port oversize beige tricot 
-côtelé texture maille anglaise grosse, manches longues poignets visibles, 
-encolure ronde, tissu texturé avec reliefs verticaux prononcés espacement 5mm, 
-couleur beige chaud (RAL 1015), main droite visible tenant produit avec ongles 
-courts forme carrée naturels sans vernis (cuticules légèrement sèches), 
-peau mains texture normale avec veines bleues apparentes sur dos main, 
-un anneau fin or jaune 14k diamètre 2mm porté annulaire droit, bras plié 90° 
-coude hors cadre tenant produit hauteur épaule 15cm devant visage côté droit, 
-poignet légèrement cassé angle naturel
-
-**Produit analysé :**
-Flacon skincare cylindrique blanc opaque polypropylène 50ml, hauteur 12cm 
-diamètre 4cm, pompe doseuse couleur or champagne finition mate aluminium 
-anodisé avec tête de pompe blanche, étiquette papier blanc mat adhésive 
-couvrant 60% hauteur flacon, texte noir police sans-serif moderne (type 
-Helvetica Neue) "SERUM" en majuscules taille 14pt, sous-texte descriptif 
-8pt partiellement visible, logo minimaliste 1cm bas étiquette, étiquette 
-légèrement désalignée rotation 2° sens horaire, coin supérieur droit étiquette 
-micro-décollé 1mm, produit neuf sans usure, pas de traces doigts visibles, 
-pompe non actionnée position haute, niveau liquide intérieur estimé 90% 
-(visible par transparence relative plastique), reflet vertical lumière 
-fenêtre sur surface bombée flacon créant highlight 3cm hauteur, reflet 
-pompe dorée dans plastique blanc visible, produit positionné verticalement 
-angle 5° incliné vers caméra, label facing camera à 85% (légèrement tourné), 
-distance produit-visage 15cm, distance produit-caméra 30cm, produit occupe 
-12% surface totale image
-
-**Environnement :**
-Intérieur domestique moderne style scandinave, mur arrière-plan blanc mat 
-peinture acrylique texture légèrement granuleuse, encadrement de porte blanc 
-laqué visible flou à gauche arrière-plan, profondeur spatiale 2.5m, 
-perspective légère convergence lignes architecture, pas de décoration murale 
-visible, lumière ambiante douce homogène, sol probablement parquet clair 
-(hors cadre), ambiance matinale calme et épurée, température pièce perçue 
-tempérée, pas d'objets secondaires distrayants, espace organisé minimaliste, 
-bokeh créé par ouverture simulée f/2.2 rendant arrière-plan progressivement 
-flou avec transition douce, distance background 2.5m créant séparation sujet
-
-**Imperfections authentiques :**
-Grain photo naturel ISO 320 visible texture fine homogène caractéristique 
-iPhone (pas bruit numérique IA), légère asymétrie faciale naturelle 
-(œil droit 1mm plus bas, sourcil droit plus arqué, narine gauche légèrement 
-plus ouverte), micro-mouvement cheveux créant léger motion blur 2 pixels 
-sur pointes, focus slightly back-focused de 5cm (yeux parfaitement nets 
-mais oreilles légèrement plus nettes révélant front-focus léger iPhone), 
-vignetting naturel computational -15% luminosité coins image, slight 
-lens distortion barrel 2% caractéristique 26mm iPhone créant visage 
-légèrement élargi, chromatic aberration absente (correction logicielle), 
-compression JPEG quality 92% créant micro-artefacts dans zones uniformes 
-(pull beige), pixels chauds absents, sharpening halo subtil 1 pixel autour 
-contours haute fréquence (cheveux, yeux), slight purple fringing dans 
-zones très contrastées (cheveux sur fond blanc), natural skin subsurface 
-scattering sur oreilles translucidité légère, micro-détails authentiques 
-(pore dilaté tempe gauche, veinule bleue visible paupière inférieure, 
-cil cassé œil droit position 4h, poil sourcil blanc œil gauche, léger 
-duvet décoloré lèvre supérieure), depth map iPhone légèrement imparfait 
-créant edge bleeding subtil 1-2 pixels autour cheveux sur fond
-
-═══════════════════════════════════════════════════════════════
-
-🤖 PROMPT IMAGEN 3 - ULTRA-RÉALISME (574 mots)
-
-Professional UGC lifestyle portrait photography captured with iPhone 15 Pro 
-in Portrait mode, 26mm equivalent f/1.78 main lens with 48MP sensor using 
-pixel binning, computational photography with Deep Fusion and Smart HDR 5 
-active, shot at ISO 320, 1/120s shutter speed, simulated f/2.2 aperture 
-creating natural depth of field, mid-range smartphone photography aesthetic
-
-Lighting setup: primary soft natural window light positioned 45 degrees 
-camera left at 2 meters distance, diffused through white semi-transparent 
-curtain creating natural 1.5m x 2m softbox effect, color temperature 5800K 
-overcast morning light, wraparound quality soft lighting with 2:1 ratio, 
-gentle shadows fading gradually on right side of face, natural fill from 
-white wall bounce camera right at 6200K creating subtle reflected light, 
-rectangular catchlights visible in both eyes positioned at 10 o'clock and 
-2 o'clock revealing window source, slight natural rim light on hair left 
-side +0.3 EV, no artificial lighting, estimated time 9:30-10:00 AM morning, 
-cloudy sky creating enveloping light quality
-
-28-year-old Caucasian woman with oval bone structure moderately defined 
-cheekbones rounded jawline medium forehead, thin slightly upturned nose 
-with straight bridge, fair skin type II Fitzpatrick with neutral undertones 
-slightly rosy, visible skin texture with apparent pores on T-zone area 
-nose and forehead, 3-4 discreet freckles on nose and cheeks, natural grain 
-not fully smoothed, natural slight redness on cheekbones, very light 
-purple-toned under-eye circles, micro-imperfections including small healing 
-pimple right temple slight eczema corner lower lip, visible facial peach 
-fuzz on cheeks and above upper lip in raking light, medium chestnut brown 
-shoulder-length hair with type 2B wavy texture natural golden highlights, 
-center part slightly off-center right, front right strand falling across 
-eye with natural movement, 3-4 baby hairs on frontal hairline, matte hair 
-texture not greasy, roots slightly darker showing 2 weeks regrowth, hazel 
-brown eyes with subtle heterochromia left eye slightly greener, detailed 
-iris with visible radial striations, pure white sclera with barely 
-perceptible micro-vessels, natural lashes with light black mascara creating 
-separation without clumps on 70% of lashes, lower lashes unmade up, dark 
-chestnut eyebrows natural moderate arch shape moderately full with some 
-unplucked stray hairs, slightly asymmetric eyebrows right 2mm higher than 
-left, minimal nude makeup including light coverage BB cream allowing 
-freckles to show through no contouring peach cream blush on cheekbones no 
-highlighter natural rosy nude matte lips with slight gloss shine at center, 
-authentic facial expression with slight natural smile not showing teeth 
-mouth corners raised 3mm slight eye crinkling nascent crow's feet outer 
-corners, direct camera gaze with natural engagement and quiet confidence, 
-head tilted 5 degrees right with slight chin tucked flattering angle, 
-relaxed posture lowered shoulders, wearing oversized beige ribbed knit 
-sweater chunky English rib stitch texture with pronounced vertical reliefs 
-5mm spacing, warm beige color RAL 1015, long sleeves with visible cuffs, 
-round neckline, right hand visible holding product with short square-shaped 
-natural nails no polish slightly dry cuticles, normal hand skin texture 
-with visible blue veins on back of hand, thin 14k yellow gold ring 2mm 
-diameter worn on right ring finger, arm bent 90 degrees elbow out of frame 
-holding product at shoulder height 15cm in front of face right side, 
-slightly broken wrist natural angle
-
-White opaque polypropylene cylindrical skincare bottle 50ml, height 12cm 
-diameter 4cm, champagne gold matte ano
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio UGC AI — Studio IRL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050505;--bg2:#0c0c0c;--glass:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);
+  --border2:rgba(255,255,255,0.14);--text:#fff;--text2:rgba(255,255,255,0.6);--text3:rgba(255,255,255,0.3);
+  --purple:#a855f7;--pink:#ec4899;--indigo:#6366f1;--emerald:#10b981;--amber:#f59e0b;--red:#ef4444;--rose:#f43f5e;
+}
+html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+body{background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(168,85,247,0.12) 0%,var(--bg) 60%)}
+img{display:block;max-width:100%}
+button,input,select,textarea{font:inherit}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#111}::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:3px}
+
+/* ── SPLASH ── */
+#splash{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;position:relative}
+.splash-glow{position:fixed;inset:0;pointer-events:none;z-index:0}
+.splash-glow::before{content:'';position:absolute;top:-20%;right:-20%;width:60%;height:60%;background:rgba(168,85,247,0.15);border-radius:50%;filter:blur(120px)}
+.splash-glow::after{content:'';position:absolute;bottom:-20%;left:-20%;width:50%;height:50%;background:rgba(236,72,153,0.1);border-radius:50%;filter:blur(100px)}
+.splash-content{position:relative;z-index:10;max-width:500px;width:100%}
+.splash-badge{display:inline-block;padding:0.4rem 1.2rem;border-radius:999px;font-size:0.6rem;font-weight:900;letter-spacing:0.35em;text-transform:uppercase;color:var(--text3);border:1px solid var(--border);background:var(--glass);margin-bottom:2rem;backdrop-filter:blur(10px)}
+.splash-title{font-family:'Syne',sans-serif;font-size:clamp(4rem,14vw,8rem);font-weight:800;line-height:0.85;letter-spacing:-0.03em;margin-bottom:1.5rem}
+.splash-title .line1{display:block;background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.5) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.splash-title .line2{display:block;background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.splash-sub{font-size:1rem;color:var(--text2);font-weight:300;line-height:1.6;margin-bottom:3rem}
+.api-box{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:1.5rem;padding:1.75rem;margin-bottom:1rem;text-align:left}
+.api-label{font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.3em;color:var(--text3);margin-bottom:0.75rem;display:block}
+.api-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:0.75rem;padding:0.9rem 1rem;font-size:0.95rem;color:var(--text);outline:none;transition:border-color 0.2s;letter-spacing:0.15em;text-transform:uppercase}
+.api-input::placeholder{color:rgba(255,255,255,0.15);text-transform:none;letter-spacing:normal}
+.api-input:focus{border-color:var(--purple)}
+.quota-preview{display:none;margin-top:1rem;padding:0.75rem 1rem;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:0.75rem;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--emerald);text-align:center}
+.start-btn{width:100%;padding:1.2rem;border-radius:1.25rem;font-family:'Syne',sans-serif;font-weight:800;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.2em;border:none;cursor:pointer;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;transition:all 0.2s;opacity:0.3}
+.start-btn:not(:disabled){opacity:1}
+.start-btn:not(:disabled):hover{transform:scale(1.02);box-shadow:0 20px 40px rgba(168,85,247,0.3)}
+.start-btn:disabled{cursor:not-allowed}
+
+/* ── APP ── */
+#app{display:none;min-height:100vh;flex-direction:column}
+#app.visible{display:flex}
+.app-header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,0.6);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0.9rem 1.5rem}
+.app-header-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.app-logo{display:flex;align-items:center;gap:0.75rem;cursor:pointer}
+.app-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--purple),var(--pink));border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.app-logo-text{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;color:#fff}
+.header-badges{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap}
+.badge{display:flex;align-items:center;gap:0.4rem;padding:0.35rem 0.75rem;border-radius:999px;font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em}
+.badge-rose{background:rgba(244,63,94,0.15);border:1px solid rgba(244,63,94,0.4);color:var(--rose)}
+.badge-amber{background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.4);color:var(--amber)}
+.badge-emerald{background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.4);color:var(--emerald)}
+.badge-purple{background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.4);color:var(--purple)}
+.badge-indigo{background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.4);color:var(--indigo)}
+.quota-widget{display:flex;align-items:center;gap:0.6rem;padding:0.4rem 0.9rem;border-radius:999px;border:1px solid rgba(16,185,129,0.4);background:rgba(16,185,129,0.08)}
+.quota-widget.warning{border-color:rgba(245,158,11,0.4);background:rgba(245,158,11,0.08)}
+.quota-widget.critical{border-color:rgba(239,68,68,0.4);background:rgba(239,68,68,0.08)}
+.quota-dots{display:flex;gap:3px}
+.quota-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.1)}
+.quota-dot.used{background:var(--emerald)}
+.quota-dot.used.warning{background:var(--amber)}
+.quota-dot.used.critical{background:var(--red)}
+.quota-text{font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;color:var(--emerald)}
+.quota-text.warning{color:var(--amber)}
+.quota-text.critical{color:var(--red)}
+.header-key-btn{font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;padding:0.4rem 0.9rem;border-radius:999px;cursor:pointer;border:1px solid rgba(245,158,11,0.4);color:var(--amber);background:rgba(245,158,11,0.1);transition:all 0.2s}
+.header-key-btn.active{border-color:rgba(16,185,129,0.4);color:var(--emerald);background:rgba(16,185,129,0.1)}
+.studio-layout{flex:1;max-width:1600px;margin:0 auto;width:100%;padding:1.5rem;display:grid;grid-template-columns:380px 1fr;gap:1.5rem}
+@media(max-width:1100px){.studio-layout{grid-template-columns:1fr}}
+@media(max-width:640px){.studio-layout{padding:0.75rem;gap:0.75rem}}
+.sidebar{display:flex;flex-direction:column;gap:1rem;max-height:calc(100vh - 80px);overflow-y:auto;padding-right:4px;padding-bottom:6rem}
+.sidebar::-webkit-scrollbar{width:3px}
+.card{background:var(--glass);border:1px solid var(--border);border-radius:1.5rem;padding:1.25rem;transition:border-color 0.2s}
+.card.active-purple{border-color:rgba(168,85,247,0.5);box-shadow:0 0 20px rgba(168,85,247,0.08)}
+.card.active-rose{border-color:rgba(244,63,94,0.5);box-shadow:0 0 20px rgba(244,63,94,0.08)}
+.card.active-amber{border-color:rgba(245,158,11,0.5);box-shadow:0 0 20px rgba(245,158,11,0.08)}
+.card.active-emerald{border-color:rgba(16,185,129,0.5);box-shadow:0 0 20px rgba(16,185,129,0.08)}
+.card.active-indigo{border-color:rgba(99,102,241,0.5);box-shadow:0 0 20px rgba(99,102,241,0.08)}
+.card.active-sky{border-color:rgba(14,165,233,0.5);box-shadow:0 0 20px rgba(14,165,233,0.08)}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:0.5rem;flex-wrap:wrap}
+.card-title-group{display:flex;align-items:center;gap:0.6rem}
+.card-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.85rem}
+.card-icon-purple{background:rgba(168,85,247,0.2);color:var(--purple)}
+.card-icon-rose{background:rgba(244,63,94,0.2);color:var(--rose)}
+.card-icon-amber{background:rgba(245,158,11,0.2);color:var(--amber)}
+.card-icon-emerald{background:rgba(16,185,129,0.2);color:var(--emerald)}
+.card-icon-indigo{background:rgba(99,102,241,0.2);color:var(--indigo)}
+.card-icon-slate{background:rgba(255,255,255,0.08);color:var(--text3)}
+.card-icon-sky{background:rgba(14,165,233,0.2);color:#0ea5e9}
+.card-title{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.2em;color:#fff;line-height:1}
+.card-sub{font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--text3);margin-top:2px}
+.toggle-wrap{position:relative;width:40px;height:22px;flex-shrink:0}
+.toggle-wrap input{opacity:0;width:0;height:0;position:absolute}
+.toggle-track{display:block;width:40px;height:22px;border-radius:11px;background:rgba(255,255,255,0.1);cursor:pointer;transition:background 0.3s;position:relative}
+.toggle-wrap input:checked + .toggle-track{background:var(--active-color,var(--purple))}
+.toggle-track::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform 0.3s;box-shadow:0 1px 4px rgba(0,0,0,0.3)}
+.toggle-wrap input:checked + .toggle-track::after{transform:translateX(18px)}
+.uploader{border:2px dashed var(--border);border-radius:1rem;min-height:80px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:all 0.2s;background:rgba(255,255,255,0.02);flex-direction:column;gap:0.4rem}
+.uploader:hover{border-color:var(--purple);background:rgba(168,85,247,0.04)}
+.uploader.has-img{border-style:solid;border-color:var(--border2)}
+.uploader input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:4;width:100%;height:100%}
+.uploader-preview{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.uploader-icon{font-size:1.2rem;position:relative;z-index:2}
+.uploader-label{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--text3);position:relative;z-index:2;text-align:center;padding:0 0.5rem}
+.uploader-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;z-index:3;pointer-events:none}
+.uploader.has-img:hover .uploader-overlay{opacity:1;pointer-events:auto}
+.rm-btn{background:var(--red);border:none;border-radius:50%;width:26px;height:26px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.75rem;z-index:5;position:relative}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0;border-bottom:1px solid var(--border)}
+.toggle-row:last-child{border-bottom:none}
+.toggle-row-label{font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--text2)}
+.pill-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
+.pill-btn{padding:0.6rem 0.5rem;border-radius:0.75rem;border:1px solid var(--border);background:rgba(255,255,255,0.03);font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);cursor:pointer;transition:all 0.2s;text-align:center}
+.pill-btn:hover{opacity:0.8}
+.pill-btn.sel-purple{background:rgba(168,85,247,0.2);border-color:var(--purple);color:#fff}
+.pill-btn.sel-indigo{background:rgba(99,102,241,0.2);border-color:var(--indigo);color:#fff}
+.pill-btn.sel-orange{background:rgba(249,115,22,0.2);border-color:#f97316;color:#fff}
+.pill-btn.sel-emerald{background:rgba(16,185,129,0.2);border-color:var(--emerald);color:#fff}
+.pill-btn.sel-amber{background:rgba(245,158,11,0.2);border-color:var(--amber);color:#fff}
+.scene-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
+.scene-btn{padding:0.75rem 0.5rem;border-radius:0.9rem;border:1px solid var(--border);background:rgba(255,255,255,0.03);font-size:0.6rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);cursor:pointer;transition:all 0.2s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:0.3rem}
+.scene-btn .scene-emoji{font-size:1.1rem}
+.scene-btn:hover{opacity:0.8}
+.scene-btn.sel{background:rgba(168,85,247,0.15);border-color:var(--purple);color:#fff;box-shadow:0 0 15px rgba(168,85,247,0.1)}
+.shot-cat-title{font-size:0.55rem;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;color:var(--text3);margin:0.75rem 0 0.4rem}
+.shot-btn{width:100%;padding:0.65rem 0.75rem;border-radius:0.75rem;border:1px solid var(--border);background:rgba(255,255,255,0.02);font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);cursor:pointer;transition:all 0.2s;text-align:left;margin-bottom:0.35rem;display:block}
+.shot-btn:hover{opacity:0.8}
+.shot-btn.sel{background:rgba(99,102,241,0.15);border-color:var(--indigo);color:#fff}
+select.s-select{width:100%;background:#111;border:1px solid var(--border);border-radius:0.75rem;padding:0.65rem 1rem;font-size:0.65rem;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:12px}
+select.s-select option{background:#111}
+textarea.s-textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:0.75rem;padding:0.75rem;font-size:0.8rem;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;resize:vertical;min-height:70px;transition:border-color 0.2s}
+textarea.s-textarea:focus{border-color:var(--purple)}
+textarea.s-textarea::placeholder{color:var(--text3)}
+.s-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:0.75rem;padding:0.65rem 0.75rem;font-size:0.7rem;color:#fff;outline:none;transition:border-color 0.2s}
+.s-input:focus{border-color:var(--purple)}
+.s-input::placeholder{color:var(--text3)}
+.ar-btns{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:0.75rem}
+.ar-btn{padding:0.75rem 0.5rem;border-radius:0.75rem;font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text3);transition:all 0.2s;text-align:center}
+.ar-btn.active{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.gen-btn{width:100%;padding:1.4rem;border-radius:1.5rem;font-family:'Syne',sans-serif;font-weight:800;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.15em;border:none;cursor:pointer;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.75rem;box-shadow:0 20px 40px rgba(168,85,247,0.2)}
+.gen-btn:hover:not(:disabled){transform:scale(1.02);box-shadow:0 24px 48px rgba(168,85,247,0.3)}
+.gen-btn:disabled{opacity:0.4;cursor:not-allowed;box-shadow:none;transform:none}
+.spin{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.gallery-col{background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:2rem;padding:1.5rem;min-height:600px;display:flex;flex-direction:column;overflow:hidden}
+.gallery-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.5rem}
+.gallery-title{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em}
+.gallery-body{flex:1;overflow-y:auto;padding-right:4px}
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:900px){.gallery-grid{grid-template-columns:1fr}}
+.img-card{border-radius:1.2rem;overflow:hidden;background:#111;border:1px solid var(--border);position:relative;animation:fadeIn 0.5s ease}
+@keyframes fadeIn{from{opacity:0;transform:scale(0.97)}to{opacity:1;transform:scale(1)}}
+.img-card img{width:100%;display:block}
+.img-card-footer{padding:0.75rem 1rem;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,0.6);border-top:1px solid var(--border)}
+.img-card-num{font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;color:var(--text3)}
+.dl-btn{background:rgba(255,255,255,0.08);border:1px solid var(--border2);border-radius:0.5rem;padding:0.4rem 0.75rem;font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;color:#fff;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:0.3rem}
+.dl-btn:hover{background:var(--purple)}
+.gallery-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--text3);border:2px dashed var(--border);border-radius:1.5rem;padding:3rem}
+.gallery-empty-icon{font-size:3rem;margin-bottom:1rem;opacity:0.3}
+.gallery-empty-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;text-transform:uppercase;margin-bottom:0.5rem}
+.gallery-empty-sub{font-size:0.75rem;font-style:italic;color:var(--text3)}
+.loading-area{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;border:2px dashed rgba(168,85,247,0.3);border-radius:1.5rem}
+.loading-spinner{width:56px;height:56px;border:3px solid rgba(168,85,247,0.2);border-top-color:var(--purple);border-radius:50%;animation:spin 1s linear infinite}
+.loading-text{font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.3em;color:var(--purple);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.progress-bar-wrap{width:200px;height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--purple),var(--pink));border-radius:2px;transition:width 0.5s}
+.error-box{padding:0.9rem 1rem;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:0.75rem;font-size:0.75rem;font-weight:700;color:#fca5a5;margin-top:0.75rem}
+.location-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
+@media(max-width:640px){.card{padding:1rem;border-radius:1.25rem}.gallery-col{padding:1rem;border-radius:1.5rem;min-height:400px}.gen-btn{padding:1.1rem;font-size:0.8rem}.gallery-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="splash-glow"></div>
+  <div class="splash-content">
+    <div class="splash-badge">UGC AI Studio — Génération Image 4K</div>
+    <div class="splash-title">
+      <span class="line1">Studio</span>
+      <span class="line2">UGC AI</span>
+    </div>
+    <p class="splash-sub">Crée ton shooting UGC comme si tu y étais.</p>
+    <div style="margin:1.5rem auto;max-width:320px;border-radius:1.5rem;overflow:hidden;box-shadow:0 30px 60px rgba(168,85,247,0.25);border:1px solid rgba(255,255,255,0.1)">
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCADIAMgDASIAAhEBAxEB/8QAGwABAAMBAQEBAAAAAAAAAAAAAAQFBgMCAQf/xAAzEAABBAEDAwIEBAYDAQAAAAABAAIDBAURITESQVFhBhMicRQyQoGRobEjUsHR4fAV/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAeEQEBAQEAAgMBAQAAAAAAAAAAARECITESQVH/2gAMAwEAAiEDEQA/AP38REBERAREQEREBERARYt1kq1V0kUEtyVv3YWcuP8AH7qkv6hvkc6PS6UkjB/uJhloPsO0f3CZaRbqKxt9S6dpylm8vBvP3IPYf3K0paiSGbddTsY6IbpnxgO7B3GzI9PJW5LSTXTaREWCIiAiIgIiICIiAiIgIiICIiAiIg8kiRq3LS3XU9+sLmOc0+gBPb8lVan1L3ZIWuJ8OMDCtp2yKOCY+bpBIfs3H+FXXqcNqNr5+3sWjzA9iFz83bXFtyuqiIupkREQEREBERAREQEREBERAREQEREBERBq9P6ojoQvr26ss1cuLy1juWb/MDyPdTWb2sXmxSXZYLbGnlpqANIPqN7A/qvNiCDkHB9V4hpNhls1W7cNHLAScjP1CrlW2rHZ6PAXTN/qDiAe9jY/AHJ+SqNR1KPT2DujM9h+6qB5W+3i7b8gHj2HJXJcHFzhH2tvB7WAgevsOT7nssMc8c0RfFG4HxXdxH4Ac5/ssRmfadpN7bREW0CIiAiIgIiICIiAiIgIiICIiAiIgIiIM2zVFuKxUkJDJoyxx9nuGCPgg/ZZ2gWpZi+neJMrQGscTk7Afld+r8+cjXk9zn6exVDS3sVrNUPc1rHyNZz+8d/kMrl81Jyc9L6rKY98LCPqHJP0XNTMZR05+7IefQ8H+hK1bWlW6LYnRzb5GFpBdgnGTjkDC1KulUorDpYmPe5zt/3zHdx6nv8AJb+T1J5Zb2rNcCLVJfxBNwGiNvzk5H0AVS5j2uLXsLXDkFwwQt9/Km6vDaqOIiK6CIiAiIgIiICIiAiIgIiICIiAiIgLPtQk23vDsZe/wDTGVoKqvudNWafeIn+JCtc2MVOVP0r4a8MjXPYIy7LuN2MDGce3A+iss7KclgRSx5bjZ5xjuQR3HuFT6mBJWnLQ5+5gy3HPIIPYr3S7l5uQyMbWMja0EyMwOdp4aR/I4ytXmvTfHj0oCIiugiIgIiICIiAiIgIiICIiAiIgIiICqry7TZo/Nj4x7mTH2yFaqqm5oFuN8ZG7M8f0VLjqdvjI1DQYY5P5iJxHsf9FjdVaS/XNMmN+jJLZj8muDiQT6diPquiN2yaSGB2cYcx3IP07iFa6nDZl06wKVuOjYcN2LzXMxyO4Ow+R81y5e3z8V6RaRF2kiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiD/2Q==" alt="UGC Creator" style="width:100%;display:block;object-fit:cover;max-height:420px">
+    </div>
+    <div class="api-box">
+      <span class="api-label">🔑 Ton code d'accès UGC AI Studio</span>
+      <input type="text" id="codeInput" class="api-input" placeholder="Ex: VOTRECODE" autocomplete="off" maxlength="20">
+      <div class="quota-preview" id="quotaPreview"></div>
+    </div>
+    <button id="startBtn" class="start-btn" disabled onclick="startApp()">Lancer le Studio →</button>
+    <div id="codeError" style="display:none;font-size:0.65rem;color:#f43f5e;margin-top:0.5rem;font-weight:700">❌ Code invalide — vérifie ton code Studio IRL</div>
+    <p style="font-size:0.6rem;color:var(--text3);margin-top:1rem;text-transform:uppercase;letter-spacing:0.15em">Code fourni par UGC AI Studio — 10 générations/jour</p>
+  </div>
+</div>
+
+<!-- WELCOME TOAST -->
+<div id="welcomeToast" style="display:none;position:fixed;top:1.5rem;left:50%;transform:translateX(-50%);z-index:9999;background:linear-gradient(135deg,rgba(168,85,247,0.95),rgba(236,72,153,0.95));backdrop-filter:blur(20px);border-radius:1rem;padding:1rem 1.5rem;box-shadow:0 20px 40px rgba(168,85,247,0.3);transition:opacity 0.6s;max-width:90vw">
+  <p id="welcomeMsg" style="font-size:0.85rem;color:#fff;font-weight:600;text-align:center;margin:0"></p>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header class="app-header">
+    <div class="app-header-inner">
+      <div class="app-logo" onclick="goSplash()">
+        <div class="app-logo-icon">
+          <svg width="20" height="20" fill="none" stroke="#fff" viewBox="0 0 24 24" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+        <span class="app-logo-text">Studio UGC AI</span>
+      </div>
+      <div class="header-badges" id="activeBadges"></div>
+      <div class="quota-widget" id="quotaWidget">
+        <div class="quota-dots" id="quotaDots"></div>
+        <span class="quota-text" id="quotaText">— / 10</span>
+      </div>
+      <button class="header-key-btn active" id="keyBtn" onclick="goSplash()">Code: <span id="codeDisplay">—</span></button>
+    </div>
+  </header>
+
+  <div class="studio-layout">
+    <div class="sidebar">
+
+  <!-- MODES -->
+  <div class="card" id="cardModes">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-slate">⚡</div>
+        <div><div class="card-title">Modes</div><div class="card-sub">Options de rendu</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="toggle-row">
+        <span class="toggle-row-label">🔐 Identity Lock</span>
+        <label class="toggle-wrap" style="--active-color:var(--rose)">
+          <input type="checkbox" id="toggleIdentity" checked onchange="updateBadges()">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-row-label">🏠 Style Scandinave (Bois & Blanc)</span>
+        <label class="toggle-wrap" style="--active-color:var(--emerald)">
+          <input type="checkbox" id="toggleStyle" checked onchange="updateBadges()">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-row-label">👯 Mode Duo (2 Avatars)</span>
+        <label class="toggle-wrap" style="--active-color:var(--indigo)">
+          <input type="checkbox" id="toggleDuo" onchange="toggleDuoMode()">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-row-label">👗 Dress Code (Verrouiller tenue)</span>
+        <label class="toggle-wrap" style="--active-color:var(--amber)">
+          <input type="checkbox" id="toggleDress" onchange="toggleDressCode()">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-row-label">🎥 Mode Backstage</span>
+        <label class="toggle-wrap" style="--active-color:#f97316">
+          <input type="checkbox" id="toggleBackstage" onchange="toggleBackstage()">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-row-label">💄 Vanity Moderne</span>
+        <label class="toggle-wrap" style="--active-color:var(--pink)">
+          <input type="checkbox" id="toggleVanity" onchange="toggleVanity()">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACKSTAGE OPTIONS -->
+  <div class="card" id="backstageCard" style="display:none">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon" style="background:rgba(249,115,22,0.2);color:#f97316">🎥</div>
+        <div><div class="card-title">Config Backstage</div><div class="card-sub">Coulisses du shooting</div></div>
+      </div>
+    </div>
+    <div class="pill-grid">
+      <button class="pill-btn" id="bts_hand" onclick="toggleBTS('bts_hand')">📸 Main Caméra</button>
+      <button class="pill-btn" id="bts_tripod" onclick="toggleBTS('bts_tripod')">🎬 Trépied Vidéo</button>
+      <button class="pill-btn" id="bts_pov" onclick="toggleBTS('bts_pov')">👁 POV Créateur</button>
+      <button class="pill-btn" id="bts_tripod_light" onclick="toggleBTS('bts_tripod_light')">💡 Trépied + Lumière</button>
+    </div>
+    <div style="margin-top:0.75rem">
+      <label class="card-sub" style="display:block;margin-bottom:0.4rem">Couleur Coque iPhone</label>
+      <input type="text" id="iphoneCase" value="Transparent" class="s-input">
+    </div>
+  </div>
+
+  <!-- LIEU -->
+  <div class="card active-sky" id="locationCard">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-sky">🧭</div>
+        <div><div class="card-title">Lieu (Optionnel)</div><div class="card-sub">Ville + Pays pour l'architecture</div></div>
+      </div>
+      <label class="toggle-wrap" style="--active-color:#0ea5e9">
+        <input type="checkbox" id="toggleLocation" onchange="toggleLocationMode()">
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+    <div id="locationInputs" style="display:none">
+      <div class="location-grid">
+        <div>
+          <label class="card-sub" style="display:block;margin-bottom:0.4rem">Ville</label>
+          <input type="text" id="locationCity" class="s-input" placeholder="Paris, Tokyo, NYC...">
+        </div>
+        <div>
+          <label class="card-sub" style="display:block;margin-bottom:0.4rem">Pays</label>
+          <input type="text" id="locationCountry" class="s-input" placeholder="France, Japon...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-purple">📸</div>
+        <div><div class="card-title">1. Sources Réelles</div><div class="card-sub">Avatar(s) + Produit</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.6rem">
+      <div class="uploader" id="av1Uploader" style="min-height:80px">
+        <div class="uploader-icon">👤</div>
+        <div class="uploader-label">Avatar 1 (Identité)</div>
+        <input type="file" accept="image/*" onchange="handleUpload(event,'av1')">
+        <div class="uploader-overlay"><button class="rm-btn" onclick="removeImg(event,'av1')">✕</button></div>
+      </div>
+      <div class="uploader" id="av2Uploader" style="min-height:80px;display:none;border-color:rgba(99,102,241,0.4)" data-duo>
+        <div class="uploader-icon">👥</div>
+        <div class="uploader-label">Avatar 2 (Mode Duo)</div>
+        <input type="file" accept="image/*" onchange="handleUpload(event,'av2')">
+        <div class="uploader-overlay"><button class="rm-btn" onclick="removeImg(event,'av2')">✕</button></div>
+      </div>
+      <div class="uploader" id="prodUploader" style="min-height:80px">
+        <div class="uploader-icon">📦</div>
+        <div class="uploader-label">Produit / Texture</div>
+        <input type="file" accept="image/*" onchange="handleUpload(event,'prod')">
+        <div class="uploader-overlay"><button class="rm-btn" onclick="removeImg(event,'prod')">✕</button></div>
+      </div>
+      <div class="uploader" id="locUploader" style="min-height:70px;border-color:rgba(99,102,241,0.3)">
+        <div class="uploader-icon">🏠</div>
+        <div class="uploader-label">Lieu / Décor (Optionnel)</div>
+        <input type="file" accept="image/*" onchange="handleUpload(event,'loc')">
+        <div class="uploader-overlay"><button class="rm-btn" onclick="removeImg(event,'loc')">✕</button></div>
+      </div>
+      <div id="productDetectedBadge" style="display:none;padding:0.5rem 0.75rem;border-radius:0.6rem;font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.4);color:var(--purple)">
+        ⚡ Produit détecté : <span id="productDetectedType"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRESS CODE -->
+  <div class="card active-amber" id="dressCard" style="display:none">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-amber">👗</div>
+        <div><div class="card-title">Dress Code Référence</div><div class="card-sub">Verrouille la tenue</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.5rem">
+      <div class="uploader" id="dress1Uploader" style="min-height:70px;border-color:rgba(245,158,11,0.4)">
+        <div class="uploader-icon">👗</div>
+        <div class="uploader-label">Tenue Référence 1 *</div>
+        <input type="file" accept="image/*" onchange="handleUpload(event,'dress1')">
+        <div class="uploader-overlay"><button class="rm-btn" onclick="removeImg(event,'dress1')">✕</button></div>
+      </div>
+      <div class="uploader" id="dress2Uploader" style="min-height:70px;border-color:rgba(245,158,11,0.3);display:none" data-duo>
+        <div class="uploader-icon">👗</div>
+        <div class="uploader-label">Tenue Avatar 2 (Optionnel)</div>
+        <input type="file" accept="image/*" onchange="handleUpload(event,'dress2')">
+        <div class="uploader-overlay"><button class="rm-btn" onclick="removeImg(event,'dress2')">✕</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODES SPECIAUX -->
+  <div class="card active-amber">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-amber">⚡</div>
+        <div><div class="card-title">Mode Special</div><div class="card-sub">Workflow dedie — 1 seul a la fois</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem" id="specialModeGrid">
+      <button class="pill-btn" data-mode="mascara" style="margin:0.15rem">💋 Mascara (3 imgs)</button>
+      <button class="pill-btn" data-mode="haircare" style="margin:0.15rem">💆 Haircare (4 imgs)</button>
+      <button class="pill-btn" data-mode="bodywash" style="margin:0.15rem">🚿 Body Wash (2 imgs)</button>
+      <button class="pill-btn" data-mode="fitting" style="margin:0.15rem">👗 Fitting (4 imgs)</button>
+      <button class="pill-btn" data-mode="manicure" style="margin:0.15rem">💅 Manicure (5 imgs)</button>
+    </div>
+    <div id="specialModeLabel" style="display:none;margin-top:0.6rem;font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber)"></div>
+  </div>
+
+  <!-- CATEGORIE PRODUIT -->
+  <div class="card active-purple" id="sceneCard">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-purple">🏷️</div>
+        <div><div class="card-title">2. Categorie Produit</div><div class="card-sub">Max 2</div></div>
+      </div>
+    </div>
+    <div class="scene-grid" id="sceneGrid"></div>
+  </div>
+
+  <!-- EMOTION -->
+  <div class="card active-rose">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-rose">🎭</div>
+        <div><div class="card-title">Emotion</div><div class="card-sub">1 seule — optionnel</div></div>
+      </div>
+    </div>
+    <div id="emotionGrid" style="display:flex;flex-wrap:wrap;gap:0.3rem;padding-top:0.3rem"></div>
+  </div>
+
+  <!-- TYPE DE CONTENU -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-indigo">🎬</div>
+        <div><div class="card-title">Type et Style</div><div class="card-sub">Optionnel</div></div>
+      </div>
+    </div>
+    <div class="card-sub" style="margin-bottom:0.4rem">Type de contenu</div>
+    <div id="contentTypeGrid" style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.75rem"></div>
+    <div class="card-sub" style="margin-bottom:0.4rem">Style visuel</div>
+    <div id="visualStyleGrid" style="display:flex;flex-wrap:wrap;gap:0.3rem"></div>
+  </div>
+
+  <!-- PLANS PRODUIT -->
+  <div class="card active-indigo">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-indigo">📸</div>
+        <div><div class="card-title">Plans Produit</div><div class="card-sub">1 seul — optionnel</div></div>
+      </div>
+    </div>
+    <div id="productShotGrid" style="display:flex;flex-wrap:wrap;gap:0.3rem;padding-top:0.3rem"></div>
+  </div>
+
+  <!-- SHOTS -->
+  <div class="card" id="shotCard">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-indigo">🎯</div>
+        <div><div class="card-title">3. Plans (Shots)</div><div class="card-sub">Types de cadrage</div></div>
+      </div>
+    </div>
+    <div id="shotList"></div>
+  </div>
+
+  <!-- MULTI-SCENE -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-emerald">🎞</div>
+        <div><div class="card-title">Multi-Scène</div><div class="card-sub">Storytelling temporel</div></div>
+      </div>
+      <select class="s-select" id="multiMode" style="width:auto;padding:0.4rem 1.5rem 0.4rem 0.6rem" onchange="updateMultiMode()">
+        <option value="off">OFF</option>
+        <option value="auto">AUTO</option>
+        <option value="manual">PERSO</option>
+      </select>
+    </div>
+    <div id="multiManualWrap" style="display:none">
+      <div style="display:flex;flex-direction:column;gap:0.4rem" id="multiSteps"></div>
+    </div>
+  </div>
+
+  <!-- ACTION -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-rose">▶</div>
+        <div><div class="card-title">Instant Figé</div><div class="card-sub">Direction artistique</div></div>
+      </div>
+    </div>
+    <textarea class="s-textarea" id="actionText" placeholder="Elle observe ses cheveux, elle masse son visage..."></textarea>
+  </div>
+
+  <!-- FORMAT -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-icon card-icon-slate">📐</div>
+        <div><div class="card-title">Format</div></div>
+      </div>
+    </div>
+    <div class="ar-btns">
+      <div class="ar-btn active" id="ar916" onclick="setAR('9:16')">9:16 Portrait</div>
+      <div class="ar-btn" id="ar169" onclick="setAR('16:9')">16:9 Paysage</div>
+    </div>
+  </div>
+
+  <!-- GENERATE -->
+  <div style="padding-bottom:2rem">
+    <button class="gen-btn" id="genBtn" onclick="generate()">
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      <span id="genLabel">Générer les Photos UGC</span>
+    </button>
+    <div class="error-box" id="errorBox" style="display:none"></div>
+  </div>
+
+</div><!-- /sidebar -->
+
+<!-- GALLERY -->
+<div class="gallery-col">
+  <div class="gallery-header">
+    <div class="gallery-title">🖼 Galerie Studio UGC</div>
+    <div class="header-badges" id="galleryBadges"></div>
+  </div>
+  <div class="gallery-body" id="galleryBody">
+    <div class="gallery-empty" id="galleryEmpty">
+      <div class="gallery-empty-icon">⚡</div>
+      <div class="gallery-empty-title">Prêt pour la Création</div>
+      <div class="gallery-empty-sub">Importez vos références et lancez le shooting.</div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════
+// STATE — FIX: suppression du quotaMax en double
+// ════════════════════════════════════════════════════
+const state = {
+  studentCode: '',
+  studentName: '',
+  quotaUsed: 0,
+  quotaMax: 10,          // ← UNE SEULE déclaration (bug #1 corrigé)
+  av1: '', av2: '', prod: '', loc: '', dress1: '', dress2: '',
+  av1Mime: 'image/jpeg', av2Mime: 'image/jpeg', prodMime: 'image/jpeg',
+  locMime: 'image/jpeg', dress1Mime: 'image/jpeg', dress2Mime: 'image/jpeg',
+  scenes: [], shots: [], action: '',
+  selectedEmotion: null, contentType: 'organique', visualStyle: 'naturel',
+  selectedProductShot: null, vanityMode: false,
+  specialMode: null, isAdmin: false,
+  aspectRatio: '9:16',
+  identityLocked: true, styleScandinavian: true,
+  isDuo: false, dressEnabled: false, backstageEnabled: false,
+  btsTypes: [], multiMode: 'off',
+  manualSteps: ['', '', '', ''],
+  autoMode: true,
+  isRitual: false, isFitting: false, isManicure: false,
+  isMascara: false, isHairCare: false, isBodyWash: false,
+  locationEnabled: false, locationCity: '', locationCountry: '',
+};
+
+// ── DATA ──
+const SCENES = [
+  { id: 'beaute', name: 'Beaute et Cosmetique', emoji: '💄' },
+  { id: 'mode', name: 'Mode', emoji: '👗' },
+  { id: 'sport', name: 'Sport et Bien-etre', emoji: '🏃' },
+  { id: 'food', name: 'Food et Boisson', emoji: '🍽' },
+  { id: 'maison', name: 'Maison et Lifestyle', emoji: '🏠' },
+  { id: 'tech', name: 'Tech et Digital', emoji: '📱' },
+  { id: 'famille', name: 'Famille', emoji: '👨‍👩‍👧' },
+  { id: 'animaux', name: 'Animaux', emoji: '🐾' },
+  { id: 'voyage', name: 'Voyage', emoji: '✈' },
+  { id: 'education', name: 'Education et Business', emoji: '📚' },
+  { id: 'autre', name: 'Autre', emoji: '✨' },
+];
+
+const SHOT_CATS = [
+  { name: '🔥 Storytelling', shots: [
+    { id: 'hook', label: '1. Face Cam + Produit (Hook)' },
+    { id: 'problem', label: '2. Plan Probleme' },
+    { id: 'application', label: '3. Application Produit' },
+    { id: 'result', label: '4. Resultat / After' },
+  ]},
+  { name: '🎬 Interaction Produit', shots: [
+    { id: 'held', label: '5. Produit en Main' },
+    { id: 'opening', label: '6. Ouverture Produit' },
+    { id: 'unboxing', label: '7. Unboxing' },
+  ]},
+  { name: '🔬 Esthetique', shots: [
+    { id: 'macro', label: '8. Macro Texture' },
+    { id: 'flatlay', label: '9. Flat Lay' },
+    { id: 'hero', label: '10. Produit Clean (Hero)' },
+  ]},
+  { name: '🏠 Immersion', shots: [
+    { id: 'context', label: '11. Produit en Contexte' },
+    { id: 'mirror', label: '12. Miroir / Reflet' },
+    { id: 'zenithal', label: '13. Zenithal Action' },
+    { id: 'pov', label: '14. POV' },
+  ]},
+  { name: '🧠 Conversion', shots: [
+    { id: 'split', label: '15. Avant / Apres' },
+    { id: 'reaction', label: '16. Reaction Humaine' },
+    { id: 'proof', label: '17. Preuve Visuelle' },
+  ]},
+];
+
+var EMOTIONS = [
+  { id: 'frustration', label: 'Frustration', group: 'negative', prompt: 'EMOTION: Frustration. Slightly furrowed brows, pinched lips or sigh, tired or annoyed gaze. Hand on face or forehead. Real environment. No smile. Natural but visible emotion.' },
+  { id: 'doute', label: 'Doute', group: 'negative', prompt: 'EMOTION: Doubt. Hesitant gaze, slightly raised eyebrows, neutral mouth. Product held in front, looking at product. Subtle, not exaggerated.' },
+  { id: 'gene', label: 'Gene', group: 'negative', prompt: 'EMOTION: Embarrassment. Avoided gaze, slight discomfort, micro grimace. Slightly closed body, touching problem area. Realistic, not dramatic.' },
+  { id: 'fatigue', label: 'Fatigue', group: 'negative', prompt: 'EMOTION: Fatigue. Slightly closed or tired eyes, relaxed face. Body slightly slumped, slow movements. Morning or end of day, soft light. Slow ambiance.' },
+  { id: 'agacement', label: 'Agacement', group: 'negative', prompt: 'EMOTION: Irritation. Eyes slightly rolled, tight mouth. Quick or abrupt gesture. Negative interaction with product. Short energy, not theatrical.' },
+  { id: 'curiosite', label: 'Curiosite', group: 'neutral', prompt: 'EMOTION: Curiosity. Attentive gaze, slightly raised eyebrows. Product observed closely. Product discovery. Intrigue without strong emotion.' },
+  { id: 'concentration', label: 'Concentration', group: 'neutral', prompt: 'EMOTION: Concentration. Fixed gaze, neutral face. Precise gesture during application. Focus on action.' },
+  { id: 'hesitation', label: 'Hesitation', group: 'neutral', prompt: 'EMOTION: Hesitation. Micro doubt in gaze, slowed movement. Interrupted gesture. Between problem and solution. Maximum subtlety.' },
+  { id: 'observation', label: 'Observation', group: 'neutral', prompt: 'EMOTION: Observation. Mirror gaze, self-analysis. Touching face or area. In front of mirror. Introspection.' },
+  { id: 'soulagement', label: 'Soulagement', group: 'positive', prompt: 'EMOTION: Relief. Released breath, soft or closed eyes. Body relaxation. After product use. Sensation of feeling better.' },
+  { id: 'bienetre', label: 'Bien-etre', group: 'positive', prompt: 'EMOTION: Well-being. Natural slight smile, serene face. Gentle gestures. Pleasant routine. No exaggerated smile.' },
+  { id: 'satisfaction', label: 'Satisfaction', group: 'positive', prompt: 'EMOTION: Satisfaction. Natural visible smile, confident gaze. Product held with confidence. Visible result. Credible, not fake ad.' },
+  { id: 'confiance', label: 'Confiance', group: 'positive', prompt: 'EMOTION: Confidence. Assured gaze, straight posture. Strong presence. After transformation. Not arrogant, just self-assured.' },
+  { id: 'joie', label: 'Joie', group: 'positive', prompt: 'EMOTION: Joy. Frank smile, visible energy. Natural movement. Positive moment. Spontaneous, not posed.' },
+  { id: 'surprise', label: 'Surprise', group: 'positive', prompt: 'EMOTION: Positive surprise. Open eyes, slightly open mouth. Immediate reaction. Result discovery. Short and natural.' },
+  { id: 'seduction', label: 'Seduction', group: 'positive', prompt: 'EMOTION: Seduction. Soft gaze, micro smile. Delicate gestures. Aesthetic moment. Subtle, never forced.' },
+];
+
+var CONTENT_TYPES = [
+  { id: 'organique', label: 'Contenu Organique' },
+  { id: 'ads', label: 'ADS' },
+  { id: 'lifestyle', label: 'Lifestyle' },
+];
+
+var CONTENT_TYPE_PROMPTS = {
+  'organique': 'UGC organic style. Spontaneous, unscripted. Natural expression, not exaggerated. Visible imperfections (light, framing). Real environment (bedroom, bathroom, car). Slightly unstable or off-center framing. Strong human interaction (face, gestures, gaze). Product integrated naturally, not aggressively highlighted. Emotion: subtle, authentic, felt not performed. FORBIDDEN: commercial render, too clean/perfect, frozen pose.',
+  'ads': 'Ad style. Product + message > feeling. Clear, structured. Product visible and prominent. Clean but not overly polished.',
+  'lifestyle': 'Lifestyle style. Beautiful but credible. Real-life scene (bedroom, cafe, outdoor, bed, bathroom). Harmonious visual composition. Movement or captured moment (not frozen). Soft pleasant light. Product integrated in a life moment, not at center. Emotion: well-being, calm, pleasure, soft satisfaction. Natural props (book, coffee, towel, bag). FORBIDDEN: product too prominent, advertising pose, forced expression, too commercial.',
+};
+
+var VISUAL_STYLES = [
+  { id: 'naturel', label: 'Naturel' },
+  { id: 'lumineux', label: 'Lumineux' },
+  { id: 'cosy', label: 'Cosy' },
+  { id: 'minimaliste', label: 'Minimaliste' },
+];
+
+var PRODUCT_SHOTS = [
+  { id: 'macro_extreme', label: '🔍 Macro Extreme', usage: 'sensoriel / luxe' },
+  { id: 'gros_plan', label: '🔎 Gros Plan (Close-Up)', usage: 'focus produit' },
+  { id: 'plan_rapproche', label: '🎯 Plan Rapproche', usage: 'UGC classique' },
+  { id: 'plan_moyen', label: '🧍 Plan Moyen', usage: 'lifestyle' },
+  { id: 'plan_large', label: '🌍 Plan Large', usage: 'storytelling' },
+  { id: 'plongee', label: '⬆️ Plongee (Top View)', usage: 'esthetique' },
+  { id: 'contre_plongee', label: '⬇️ Contre-Plongee', usage: 'effet puissance' },
+  { id: 'pov', label: '👁 POV (Subjectif)', usage: 'immersion' },
+  { id: 'detail_insert', label: '🎥 Plan Detail (Insert)', usage: 'precision' },
+  { id: 'fixe_centre', label: '🧱 Plan Fixe Centre', usage: 'lisibilite ads' },
+  { id: 'decentre', label: '⚖️ Plan Decentre', usage: 'moderne' },
+  { id: 'rotation', label: '🔄 Angle 3/4', usage: 'naturel' },
+  { id: 'coupe', label: '✂️ Plan Coupe', usage: 'intrigue' },
+  { id: 'profondeur', label: '🌫 Profondeur de Champ', usage: 'focus + esthetique' },
+  { id: 'flou_mouvement', label: '🌀 Flou de Mouvement', usage: 'stop scroll' },
+  { id: 'superposition', label: '🧊 Superposition', usage: 'richesse visuelle' },
+  { id: 'cadre_cadre', label: '🔳 Cadre dans Cadre', usage: 'composition forte' },
+];
+
+// ── HPE ENGINE ──
+var HPE_POSITIVE = 'human eye perspective, imperfect framing, slightly off-center composition, natural camera tilt, subtle motion presence, uneven focus falloff, realistic depth imperfections, handheld capture feel, slight sensor noise, minor lens imperfections, candid real-life moment, visible skin texture, realistic pores, micro skin irregularities, natural skin grain, peach fuzz, subtle uneven skin tone, authentic hair strands, realistic material texture, natural light falloff, imperfect focus transition, slight lens imperfections, subtle sensor noise, unretouched human detail, micro skin relief, local redness, non-uniform brilliance, thin stray hairs, irregular density, micro fabric wrinkles, textile tension, natural lip lines, irregular moisture, credible fabric behavior';
+
+var HPE_NEGATIVE = 'plastic skin, over-smoothed face, waxy texture, CGI look, beauty filter effect, perfect symmetry, sterile lighting, over-polished rendering, artificial gloss, fake fabric, unrealistic hair mass, uniform skin, too-clean hair, perfect sharpness everywhere, beauty ad lighting, too-sharp contours, 3D lip gloss, flat clothing, sterile background, too-perfect symmetry, surface without material noise, studio lighting, centered framing, ultra sharp everywhere, perfect composition';
+
+var HPE_ULTRA_REALISM = 'ultra photorealistic RAW image, extreme human realism, visible skin texture, realistic pores, natural skin grain, authentic hair strands, realistic material texture, natural light falloff, candid real-life realism, unretouched human detail';
+
+// ── CODES ÉLÈVES ──
+const STUDENTS = {
+  "ADMIN2024": "Marie",
+  "MEL6A2": "Mélanie",
+  "STE9Q4": "Stéphanie",
+  "CHR8P7": "Christine",
+  "MAR9F4": "Marie",
+  "VAN5Q8": "Vanessa",
+  "CEL4M8": "Céline",
+  "VAN8O3": "Vanessa",
+  "ALI6Y9": "Alicia",
+  "JOH7A4": "Johanna",
+  "AUR6R9": "Aurore",
+  "SAR7H2": "Sara",
+  "VIR8G6": "Virginie",
+  "LIO5R8": "Liora",
+  "ADE7L4": "Adeline",
+  "SHA9R6": "Sharaf",
+  "LAE6T9": "Laetitia",
+  "MAR8T6": "Marie",
+  "DIA7N5": "Dee Dee",
+  "ALI7C8": "Alicia",
+  "ERI6Y4": "Eridye",
+  "MEL9N7": "Mélanie",
+  "AUD7R5": "Audrey",
+  "FAN6N4": "Fanny",
+  "ALI8C5": "Alicia",
+  "STE4P8": "Stéphanie",
+  "AGN6S9": "Agnès",
+  "MAN7U9": "Manuella",
+  "AMA8D3": "Amandine",
+  "LIS5A4": "Lisa",
+  "MAN5D8": "Mandy"
+};
+const VALID_CODES = new Set(Object.keys(STUDENTS));
+
+const CLOUD_FUNCTION_URL = 'https://ugc-proxy-738708455173.europe-west1.run.app';
+const MODEL_ANALYZE = 'gemini-3-pro-preview';
+const MODEL_IMAGE = 'gemini-3-pro-image-preview';
+
+// ── SPLASH ──
+document.addEventListener('DOMContentLoaded', function() {
+  const ci = document.getElementById('codeInput');
+  ci.addEventListener('input', function() {
+    const val = this.value.trim().toUpperCase();
+    const valid = VALID_CODES.has(val);
+    document.getElementById('startBtn').disabled = !valid;
+    document.getElementById('codeError').style.display = (val.length >= 4 && !valid) ? 'block' : 'none';
+  });
+  ci.addEventListener('keydown', e => { if (e.key === 'Enter') startApp(); });
+});
+
+function startApp() {
+  const code = document.getElementById('codeInput').value.trim().toUpperCase();
+  if (!code || !VALID_CODES.has(code)) return;
+  state.studentCode = code;
+  state.studentName = STUDENTS[code] || 'Élève';
+  localStorage.setItem('ugc_student_code', code);
+  document.getElementById('splash').style.display = 'none';
+  document.getElementById('app').classList.add('visible');
+  buildEmotions(); buildContentTypes(); buildVisualStyles(); buildProductShots(); initSpecialModes();
+  document.getElementById('codeDisplay').textContent = state.studentName;
+  const savedQuota = getLocalQuota(code);
+  updateQuotaWidget(savedQuota, 10);
+  showWelcomeToast(state.studentName, savedQuota);
+  initUI();
+}
+
+// ── QUOTA LOCAL (basé sur la date du jour) ──
+function getLocalQuota(code) {
+  const today = new Date().toISOString().slice(0,10);
+  const key = 'quota_' + code + '_' + today;
+  return parseInt(localStorage.getItem(key) || '0');
+}
+
+function incrementLocalQuota(code) {
+  const today = new Date().toISOString().slice(0,10);
+  const key = 'quota_' + code + '_' + today;
+  // FIX bug #3 : plafonner à 10, jamais au-delà
+  const current = getLocalQuota(code);
+  const n = Math.min(current + 1, 10);
+  localStorage.setItem(key, n);
+  return n;
+}
+
+function showWelcomeToast(name, used) {
+  const remaining = Math.max(0, 10 - used);
+  const toast = document.getElementById('welcomeToast');
+  const msg = document.getElementById('welcomeMsg');
+  if (remaining <= 0) {
+    msg.innerHTML = '👋 Bonjour <strong>' + name + '</strong> ! Tu as utilisé toutes tes générations aujourd\'hui. Reviens demain ! 🌙';
+  } else {
+    msg.innerHTML = '👋 Bienvenue <strong>' + name + '</strong> ! Tu peux générer <strong>' + remaining + ' image' + (remaining > 1 ? 's' : '') + '</strong> aujourd\'hui ✨';
+  }
+  toast.style.display = 'flex';
+  setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => { toast.style.display = 'none'; toast.style.opacity = '1'; }, 600); }, 5000);
+}
+
+function goSplash() {
+  document.getElementById('splash').style.display = 'flex';
+  document.getElementById('app').classList.remove('visible');
+  document.getElementById('codeInput').value = state.studentCode;
+}
+
+// ── INIT ──
+function initUI() {
+  buildScenes(); buildShots(); buildMultiSteps(); buildEmotions(); buildContentTypes(); buildVisualStyles(); buildProductShots(); initSpecialModes(); updateBadges();
+}
+
+function buildScenes() {
+  const grid = document.getElementById('sceneGrid');
+  grid.innerHTML = SCENES.map(s =>
+    '<button class="scene-btn" id="scene_'+s.id+'" onclick="toggleScene(\''+s.id+'\',\''+s.name+'\')"><span class="scene-emoji">'+s.emoji+'</span><span>'+s.name+'</span></button>'
+  ).join('');
+}
+
+function buildShots() {
+  const list = document.getElementById('shotList');
+  list.innerHTML = SHOT_CATS.map(cat =>
+    '<div class="shot-cat-title">'+cat.name+'</div>'+
+    cat.shots.map(s => '<button class="shot-btn" id="shot_'+s.id+'" onclick="toggleShot(\''+s.id+'\',\''+s.label.replace(/'/g,"\\'")+'\')">'+s.label+'</button>').join('')
+  ).join('');
+}
+
+function buildMultiSteps() {
+  const wrap = document.getElementById('multiSteps');
+  wrap.innerHTML = [0,1,2,3].map(i =>
+    '<input type="text" placeholder="Étape '+(i+1)+' (ex: Elle applique la crème)" value="'+state.manualSteps[i]+'" oninput="state.manualSteps['+i+']=this.value" class="s-input" style="margin-bottom:0.35rem">'
+  ).join('');
+}
+
+function buildEmotions() {
+  var grid = document.getElementById('emotionGrid');
+  if (!grid) return;
+  var groups = [
+    { label: 'Negatif', ids: ['frustration','doute','gene','fatigue','agacement'] },
+    { label: 'Neutre', ids: ['curiosite','concentration','hesitation','observation'] },
+    { label: 'Positif', ids: ['soulagement','bienetre','satisfaction','confiance','joie','surprise','seduction'] },
+  ];
+  var html = '';
+  for (var g = 0; g < groups.length; g++) {
+    html += '<div style="width:100%;font-size:0.55rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.3);margin:0.4rem 0 0.3rem">' + groups[g].label + '</div>';
+    for (var k = 0; k < groups[g].ids.length; k++) {
+      var eid = groups[g].ids[k];
+      var elabel = '';
+      for (var m = 0; m < EMOTIONS.length; m++) { if (EMOTIONS[m].id === eid) elabel = EMOTIONS[m].label; }
+      html += '<button class="pill-btn" id="emo_' + eid + '" data-eid="' + eid + '" style="margin:0.15rem">' + elabel + '</button>';
+    }
+  }
+  grid.innerHTML = html;
+  var btns = grid.getElementsByTagName('button');
+  for (var j = 0; j < btns.length; j++) {
+    (function(b) {
+      b.onclick = function() {
+        var eid = b.getAttribute('data-eid');
+        var all = document.getElementById('emotionGrid').getElementsByTagName('button');
+        for (var i = 0; i < all.length; i++) all[i].className = 'pill-btn';
+        if (state.selectedEmotion === eid) { state.selectedEmotion = null; }
+        else { state.selectedEmotion = eid; b.className = 'pill-btn sel-purple'; }
+      };
+    })(btns[j]);
+  }
+}
+
+function buildContentTypes() {
+  var grid = document.getElementById('contentTypeGrid');
+  if (!grid) return;
+  var html = '';
+  for (var i = 0; i < CONTENT_TYPES.length; i++) {
+    var c = CONTENT_TYPES[i];
+    var cls = c.id === 'organique' ? 'pill-btn sel-indigo' : 'pill-btn';
+    html += '<button class="' + cls + '" id="ct_' + c.id + '" data-cid="' + c.id + '" style="margin:0.15rem">' + c.label + '</button>';
+  }
+  grid.innerHTML = html;
+  var btns = grid.getElementsByTagName('button');
+  for (var j = 0; j < btns.length; j++) {
+    (function(b) {
+      b.onclick = function() {
+        var cid = b.getAttribute('data-cid');
+        var all = document.getElementById('contentTypeGrid').getElementsByTagName('button');
+        for (var i = 0; i < all.length; i++) all[i].className = 'pill-btn';
+        state.contentType = cid;
+        b.className = 'pill-btn sel-indigo';
+      };
+    })(btns[j]);
+  }
+}
+
+function buildVisualStyles() {
+  var grid = document.getElementById('visualStyleGrid');
+  if (!grid) return;
+  var html = '';
+  for (var i = 0; i < VISUAL_STYLES.length; i++) {
+    var s = VISUAL_STYLES[i];
+    var cls = s.id === 'naturel' ? 'pill-btn sel-emerald' : 'pill-btn';
+    html += '<button class="' + cls + '" id="vs_' + s.id + '" data-vsid="' + s.id + '" style="margin:0.15rem">' + s.label + '</button>';
+  }
+  grid.innerHTML = html;
+  var btns = grid.getElementsByTagName('button');
+  for (var j = 0; j < btns.length; j++) {
+    (function(b) {
+      b.onclick = function() {
+        var vsid = b.getAttribute('data-vsid');
+        var all = document.getElementById('visualStyleGrid').getElementsByTagName('button');
+        for (var i = 0; i < all.length; i++) all[i].className = 'pill-btn';
+        state.visualStyle = vsid;
+        b.className = 'pill-btn sel-emerald';
+      };
+    })(btns[j]);
+  }
+}
+
+function buildProductShots() {
+  var grid = document.getElementById('productShotGrid');
+  if (!grid) return;
+  var html = '';
+  for (var i = 0; i < PRODUCT_SHOTS.length; i++) {
+    var s = PRODUCT_SHOTS[i];
+    html += '<button class="pill-btn" id="ps_' + s.id + '" data-psid="' + s.id + '" title="Usage: ' + s.usage + '" style="margin:0.15rem;font-size:0.55rem">' + s.label + '</button>';
+  }
+  grid.innerHTML = html;
+  var btns = grid.getElementsByTagName('button');
+  for (var j = 0; j < btns.length; j++) {
+    (function(b) {
+      b.onclick = function() {
+        var psid = b.getAttribute('data-psid');
+        var all = document.getElementById('productShotGrid').getElementsByTagName('button');
+        for (var i = 0; i < all.length; i++) all[i].className = 'pill-btn';
+        if (state.selectedProductShot === psid) {
+          state.selectedProductShot = null;
+        } else {
+          state.selectedProductShot = psid;
+          b.className = 'pill-btn sel-indigo';
+        }
+      };
+    })(btns[j]);
+  }
+}
+
+function initSpecialModes() {
+  var grid = document.getElementById('specialModeGrid');
+  if (!grid) return;
+  var btns = grid.getElementsByTagName('button');
+  for (var j = 0; j < btns.length; j++) {
+    (function(b) {
+      b.onclick = function() {
+        var mode = b.getAttribute('data-mode');
+        var allBtns = document.getElementById('specialModeGrid').getElementsByTagName('button');
+        for (var k = 0; k < allBtns.length; k++) allBtns[k].className = 'pill-btn';
+        var label = document.getElementById('specialModeLabel');
+        if (state.specialMode === mode) {
+          state.specialMode = null;
+          label.style.display = 'none';
+        } else {
+          state.specialMode = mode;
+          b.className = 'pill-btn sel-amber';
+          var workflows = { 'mascara': '3 images generees', 'haircare': '4 images generees', 'bodywash': '2 images generees', 'fitting': '4 images generees', 'manicure': '5 images generees' };
+          label.textContent = 'Mode actif : ' + mode.toUpperCase() + ' — ' + (workflows[mode] || '');
+          label.style.display = 'block';
+        }
+        updateBadges();
+      };
+    })(btns[j]);
+  }
+}
+
+// ── QUOTA WIDGET ──
+function updateQuotaWidget(used, max) {
+  state.quotaUsed = used; state.quotaMax = max;
+  const widget = document.getElementById('quotaWidget');
+  const dots = document.getElementById('quotaDots');
+  const text = document.getElementById('quotaText');
+  const remaining = Math.max(0, max - used);
+  const pct = used / max;
+  const cls = pct >= 0.9 ? 'critical' : pct >= 0.6 ? 'warning' : '';
+  widget.className = 'quota-widget' + (cls ? ' '+cls : '');
+  text.className = 'quota-text' + (cls ? ' '+cls : '');
+  text.textContent = remaining + ' restantes';
+  dots.innerHTML = Array.from({length: max}, (_, i) => {
+    const isUsed = i < used;
+    return '<div class="quota-dot'+(isUsed?' used'+(cls?' '+cls:''):'')+'" title="'+(isUsed?'Utilisé':'Disponible')+'"></div>';
+  }).join('');
+}
+
+// ── TOGGLES ──
+function toggleDuoMode() {
+  state.isDuo = document.getElementById('toggleDuo').checked;
+  document.querySelectorAll('[data-duo]').forEach(el => { el.style.display = state.isDuo ? 'flex' : 'none'; });
+  updateBadges();
+}
+function toggleDressCode() {
+  state.dressEnabled = document.getElementById('toggleDress').checked;
+  document.getElementById('dressCard').style.display = state.dressEnabled ? 'block' : 'none';
+  const p = document.getElementById('prodUploader');
+  p.style.opacity = state.dressEnabled ? '0.3' : '1';
+  p.style.pointerEvents = state.dressEnabled ? 'none' : 'auto';
+  updateBadges();
+}
+function toggleBackstage() {
+  state.backstageEnabled = document.getElementById('toggleBackstage').checked;
+  document.getElementById('backstageCard').style.display = state.backstageEnabled ? 'block' : 'none';
+  updateBadges();
+}
+function toggleVanity() {
+  state.vanityMode = document.getElementById('toggleVanity').checked;
+  updateBadges();
+}
+function toggleBTS(id) {
+  const btn = document.getElementById(id);
+  const key = id.replace('bts_', '');
+  if (state.btsTypes.includes(key)) {
+    state.btsTypes = state.btsTypes.filter(x => x !== key);
+    btn.className = 'pill-btn';
+  } else {
+    state.btsTypes.push(key);
+    btn.className = 'pill-btn sel-orange';
+  }
+}
+function toggleLocationMode() {
+  state.locationEnabled = document.getElementById('toggleLocation').checked;
+  document.getElementById('locationInputs').style.display = state.locationEnabled ? 'block' : 'none';
+  updateBadges();
+}
+function toggleScene(id, name) {
+  var btn = document.getElementById('scene_'+id);
+  if (!btn) return;
+  if (state.scenes.includes(name)) {
+    state.scenes = state.scenes.filter(function(x) { return x !== name; });
+    btn.className = 'scene-btn';
+  } else if (state.scenes.length < 2) {
+    state.scenes.push(name);
+    btn.className = 'scene-btn sel';
+  }
+}
+function toggleShot(id, label) {
+  const btn = document.getElementById('shot_'+id);
+  if (state.shots.includes(label)) {
+    state.shots = state.shots.filter(x => x !== label);
+    btn.className = 'shot-btn';
+  } else {
+    state.shots.push(label);
+    btn.className = 'shot-btn sel';
+  }
+}
+function updateMultiMode() {
+  state.multiMode = document.getElementById('multiMode').value;
+  document.getElementById('multiManualWrap').style.display = state.multiMode === 'manual' ? 'block' : 'none';
+}
+function setAR(ar) {
+  state.aspectRatio = ar;
+  document.getElementById('ar916').className = 'ar-btn'+(ar==='9:16'?' active':'');
+  document.getElementById('ar169').className = 'ar-btn'+(ar==='16:9'?' active':'');
+}
+function updateBadges() {
+  state.identityLocked = document.getElementById('toggleIdentity').checked;
+  state.styleScandinavian = document.getElementById('toggleStyle').checked;
+  const badges = [];
+  if (state.identityLocked) badges.push('<div class="badge badge-rose">🔐 Identity Lock</div>');
+  if (state.isDuo) badges.push('<div class="badge badge-purple">👯 Mode Duo</div>');
+  if (state.dressEnabled) badges.push('<div class="badge badge-amber">👗 Dress Code</div>');
+  if (state.styleScandinavian) badges.push('<div class="badge badge-emerald">🏠 Bois & Blanc</div>');
+  if (state.vanityMode) badges.push('<div class="badge badge-rose">💄 Vanity</div>');
+  if (state.locationEnabled) {
+    const city = document.getElementById('locationCity').value;
+    const country = document.getElementById('locationCountry').value;
+    if (city||country) badges.push('<div class="badge badge-indigo">🧭 '+(city||'')+(city&&country?', ':'')+(country||'')+'</div>');
+  }
+  document.getElementById('activeBadges').innerHTML = badges.join('');
+  document.getElementById('galleryBadges').innerHTML = badges.join('');
+}
+
+// ── UPLOAD ──
+function handleUpload(e, key) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    const b64 = reader.result.split(',')[1];
+    state[key] = b64; state[key+'Mime'] = file.type;
+    const up = document.getElementById(key+'Uploader');
+    if (up) {
+      const old = up.querySelector('img.preview');
+      if (old) old.remove();
+      const img = document.createElement('img');
+      img.className = 'uploader-preview preview'; img.src = reader.result;
+      up.prepend(img); up.classList.add('has-img');
+      const icon = up.querySelector('.uploader-icon'); const lbl = up.querySelector('.uploader-label');
+      if (icon) icon.style.display = 'none'; if (lbl) lbl.style.display = 'none';
+      if (key === 'prod') detectProductType(file.name.toLowerCase());
+    }
+  };
+  reader.readAsDataURL(file);
+}
+function removeImg(e, key) {
+  e.stopPropagation(); e.preventDefault();
+  state[key] = '';
+  const up = document.getElementById(key+'Uploader');
+  if (up) {
+    const img = up.querySelector('img.preview'); if (img) img.remove();
+    up.classList.remove('has-img');
+    const icon = up.querySelector('.uploader-icon'); const lbl = up.querySelector('.uploader-label');
+    if (icon) icon.style.display = ''; if (lbl) lbl.style.display = '';
+    const input = up.querySelector('input[type=file]'); if (input) input.value = '';
+  }
+}
+
+const RITUAL_KW = ['shampoo','shampoing','coloration','masque','mask','huile','oil','soin','gommage','scrub'];
+const FITTING_KW = ['robe','veste','t-shirt','pantalon','jean','jupe','top','haut','vêtement','dress','jacket','shirt'];
+const MANICURE_KW = ['ongles','nails','manucure','vernis','french','manicure','ongle','pose','gel','capsules'];
+const MASCARA_KW = ['mascara'];
+const HAIRCARE_KW = ['shampoing','shampoo','coloration','masque capillaire','bain huile','soin cheveux','apres-shampoing','après-shampoing','conditioner'];
+const BODYWASH_KW = ['gel douche','gel nettoyant','savon liquide','nettoyant visage','nettoyant corps','shower gel','body wash'];
+
+function detectProductType(name) {
+  state.isRitual = RITUAL_KW.some(k => name.includes(k));
+  state.isFitting = FITTING_KW.some(k => name.includes(k));
+  state.isManicure = MANICURE_KW.some(k => name.includes(k));
+  state.isMascara = MASCARA_KW.some(k => name.includes(k));
+  state.isHairCare = HAIRCARE_KW.some(k => name.includes(k));
+  state.isBodyWash = BODYWASH_KW.some(k => name.includes(k));
+  let detected = null;
+  if (state.isMascara) detected = 'Mascara';
+  else if (state.isHairCare) detected = 'Soin Capillaire';
+  else if (state.isBodyWash) detected = 'Lavant Corps/Visage';
+  else if (state.isRitual) detected = 'Ritual Soin';
+  else if (state.isFitting) detected = 'Vêtement';
+  else if (state.isManicure) detected = 'Manicure';
+  const badge = document.getElementById('productDetectedBadge');
+  const type = document.getElementById('productDetectedType');
+  if (detected) { badge.style.display = 'block'; type.textContent = detected; }
+  else { badge.style.display = 'none'; }
+}
+
+function calcTotal() {
+  if (state.specialMode) {
+    var counts = { 'mascara':3, 'haircare':4, 'bodywash':2, 'fitting':4, 'manicure':5 };
+    return counts[state.specialMode] || 1;
+  }
+  var base = state.shots.length > 0 ? state.shots.length : 1;
+  var bts = state.backstageEnabled ? state.btsTypes.length : 0;
+  var multi = 0;
+  if (state.multiMode === 'auto') multi = 4;
+  else if (state.multiMode === 'manual') multi = state.manualSteps.filter(s => s.trim()).length;
+  return base + bts + multi;
+}
+
+// ── APPEL PROXY ──
+async function callProxy(model, body) {
+  const waitTimes = [5000, 10000, 20000, 40000];
+  let lastErr;
+  for (let attempt = 0; attempt <= waitTimes.length; attempt++) {
+    try {
+      const res = await fetch(CLOUD_FUNCTION_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ studentCode: state.studentCode, model: model, body: body })
+      });
+      if (!res.ok) {
+        const txt = await res.text();
+        let d; try { d = JSON.parse(txt); } catch(_) {}
+        const msg = (d && d.error) || txt || ('HTTP ' + res.status);
+        console.error('[UGC Proxy] Erreur', res.status, msg);
+        if (res.status === 429 && (msg.includes('quota') || msg.includes('limit') || msg.includes('Quota'))) {
+          updateQuotaWidget(10, 10);
+          throw new Error('Quota journalier atteint. Reviens demain !');
+        }
+        if (res.status === 429) throw new Error('RETRY:Trop de requetes - ' + msg);
+        if (res.status === 401) throw new Error('Code invalide : ' + state.studentCode);
+        if (msg.includes('503') || msg.includes('overloaded')) throw new Error('RETRY:' + msg);
+        throw new Error('Erreur serveur ' + res.status + ': ' + msg.substring(0, 200));
+      }
+      const data = await res.json();
+      console.log('[UGC Proxy] Reponse OK, data keys:', Object.keys(data));
+      var serverUsed = (data._quota && data._quota.used != null) ? data._quota.used : 0;
+      var localUsed = getLocalQuota(state.studentCode);
+      var realUsed = Math.min(Math.max(serverUsed, localUsed), 10);
+      var today = new Date().toISOString().slice(0,10);
+      localStorage.setItem('quota_' + state.studentCode + '_' + today, realUsed);
+      updateQuotaWidget(realUsed, 10);
+      return data;
+    } catch(err) {
+      lastErr = err;
+      console.error('[UGC Proxy] Catch:', err.message);
+      if (String(err.message).startsWith('RETRY:') && attempt < waitTimes.length) {
+        await sleep(waitTimes[attempt]); continue;
+      }
+      throw err;
+    }
+  }
+  throw lastErr;
+}
+
+function makePart(b64, mime) { return { inlineData: { data: b64, mimeType: mime } }; }
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function buildSystemPrompt() {
+  return `Tu es l'IA de "Studio UGC AI". Tu génères des instructions de prompt pour des photos UGC ultra-réalistes 4K.
+
+🚨 RÈGLE LIEU (PRIORITÉ ABSOLUE) :
+Si une photo de lieu est fournie, la scène doit se dérouler EXACTEMENT dans ce décor.
+
+🚨 CRITICAL LOCATION CONTEXT INSTRUCTION :
+When a city + country are provided, use them ONLY as architectural and environmental reference.
+RULES: PURPOSE: Adapt architecture style, materials, urban layout. NOT a scenic or touristic backdrop. REALISM FIRST: Everyday real-life environments. FORBIDDEN: Famous landmarks, skyline views, luxury fantasy.
+
+🚨 MODE IDENTITY LOCK :
+Fidélité absolue au visage, morphologie, teint et coiffure de la photo d'origine.
+
+🚨 DRESS CODE RÉFÉRENCE :
+Quand une tenue référence est fournie, reproduire EXACTEMENT cette tenue.
+
+🚨 RÈGLES PRODUIT :
+Texte produit net, 4K, parfaitement lisible.
+
+🚨 RÉALISME 4K :
+Peau brute, pores visibles, lumière naturelle. Aucun filtre beauté.
+
+🚨 MASCARA RESULT DIRECTIVE :
+Close-up on eyes and lashes. APPLICATION: Brush in direct contact with lashes. RESULT: Tight framing on eyes, lashes visibly enhanced.
+
+🚨 HAIRCARE DIRECTIVE :
+FORCE ALL SCENES IN BATHROOM ONLY. MANDATORY SEQUENCE: APPLICATION → PRODUCT IN ACTION → RINSE → FINAL RESULT.
+
+🚨 BODY WASH DIRECTIVE :
+Scene MUST be in bathroom or shower ONLY. Mandatory: visible water presence.
+
+🚨 BACKSTAGE TRIPOD + LIGHT DIRECTIVE :
+Smartphone on tripod, screen ON. LED ring light ON. Avatar interacting naturally.`;
+}
+
+async function buildPrompt(scene, shot, specialMode, seqInfo, btsType) {
+  const parts = [];
+  if (state.av1) parts.push(makePart(state.av1, state.av1Mime));
+  if (state.isDuo && state.av2) parts.push(makePart(state.av2, state.av2Mime));
+  if (!state.dressEnabled && state.prod) parts.push(makePart(state.prod, state.prodMime));
+  if (state.loc) parts.push(makePart(state.loc, state.locMime));
+  if (state.dressEnabled && state.dress1) parts.push(makePart(state.dress1, state.dress1Mime));
+  if (state.dressEnabled && state.isDuo && state.dress2) parts.push(makePart(state.dress2, state.dress2Mime));
+
+  const identLock = state.identityLocked ? '🚨 IDENTITY LOCK ACTIVÉ.' : '';
+  const styleStr = state.styleScandinavian ? '🚨 STYLE SCANDINAVE.' : '🚨 STYLE URBAIN MODERNE.';
+  const locStr = state.loc ? '🚨 UTILISE EXACTEMENT le décor de la photo de lieu fournie.' : '';
+  const dressStr = state.dressEnabled ? '🚨 DRESS CODE ACTIF — reproduire EXACTEMENT la tenue.' : '';
+  const duoStr = state.isDuo ? 'MODE DUO : 2 avatars.' : '';
+  const action = document.getElementById('actionText').value;
+  let locationStr = '';
+  if (state.locationEnabled) {
+    const city = document.getElementById('locationCity').value;
+    const country = document.getElementById('locationCountry').value;
+    if (city||country) locationStr = '🚨 LOCATION CONTEXT — City: '+city+', Country: '+country+'. Architecture adaptation ONLY.';
+  }
+
+  let modeStr = '';
+  if (specialMode) {
+    modeStr = 'Mode Auto: '+specialMode.type+' — Étape: '+specialMode.stage+'.';
+  } else if (btsType) {
+    modeStr = 'MODE BACKSTAGE '+btsType+' — Coque iPhone: '+document.getElementById('iphoneCase').value+'.';
+  } else if (seqInfo) {
+    modeStr = 'Séquence étape '+seqInfo.current+'/'+seqInfo.total+': "'+seqInfo.step+'".';
+  } else {
+    if (shot && (shot.toLowerCase().includes('avant') || shot.toLowerCase().includes('apres') || shot.includes('split'))) {
+      modeStr = 'AVANT/APRES MODE — GENERATE 2 CONTRASTED STATES: BEFORE=problem visible, negative emotion, no solution. AFTER=same person+resolved situation+positive natural emotion. Scène: ' + (scene||'real environment') + '.';
+    } else {
+      modeStr = 'Scène: '+(scene||'Contexte neutre')+', Plan: '+(shot||'Vue standard UGC')+'.';
+    }
+  }
+
+  const prompt = 'Génère instruction UGC 4K : '+modeStr+' Action="'+action+'". '+identLock+' '+styleStr+' '+locStr+' '+locationStr+' '+dressStr+' '+duoStr;
+  parts.push({ text: prompt });
+
+  const analyzeRes = await callProxy(MODEL_ANALYZE, {
+    contents: [{ role: 'user', parts }],
+    systemInstruction: { parts: [{ text: buildSystemPrompt() }] }
+  });
+  const txt = analyzeRes.candidates && analyzeRes.candidates[0]?.content?.parts;
+  return (txt && txt.find(p => p.text)?.text) || prompt;
+}
+
+async function generateImage(prompt) {
+  const parts = [];
+  if (state.av1) parts.push(makePart(state.av1, state.av1Mime));
+  if (state.isDuo && state.av2) parts.push(makePart(state.av2, state.av2Mime));
+  if (state.loc) parts.push(makePart(state.loc, state.locMime));
+  if (!state.dressEnabled && state.prod) parts.push(makePart(state.prod, state.prodMime));
+  if (state.dressEnabled && state.dress1) parts.push(makePart(state.dress1, state.dress1Mime));
+  if (state.dressEnabled && state.isDuo && state.dress2) parts.push(makePart(state.dress2, state.dress2Mime));
+  parts.push({ text: prompt });
+
+  const res = await callProxy(MODEL_IMAGE, {
+    contents: [{ role: 'user', parts }],
+    generationConfig: { responseModalities: ['IMAGE'], imageConfig: { aspectRatio: state.aspectRatio, imageSize: '4K' } }
+  });
+
+  const cParts = res.candidates && res.candidates[0]?.content?.parts;
+  console.log('[UGC Image] candidates:', res.candidates ? res.candidates.length : 0, 'parts:', cParts ? cParts.length : 0);
+  if (cParts) cParts.forEach((p,i) => console.log('[UGC Image] part['+i+'] type:', p.inlineData ? 'IMAGE' : p.text ? 'TEXT('+p.text.substring(0,50)+')' : 'AUTRE'));
+  const imgData = cParts && cParts.find(p => p.inlineData);
+  if (!imgData) {
+    const textPart = cParts && cParts.find(p => p.text);
+    const errMsg = textPart ? 'Serveur : ' + textPart.text.substring(0, 150) : 'Aucune image dans la reponse du modele.';
+    throw new Error(errMsg);
+  }
+  const b64 = imgData.inlineData.data;
+  const mime = imgData.inlineData.mimeType || 'image/png';
+  const binary = atob(b64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  const blob = new Blob([bytes], { type: mime });
+  return URL.createObjectURL(blob);
+}
+
+// ── MAIN GENERATE ──
+let generatedImages = [], isGenerating = false;
+
+async function generate() {
+  if (isGenerating) return;
+  state.identityLocked = document.getElementById('toggleIdentity').checked;
+  state.styleScandinavian = document.getElementById('toggleStyle').checked;
+
+  if (!state.prod && !state.dressEnabled) { showError('Produit requis (ou activer Dress Code).'); return; }
+  if (state.isDuo && (!state.av1 || !state.av2)) { showError('Deux avatars requis pour le Mode Duo.'); return; }
+  if (state.dressEnabled && !state.dress1) { showError('Importez au moins une référence de tenue.'); return; }
+
+  // Vérification quota STRICTE avant tout appel
+  const localUsed = getLocalQuota(state.studentCode);
+  if (localUsed >= 10) {
+    showError('Tu as atteint tes 10 générations du jour. Reviens demain !');
+    updateQuotaWidget(10, 10);
+    const btn = document.getElementById('genBtn');
+    btn.disabled = true;
+    document.getElementById('genLabel').textContent = 'Quota atteint - Reviens demain';
+    return;
+  }
+
+  const total = calcTotal();
+  hideError(); isGenerating = true; generatedImages = []; showLoading();
+  const btn = document.getElementById('genBtn'); btn.disabled = true;
+  document.getElementById('genLabel').textContent = 'Génération en cours...';
+
+  let count = 0;
+  const runOne = async (scene, shot, specialMode, seqInfo, btsType) => {
+    // Vérification quota à chaque image
+    if (getLocalQuota(state.studentCode) >= 10) {
+      showError('Quota atteint en cours de génération.');
+      return;
+    }
+    count++;
+    updateProgress(count, total, 'Photo '+count+'/'+total+'...');
+    try {
+      const prompt = await buildPrompt(scene, shot, specialMode, seqInfo, btsType);
+      const imgUrl = await generateImage(prompt);
+      generatedImages.push(imgUrl);
+      addImageToGallery(imgUrl, count);
+      var newQ = incrementLocalQuota(state.studentCode);
+      state.quotaUsed = newQ;
+      updateQuotaWidget(newQ, 10);
+      // Bloquer le bouton si quota atteint
+      if (newQ >= 10) {
+        document.getElementById('genBtn').disabled = true;
+        document.getElementById('genLabel').textContent = 'Quota atteint - Reviens demain';
+      }
+    } catch(err) {
+      console.error('Generation error:', err);
+      showError(err.message || 'Erreur de connexion au serveur.');
+    }
+  };
+
+  try {
+    // Modes speciaux
+    if (state.specialMode) {
+      var specialWorkflows = {
+        'mascara': ['APPLICATION','GLOW','CONTEXT_HELD'],
+        'haircare': ['APPLICATION_CHEVEUX','PRODUIT_EN_ACTION','LAVAGE_DOUCHE_DOS','RESULTAT_MIROIR'],
+        'bodywash': ['PRODUIT_SALLE_DE_BAIN','UTILISATION_DOUCHE'],
+        'fitting': ['CHOIX_SUR_LIT','ENFILAGE_ACTION','DETAIL_AJUSTEMENT','LOOK_FINAL'],
+        'manicure': ['ZOOM_TABLE','ACCESSOIRE_MAIN','POSE_VISAGE','CHEVEUX_NATURELS','LIFESTYLE_FOCUS'],
+      };
+      var stages = specialWorkflows[state.specialMode] || [];
+      for (var si = 0; si < stages.length; si++) {
+        await runOne('', '', {type: state.specialMode.toUpperCase(), stage: stages[si]}, null, null);
+      }
+      goto_done(); return;
+    }
+
+    // Génération normale : 1 image par plan sélectionné
+    var finalShots = state.shots.length > 0 ? state.shots : ['Vue standard UGC'];
+    // FIX bug #2: utiliser state.scenes[0] au lieu de la variable inexistante finalScenes
+    var firstScene = state.scenes.length > 0 ? state.scenes[0] : '';
+
+    for (var si2 = 0; si2 < finalShots.length; si2++) {
+      await runOne(firstScene, finalShots[si2], null, null, null);
+    }
+
+    // Backstage — FIX bug #2: remplacer finalScenes[0] par firstScene
+    if (state.backstageEnabled && state.btsTypes.length > 0) {
+      for (var bi = 0; bi < state.btsTypes.length; bi++) {
+        await runOne(firstScene, 'Backstage Action', null, null, state.btsTypes[bi]);
+      }
+    }
+
+    // Multi-scène — FIX bug #2: remplacer finalScenes[0] par firstScene
+    if (state.multiMode !== 'off') {
+      const steps = state.multiMode === 'auto'
+        ? ['Ouverture', 'Préparation', 'Application', 'Résultat']
+        : state.manualSteps.filter(s => s.trim());
+      for (let i = 0; i < steps.length; i++) {
+        await runOne(firstScene, steps[i], null, {current: i+1, total: steps.length, step: steps[i]}, null);
+      }
+    }
+
+  } catch(err) {
+    showError(err.message || 'Erreur de génération.');
+  }
+
+  goto_done();
+}
+
+function goto_done() {
+  isGenerating = false;
+  const btn = document.getElementById('genBtn');
+  const localUsed = getLocalQuota(state.studentCode);
+  if (localUsed >= 10) {
+    btn.disabled = true;
+    document.getElementById('genLabel').textContent = 'Quota atteint - Reviens demain';
+  } else {
+    btn.disabled = false;
+    document.getElementById('genLabel').textContent = 'Générer les Photos UGC';
+  }
+  // FIX: condition était inversée (double négation) — maintenant correcte
+  if (generatedImages.length === 0 && document.getElementById('errorBox').style.display === 'none') {
+    showError('Aucune image générée. Vérifie ta connexion au serveur proxy.');
+  }
+}
+
+// ── GALLERY UI ──
+function showLoading() {
+  document.getElementById('galleryBody').innerHTML =
+    '<div class="loading-area">'+
+    '<div class="loading-spinner"></div>'+
+    '<div class="loading-text" id="loadingText">Initialisation...</div>'+
+    '<div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>'+
+    '</div>';
+}
+function updateProgress(current, total, msg) {
+  const txt = document.getElementById('loadingText'); const bar = document.getElementById('progressBar');
+  if (txt) txt.textContent = msg; if (bar) bar.style.width = Math.round((current/total)*100)+'%';
+}
+function addImageToGallery(url, num) {
+  const body = document.getElementById('galleryBody');
+  if (body.querySelector('.loading-area')) body.innerHTML = '<div class="gallery-grid" id="galleryGrid"></div>';
+  const grid = document.getElementById('galleryGrid');
+  const card = document.createElement('div'); card.className = 'img-card';
+  card.innerHTML = '<img src="'+url+'" alt="Photo UGC '+num+'" loading="lazy">'+
+    '<div class="img-card-footer"><div><div class="img-card-num">Photo '+num+' — 4K</div>'+
+    '<div style="font-size:0.55rem;color:var(--emerald);font-weight:700;text-transform:uppercase;letter-spacing:0.1em">PNG • Ultra HD</div></div>'+
+    '<button class="dl-btn" onclick="downloadImg(\''+url+'\','+num+')">↓ PNG</button></div>';
+  grid.appendChild(card);
+}
+function downloadImg(url, num) {
+  const a = document.createElement('a'); a.href = url; a.download = 'ugc-studio-photo-'+num+'.png'; a.click();
+}
+function showError(msg) { const b = document.getElementById('errorBox'); b.textContent = msg; b.style.display = 'block'; }
+function hideError() { document.getElementById('errorBox').style.display = 'none'; }
+
+// ── AUTO-RESTORE CODE ──
+window.addEventListener('load', () => {
+  const saved = localStorage.getItem('ugc_student_code');
+  if (saved && VALID_CODES.has(saved)) {
+    document.getElementById('codeInput').value = saved;
+    document.getElementById('startBtn').disabled = false;
+  }
+});
+</script>
+</body>
+</html>

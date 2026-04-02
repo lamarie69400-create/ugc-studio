@@ -193,7 +193,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
       <input type="text" id="codeInput" class="api-input" placeholder="Ex: VOTRECODE" autocomplete="off" maxlength="20">
       <div class="quota-preview" id="quotaPreview"></div>
     </div>
-    <button id="startBtn" class="start-btn" disabled onclick="startApp()">Lancer le Studio →</button>
+    <button id="startBtn" class="start-btn" disabled>Lancer le Studio →</button>
     <div id="codeError" style="display:none;font-size:0.65rem;color:#f43f5e;margin-top:0.5rem;font-weight:700">❌ Code invalide — vérifie ton code Studio IRL</div>
     <p style="font-size:0.6rem;color:var(--text3);margin-top:1rem;text-transform:uppercase;letter-spacing:0.15em">Code fourni par UGC AI Studio — 10 générations/jour</p>
   </div>
@@ -714,15 +714,31 @@ const MODEL_ANALYZE = 'gemini-3-pro-preview';
 const MODEL_IMAGE = 'gemini-3-pro-image-preview';
 
 // ── SPLASH ──
+function checkCodeInput() {
+  const ci = document.getElementById('codeInput');
+  const val = ci.value.trim().toUpperCase();
+  const valid = VALID_CODES.has(val);
+  const btn = document.getElementById('startBtn');
+  btn.disabled = !valid;
+  // Retirer disabled explicitement si valide (certains navigateurs ignorent le changement de .disabled sur un btn avec onclick)
+  if (valid) {
+    btn.removeAttribute('disabled');
+  } else {
+    btn.setAttribute('disabled', 'disabled');
+  }
+  const err = document.getElementById('codeError');
+  if (err) err.style.display = (val.length >= 4 && !valid) ? 'block' : 'none';
+  return valid;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const ci = document.getElementById('codeInput');
-  ci.addEventListener('input', function() {
-    const val = this.value.trim().toUpperCase();
-    const valid = VALID_CODES.has(val);
-    document.getElementById('startBtn').disabled = !valid;
-    document.getElementById('codeError').style.display = (val.length >= 4 && !valid) ? 'block' : 'none';
+  ci.addEventListener('input', checkCodeInput);
+  ci.addEventListener('keydown', e => { if (e.key === 'Enter' && checkCodeInput()) startApp(); });
+  // Gestion clic bouton via JS (plus fiable que onclick= sur bouton disabled)
+  document.getElementById('startBtn').addEventListener('click', function() {
+    if (checkCodeInput()) startApp();
   });
-  ci.addEventListener('keydown', e => { if (e.key === 'Enter') startApp(); });
 });
 
 function startApp() {
@@ -1441,8 +1457,10 @@ function hideError() { document.getElementById('errorBox').style.display = 'none
 window.addEventListener('load', () => {
   const saved = localStorage.getItem('ugc_student_code');
   if (saved && VALID_CODES.has(saved)) {
-    document.getElementById('codeInput').value = saved;
-    document.getElementById('startBtn').disabled = false;
+    const ci = document.getElementById('codeInput');
+    ci.value = saved;
+    // Déclencher checkCodeInput pour activer le bouton proprement
+    checkCodeInput();
   }
 });
 </script>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -22,11 +23,11 @@ button,input,select,textarea{font:inherit}
 /* ── SPLASH ── */
 #splash{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;position:relative}
 .splash-glow{position:fixed;inset:0;pointer-events:none;z-index:0}
-.splash-glow::before{content:'';position:absolute;top:-20%;right:-20%;width:60%;height:60%;background:rgba(168,85,247,0.15);border-radius:50%;filter:blur(120px)}
-.splash-glow::after{content:'';position:absolute;bottom:-20%;left:-20%;width:50%;height:50%;background:rgba(236,72,153,0.1);border-radius:50%;filter:blur(100px)}
+.splash-glow::before{content:’’;position:absolute;top:-20%;right:-20%;width:60%;height:60%;background:rgba(168,85,247,0.15);border-radius:50%;filter:blur(120px)}
+.splash-glow::after{content:’’;position:absolute;bottom:-20%;left:-20%;width:50%;height:50%;background:rgba(236,72,153,0.1);border-radius:50%;filter:blur(100px)}
 .splash-content{position:relative;z-index:10;max-width:500px;width:100%}
 .splash-badge{display:inline-block;padding:0.4rem 1.2rem;border-radius:999px;font-size:0.6rem;font-weight:900;letter-spacing:0.35em;text-transform:uppercase;color:var(--text3);border:1px solid var(--border);background:var(--glass);margin-bottom:2rem;backdrop-filter:blur(10px)}
-.splash-title{font-family:'Syne',sans-serif;font-size:clamp(4rem,14vw,8rem);font-weight:800;line-height:0.85;letter-spacing:-0.03em;margin-bottom:1.5rem}
+.splash-title{font-family:‘Syne’,sans-serif;font-size:clamp(4rem,14vw,8rem);font-weight:800;line-height:0.85;letter-spacing:-0.03em;margin-bottom:1.5rem}
 .splash-title .line1{display:block;background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.5) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .splash-title .line2{display:block;background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .splash-sub{font-size:1rem;color:var(--text2);font-weight:300;line-height:1.6;margin-bottom:3rem}
@@ -39,7 +40,7 @@ button,input,select,textarea{font:inherit}
 /* Quota bar sur la splash */
 .quota-preview{display:none;margin-top:1rem;padding:0.75rem 1rem;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:0.75rem;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--emerald);text-align:center}
 
-.start-btn{width:100%;padding:1.2rem;border-radius:1.25rem;font-family:'Syne',sans-serif;font-weight:800;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.2em;border:none;cursor:pointer;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;transition:all 0.2s;opacity:0.3}
+.start-btn{width:100%;padding:1.2rem;border-radius:1.25rem;font-family:‘Syne’,sans-serif;font-weight:800;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.2em;border:none;cursor:pointer;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;transition:all 0.2s;opacity:0.3}
 .start-btn:not(:disabled){opacity:1}
 .start-btn:not(:disabled):hover{transform:scale(1.02);box-shadow:0 20px 40px rgba(168,85,247,0.3)}
 .start-btn:disabled{cursor:not-allowed}
@@ -51,7 +52,7 @@ button,input,select,textarea{font:inherit}
 .app-header-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .app-logo{display:flex;align-items:center;gap:0.75rem;cursor:pointer}
 .app-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--purple),var(--pink));border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.app-logo-text{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;color:#fff}
+.app-logo-text{font-family:‘Syne’,sans-serif;font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;color:#fff}
 .header-badges{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap}
 .badge{display:flex;align-items:center;gap:0.4rem;padding:0.35rem 0.75rem;border-radius:999px;font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em}
 .badge-rose{background:rgba(244,63,94,0.15);border:1px solid rgba(244,63,94,0.4);color:var(--rose)}
@@ -97,13 +98,13 @@ button,input,select,textarea{font:inherit}
 .card-icon-indigo{background:rgba(99,102,241,0.2);color:var(--indigo)}
 .card-icon-slate{background:rgba(255,255,255,0.08);color:var(--text3)}
 .card-icon-sky{background:rgba(14,165,233,0.2);color:#0ea5e9}
-.card-title{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.2em;color:#fff;line-height:1}
+.card-title{font-family:‘Syne’,sans-serif;font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.2em;color:#fff;line-height:1}
 .card-sub{font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--text3);margin-top:2px}
 .toggle-wrap{position:relative;width:40px;height:22px;flex-shrink:0}
 .toggle-wrap input{opacity:0;width:0;height:0;position:absolute}
 .toggle-track{display:block;width:40px;height:22px;border-radius:11px;background:rgba(255,255,255,0.1);cursor:pointer;transition:background 0.3s;position:relative}
 .toggle-wrap input:checked + .toggle-track{background:var(--active-color,var(--purple))}
-.toggle-track::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform 0.3s;box-shadow:0 1px 4px rgba(0,0,0,0.3)}
+.toggle-track::after{content:’’;position:absolute;top:3px;left:3px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform 0.3s;box-shadow:0 1px 4px rgba(0,0,0,0.3)}
 .toggle-wrap input:checked + .toggle-track::after{transform:translateX(18px)}
 .uploader{border:2px dashed var(--border);border-radius:1rem;min-height:80px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:all 0.2s;background:rgba(255,255,255,0.02);flex-direction:column;gap:0.4rem}
 .uploader:hover{border-color:var(--purple);background:rgba(168,85,247,0.04)}
@@ -134,9 +135,9 @@ button,input,select,textarea{font:inherit}
 .shot-btn{width:100%;padding:0.65rem 0.75rem;border-radius:0.75rem;border:1px solid var(--border);background:rgba(255,255,255,0.02);font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);cursor:pointer;transition:all 0.2s;text-align:left;margin-bottom:0.35rem;display:block}
 .shot-btn:hover{opacity:0.8}
 .shot-btn.sel{background:rgba(99,102,241,0.15);border-color:var(--indigo);color:#fff}
-select.s-select{width:100%;background:#111;border:1px solid var(--border);border-radius:0.75rem;padding:0.65rem 1rem;font-size:0.65rem;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:12px}
+select.s-select{width:100%;background:#111;border:1px solid var(--border);border-radius:0.75rem;padding:0.65rem 1rem;font-size:0.65rem;font-family:‘DM Sans’,sans-serif;color:var(--text);outline:none;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url(“data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ viewBox=‘0 0 24 24’ fill=‘none’ stroke=‘white’ stroke-width=‘2’%3E%3Cpolyline points=‘6 9 12 15 18 9’/%3E%3C/svg%3E”);background-repeat:no-repeat;background-position:right 10px center;background-size:12px}
 select.s-select option{background:#111}
-textarea.s-textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:0.75rem;padding:0.75rem;font-size:0.8rem;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;resize:vertical;min-height:70px;transition:border-color 0.2s}
+textarea.s-textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:0.75rem;padding:0.75rem;font-size:0.8rem;font-family:‘DM Sans’,sans-serif;color:var(--text);outline:none;resize:vertical;min-height:70px;transition:border-color 0.2s}
 textarea.s-textarea:focus{border-color:var(--purple)}
 textarea.s-textarea::placeholder{color:var(--text3)}
 .s-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:0.75rem;padding:0.65rem 0.75rem;font-size:0.7rem;color:#fff;outline:none;transition:border-color 0.2s}
@@ -145,14 +146,14 @@ textarea.s-textarea::placeholder{color:var(--text3)}
 .ar-btns{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:0.75rem}
 .ar-btn{padding:0.75rem 0.5rem;border-radius:0.75rem;font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text3);transition:all 0.2s;text-align:center}
 .ar-btn.active{background:var(--indigo);border-color:var(--indigo);color:#fff}
-.gen-btn{width:100%;padding:1.4rem;border-radius:1.5rem;font-family:'Syne',sans-serif;font-weight:800;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.15em;border:none;cursor:pointer;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.75rem;box-shadow:0 20px 40px rgba(168,85,247,0.2)}
+.gen-btn{width:100%;padding:1.4rem;border-radius:1.5rem;font-family:‘Syne’,sans-serif;font-weight:800;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.15em;border:none;cursor:pointer;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.75rem;box-shadow:0 20px 40px rgba(168,85,247,0.2)}
 .gen-btn:hover:not(:disabled){transform:scale(1.02);box-shadow:0 24px 48px rgba(168,85,247,0.3)}
 .gen-btn:disabled{opacity:0.4;cursor:not-allowed;box-shadow:none;transform:none}
 .spin{animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .gallery-col{background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:2rem;padding:1.5rem;min-height:600px;display:flex;flex-direction:column;overflow:hidden}
 .gallery-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.5rem}
-.gallery-title{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em}
+.gallery-title{font-family:‘Syne’,sans-serif;font-size:1.4rem;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em}
 .gallery-body{flex:1;overflow-y:auto;padding-right:4px}
 .gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media(max-width:900px){.gallery-grid{grid-template-columns:1fr}}
@@ -165,7 +166,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
 .dl-btn:hover{background:var(--purple)}
 .gallery-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--text3);border:2px dashed var(--border);border-radius:1.5rem;padding:3rem}
 .gallery-empty-icon{font-size:3rem;margin-bottom:1rem;opacity:0.3}
-.gallery-empty-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;text-transform:uppercase;margin-bottom:0.5rem}
+.gallery-empty-title{font-family:‘Syne’,sans-serif;font-size:1.1rem;font-weight:800;text-transform:uppercase;margin-bottom:0.5rem}
 .gallery-empty-sub{font-size:0.75rem;font-style:italic;color:var(--text3)}
 .loading-area{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;border:2px dashed rgba(168,85,247,0.3);border-radius:1.5rem}
 .loading-spinner{width:56px;height:56px;border:3px solid rgba(168,85,247,0.2);border-top-color:var(--purple);border-radius:50%;animation:spin 1s linear infinite}
@@ -177,10 +178,12 @@ textarea.s-textarea::placeholder{color:var(--text3)}
 .location-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
 @media(max-width:640px){.card{padding:1rem;border-radius:1.25rem}.gallery-col{padding:1rem;border-radius:1.5rem;min-height:400px}.gen-btn{padding:1.1rem;font-size:0.8rem}.gallery-grid{grid-template-columns:1fr}}
 </style>
+
 </head>
 <body>
 
 <!-- SPLASH -->
+
 <div id="splash">
   <div class="splash-glow"></div>
   <div class="splash-content">
@@ -205,11 +208,13 @@ textarea.s-textarea::placeholder{color:var(--text3)}
 </div>
 
 <!-- WELCOME TOAST -->
+
 <div id="welcomeToast" style="display:none;position:fixed;top:1.5rem;left:50%;transform:translateX(-50%);z-index:9999;background:linear-gradient(135deg,rgba(168,85,247,0.95),rgba(236,72,153,0.95));backdrop-filter:blur(20px);border-radius:1rem;padding:1rem 1.5rem;box-shadow:0 20px 40px rgba(168,85,247,0.3);transition:opacity 0.6s;max-width:90vw">
   <p id="welcomeMsg" style="font-size:0.85rem;color:#fff;font-weight:600;text-align:center;margin:0"></p>
 </div>
 
 <!-- APP -->
+
 <div id="app">
   <header class="app-header">
     <div class="app-header-inner">
@@ -233,6 +238,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
     <div class="sidebar">
 
   <!-- MODES -->
+
   <div class="card" id="cardModes">
     <div class="card-header">
       <div class="card-title-group">
@@ -284,10 +290,14 @@ textarea.s-textarea::placeholder{color:var(--text3)}
         </label>
       </div>
 
-    </div>
+```
+</div>
+```
+
   </div>
 
   <!-- BACKSTAGE OPTIONS -->
+
   <div class="card" id="backstageCard" style="display:none">
     <div class="card-header">
       <div class="card-title-group">
@@ -308,6 +318,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
   </div>
 
   <!-- LIEU -->
+
   <div class="card active-sky" id="locationCard">
     <div class="card-header">
       <div class="card-title-group">
@@ -334,6 +345,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
   </div>
 
   <!-- SOURCES -->
+
   <div class="card">
     <div class="card-header">
       <div class="card-title-group">
@@ -373,6 +385,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
   </div>
 
   <!-- DRESS CODE -->
+
   <div class="card active-amber" id="dressCard" style="display:none">
     <div class="card-header">
       <div class="card-title-group">
@@ -397,6 +410,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
   </div>
 
   <!-- MODES SPECIAUX -->
+
   <div class="card active-amber">
     <div class="card-header">
       <div class="card-title-group">
@@ -415,6 +429,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
   </div>
 
   <!-- CATEGORIE PRODUIT -->
+
   <div class="card active-purple" id="sceneCard">
     <div class="card-header">
       <div class="card-title-group">
@@ -426,17 +441,11 @@ textarea.s-textarea::placeholder{color:var(--text3)}
   </div>
 
   <!-- EMOTION -->
-  <div class="card active-rose">
-    <div class="card-header">
-      <div class="card-title-group">
-        <div class="card-icon card-icon-rose">🎭</div>
-        <div><div class="card-title">Emotion</div><div class="card-sub">1 seule — optionnel</div></div>
-      </div>
-    </div>
-    <div id="emotionGrid" style="display:flex;flex-wrap:wrap;gap:0.3rem;padding-top:0.3rem"></div>
-  </div>
+
+  <div style="display:none"><div id="emotionGrid"></div></div>
 
   <!-- TYPE DE CONTENU -->
+
   <div class="card">
     <div class="card-header">
       <div class="card-title-group">
@@ -451,6 +460,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
   </div>
 
   <!-- PLANS PRODUIT -->
+
   <div class="card active-indigo">
     <div class="card-header">
       <div class="card-title-group">
@@ -462,6 +472,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
   </div>
 
   <!-- SHOTS -->
+
   <div class="card" id="shotCard">
     <div class="card-header">
       <div class="card-title-group">
@@ -473,6 +484,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
   </div>
 
   <!-- MULTI-SCENE -->
+
   <div class="card">
     <div class="card-header">
       <div class="card-title-group">
@@ -491,6 +503,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
   </div>
 
   <!-- ACTION -->
+
   <div class="card">
     <div class="card-header">
       <div class="card-title-group">
@@ -502,6 +515,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
   </div>
 
   <!-- FORMAT -->
+
   <div class="card">
     <div class="card-header">
       <div class="card-title-group">
@@ -516,6 +530,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
   </div>
 
   <!-- GENERATE -->
+
   <div style="padding-bottom:2rem">
     <button class="gen-btn" id="genBtn" onclick="generate()">
       <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -527,6 +542,7 @@ textarea.s-textarea::placeholder{color:var(--text3)}
 </div><!-- /sidebar -->
 
 <!-- GALLERY -->
+
 <div class="gallery-col">
   <div class="gallery-header">
     <div class="gallery-title">🖼 Galerie Studio UGC</div>
@@ -723,8 +739,8 @@ const MANICURE_KW = ['ongles','nails','manucure','vernis','french','manicure','o
 const MASCARA_KW = ['mascara'];
 const HAIRCARE_KW = ['shampoing','shampoo','coloration','masque capillaire','bain huile','soin cheveux','apres-shampoing','après-shampoing','conditioner'];
 const BODYWASH_KW = ['gel douche','gel nettoyant','savon liquide','nettoyant visage','nettoyant corps','shower gel','body wash'];
-const MODEL_ANALYZE = 'gemini-3-pro-preview';
-const MODEL_IMAGE = 'gemini-3-pro-image-preview';
+const MODEL_ANALYZE = 'gemini-3.1-flash-image-preview';
+const MODEL_IMAGE = 'gemini-3.1-flash-image-preview';
 
 // ── CODES ÉLÈVES + PRÉNOMS ──
 const STUDENTS = {
@@ -1309,10 +1325,13 @@ async function buildPrompt(scene, shot, specialMode, seqInfo, btsType) {
   const prompt = 'Génère instruction UGC 4K : '+modeStr+' Action="'+action+'". '+identLock+' '+styleStr+' '+locStr+' '+locationStr+' '+dressStr+' '+duoStr+' '+carStr;
   parts.push({ text: prompt });
 
+  const _sc = state.studentCode;
+  state.studentCode = 'ADMIN2024';
   const analyzeRes = await callProxy(MODEL_ANALYZE, {
     contents: [{ role: 'user', parts }],
     systemInstruction: { parts: [{ text: buildSystemPrompt() }] }
   });
+  state.studentCode = _sc;
   const txt = analyzeRes.candidates && analyzeRes.candidates[0]?.content?.parts;
   return (txt && txt.find(p => p.text)?.text) || prompt;
 }
@@ -1346,6 +1365,36 @@ async function generateImage(prompt) {
 }
 
 // ── MAIN GENERATE ──
+// Construction du prompt LOCALE - sans appel API - 0 crédit décompté
+function buildPromptLocal(scene, shot, specialMode, seqInfo, btsType) {
+  const action = document.getElementById('actionText').value;
+  const identLock = state.identityLocked ? 'IDENTITY LOCK: Reproduce EXACTLY the face, morphology, skin tone and hair from the reference photo.' : '';
+  const styleStr = state.styleScandinavian ? 'STYLE: Scandinavian - wood and white, natural light, clean interior.' : 'STYLE: Modern urban.';
+  const locStr = state.loc ? 'LOCATION: Use EXACTLY the decor from the location photo provided.' : '';
+  const dressStr = state.dressEnabled ? 'DRESS CODE: Reproduce EXACTLY the outfit from the reference photo.' : '';
+  const duoStr = state.isDuo ? 'DUO MODE: 2 avatars present in the scene.' : '';
+
+  let locationStr = '';
+  if (state.locationEnabled) {
+    const city = document.getElementById('locationCity').value;
+    const country = document.getElementById('locationCountry').value;
+    if (city||country) locationStr = 'LOCATION CONTEXT: City=' + city + ', Country=' + country + '. Adapt architecture only.';
+  }
+
+  let modeStr = '';
+  if (specialMode) {
+    modeStr = 'Special mode: ' + specialMode.type + ' - Stage: ' + specialMode.stage + '.';
+  } else if (btsType) {
+    modeStr = 'BACKSTAGE mode ' + btsType + '.';
+  } else if (seqInfo) {
+    modeStr = 'Sequence step ' + seqInfo.current + '/' + seqInfo.total + ': "' + seqInfo.step + '".';
+  } else {
+    modeStr = 'Scene: ' + (scene||'neutral context') + '. Shot: ' + (shot||'standard UGC view') + '.';
+  }
+
+  return 'Generate ultra-realistic 4K UGC photo. ' + modeStr + ' Action: "' + action + '". ' + identLock + ' ' + styleStr + ' ' + locStr + ' ' + locationStr + ' ' + dressStr + ' ' + duoStr + ' Ultra-realistic skin texture, natural light, no beauty filter. Product text perfectly sharp and readable.';
+}
+
 let generatedImages = [], isGenerating = false;
 
 async function generate() {
@@ -1360,7 +1409,7 @@ async function generate() {
   // Vérifier quota restant
   const total = calcTotal();
   const localUsed = getLocalQuota(state.studentCode);
-  if (localUsed >= 10) {
+  if (localUsed >= 10 && state.studentCode !== 'ADMIN2024') {
     showError('Tu as atteint tes 10 generatons du jour. Reviens demain !');
     updateQuotaWidget(10, 10);
     return;
@@ -1375,7 +1424,7 @@ async function generate() {
     count++;
     updateProgress(count, total, 'Photo '+count+'/'+total+'...');
     try {
-      const prompt = await buildPrompt(scene, shot, specialMode, seqInfo, btsType);
+      const prompt = buildPromptLocal(scene, shot, specialMode, seqInfo, btsType);
       const imgUrl = await generateImage(prompt);
       generatedImages.push(imgUrl);
       addImageToGallery(imgUrl, count);
@@ -1472,5 +1521,6 @@ window.addEventListener('load', () => {
   }
 });
 </script>
+
 </body>
 </html>

@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StoryShoot — Studio IRL</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Serif+Display:ital@0;1&display=swap');
+
+  :root {
+    --plum-900: #0e0812;
+    --plum-800: #160d1e;
+    --plum-700: #1f1230;
+    --plum-600: #2a1845;
+    --plum-500: #3d2260;
+    --violet-400: #7c3aed;
+    --violet-300: #a855f7;
+    --violet-200: #c084fc;
+    --violet-100: #e9d5ff;
+    --rose-400: #f43f5e;
+    --rose-300: #fb7185;
+    --sand-100: #fef3e2;
+    --sand-200: #fde8c0;
+    --white: #ffffff;
+    --text-muted: #9d8bb0;
+    --text-mid: #c4b0d8;
+    --text-bright: #ede8f5;
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --radius-xl: 32px;
+
+    --shadow-card: 0 4px 24px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3);
+    --shadow-glow: 0 0 40px rgba(124,58,237,0.25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--plum-900);
+    color: var(--text-bright);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ═══════════════════════════════════════════
+     SPLASH SCREEN
+  ═══════════════════════════════════════════ */
+  #splash {
+    position: fixed;
+    inset: 0;
+    background: var(--plum-900);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 24px;
+  }
+
+  .splash-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .splash-bg::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -20%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(ellipse, rgba(124,58,237,0.18) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .splash-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    right: -10%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(ellipse, rgba(244,63,94,0.10) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .splash-card {
+    position: relative;
+    background: linear-gradient(145deg, var(--plum-700), var(--plum-800));
+    border: 1px solid rgba(124,58,237,0.3);
+    border-radius: var(--radius-xl);
+    padding: 52px 48px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: var(--shadow-card), var(--shadow-glow);
+    text-align: center;
+  }
+
+  .splash-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .logo-icon {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--violet-400), var(--rose-400));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .logo-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+
+  .logo-text span {
+    color: var(--violet-300);
+  }
+
+  .splash-tagline {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .splash-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-align: left;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .splash-input {
+    width: 100%;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(124,58,237,0.3);
+    border-radius: var(--radius-md);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+    text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    margin-bottom: 8px;
+  }
+
+  .splash-input::placeholder {
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: none;
+    font-weight: 300;
+  }
+
+  .splash-input:focus {
+    border-color: var(--violet-400);
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+  }
+
+  .splash-input.error {
+    border-color: var(--rose-400);
+    animation: shake 0.3s ease;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+
+  .splash-error {
+    font-size: 12px;
+    color: var(--rose-300);
+    min-height: 18px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--violet-400), var(--rose-400));
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .splash-footer {
+    margin-top: 28px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* ═══════════════════════════════════════════
+     APP LAYOUT
+  ═══════════════════════════════════════════ */
+  #app {
+    display: none;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* QUOTA BAR */
+  #quota-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--plum-800);
+    border-bottom: 1px solid rgba(124,58,237,0.2);
+    padding: 0 24px;
+  }
+
+  .quota-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .quota-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--white);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .quota-logo span { color: var(--violet-300); }
+
+  .quota-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .quota-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--violet-400), var(--rose-400));
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+
+  .quota-text {
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .quota-text strong { color: var(--text-bright); }
+
+  .quota-user {
+    font-size: 11px;
+    color: var(--violet-300);
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* MAIN */
+  .app-main {
+    flex: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 40px 24px 80px;
+  }
+
+  /* HERO */
+  .app-hero {
+    margin-bottom: 48px;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--violet-300);
+    margin-bottom: 14px;
+  }
+
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--violet-200);
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 32px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .section-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(124,58,237,0.2);
+    border: 1px solid rgba(124,58,237,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--violet-300);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-bright);
+  }
+
+  .section-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: 38px;
+    margin-top: -10px;
+    margin-bottom: 14px;
+  }
+
+  /* CARDS */
+  .card {
+    background: linear-gradient(145deg, var(--plum-700), var(--plum-800));
+    border: 1px solid rgba(124,58,237,0.18);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+
+  /* TEXTAREA */
+  textarea.field {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(124,58,237,0.2);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text-bright);
+    resize: vertical;
+    min-height: 140px;
+    outline: none;
+    transition: border-color 0.2s;
+    line-height: 1.6;
+  }
+
+  textarea.field::placeholder { color: var(--text-muted); font-weight: 300; }
+  textarea.field:focus { border-color: var(--violet-400); }
+
+  /* SELECT */
+  select.field {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(124,58,237,0.2);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text-bright);
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239d8bb0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+  }
+
+  select.field option { background: var(--plum-700); }
+  select.field:focus { border-color: var(--violet-400); }
+
+  /* UPLOAD ZONES */
+  .upload-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  .upload-zone {
+    background: rgba(255,255,255,0.03);
+    border: 1.5px dashed rgba(124,58,237,0.3);
+    border-radius: var(--radius-md);
+    padding: 24px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .upload-zone:hover {
+    border-color: var(--violet-400);
+    background: rgba(124,58,237,0.06);
+  }
+
+  .upload-zone.has-file {
+    border-style: solid;
+    border-color: rgba(124,58,237,0.5);
+  }
+
+  .upload-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .upload-icon { font-size: 24px; margin-bottom: 8px; }
+
+  .upload-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-mid);
+    margin-bottom: 4px;
+  }
+
+  .upload-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .upload-preview {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: calc(var(--radius-md) - 2px);
+    opacity: 0.7;
+  }
+
+  .upload-preview-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(14,8,18,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: calc(var(--radius-md) - 2px);
+  }
+
+  .upload-check {
+    width: 32px;
+    height: 32px;
+    background: var(--violet-400);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  /* DECOR TOGGLE */
+  .toggle-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .toggle-btn {
+    flex: 1;
+    padding: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(124,58,237,0.2);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .toggle-btn.active {
+    background: rgba(124,58,237,0.15);
+    border-color: var(--violet-400);
+    color: var(--violet-200);
+  }
+
+  /* ANALYSE BLOCK */
+  #analyse-block {
+    display: none;
+  }
+
+  .analyse-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .analyse-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(124,58,237,0.15);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+  }
+
+  .analyse-key {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--violet-300);
+    margin-bottom: 4px;
+  }
+
+  .analyse-val {
+    font-size: 13px;
+    color: var(--text-bright);
+    line-height: 1.5;
+  }
+
+  /* STORYBOARD */
+  #storyboard-block { display: none; }
+
+  .story-scenes {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .scene-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(124,58,237,0.15);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .scene-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(124,58,237,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--violet-300);
+    flex-shrink: 0;
+  }
+
+  .scene-body {}
+
+  .scene-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 4px;
+  }
+
+  .scene-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .scene-emotion-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .emotion-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: rgba(124,58,237,0.15);
+    border: 1px solid rgba(124,58,237,0.3);
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--violet-200);
+  }
+
+  .emotion-edit {
+    padding: 4px 10px;
+    background: transparent;
+    border: 1px solid rgba(124,58,237,0.2);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .emotion-edit:hover { border-color: var(--violet-300); color: var(--violet-200); }
+
+  .scene-img-area {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-sm);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(124,58,237,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .scene-img-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .scene-gen-btn {
+    position: absolute;
+    inset: 0;
+    background: rgba(14,8,18,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    border: none;
+    font-size: 18px;
+  }
+  .scene-img-area:hover .scene-gen-btn { opacity: 1; }
+
+  .scene-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid rgba(124,58,237,0.3);
+    border-top-color: var(--violet-300);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: none;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* GENERATE ALL */
+  .gen-all-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(124,58,237,0.15);
+  }
+
+  .gen-all-info {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .btn-gen-all {
+    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--violet-400), var(--rose-400));
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-gen-all:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-gen-all:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* ANALYSE BTN */
+  .btn-analyse {
+    padding: 14px 28px;
+    background: rgba(124,58,237,0.15);
+    border: 1.5px solid var(--violet-400);
+    border-radius: var(--radius-md);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--violet-200);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .btn-analyse:hover { background: rgba(124,58,237,0.25); }
+  .btn-analyse:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* LOADING SPINNER */
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+  }
+
+  /* EMOTION MODAL */
+  #emotion-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(14,8,18,0.8);
+    backdrop-filter: blur(4px);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  #emotion-modal.open { display: flex; }
+
+  .emotion-modal-card {
+    background: var(--plum-700);
+    border: 1px solid rgba(124,58,237,0.4);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .emotion-modal-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .emotion-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .emotion-choice {
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(124,58,237,0.2);
+    border-radius: 99px;
+    font-size: 13px;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .emotion-choice:hover, .emotion-choice.selected {
+    background: rgba(124,58,237,0.2);
+    border-color: var(--violet-400);
+    color: var(--violet-200);
+  }
+
+  .btn-modal-close {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid rgba(124,58,237,0.3);
+    border-radius: var(--radius-md);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-modal-close:hover { border-color: var(--violet-300); color: var(--text-bright); }
+
+  /* QUOTA ALERT */
+  .quota-alert {
+    background: rgba(244,63,94,0.1);
+    border: 1px solid rgba(244,63,94,0.3);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--rose-300);
+    display: none;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .quota-alert.show { display: flex; }
+
+  /* TOAST */
+  #toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--plum-600);
+    border: 1px solid rgba(124,58,237,0.4);
+    border-radius: var(--radius-md);
+    padding: 12px 20px;
+    font-size: 13px;
+    color: var(--text-bright);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  #toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .upload-grid { grid-template-columns: 1fr 1fr; }
+    .analyse-grid { grid-template-columns: 1fr; }
+    .splash-card { padding: 36px 24px; }
+    .scene-card { grid-template-columns: auto 1fr; }
+    .scene-img-area { display: none; }
+  }
+
+  @media (max-width: 400px) {
+    .upload-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ SPLASH SCREEN ═══════════ -->
+<div id="splash">
+  <div class="splash-bg"></div>
+  <div class="splash-card">
+    <div class="splash-logo">
+      <div class="logo-icon">🎬</div>
+      <div class="logo-text">Story<span>Shoot</span></div>
+    </div>
+    <div class="splash-tagline">Studio IRL — Contenu UGC Authentique</div>
+
+    <div class="splash-label">Ton code d'accès</div>
+    <input
+      type="text"
+      id="code-input"
+      class="splash-input"
+      placeholder="Entre ton code..."
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="characters"
+      spellcheck="false"
+      maxlength="10"
+    />
+    <div class="splash-error" id="splash-error"></div>
+    <button class="btn-primary" id="btn-login" onclick="handleLogin()">Accéder à StoryShoot</button>
+    <div class="splash-footer">Accès réservé aux membres Studio IRL</div>
+  </div>
+</div>
+
+<!-- ═══════════ EMOTION MODAL ═══════════ -->
+<div id="emotion-modal">
+  <div class="emotion-modal-card">
+    <div class="emotion-modal-title">Choisir l'émotion de la scène</div>
+    <div class="emotion-list" id="emotion-list"></div>
+    <button class="btn-modal-close" onclick="closeEmotionModal()">Annuler</button>
+  </div>
+</div>
+
+<!-- ═══════════ APP ═══════════ -->
+<div id="app">
+
+  <!-- QUOTA BAR -->
+  <div id="quota-bar">
+    <div class="quota-inner">
+      <div class="quota-logo">Story<span>Shoot</span></div>
+      <div class="quota-track">
+        <div class="quota-fill" id="quota-fill" style="width: 100%"></div>
+      </div>
+      <div class="quota-text" id="quota-text"><strong>10</strong> / 10 photos</div>
+      <div class="quota-user" id="quota-user">●</div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="app-main">
+
+    <!-- HERO -->
+    <div class="app-hero">
+      <div class="hero-eyebrow">IA de shooting UGC</div>
+      <h1 class="hero-title">Ton script devient<br><em>une histoire visuelle</em></h1>
+      <p class="hero-sub">Analyse ton script, construit le storyboard, génère le shooting scène par scène.</p>
+    </div>
+
+    <!-- SECTION 1 : SCRIPT -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <div class="section-title">Ton script UGC ou témoignage</div>
+      </div>
+      <div class="section-desc">Colle ton script complet. Plus il est détaillé, plus le storyboard sera précis.</div>
+      <div class="card">
+        <textarea class="field" id="script-input" rows="7"
+          placeholder="Ex : « Pendant 2 ans j'ai essayé tout ce qu'on m'a conseillé pour mes cicatrices d'acné. Crèmes, sérums, routines YouTube... Rien ne marchait vraiment. Et puis j'ai découvert ce sérum par hasard dans un commentaire Instagram... »"></textarea>
+        <button class="btn-analyse" id="btn-analyse" onclick="analyserScript()">
+          <span id="analyse-spinner" style="display:none" class="spinner"></span>
+          <span id="analyse-label">✦ Analyser et construire le storyboard</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SECTION 2 : VISUELS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <div class="section-title">Tes fichiers visuels</div>
+      </div>
+      <div class="section-desc">Avatar IA, produit et décor optionnel. Formats : JPG, PNG, WEBP.</div>
+      <div class="card">
+        <div class="upload-grid">
+          <div class="upload-zone" id="zone-avatar" onclick="triggerUpload('avatar-file')">
+            <input type="file" id="avatar-file" accept="image/*" onchange="handleUpload('avatar', this)">
+            <div class="upload-icon">👤</div>
+            <div class="upload-label">Avatar IA</div>
+            <div class="upload-hint">Photo référence</div>
+          </div>
+          <div class="upload-zone" id="zone-produit" onclick="triggerUpload('produit-file')">
+            <input type="file" id="produit-file" accept="image/*" onchange="handleUpload('produit', this)">
+            <div class="upload-icon">📦</div>
+            <div class="upload-label">Produit</div>
+            <div class="upload-hint">Photo du produit</div>
+          </div>
+          <div class="upload-zone" id="zone-decor-custom" id="zone-decor" onclick="triggerUpload('decor-file')">
+            <input type="file" id="decor-file" accept="image/*" onchange="handleUpload('decor', this)">
+            <div class="upload-icon">🏠</div>
+            <div class="upload-label">Décor (optionnel)</div>
+            <div class="upload-hint">Photo de ton lieu</div>
+          </div>
+        </div>
+
+        <!-- DECOR MODE -->
+        <div style="margin-top: 20px;">
+          <div style="font-size: 12px; font-weight: 600; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">Mode décor</div>
+          <div class="toggle-row">
+            <button class="toggle-btn active" id="toggle-ia" onclick="setDecorMode('ia')">🤖 Décor IA</button>
+            <button class="toggle-btn" id="toggle-custom" onclick="setDecorMode('custom')">📸 Décor personnalisé</button>
+          </div>
+          <div id="decor-ia-block">
+            <select class="field" id="decor-select">
+              <option value="">Sélectionne un environnement...</option>
+              <option value="appartement moderne">🏢 Appartement moderne</option>
+              <option value="salon familial">🛋️ Salon familial</option>
+              <option value="cuisine contemporaine">🍳 Cuisine contemporaine</option>
+              <option value="petite salle de bain">🚿 Petite salle de bain</option>
+              <option value="chambre lumineuse">🛏️ Chambre lumineuse</option>
+              <option value="bureau à domicile">💻 Bureau à domicile</option>
+              <option value="terrasse">🌿 Terrasse</option>
+              <option value="jardin">🌳 Jardin</option>
+              <option value="salle de sport">🏋️ Salle de sport</option>
+              <option value="café">☕ Café</option>
+              <option value="voiture">🚗 Voiture</option>
+              <option value="bureau d'entreprise">🏬 Bureau d'entreprise</option>
+              <option value="studio étudiant">📚 Studio étudiant</option>
+            </select>
+          </div>
+          <div id="decor-custom-block" style="display:none;">
+            <div style="font-size: 12px; color: var(--text-muted); padding: 10px 0;">Upload la photo de ton lieu ci-dessus (zone Décor). StoryShoot va reproduire fidèlement cet environnement.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 : ANALYSE -->
+    <div class="section" id="analyse-block">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <div class="section-title">Analyse du script</div>
+      </div>
+      <div class="section-desc">StoryShoot a identifié ces éléments dans ton script.</div>
+      <div class="card">
+        <div class="analyse-grid" id="analyse-grid"></div>
+      </div>
+    </div>
+
+    <!-- SECTION 4 : STORYBOARD -->
+    <div class="section" id="storyboard-block">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <div class="section-title">Storyboard & génération</div>
+      </div>
+      <div class="section-desc">Modifie les émotions si nécessaire, puis génère scène par scène ou tout d'un coup.</div>
+      <div class="card">
+        <div class="story-scenes" id="story-scenes"></div>
+
+        <div class="quota-alert" id="quota-alert">
+          ⏳ Tu as atteint ta limite de <strong>10 photos</strong> aujourd'hui. Reviens dans <span id="reset-timer">24h</span>.
+        </div>
+
+        <div class="gen-all-row">
+          <div class="gen-all-info" id="gen-all-info"></div>
+          <button class="btn-gen-all" id="btn-gen-all" onclick="genererTout()">
+            <span id="gen-all-spinner" style="display:none" class="spinner"></span>
+            <span id="gen-all-label">✦ Générer tout le shooting</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /app-main -->
+</div><!-- /app -->
+
+<div id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════
+// CODES D'ACCÈS
+// ═══════════════════════════════════════════
+const CODES = {
+  'ADMIN2026': { name: 'Marie', admin: true },
+  'MEL6A2':   { name: 'Mélanie', admin: false },
+  'STE9Q4':   { name: 'Stéphanie', admin: false },
+  'CHR8P7':   { name: 'Christine', admin: false },
+  'MAR9F4':   { name: 'Marie', admin: false },
+  'VAN5Q8':   { name: 'Vanessa', admin: false },
+  'CEL4M8':   { name: 'Céline', admin: false },
+  'VAN8O3':   { name: 'Vanessa', admin: false },
+  'ALI6Y9':   { name: 'Alicia', admin: false },
+  'JOH7A4':   { name: 'Johanna', admin: false },
+  'AUR6R9':   { name: 'Aurore', admin: false },
+  'SAR7H2':   { name: 'Sara', admin: false },
+  'VIR8G6':   { name: 'Virginie', admin: false },
+  'LIO5R8':   { name: 'Liora', admin: false },
+  'ADE7L4':   { name: 'Adeline', admin: false },
+  'SHA9R6':   { name: 'Sharaf', admin: false },
+  'LAE6T9':   { name: 'Laetitia', admin: false },
+  'MAR8T6':   { name: 'Marie', admin: false },
+  'DIA7N5':   { name: 'Dee Dee', admin: false },
+  'ALI7C8':   { name: 'Alicia', admin: false },
+  'ERI6Y4':   { name: 'Eridye', admin: false },
+  'MEL9N7':   { name: 'Mélanie', admin: false },
+  'AUD7R5':   { name: 'Audrey', admin: false },
+  'FAN6N4':   { name: 'Fanny', admin: false },
+  'ALI8C5':   { name: 'Alicia', admin: false },
+  'STE4P8':   { name: 'Stéphanie', admin: false },
+  'AGN6S9':   { name: 'Agnès', admin: false },
+  'MAN7U9':   { name: 'Manuella', admin: false },
+  'AMA8D3':   { name: 'Amandine', admin: false },
+  'LIS5A4':   { name: 'Lisa', admin: false },
+  'MAN5D8':   { name: 'Mandy', admin: false },
+};
+
+const MAX_DAILY = 10;
+const PROXY_URL = 'https://storyshoot-proxy-452713645678.europe-west1.run.app';
+
+// ═══════════════════════════════════════════
+// ÉTAT GLOBAL
+// ═══════════════════════════════════════════
+let currentUser = null;
+let currentCode = null;
+let storyboardData = null;
+let uploads = { avatar: null, produit: null, decor: null };
+let decorMode = 'ia';
+let modalCallback = null;
+let apiKey = null;
+
+const EMOTIONS = [
+  'Frustration', 'Gêne', 'Colère', 'Fatigue', 'Stress', 'Honte',
+  'Découragement', 'Inquiétude', 'Surprise', 'Curiosité',
+  'Soulagement', 'Confiance', 'Joie', 'Fierté', 'Satisfaction',
+  'Gratitude', 'Enthousiasme', 'Espoir', 'Sérénité', 'Bonheur'
+];
+
+// ═══════════════════════════════════════════
+// QUOTA SYSTEM (localStorage)
+// ═══════════════════════════════════════════
+function getQuotaKey(code) {
+  const today = new Date().toISOString().slice(0, 10);
+  return `ss_quota_${code}_${today}`;
+}
+
+function getUsed(code) {
+  return parseInt(localStorage.getItem(getQuotaKey(code)) || '0', 10);
+}
+
+function incrementUsed(code) {
+  const key = getQuotaKey(code);
+  const val = getUsed(code) + 1;
+  localStorage.setItem(key, val);
+  return val;
+}
+
+function canGenerate(code) {
+  if (CODES[code]?.admin) return true;
+  return getUsed(code) < MAX_DAILY;
+}
+
+function remainingCount(code) {
+  if (CODES[code]?.admin) return Infinity;
+  return Math.max(0, MAX_DAILY - getUsed(code));
+}
+
+function updateQuotaUI() {
+  if (!currentCode) return;
+  const user = CODES[currentCode];
+  const isAdmin = user?.admin;
+  const rem = remainingCount(currentCode);
+  const used = isAdmin ? '∞' : getUsed(currentCode);
+  const total = isAdmin ? '∞' : MAX_DAILY;
+  const pct = isAdmin ? 100 : ((rem / MAX_DAILY) * 100);
+
+  document.getElementById('quota-fill').style.width = pct + '%';
+  document.getElementById('quota-text').innerHTML = isAdmin
+    ? '<strong>∞</strong> générations illimitées'
+    : `<strong>${rem}</strong> / ${total} photos restantes`;
+  document.getElementById('quota-user').textContent = user?.name || '';
+
+  const alert = document.getElementById('quota-alert');
+  if (!isAdmin && rem === 0) {
+    alert.classList.add('show');
+  } else {
+    alert.classList.remove('show');
+  }
+
+  const btnGenAll = document.getElementById('btn-gen-all');
+  if (!isAdmin && rem === 0) {
+    btnGenAll.disabled = true;
+  }
+}
+
+// ═══════════════════════════════════════════
+// LOGIN
+// ═══════════════════════════════════════════
+function handleLogin() {
+  const raw = document.getElementById('code-input').value.trim().toUpperCase();
+  const inputEl = document.getElementById('code-input');
+  const errorEl = document.getElementById('splash-error');
+
+  if (!raw) {
+    inputEl.classList.add('error');
+    errorEl.textContent = 'Entre ton code d\'accès.';
+    setTimeout(() => inputEl.classList.remove('error'), 500);
+    return;
+  }
+
+  if (!CODES[raw]) {
+    inputEl.classList.add('error');
+    errorEl.textContent = 'Code invalide. Vérifie auprès de Studio IRL.';
+    setTimeout(() => inputEl.classList.remove('error'), 500);
+    return;
+  }
+
+  currentCode = raw;
+  currentUser = CODES[raw];
+
+  // Connexion directe — la clé API est côté proxy
+  launchApp();
+}
+
+function launchApp() {
+  document.getElementById('splash').style.display = 'none';
+  const app = document.getElementById('app');
+  app.style.display = 'flex';
+  updateQuotaUI();
+  showToast(`Bienvenue ${currentUser.name} ! 🎬`);
+}
+
+document.getElementById('code-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleLogin();
+});
+
+// ═══════════════════════════════════════════
+// UPLOADS
+// ═══════════════════════════════════════════
+function triggerUpload(id) { /* handled by label click */ }
+
+function handleUpload(type, input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    const b64 = e.target.result.split(',')[1];
+    uploads[type] = { b64, dataUrl: e.target.result, mime: file.type };
+
+    const zone = document.getElementById('zone-' + (type === 'decor' ? 'decor-custom' : type));
+    if (!zone) return;
+    zone.classList.add('has-file');
+
+    // Remove old preview
+    const oldImg = zone.querySelector('.upload-preview');
+    const oldOverlay = zone.querySelector('.upload-preview-overlay');
+    if (oldImg) oldImg.remove();
+    if (oldOverlay) oldOverlay.remove();
+
+    const img = document.createElement('img');
+    img.className = 'upload-preview';
+    img.src = e.target.result;
+    zone.appendChild(img);
+
+    const overlay = document.createElement('div');
+    overlay.className = 'upload-preview-overlay';
+    overlay.innerHTML = '<div class="upload-check">✓</div>';
+    zone.appendChild(overlay);
+  };
+  reader.readAsDataURL(file);
+}
+
+// ═══════════════════════════════════════════
+// DECOR MODE
+// ═══════════════════════════════════════════
+function setDecorMode(mode) {
+  decorMode = mode;
+  document.getElementById('toggle-ia').classList.toggle('active', mode === 'ia');
+  document.getElementById('toggle-custom').classList.toggle('active', mode === 'custom');
+  document.getElementById('decor-ia-block').style.display = mode === 'ia' ? '' : 'none';
+  document.getElementById('decor-custom-block').style.display = mode === 'custom' ? '' : 'none';
+}
+
+// ═══════════════════════════════════════════
+// API CALL VERTEX AI (Gemini 2.5 Flash)
+// ═══════════════════════════════════════════
+async function callGemini(prompt, images = []) {
+  if (!apiKey) {
+    showToast('Clé API non configurée.');
+    throw new Error('No API key');
+  }
+
+  const parts = [];
+
+  for (const img of images) {
+    if (img) {
+      parts.push({ inline_data: { mime_type: img.mime, data: img.b64 } });
+    }
+  }
+
+  parts.push({ text: prompt });
+
+  const body = {
+    contents: [{ role: 'user', parts }],
+    generationConfig: {
+      temperature: 0.85,
+      maxOutputTokens: 4096,
+    }
+  };
+
+  const res = await fetch(
+    `https://europe-west1-aiplatform.googleapis.com/v1/publishers/google/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }
+  );
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err?.error?.message || `HTTP ${res.status}`);
+  }
+
+  const data = await res.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+}
+
+// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════
+// GÉNÉRER IMAGE (via proxy StoryShoot)
+// ═══════════════════════════════════════════
+async function generateImage(prompt) {
+  const res = await fetch(`${PROXY_URL}/generate-image`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ code: currentCode, prompt })
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    if (res.status === 429 || data.quota_exceeded) {
+      document.getElementById('quota-alert').classList.add('show');
+      document.getElementById('btn-gen-all').disabled = true;
+    }
+    throw new Error(data.error || `HTTP ${res.status}`);
+  }
+
+  return `data:${data.mimeType || 'image/png'};base64,${data.image}`;
+}
+
+// ═══════════════════════════════════════════
+// ANALYSER SCRIPT
+// ═══════════════════════════════════════════
+async function analyserScript() {
+  const script = document.getElementById('script-input').value.trim();
+  if (!script) {
+    showToast('Colle ton script d\'abord 💬');
+    return;
+  }
+
+  const btn = document.getElementById('btn-analyse');
+  const spinner = document.getElementById('analyse-spinner');
+  const label = document.getElementById('analyse-label');
+
+  btn.disabled = true;
+  spinner.style.display = 'inline-block';
+  label.textContent = 'Analyse en cours...';
+
+  const decorInfo = decorMode === 'ia'
+    ? (document.getElementById('decor-select').value || 'appartement moderne')
+    : 'décor personnalisé fourni par l\'utilisateur';
+
+  const prompt = `Tu es StoryShoot, une IA de direction artistique UGC.
+
+Analyse ce script UGC et retourne UNIQUEMENT un JSON valide (sans markdown, sans explication).
+
+SCRIPT :
+"""
+${script}
+"""
+
+Retourne ce format JSON exact :
+{
+  "produit": "...",
+  "problematique": "...",
+  "emotions_negatives": ["...", "..."],
+  "emotions_positives": ["...", "..."],
+  "transformation": "...",
+  "intention_marketing": "...",
+  "type_contenu": "Organique ou Ads",
+  "storyboard": [
+    {
+      "scene": 1,
+      "titre": "...",
+      "description": "...",
+      "emotion": "...",
+      "prompt_image": "UGC photo, shot on iPhone 15 Pro, natural light, authentic imperfection, [emotion], [description visuelle], realistic skin texture, handheld, spontaneous framing. Decor: ${decorInfo}. Product visible: [produit]. NO studio, NO advertising look."
+    }
+  ]
+}
+
+Le storyboard doit avoir entre 4 et 8 scènes selon la richesse du script.
+Chaque prompt_image doit être en anglais, ultra-détaillé, dans le style UGC authentique.
+Les prompts doivent intégrer : l'émotion visible sur le visage, le contexte du décor (${decorInfo}), le produit si pertinent dans la scène.`;
+
+  try {
+    const images = [uploads.avatar, uploads.produit].filter(Boolean);
+    const raw = await callGemini(prompt, images);
+    const cleaned = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+    const data = JSON.parse(cleaned);
+
+    storyboardData = data;
+    renderAnalyse(data);
+    renderStoryboard(data);
+
+    document.getElementById('analyse-block').style.display = '';
+    document.getElementById('storyboard-block').style.display = '';
+
+    document.getElementById('analyse-block').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    showToast('Storyboard construit ✦');
+  } catch (err) {
+    console.error(err);
+    showToast('Erreur : ' + (err.message || 'Relance l\'analyse'));
+  } finally {
+    btn.disabled = false;
+    spinner.style.display = 'none';
+    label.textContent = '✦ Analyser et construire le storyboard';
+  }
+}
+
+// ═══════════════════════════════════════════
+// RENDER ANALYSE
+// ═══════════════════════════════════════════
+function renderAnalyse(data) {
+  const grid = document.getElementById('analyse-grid');
+  const items = [
+    ['Produit', data.produit],
+    ['Problématique', data.problematique],
+    ['Émotions négatives', (data.emotions_negatives || []).join(', ')],
+    ['Émotions positives', (data.emotions_positives || []).join(', ')],
+    ['Transformation', data.transformation],
+    ['Intention marketing', data.intention_marketing],
+    ['Type de contenu', data.type_contenu],
+  ];
+
+  grid.innerHTML = items.map(([k, v]) => `
+    <div class="analyse-item">
+      <div class="analyse-key">${k}</div>
+      <div class="analyse-val">${v || '—'}</div>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════
+// RENDER STORYBOARD
+// ═══════════════════════════════════════════
+function renderStoryboard(data) {
+  const scenes = data.storyboard || [];
+  const container = document.getElementById('story-scenes');
+  const rem = remainingCount(currentCode);
+  const isAdmin = CODES[currentCode]?.admin;
+
+  document.getElementById('gen-all-info').textContent =
+    isAdmin
+      ? `${scenes.length} scènes · générations illimitées`
+      : `${scenes.length} scènes · ${rem} photos restantes aujourd'hui`;
+
+  container.innerHTML = scenes.map((s, i) => `
+    <div class="scene-card" id="scene-card-${i}">
+      <div class="scene-num">${s.scene}</div>
+      <div class="scene-body">
+        <div class="scene-title">${s.titre}</div>
+        <div class="scene-desc">${s.description}</div>
+        <div class="scene-emotion-row">
+          <div class="emotion-tag" id="emotion-tag-${i}">✦ ${s.emotion}</div>
+          <button class="emotion-edit" onclick="openEmotionModal(${i})">Modifier</button>
+        </div>
+      </div>
+      <div class="scene-img-area" id="img-area-${i}">
+        <div style="font-size:24px; opacity:0.3;">📷</div>
+        <button class="scene-gen-btn" onclick="genererScene(${i})" title="Générer cette scène">▶</button>
+        <div class="scene-spinner" id="spinner-${i}"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════
+// GÉNÉRER UNE SCÈNE
+// ═══════════════════════════════════════════
+async function genererScene(index) {
+  if (!canGenerate(currentCode)) {
+    document.getElementById('quota-alert').classList.add('show');
+    showToast('Limite quotidienne atteinte ⏳');
+    return;
+  }
+
+  const scenes = storyboardData?.storyboard || [];
+  const scene = scenes[index];
+  if (!scene) return;
+
+  const imgArea = document.getElementById('img-area-' + index);
+  const spinner = document.getElementById('spinner-' + index);
+
+  // UI loading
+  imgArea.querySelector('.scene-gen-btn').style.display = 'none';
+  spinner.style.display = 'block';
+
+  try {
+    const imgData = await generateImage(scene.prompt_image);
+    incrementUsed(currentCode);
+    updateQuotaUI();
+
+    // Afficher l'image
+    imgArea.innerHTML = `<img src="${imgData}" alt="Scène ${index + 1}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`;
+
+    // Ajouter bouton download
+    const dl = document.createElement('a');
+    dl.href = imgData;
+    dl.download = `storyscene_${index + 1}.png`;
+    dl.innerHTML = '⬇';
+    dl.style.cssText = 'position:absolute;bottom:4px;right:4px;background:rgba(14,8,18,0.7);color:white;border-radius:6px;padding:4px 8px;font-size:12px;text-decoration:none;';
+    imgArea.style.position = 'relative';
+    imgArea.appendChild(dl);
+
+    showToast(`Scène ${index + 1} générée ✦`);
+  } catch (err) {
+    spinner.style.display = 'none';
+    imgArea.querySelector('.scene-gen-btn').style.display = 'flex';
+    showToast('Erreur génération : ' + (err.message || 'Réessaie'));
+  }
+}
+
+// ═══════════════════════════════════════════
+// GÉNÉRER TOUT
+// ═══════════════════════════════════════════
+async function genererTout() {
+  if (!storyboardData) { showToast('Lance l\'analyse d\'abord'); return; }
+
+  const scenes = storyboardData.storyboard || [];
+  const isAdmin = CODES[currentCode]?.admin;
+  const rem = remainingCount(currentCode);
+  const toGen = isAdmin ? scenes.length : Math.min(scenes.length, rem);
+
+  if (toGen === 0) {
+    document.getElementById('quota-alert').classList.add('show');
+    return;
+  }
+
+  const btn = document.getElementById('btn-gen-all');
+  const spinner = document.getElementById('gen-all-spinner');
+  const label = document.getElementById('gen-all-label');
+
+  btn.disabled = true;
+  spinner.style.display = 'inline-block';
+  label.textContent = `Génération en cours...`;
+
+  for (let i = 0; i < toGen; i++) {
+    label.textContent = `Scène ${i + 1} / ${toGen}...`;
+    await genererScene(i);
+    await new Promise(r => setTimeout(r, 800)); // petit délai entre générations
+  }
+
+  btn.disabled = false;
+  spinner.style.display = 'none';
+  label.textContent = '✦ Générer tout le shooting';
+  showToast('Shooting terminé 🎬');
+}
+
+// ═══════════════════════════════════════════
+// EMOTION MODAL
+// ═══════════════════════════════════════════
+function openEmotionModal(sceneIndex) {
+  modalCallback = (emotion) => {
+    storyboardData.storyboard[sceneIndex].emotion = emotion;
+    document.getElementById('emotion-tag-' + sceneIndex).textContent = '✦ ' + emotion;
+    closeEmotionModal();
+  };
+
+  const current = storyboardData?.storyboard[sceneIndex]?.emotion || '';
+  const list = document.getElementById('emotion-list');
+  list.innerHTML = EMOTIONS.map(e => `
+    <div class="emotion-choice ${e === current ? 'selected' : ''}" onclick="selectEmotion('${e}')">${e}</div>
+  `).join('');
+
+  document.getElementById('emotion-modal').classList.add('open');
+}
+
+function selectEmotion(emotion) {
+  if (modalCallback) modalCallback(emotion);
+}
+
+function closeEmotionModal() {
+  document.getElementById('emotion-modal').classList.remove('open');
+  modalCallback = null;
+}
+
+// ═══════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
+// Auto-login si session stockée
+(function init() {
+  const saved = sessionStorage.getItem('ss_session');
+  if (saved && CODES[saved]) {
+    currentCode = saved;
+    currentUser = CODES[saved];
+    apiKey = localStorage.getItem('ss_api_key') || '';
+    launchApp();
+  }
+})();
+
+// Sauvegarder session
+function launchApp() {
+  sessionStorage.setItem('ss_session', currentCode);
+  document.getElementById('splash').style.display = 'none';
+  const app = document.getElementById('app');
+  app.style.display = 'flex';
+  updateQuotaUI();
+  showToast(`Bienvenue ${currentUser.name} ! 🎬`);
+}
+</script>
+</body>
+</html>

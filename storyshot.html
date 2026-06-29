@@ -1005,6 +1005,12 @@
             <div class="upload-label">Décor (optionnel)</div>
             <div class="upload-hint">Photo de ton lieu</div>
           </div>
+          <div class="upload-zone" id="zone-vetement" onclick="triggerUpload('vetement-file')">
+            <input type="file" id="vetement-file" accept="image/*" onchange="handleUpload('vetement', this)">
+            <div class="upload-icon">👗</div>
+            <div class="upload-label">Tenue (optionnel)</div>
+            <div class="upload-hint">Dress code référence</div>
+          </div>
         </div>
 
         <!-- DECOR MODE -->
@@ -1127,7 +1133,7 @@ const PROXY_URL = 'https://storyshoot-proxy-452713645678.europe-west1.run.app';
 let currentUser = null;
 let currentCode = null;
 let storyboardData = null;
-let uploads = { avatar: null, produit: null, decor: null };
+let uploads = { avatar: null, produit: null, decor: null, vetement: null };
 let decorMode = 'ia';
 let modalCallback = null;
 
@@ -1250,7 +1256,7 @@ function handleUpload(type, input) {
     const b64 = e.target.result.split(',')[1];
     uploads[type] = { b64, dataUrl: e.target.result, mime: file.type };
 
-    const zone = document.getElementById('zone-' + (type === 'decor' ? 'decor-custom' : type));
+    const zone = document.getElementById('zone-' + (type === 'decor' ? 'decor-custom' : type === 'vetement' ? 'vetement' : type));
     if (!zone) return;
     zone.classList.add('has-file');
 
@@ -1321,10 +1327,21 @@ async function callGemini(prompt, images = []) {
 // GÉNÉRER IMAGE (via proxy StoryShoot)
 // ═══════════════════════════════════════════
 async function generateImage(prompt) {
+  const body = {
+    code: currentCode,
+    prompt,
+    avatarB64: uploads.avatar?.b64 || null,
+    avatarMime: uploads.avatar?.mime || 'image/jpeg',
+    produitB64: uploads.produit?.b64 || null,
+    produitMime: uploads.produit?.mime || 'image/jpeg',
+    vetementB64: uploads.vetement?.b64 || null,
+    vetementMime: uploads.vetement?.mime || 'image/jpeg',
+  };
+
   const res = await fetch(`${PROXY_URL}/generate-image`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ code: currentCode, prompt })
+    body: JSON.stringify(body)
   });
 
   const data = await res.json();

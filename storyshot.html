@@ -1130,7 +1130,6 @@ let storyboardData = null;
 let uploads = { avatar: null, produit: null, decor: null };
 let decorMode = 'ia';
 let modalCallback = null;
-let apiKey = null;
 
 const EMOTIONS = [
   'Frustration', 'Gêne', 'Colère', 'Fatigue', 'Stress', 'Honte',
@@ -1286,44 +1285,29 @@ function setDecorMode(mode) {
 }
 
 // ═══════════════════════════════════════════
-// API CALL VERTEX AI (Gemini 2.5 Flash)
+// ═══════════════════════════════════════════
+// ANALYSE SCRIPT (via proxy Vertex AI)
 // ═══════════════════════════════════════════
 async function callGemini(prompt, images = []) {
-  if (!apiKey) {
-    showToast('Clé API non configurée.');
-    throw new Error('No API key');
-  }
-
   const parts = [];
-
   for (const img of images) {
-    if (img) {
-      parts.push({ inline_data: { mime_type: img.mime, data: img.b64 } });
-    }
+    if (img) parts.push({ inline_data: { mime_type: img.mime, data: img.b64 } });
   }
-
   parts.push({ text: prompt });
 
   const body = {
     contents: [{ role: 'user', parts }],
-    generationConfig: {
-      temperature: 0.85,
-      maxOutputTokens: 4096,
-    }
+    generationConfig: { temperature: 0.85, maxOutputTokens: 4096 }
   };
 
   const res = await fetch(
-    `https://europe-west1-aiplatform.googleapis.com/v1/publishers/google/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    }
+    'https://europe-west1-aiplatform.googleapis.com/v1/publishers/google/models/gemini-2.5-flash:generateContent?key=AQ.Ab8RN6LPy-v_gjaefbhA-vGIGYkFNYnAvlXinomSbVyWCGoC8g',
+    { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
   );
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
-    throw new Error(err?.error?.message || `HTTP ${res.status}`);
+    throw new Error(err?.error?.message || 'Erreur analyse');
   }
 
   const data = await res.json();
@@ -1625,7 +1609,6 @@ function showToast(msg) {
   if (saved && CODES[saved]) {
     currentCode = saved;
     currentUser = CODES[saved];
-    apiKey = localStorage.getItem('ss_api_key') || '';
     launchApp();
   }
 })();

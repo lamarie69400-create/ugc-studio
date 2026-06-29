@@ -1401,14 +1401,19 @@ Les prompts doivent intégrer : l'émotion visible sur le visage, le contexte du
     const cleaned = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     const data = JSON.parse(cleaned);
 
+    console.log('RAW RESPONSE:', raw);
+    console.log('PARSED DATA:', JSON.stringify(data));
+
     storyboardData = data;
     renderAnalyse(data);
     renderStoryboard(data);
 
-    document.getElementById('analyse-block').style.display = '';
-    document.getElementById('storyboard-block').style.display = '';
+    document.getElementById('analyse-block').style.display = 'block';
+    document.getElementById('storyboard-block').style.display = 'block';
 
-    document.getElementById('analyse-block').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(() => {
+      document.getElementById('analyse-block').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
 
     showToast('Storyboard construit ✦');
   } catch (err) {

@@ -528,6 +528,69 @@
     color: var(--violet-200);
   }
 
+  /* PLANS GRID */
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .plan-chip {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1.5px solid rgba(124,58,237,0.18);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .plan-chip:hover {
+    border-color: rgba(124,58,237,0.4);
+    background: rgba(124,58,237,0.05);
+  }
+
+  .plan-chip.selected {
+    background: rgba(124,58,237,0.15);
+    border-color: var(--violet-400);
+  }
+
+  .plan-chip-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 1.5px solid rgba(124,58,237,0.4);
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: transparent;
+    transition: all 0.15s;
+  }
+
+  .plan-chip.selected .plan-chip-check {
+    background: var(--violet-400);
+    border-color: var(--violet-400);
+    color: white;
+  }
+
+  .plan-chip-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 2px;
+  }
+
+  .plan-chip-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
   #analyse-block {
     display: none;
   }
@@ -1009,9 +1072,24 @@
       </div>
     </div>
 
-    <div class="section" id="analyse-block">
+    <div class="section">
       <div class="section-header">
         <div class="section-num">3</div>
+        <div class="section-title">Plans photo (facultatif)</div>
+      </div>
+      <div class="section-desc">Choisis jusqu'à 10 plans à utiliser dans ton storyboard. Si tu ne sélectionnes rien, StoryShoot choisit automatiquement les plans les plus pertinents et variés selon ton script.</div>
+      <div class="card">
+        <div class="plans-grid" id="plans-grid"></div>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:14px; border-top:1px solid rgba(124,58,237,0.15);">
+          <div style="font-size:11px; color:var(--text-muted);" id="plans-count">0 / 10 sélectionnés · sélection automatique active</div>
+          <button class="emotion-edit" onclick="clearPlans()">Réinitialiser</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="analyse-block">
+      <div class="section-header">
+        <div class="section-num">4</div>
         <div class="section-title">Analyse du script</div>
       </div>
       <div class="section-desc">StoryShoot a identifié ces éléments dans ton script.</div>
@@ -1022,7 +1100,7 @@
 
     <div class="section" id="storyboard-block">
       <div class="section-header">
-        <div class="section-num">4</div>
+        <div class="section-num">5</div>
         <div class="section-title">Storyboard & génération</div>
       </div>
       <div class="section-desc">Modifie les émotions si nécessaire, puis génère scène par scène ou tout d'un coup.</div>
@@ -1098,6 +1176,24 @@ let storyboardData = null;
 let uploads = { avatar: null, produit: null, decor: null, vetement: null };
 let decorMode = 'ia';
 let modalCallback = null;
+let selectedPlans = [];
+
+const PLANS_DEFINITIONS = [
+  { name: 'Hero Product',    desc: 'Produit au centre, fond flou, logo lisible' },
+  { name: 'Texture',         desc: 'Très gros plan sur la matière du produit' },
+  { name: 'Application',     desc: 'Geste d\'application en cours, gros plan' },
+  { name: 'Utilisation',     desc: 'Modèle utilise le produit naturellement' },
+  { name: 'Lifestyle',       desc: 'Produit intégré dans une scène de vie' },
+  { name: 'Portrait',        desc: 'Visage visible, émotion lisible' },
+  { name: 'Flat Lay',        desc: 'Vue de dessus, composition organisée' },
+  { name: 'Selfie Miroir',   desc: 'Routine matin/soir, salle de bain' },
+  { name: 'Macro',           desc: 'Détail extrême, mise au point précise' },
+  { name: 'Plan d\'ensemble',desc: 'Vue large, contexte complet de la scène' },
+  { name: 'POV',             desc: 'Point de vue subjectif, immersif' },
+  { name: 'Avant-Après',     desc: 'Comparaison gros plan, transformation' },
+  { name: 'Packshot',        desc: 'Produit seul, sans modèle, studio' },
+  { name: 'Déballage',       desc: 'Unboxing, produit sorti de son emballage' },
+];
 
 const EMOTIONS = [
   'Frustration', 'Gêne', 'Colère', 'Fatigue', 'Stress', 'Honte',
@@ -1188,6 +1284,7 @@ function launchApp() {
   const app = document.getElementById('app');
   app.style.display = 'flex';
   updateQuotaUI();
+  renderPlansGrid();
   showToast(`Bienvenue ${currentUser.name} ! 🎬`);
 }
 
@@ -1239,6 +1336,49 @@ function setDecorMode(mode) {
   document.getElementById('toggle-custom').classList.toggle('active', mode === 'custom');
   document.getElementById('decor-ia-block').style.display = mode === 'ia' ? '' : 'none';
   document.getElementById('decor-custom-block').style.display = mode === 'custom' ? '' : 'none';
+}
+
+// ═══════════════════════════════════════
+// PLANS PHOTO (sélection manuelle optionnelle)
+// ═══════════════════════════════════════
+function renderPlansGrid() {
+  const grid = document.getElementById('plans-grid');
+  grid.innerHTML = PLANS_DEFINITIONS.map((p, i) => `
+    <div class="plan-chip ${selectedPlans.includes(p.name) ? 'selected' : ''}" onclick="togglePlan('${p.name}')">
+      <div class="plan-chip-check">✓</div>
+      <div>
+        <div class="plan-chip-name">${p.name}</div>
+        <div class="plan-chip-desc">${p.desc}</div>
+      </div>
+    </div>
+  `).join('');
+  updatePlansCount();
+}
+
+function togglePlan(name) {
+  const idx = selectedPlans.indexOf(name);
+  if (idx > -1) {
+    selectedPlans.splice(idx, 1);
+  } else {
+    if (selectedPlans.length >= 10) {
+      showToast('Maximum 10 plans ✦');
+      return;
+    }
+    selectedPlans.push(name);
+  }
+  renderPlansGrid();
+}
+
+function clearPlans() {
+  selectedPlans = [];
+  renderPlansGrid();
+}
+
+function updatePlansCount() {
+  const el = document.getElementById('plans-count');
+  el.textContent = selectedPlans.length > 0
+    ? `${selectedPlans.length} / 10 sélectionnés · sélection manuelle`
+    : `0 / 10 sélectionnés · sélection automatique active`;
 }
 
 // ═══════════════════════════════════════
@@ -1369,6 +1509,40 @@ async function analyserScript() {
   const hasAvatar  = !!uploads.avatar;
   const hasProduit = !!uploads.produit;
 
+  const PLANS_LIBRARY = `BIBLIOTHÈQUE DE PLANS PHOTO UGC — sélectionne 4 à 10 plans variés selon le produit, la texture, la présence d'un modèle et l'émotion. Ne jamais répéter le même cadrage sur deux scènes consécutives.
+
+CADRAGES disponibles : très gros plan (détail), gros plan, plan poitrine, plan taille, plan américain, plan en pied, plan d'ensemble, vue de dessus, vue en plongée légère, vue en contre-plongée légère.
+
+ANGLES disponibles : face, trois quarts, profil, dos, au-dessus de l'épaule, depuis une autre pièce, depuis le sol, depuis une table, depuis un canapé, depuis un miroir.
+
+MODES DE CAPTURE UGC (jamais l'impression d'une séance pro) : selfie, selfie miroir, photo à bout de bras, smartphone posé sur un meuble, smartphone sur trépied discret, smartphone appuyé contre un objet, photo prise par une autre personne, photo prise sur le vif, POV.
+
+INTERACTION PRODUIT (alterner) : dans la main, en cours d'utilisation, posé sur un meuble, dans un sac, dans un tiroir, sur un lavabo, sur une table de nuit, dans une poche, en arrière-plan, mis en scène avec d'autres objets du quotidien.
+
+PLANS TYPES (exemples, pas exhaustif) :
+- Hero Product : produit occupe la majorité du cadre, fond flou, lumière douce, logo lisible, angle légèrement en biais — pour présenter le produit ou un détail important
+- Texture/Application : très gros plan sur la matière du produit en cours d'application (si crème/huile/mousse/gel/poudre/sérum/liquide/cire/baume)
+- Utilisation : modèle en train d'utiliser le produit, geste naturel, regard dirigé vers le produit ou la peau
+- Lifestyle : produit intégré dans une scène de vie quotidienne, ambiance, contexte
+- Portrait : visage du modèle visible, émotion lisible, produit en main ou à proximité
+- Flat Lay : vue de dessus, produit posé avec d'autres objets du quotidien, composition organisée
+- Miroir : selfie miroir, salle de bain ou chambre, routine du matin/soir
+- Macro : détail extrême du produit ou de la peau, mise au point précise
+
+RÈGLES DE SÉLECTION AUTOMATIQUE :
+1. Type de produit → adapte les plans (skincare: texture+peau+utilisation ; bijou: détail+lifestyle+portrait ; parfum: luxe+reflets+macro ; complément alimentaire: lifestyle+prise en main+routine ; déco: mise en situation+ambiance)
+2. Si texture intéressante (crème/huile/mousse/gel/poudre/sérum/liquide/cire/baume) → ajoute au moins un plan texture/application
+3. Si avatar fourni (visage présent) → privilégier portrait, émotion, miroir, lifestyle, utilisation. Sinon → privilégier packshot, flat lay, macro, hero product, studio
+4. Renforcer l'émotion du storyboard (routine matin → lumière douce/miroir/lifestyle ; luxe → studio/ombres/macro/reflets ; nature → extérieur/végétation ; avant-après → gros plan/détail/portrait)
+5. ÉVITER LA RÉPÉTITION : ne jamais enchaîner deux plans très similaires (ex: Focus Produit + Hero Product + Macro Produit racontent la même chose — préférer une vraie diversité : Hero Product, Utilisation, Texture, Lifestyle, Portrait, Flat Lay)
+6. Composition : éviter sujet toujours centré, produit toujours au même endroit, même hauteur d'appareil, même posture, même distance. Privilégier règle des tiers, espaces négatifs, profondeur, asymétrie, sensation d'instant capturé.
+
+Chaque scène du storyboard doit combiner un cadrage différent, un angle différent, et si pertinent un mode de capture et une interaction produit différents des scènes précédentes — pour raconter une étape différente de l'histoire avec une nouvelle perspective à chaque fois.`;
+
+  const manualPlansInstruction = selectedPlans.length > 0
+    ? `\n\nIMPORTANT — SÉLECTION MANUELLE DE PLANS : l'utilisateur a choisi lui-même les plans suivants à utiliser : ${selectedPlans.join(', ')}. Utilise UNIQUEMENT ces plans pour construire le storyboard (un par scène, dans l'ordre le plus pertinent pour raconter l'histoire). Ne propose aucun autre plan que ceux listés. Si le nombre de scènes nécessaires dépasse le nombre de plans sélectionnés, tu peux réutiliser un plan mais jamais deux fois de suite.`
+    : '';
+
   const prompt = `Tu es StoryShoot, une IA de direction artistique UGC.
 
 Analyse ce script UGC et retourne UNIQUEMENT un JSON valide (sans markdown, sans explication).
@@ -1380,6 +1554,8 @@ ${script}
 
 ${hasAvatar ? 'Une image de référence avatar/personne est fournie.' : ''}
 ${hasProduit ? 'Une image de référence produit est fournie.' : ''}
+
+${PLANS_LIBRARY}${manualPlansInstruction}
 
 Retourne ce format JSON exact :
 {
@@ -1394,6 +1570,7 @@ Retourne ce format JSON exact :
     {
       "scene": 1,
       "titre": "...",
+      "plan": "nom du plan choisi (ex: Hero Product, Texture, Lifestyle...)",
       "description": "...",
       "emotion": "...",
       "prompt_image": "..."
@@ -1402,7 +1579,8 @@ Retourne ce format JSON exact :
 }
 
 RÈGLES pour chaque prompt_image (en anglais, ultra-détaillé) :
-- Style UGC authentique : shot on iPhone 15 Pro, natural light, handheld, authentic imperfection, realistic skin texture, spontaneous framing
+- Style UGC authentique : shot on iPhone 15 Pro, natural light, authentic imperfection, realistic skin texture
+- Intégrer explicitement le cadrage, l'angle et le mode de capture choisis pour ce plan (ex: "close-up shot, three-quarter angle, handheld selfie style")
 - ${hasAvatar ? 'La personne dans la scène doit être la même que dans la photo référence fournie (IDENTITY LOCKED)' : 'Décrire précisément la personne selon le contexte du script'}
 - ${hasProduit ? 'Le produit visible dans la scène doit correspondre exactement à la photo produit fournie (PRODUCT LOCKED)' : 'Décrire le produit selon le contexte'}
 - Émotion exprimée comme comportement physique observable (jamais nommée)
@@ -1410,7 +1588,7 @@ RÈGLES pour chaque prompt_image (en anglais, ultra-détaillé) :
 - Format portrait 9:16
 - Finir par : NO studio look, NO advertising aesthetic, NO artificial lighting.
 
-Le storyboard doit avoir entre 4 et 8 scènes selon la richesse du script.`;
+Le storyboard doit avoir entre 4 et 8 scènes selon la richesse du script, avec une vraie diversité de plans (jamais deux plans similaires consécutifs).`;
 
   try {
     const images = [uploads.avatar, uploads.produit, uploads.vetement].filter(Boolean);
@@ -1479,7 +1657,7 @@ function renderStoryboard(data) {
     <div class="scene-card" id="scene-card-${i}">
       <div class="scene-num">${s.scene}</div>
       <div class="scene-body">
-        <div class="scene-title">${s.titre}</div>
+        <div class="scene-title">${s.titre}${s.plan ? ` <span style="font-size:10px; font-weight:500; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">· ${s.plan}</span>` : ''}</div>
         <div class="scene-desc">${s.description}</div>
         <div class="scene-emotion-row">
           <div class="emotion-tag" id="emotion-tag-${i}">✦ ${s.emotion}</div>

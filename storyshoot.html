@@ -45,9 +45,6 @@
     overflow-x: hidden;
   }
 
-  /* ═══════════════════════════════════════════
-     SPLASH SCREEN
-  ═══════════════════════════════════════════ */
   #splash {
     position: fixed;
     inset: 0;
@@ -221,16 +218,12 @@
     color: var(--text-muted);
   }
 
-  /* ═══════════════════════════════════════════
-     APP LAYOUT
-  ═══════════════════════════════════════════ */
   #app {
     display: none;
     flex-direction: column;
     min-height: 100vh;
   }
 
-  /* QUOTA BAR */
   #quota-bar {
     position: sticky;
     top: 0;
@@ -291,7 +284,6 @@
     flex-shrink: 0;
   }
 
-  /* MAIN */
   .app-main {
     flex: 1;
     max-width: 900px;
@@ -300,7 +292,6 @@
     padding: 40px 24px 80px;
   }
 
-  /* HERO */
   .app-hero {
     margin-bottom: 48px;
     text-align: center;
@@ -338,7 +329,6 @@
     line-height: 1.6;
   }
 
-  /* SECTIONS */
   .section {
     margin-bottom: 32px;
   }
@@ -379,7 +369,6 @@
     margin-bottom: 14px;
   }
 
-  /* CARDS */
   .card {
     background: linear-gradient(145deg, var(--plum-700), var(--plum-800));
     border: 1px solid rgba(124,58,237,0.18);
@@ -387,7 +376,6 @@
     padding: 24px;
   }
 
-  /* TEXTAREA */
   textarea.field {
     width: 100%;
     background: rgba(255,255,255,0.04);
@@ -407,7 +395,6 @@
   textarea.field::placeholder { color: var(--text-muted); font-weight: 300; }
   textarea.field:focus { border-color: var(--violet-400); }
 
-  /* SELECT */
   select.field {
     width: 100%;
     background: rgba(255,255,255,0.04);
@@ -430,7 +417,6 @@
   select.field option { background: var(--plum-700); }
   select.field:focus { border-color: var(--violet-400); }
 
-  /* UPLOAD ZONES */
   .upload-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -516,7 +502,6 @@
     font-size: 16px;
   }
 
-  /* DECOR TOGGLE */
   .toggle-row {
     display: flex;
     gap: 8px;
@@ -543,7 +528,115 @@
     color: var(--violet-200);
   }
 
-  /* ANALYSE BLOCK */
+  /* PLANS GRID */
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  /* CAPTURE BLOCKS */
+  .capture-block {
+    margin-bottom: 20px;
+  }
+
+  .capture-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--violet-300);
+    margin-bottom: 10px;
+  }
+
+  .capture-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .capture-chip {
+    padding: 7px 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1.5px solid rgba(124,58,237,0.18);
+    border-radius: 99px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .capture-chip:hover {
+    border-color: rgba(124,58,237,0.5);
+    color: var(--text-mid);
+  }
+
+  .capture-chip.selected {
+    background: rgba(124,58,237,0.18);
+    border-color: var(--violet-400);
+    color: var(--violet-200);
+  }
+
+  .plan-chip {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1.5px solid rgba(124,58,237,0.18);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .plan-chip:hover {
+    border-color: rgba(124,58,237,0.4);
+    background: rgba(124,58,237,0.05);
+  }
+
+  .plan-chip.selected {
+    background: rgba(124,58,237,0.15);
+    border-color: var(--violet-400);
+  }
+
+  .plan-chip-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 1.5px solid rgba(124,58,237,0.4);
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: transparent;
+    transition: all 0.15s;
+  }
+
+  .plan-chip.selected .plan-chip-check {
+    background: var(--violet-400);
+    border-color: var(--violet-400);
+    color: white;
+  }
+
+  .plan-chip-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 2px;
+  }
+
+  .plan-chip-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
   #analyse-block {
     display: none;
   }
@@ -576,7 +669,6 @@
     line-height: 1.5;
   }
 
-  /* STORYBOARD */
   #storyboard-block { display: none; }
 
   .story-scenes {
@@ -660,7 +752,7 @@
 
   .scene-img-area {
     width: 80px;
-    height: 80px;
+    height: 142px;
     border-radius: var(--radius-sm);
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(124,58,237,0.15);
@@ -705,7 +797,6 @@
 
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* GENERATE ALL */
   .gen-all-row {
     display: flex;
     align-items: center;
@@ -740,7 +831,6 @@
   .btn-gen-all:hover { opacity: 0.9; transform: translateY(-1px); }
   .btn-gen-all:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
-  /* ANALYSE BTN */
   .btn-analyse {
     padding: 14px 28px;
     background: rgba(124,58,237,0.15);
@@ -763,7 +853,6 @@
   .btn-analyse:hover { background: rgba(124,58,237,0.25); }
   .btn-analyse:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  /* LOADING SPINNER */
   .spinner {
     width: 18px;
     height: 18px;
@@ -774,7 +863,6 @@
     display: inline-block;
   }
 
-  /* EMOTION MODAL */
   #emotion-modal {
     display: none;
     position: fixed;
@@ -843,7 +931,6 @@
   }
   .btn-modal-close:hover { border-color: var(--violet-300); color: var(--text-bright); }
 
-  /* QUOTA ALERT */
   .quota-alert {
     background: rgba(244,63,94,0.1);
     border: 1px solid rgba(244,63,94,0.3);
@@ -859,7 +946,6 @@
 
   .quota-alert.show { display: flex; }
 
-  /* TOAST */
   #toast {
     position: fixed;
     bottom: 32px;
@@ -883,7 +969,6 @@
     transform: translateX(-50%) translateY(0);
   }
 
-  /* RESPONSIVE */
   @media (max-width: 600px) {
     .upload-grid { grid-template-columns: 1fr 1fr; }
     .analyse-grid { grid-template-columns: 1fr; }
@@ -899,7 +984,6 @@
 </head>
 <body>
 
-<!-- ═══════════ SPLASH SCREEN ═══════════ -->
 <div id="splash">
   <div class="splash-bg"></div>
   <div class="splash-card">
@@ -908,7 +992,6 @@
       <div class="logo-text">Story<span>Shoot</span></div>
     </div>
     <div class="splash-tagline">Studio IRL — Contenu UGC Authentique</div>
-
     <div class="splash-label">Ton code d'accès</div>
     <input
       type="text"
@@ -927,7 +1010,6 @@
   </div>
 </div>
 
-<!-- ═══════════ EMOTION MODAL ═══════════ -->
 <div id="emotion-modal">
   <div class="emotion-modal-card">
     <div class="emotion-modal-title">Choisir l'émotion de la scène</div>
@@ -936,10 +1018,7 @@
   </div>
 </div>
 
-<!-- ═══════════ APP ═══════════ -->
 <div id="app">
-
-  <!-- QUOTA BAR -->
   <div id="quota-bar">
     <div class="quota-inner">
       <div class="quota-logo">Story<span>Shoot</span></div>
@@ -951,17 +1030,13 @@
     </div>
   </div>
 
-  <!-- MAIN -->
   <div class="app-main">
-
-    <!-- HERO -->
     <div class="app-hero">
       <div class="hero-eyebrow">IA de shooting UGC</div>
       <h1 class="hero-title">Ton script devient<br><em>une histoire visuelle</em></h1>
       <p class="hero-sub">Analyse ton script, construit le storyboard, génère le shooting scène par scène.</p>
     </div>
 
-    <!-- SECTION 1 : SCRIPT -->
     <div class="section">
       <div class="section-header">
         <div class="section-num">1</div>
@@ -978,7 +1053,6 @@
       </div>
     </div>
 
-    <!-- SECTION 2 : VISUELS -->
     <div class="section">
       <div class="section-header">
         <div class="section-num">2</div>
@@ -999,7 +1073,7 @@
             <div class="upload-label">Produit</div>
             <div class="upload-hint">Photo du produit</div>
           </div>
-          <div class="upload-zone" id="zone-decor-custom" id="zone-decor" onclick="triggerUpload('decor-file')">
+          <div class="upload-zone" id="zone-decor-custom" onclick="triggerUpload('decor-file')">
             <input type="file" id="decor-file" accept="image/*" onchange="handleUpload('decor', this)">
             <div class="upload-icon">🏠</div>
             <div class="upload-label">Décor (optionnel)</div>
@@ -1013,7 +1087,6 @@
           </div>
         </div>
 
-        <!-- DECOR MODE -->
         <div style="margin-top: 20px;">
           <div style="font-size: 12px; font-weight: 600; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">Mode décor</div>
           <div class="toggle-row">
@@ -1023,19 +1096,19 @@
           <div id="decor-ia-block">
             <select class="field" id="decor-select">
               <option value="">Sélectionne un environnement...</option>
-              <option value="appartement moderne">🏢 Appartement moderne</option>
-              <option value="salon familial">🛋️ Salon familial</option>
-              <option value="cuisine contemporaine">🍳 Cuisine contemporaine</option>
-              <option value="petite salle de bain">🚿 Petite salle de bain</option>
-              <option value="chambre lumineuse">🛏️ Chambre lumineuse</option>
-              <option value="bureau à domicile">💻 Bureau à domicile</option>
-              <option value="terrasse">🌿 Terrasse</option>
-              <option value="jardin">🌳 Jardin</option>
-              <option value="salle de sport">🏋️ Salle de sport</option>
-              <option value="café">☕ Café</option>
-              <option value="voiture">🚗 Voiture</option>
-              <option value="bureau d'entreprise">🏬 Bureau d'entreprise</option>
-              <option value="studio étudiant">📚 Studio étudiant</option>
+              <option value="modern apartment living room">🏢 Appartement moderne</option>
+              <option value="cozy family living room">🛋️ Salon familial</option>
+              <option value="contemporary kitchen">🍳 Cuisine contemporaine</option>
+              <option value="small bathroom">🚿 Petite salle de bain</option>
+              <option value="bright bedroom">🛏️ Chambre lumineuse</option>
+              <option value="home office">💻 Bureau à domicile</option>
+              <option value="terrace outdoor">🌿 Terrasse</option>
+              <option value="garden outdoor">🌳 Jardin</option>
+              <option value="gym">🏋️ Salle de sport</option>
+              <option value="cafe coffee shop">☕ Café</option>
+              <option value="car interior">🚗 Voiture</option>
+              <option value="corporate office">🏬 Bureau d'entreprise</option>
+              <option value="student studio apartment">📚 Studio étudiant</option>
             </select>
           </div>
           <div id="decor-custom-block" style="display:none;">
@@ -1045,10 +1118,54 @@
       </div>
     </div>
 
-    <!-- SECTION 3 : ANALYSE -->
-    <div class="section" id="analyse-block">
+    <div class="section">
       <div class="section-header">
         <div class="section-num">3</div>
+        <div class="section-title">Moteur de capture (facultatif)</div>
+      </div>
+      <div class="section-desc">Configure chaque dimension du tournage. Si tu ne sélectionnes rien, StoryShoot choisit automatiquement selon ton script et ton produit.</div>
+      <div class="card">
+
+        <!-- PLANS PHOTO -->
+        <div class="capture-block">
+          <div class="capture-label">📷 Plan photo</div>
+          <div class="plans-grid" id="plans-grid"></div>
+        </div>
+
+        <!-- CAPTURE -->
+        <div class="capture-block">
+          <div class="capture-label">🎥 Mode de capture</div>
+          <div class="capture-chips" id="capture-grid"></div>
+        </div>
+
+        <!-- CADRAGE -->
+        <div class="capture-block">
+          <div class="capture-label">📐 Cadrage</div>
+          <div class="capture-chips" id="cadrage-grid"></div>
+        </div>
+
+        <!-- POSITION CAMÉRA -->
+        <div class="capture-block">
+          <div class="capture-label">📍 Position de la caméra</div>
+          <div class="capture-chips" id="position-grid"></div>
+        </div>
+
+        <!-- INTENTION -->
+        <div class="capture-block">
+          <div class="capture-label">🎯 Intention de l'image</div>
+          <div class="capture-chips" id="intention-grid"></div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:16px; padding-top:16px; border-top:1px solid rgba(124,58,237,0.15);">
+          <div style="font-size:11px; color:var(--text-muted);" id="plans-count">Sélection automatique active</div>
+          <button class="emotion-edit" onclick="clearAllCapture()">Réinitialiser tout</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="analyse-block">
+      <div class="section-header">
+        <div class="section-num">4</div>
         <div class="section-title">Analyse du script</div>
       </div>
       <div class="section-desc">StoryShoot a identifié ces éléments dans ton script.</div>
@@ -1057,10 +1174,9 @@
       </div>
     </div>
 
-    <!-- SECTION 4 : STORYBOARD -->
     <div class="section" id="storyboard-block">
       <div class="section-header">
-        <div class="section-num">4</div>
+        <div class="section-num">5</div>
         <div class="section-title">Storyboard & génération</div>
       </div>
       <div class="section-desc">Modifie les émotions si nécessaire, puis génère scène par scène ou tout d'un coup.</div>
@@ -1068,7 +1184,7 @@
         <div class="story-scenes" id="story-scenes"></div>
 
         <div class="quota-alert" id="quota-alert">
-          ⏳ Tu as atteint ta limite de <strong>10 photos</strong> aujourd'hui. Reviens dans <span id="reset-timer">24h</span>.
+          ⏳ Tu as atteint ta limite de <strong>10 photos</strong> aujourd'hui. Reviens demain.
         </div>
 
         <div class="gen-all-row">
@@ -1081,15 +1197,15 @@
       </div>
     </div>
 
-  </div><!-- /app-main -->
-</div><!-- /app -->
+  </div>
+</div>
 
 <div id="toast"></div>
 
 <script>
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 // CODES D'ACCÈS
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 const CODES = {
   'ADMIN2026': { name: 'Marie', admin: true },
   'MEL6A2':   { name: 'Mélanie', admin: false },
@@ -1127,15 +1243,62 @@ const CODES = {
 const MAX_DAILY = 10;
 const PROXY_URL = 'https://storyshoot-proxy-452713645678.europe-west1.run.app';
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 // ÉTAT GLOBAL
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 let currentUser = null;
 let currentCode = null;
 let storyboardData = null;
 let uploads = { avatar: null, produit: null, decor: null, vetement: null };
 let decorMode = 'ia';
 let modalCallback = null;
+let selectedPlans = [];
+
+// ═══════════════════════════════════════
+// DONNÉES MOTEUR CAPTURE
+// ═══════════════════════════════════════
+const PLANS_DEFINITIONS = [
+  { name: 'Hero Product',     desc: 'Produit au centre, fond flou, logo lisible' },
+  { name: 'Texture',          desc: 'Très gros plan sur la matière du produit' },
+  { name: 'Application',      desc: 'Geste d\'application en cours, gros plan' },
+  { name: 'Utilisation',      desc: 'Modèle utilise le produit naturellement' },
+  { name: 'Lifestyle',        desc: 'Produit intégré dans une scène de vie' },
+  { name: 'Portrait',         desc: 'Visage visible, émotion lisible' },
+  { name: 'Flat Lay',         desc: 'Vue de dessus, composition organisée' },
+  { name: 'Selfie Miroir',    desc: 'Routine matin/soir, salle de bain' },
+  { name: 'Macro',            desc: 'Détail extrême, mise au point précise' },
+  { name: 'Plan d\'ensemble', desc: 'Vue large, contexte complet de la scène' },
+  { name: 'POV',              desc: 'Point de vue subjectif, immersif' },
+  { name: 'Avant-Après',      desc: 'Comparaison gros plan, transformation' },
+  { name: 'Packshot',         desc: 'Produit seul, sans modèle' },
+  { name: 'Déballage',        desc: 'Unboxing, produit sorti de son emballage' },
+];
+
+const CAPTURE_OPTIONS = {
+  capture: {
+    label: '🎥 Mode de capture',
+    id: 'capture-grid',
+    items: ['Selfie bras tendu', 'Téléphone sur trépied', 'Téléphone posé sur un meuble', 'Téléphone posé contre un objet', 'Photo miroir', 'Vue subjective (POV)', 'Caméra arrière', 'Mix automatique']
+  },
+  cadrage: {
+    label: '📐 Cadrage',
+    id: 'cadrage-grid',
+    items: ['Visage', 'Buste', 'Taille', 'Corps entier', 'Détail produit', 'Détail geste', 'Ambiance']
+  },
+  position: {
+    label: '📍 Position de la caméra',
+    id: 'position-grid',
+    items: ['À hauteur des yeux', 'Sur un lavabo', 'Sur une table', 'Sur un plan de travail', 'Au sol', 'En contre-plongée légère', 'En plongée légère']
+  },
+  intention: {
+    label: '🎯 Intention de l\'image',
+    id: 'intention-grid',
+    items: ['Montrer le problème', 'Montrer la découverte', 'Montrer le test', 'Montrer le résultat', 'Montrer une émotion', 'Montrer une routine', 'Montrer un détail', 'Montrer une preuve']
+  }
+};
+
+// Sélections par dimension (0 ou 1 item par dimension, ou plusieurs pour plans)
+const captureSelections = { capture: null, cadrage: null, position: null, intention: null };
 
 const EMOTIONS = [
   'Frustration', 'Gêne', 'Colère', 'Fatigue', 'Stress', 'Honte',
@@ -1144,9 +1307,9 @@ const EMOTIONS = [
   'Gratitude', 'Enthousiasme', 'Espoir', 'Sérénité', 'Bonheur'
 ];
 
-// ═══════════════════════════════════════════
-// QUOTA SYSTEM (localStorage)
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
+// QUOTA (localStorage)
+// ═══════════════════════════════════════
 function getQuotaKey(code) {
   const today = new Date().toISOString().slice(0, 10);
   return `ss_quota_${code}_${today}`;
@@ -1178,32 +1341,24 @@ function updateQuotaUI() {
   const user = CODES[currentCode];
   const isAdmin = user?.admin;
   const rem = remainingCount(currentCode);
-  const used = isAdmin ? '∞' : getUsed(currentCode);
-  const total = isAdmin ? '∞' : MAX_DAILY;
   const pct = isAdmin ? 100 : ((rem / MAX_DAILY) * 100);
 
   document.getElementById('quota-fill').style.width = pct + '%';
   document.getElementById('quota-text').innerHTML = isAdmin
     ? '<strong>∞</strong> générations illimitées'
-    : `<strong>${rem}</strong> / ${total} photos restantes`;
+    : `<strong>${rem}</strong> / ${MAX_DAILY} photos restantes`;
   document.getElementById('quota-user').textContent = user?.name || '';
 
   const alert = document.getElementById('quota-alert');
-  if (!isAdmin && rem === 0) {
-    alert.classList.add('show');
-  } else {
-    alert.classList.remove('show');
-  }
+  if (!isAdmin && rem === 0) alert.classList.add('show');
+  else alert.classList.remove('show');
 
-  const btnGenAll = document.getElementById('btn-gen-all');
-  if (!isAdmin && rem === 0) {
-    btnGenAll.disabled = true;
-  }
+  if (!isAdmin && rem === 0) document.getElementById('btn-gen-all').disabled = true;
 }
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 // LOGIN
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 function handleLogin() {
   const raw = document.getElementById('code-input').value.trim().toUpperCase();
   const inputEl = document.getElementById('code-input');
@@ -1225,16 +1380,16 @@ function handleLogin() {
 
   currentCode = raw;
   currentUser = CODES[raw];
-
-  // Connexion directe — la clé API est côté proxy
   launchApp();
 }
 
 function launchApp() {
+  sessionStorage.setItem('ss_session', currentCode);
   document.getElementById('splash').style.display = 'none';
   const app = document.getElementById('app');
   app.style.display = 'flex';
   updateQuotaUI();
+  renderCaptureMoteur();
   showToast(`Bienvenue ${currentUser.name} ! 🎬`);
 }
 
@@ -1242,10 +1397,10 @@ document.getElementById('code-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') handleLogin();
 });
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 // UPLOADS
-// ═══════════════════════════════════════════
-function triggerUpload(id) { /* handled by label click */ }
+// ═══════════════════════════════════════
+function triggerUpload(id) { /* handled by input click */ }
 
 function handleUpload(type, input) {
   const file = input.files[0];
@@ -1256,15 +1411,13 @@ function handleUpload(type, input) {
     const b64 = e.target.result.split(',')[1];
     uploads[type] = { b64, dataUrl: e.target.result, mime: file.type };
 
-    const zone = document.getElementById('zone-' + (type === 'decor' ? 'decor-custom' : type === 'vetement' ? 'vetement' : type));
+    const zoneId = type === 'decor' ? 'zone-decor-custom' : `zone-${type}`;
+    const zone = document.getElementById(zoneId);
     if (!zone) return;
     zone.classList.add('has-file');
 
-    // Remove old preview
-    const oldImg = zone.querySelector('.upload-preview');
-    const oldOverlay = zone.querySelector('.upload-preview-overlay');
-    if (oldImg) oldImg.remove();
-    if (oldOverlay) oldOverlay.remove();
+    zone.querySelector('.upload-preview')?.remove();
+    zone.querySelector('.upload-preview-overlay')?.remove();
 
     const img = document.createElement('img');
     img.className = 'upload-preview';
@@ -1279,9 +1432,9 @@ function handleUpload(type, input) {
   reader.readAsDataURL(file);
 }
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 // DECOR MODE
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 function setDecorMode(mode) {
   decorMode = mode;
   document.getElementById('toggle-ia').classList.toggle('active', mode === 'ia');
@@ -1290,10 +1443,89 @@ function setDecorMode(mode) {
   document.getElementById('decor-custom-block').style.display = mode === 'custom' ? '' : 'none';
 }
 
-// ═══════════════════════════════════════════
-// ═══════════════════════════════════════════
-// ANALYSE SCRIPT (via proxy Vertex AI)
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
+// MOTEUR CAPTURE — rendu complet
+// ═══════════════════════════════════════
+function renderCaptureMoteur() {
+  // Plans photo (grille avec description)
+  const plansGrid = document.getElementById('plans-grid');
+  plansGrid.innerHTML = PLANS_DEFINITIONS.map(p => `
+    <div class="plan-chip ${selectedPlans.includes(p.name) ? 'selected' : ''}" onclick="togglePlan('${p.name}')">
+      <div class="plan-chip-check">✓</div>
+      <div>
+        <div class="plan-chip-name">${p.name}</div>
+        <div class="plan-chip-desc">${p.desc}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Dimensions capture (chips simples)
+  Object.entries(CAPTURE_OPTIONS).forEach(([key, dim]) => {
+    const grid = document.getElementById(dim.id);
+    if (!grid) return;
+    grid.innerHTML = dim.items.map(item => `
+      <div class="capture-chip ${captureSelections[key] === item ? 'selected' : ''}"
+           onclick="toggleCaptureDim('${key}', '${item.replace(/'/g, "\\'")}')">
+        ${item}
+      </div>
+    `).join('');
+  });
+
+  updateCaptureCount();
+}
+
+function togglePlan(name) {
+  const idx = selectedPlans.indexOf(name);
+  if (idx > -1) {
+    selectedPlans.splice(idx, 1);
+  } else {
+    if (selectedPlans.length >= 10) { showToast('Maximum 10 plans ✦'); return; }
+    selectedPlans.push(name);
+  }
+  renderCaptureMoteur();
+}
+
+function toggleCaptureDim(key, value) {
+  captureSelections[key] = captureSelections[key] === value ? null : value;
+  renderCaptureMoteur();
+}
+
+function clearAllCapture() {
+  selectedPlans = [];
+  Object.keys(captureSelections).forEach(k => captureSelections[k] = null);
+  renderCaptureMoteur();
+}
+
+function updateCaptureCount() {
+  const el = document.getElementById('plans-count');
+  const nPlans = selectedPlans.length;
+  const nDims = Object.values(captureSelections).filter(Boolean).length;
+  const total = nPlans + nDims;
+  el.textContent = total > 0
+    ? `${nPlans} plan(s) · ${nDims} contrainte(s) de capture · sélection manuelle active`
+    : 'Sélection automatique active';
+}
+
+// Construit la contrainte capture à injecter dans le prompt
+function buildCaptureConstraint() {
+  const nPlans = selectedPlans.length;
+  const nDims = Object.values(captureSelections).filter(Boolean).length;
+  if (nPlans === 0 && nDims === 0) return '';
+
+  let lines = ['\n\nCONTRAINTES DE CAPTURE IMPOSÉES PAR L\'UTILISATEUR (respecter strictement) :'];
+  if (nPlans > 0) lines.push(`- Plans photo à utiliser : ${selectedPlans.join(', ')} (répartis sur les scènes, jamais deux plans identiques consécutifs)`);
+  if (captureSelections.capture)   lines.push(`- Mode de capture imposé : ${captureSelections.capture}`);
+  if (captureSelections.cadrage)   lines.push(`- Cadrage imposé : ${captureSelections.cadrage}`);
+  if (captureSelections.position)  lines.push(`- Position caméra imposée : ${captureSelections.position}`);
+  if (captureSelections.intention) lines.push(`- Intention de l\'image imposée : ${captureSelections.intention}`);
+  lines.push('Ces contraintes s\'appliquent à toutes les scènes du storyboard sauf indication contraire du contexte narratif.');
+  return lines.join('\n');
+}
+
+// ═══════════════════════════════════════
+// CALL GEMINI TEXT (analyse script)
+// Modèle : gemini-2.5-flash via Vertex AI
+// ═══════════════════════════════════════
 async function callGemini(prompt, images = []) {
   const parts = [];
   for (const img of images) {
@@ -1320,22 +1552,24 @@ async function callGemini(prompt, images = []) {
   return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
 }
 
-// ═══════════════════════════════════════════
-// ═══════════════════════════════════════════
-// ═══════════════════════════════════════════
-// ═══════════════════════════════════════════
-// GÉNÉRER IMAGE (via proxy StoryShoot)
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
+// GENERATE IMAGE
+// Modèle : gemini-3.1-flash-image-preview
+// Format : 9:16 · 4K
+// Envoi via proxy StoryShoot (Cloud Run)
+// Avatar + Produit + Vêtement → verrou identité
+// ═══════════════════════════════════════
 async function generateImage(prompt) {
   const body = {
     code: currentCode,
     prompt,
-    avatarB64: uploads.avatar?.b64 || null,
-    avatarMime: uploads.avatar?.mime || 'image/jpeg',
-    produitB64: uploads.produit?.b64 || null,
+    aspectRatio: '9:16',
+    avatarB64:   uploads.avatar?.b64   || null,
+    avatarMime:  uploads.avatar?.mime  || 'image/jpeg',
+    produitB64:  uploads.produit?.b64  || null,
     produitMime: uploads.produit?.mime || 'image/jpeg',
-    vetementB64: uploads.vetement?.b64 || null,
-    vetementMime: uploads.vetement?.mime || 'image/jpeg',
+    vetementB64: uploads.vetement?.b64  || null,
+    vetementMime:uploads.vetement?.mime || 'image/jpeg',
   };
 
   const res = await fetch(`${PROXY_URL}/generate-image`, {
@@ -1357,29 +1591,118 @@ async function generateImage(prompt) {
   return `data:${data.mimeType || 'image/png'};base64,${data.image}`;
 }
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
+// CONSTRUIRE LE PROMPT IMAGE FINAL
+// Injecte les verrous identité + produit
+// selon ce qui est uploadé
+// ═══════════════════════════════════════
+function buildImagePrompt(scenePrompt) {
+  const hasAvatar  = !!uploads.avatar;
+  const hasProduit = !!uploads.produit;
+  const hasVetement= !!uploads.vetement;
+  const hasDecor   = decorMode === 'custom' && !!uploads.decor;
+
+  let identityLock = '';
+  if (hasAvatar) {
+    identityLock = `IDENTITY LOCKED — use the exact face from the reference image provided: same facial features, same skin tone, same hair, same person. Do not invent a new face. `;
+  }
+
+  let productLock = '';
+  if (hasProduit) {
+    productLock = `PRODUCT LOCKED — the product in this scene must match exactly the product reference image provided: same packaging, same shape, same label, same colors. Do not invent a product. `;
+  }
+
+  let clothingLock = '';
+  if (hasVetement) {
+    clothingLock = `OUTFIT LOCKED — the subject wears exactly the clothing from the outfit reference image provided: same garment, same colors, same style. `;
+  }
+
+  let decorLock = '';
+  if (hasDecor) {
+    decorLock = `DECOR LOCKED — reproduce faithfully the environment from the decor reference image provided: same room, same furniture, same colors, same layout. `;
+  }
+
+  const locks = [identityLock, productLock, clothingLock, decorLock].filter(Boolean).join('');
+
+  return locks
+    ? `${scenePrompt} — ${locks}Portrait orientation 9:16, 4K ultra-detailed.`
+    : `${scenePrompt} — Portrait orientation 9:16, 4K ultra-detailed.`;
+}
+
+// ═══════════════════════════════════════
 // ANALYSER SCRIPT
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 async function analyserScript() {
   const script = document.getElementById('script-input').value.trim();
-  if (!script) {
-    showToast('Colle ton script d\'abord 💬');
-    return;
-  }
+  if (!script) { showToast('Colle ton script d\'abord 💬'); return; }
 
   const btn = document.getElementById('btn-analyse');
   const spinner = document.getElementById('analyse-spinner');
   const label = document.getElementById('analyse-label');
-
   btn.disabled = true;
   spinner.style.display = 'inline-block';
   label.textContent = 'Analyse en cours...';
 
   const decorInfo = decorMode === 'ia'
-    ? (document.getElementById('decor-select').value || 'appartement moderne')
-    : 'décor personnalisé fourni par l\'utilisateur';
+    ? (document.getElementById('decor-select').value || 'modern apartment')
+    : 'custom decor from uploaded reference photo';
 
-  const prompt = `Tu es StoryShoot, une IA de direction artistique UGC.
+  const hasAvatar  = !!uploads.avatar;
+  const hasProduit = !!uploads.produit;
+
+  const PLANS_LIBRARY = `BIBLIOTHÈQUE DE PLANS PHOTO UGC — sélectionne 4 à 10 plans variés selon le produit, la texture, la présence d'un modèle et l'émotion. Ne jamais répéter le même cadrage sur deux scènes consécutives.
+
+CADRAGES disponibles : très gros plan (détail), gros plan, plan poitrine, plan taille, plan américain, plan en pied, plan d'ensemble, vue de dessus, vue en plongée légère, vue en contre-plongée légère.
+
+ANGLES disponibles : face, trois quarts, profil, dos, au-dessus de l'épaule, depuis une autre pièce, depuis le sol, depuis une table, depuis un canapé, depuis un miroir.
+
+MODES DE CAPTURE UGC (jamais l'impression d'une séance pro) : selfie, selfie miroir, photo à bout de bras, smartphone posé sur un meuble, smartphone sur trépied discret, smartphone appuyé contre un objet, photo prise par une autre personne, photo prise sur le vif, POV.
+
+INTERACTION PRODUIT (alterner) : dans la main, en cours d'utilisation, posé sur un meuble, dans un sac, dans un tiroir, sur un lavabo, sur une table de nuit, dans une poche, en arrière-plan, mis en scène avec d'autres objets du quotidien.
+
+PLANS TYPES (exemples, pas exhaustif) :
+- Hero Product : produit occupe la majorité du cadre, fond flou, lumière douce, logo lisible, angle légèrement en biais — pour présenter le produit ou un détail important
+- Texture/Application : très gros plan sur la matière du produit en cours d'application (si crème/huile/mousse/gel/poudre/sérum/liquide/cire/baume)
+- Utilisation : modèle en train d'utiliser le produit, geste naturel, regard dirigé vers le produit ou la peau
+- Lifestyle : produit intégré dans une scène de vie quotidienne, ambiance, contexte
+- Portrait : visage du modèle visible, émotion lisible, produit en main ou à proximité
+- Flat Lay : vue de dessus, produit posé avec d'autres objets du quotidien, composition organisée
+- Miroir : selfie miroir, salle de bain ou chambre, routine du matin/soir
+- Macro : détail extrême du produit ou de la peau, mise au point précise
+
+RÈGLES DE SÉLECTION AUTOMATIQUE :
+1. Type de produit → adapte les plans (skincare: texture+peau+utilisation ; bijou: détail+lifestyle+portrait ; parfum: luxe+reflets+macro ; complément alimentaire: lifestyle+prise en main+routine ; déco: mise en situation+ambiance)
+2. Si texture intéressante (crème/huile/mousse/gel/poudre/sérum/liquide/cire/baume) → ajoute au moins un plan texture/application
+3. Si avatar fourni (visage présent) → privilégier portrait, émotion, miroir, lifestyle, utilisation. Sinon → privilégier packshot, flat lay, macro, hero product, studio
+4. Renforcer l'émotion du storyboard (routine matin → lumière douce/miroir/lifestyle ; luxe → studio/ombres/macro/reflets ; nature → extérieur/végétation ; avant-après → gros plan/détail/portrait)
+5. ÉVITER LA RÉPÉTITION : ne jamais enchaîner deux plans très similaires (ex: Focus Produit + Hero Product + Macro Produit racontent la même chose — préférer une vraie diversité : Hero Product, Utilisation, Texture, Lifestyle, Portrait, Flat Lay)
+6. Composition : éviter sujet toujours centré, produit toujours au même endroit, même hauteur d'appareil, même posture, même distance. Privilégier règle des tiers, espaces négatifs, profondeur, asymétrie, sensation d'instant capturé.
+
+Chaque scène du storyboard doit combiner un cadrage différent, un angle différent, et si pertinent un mode de capture et une interaction produit différents des scènes précédentes — pour raconter une étape différente de l'histoire avec une nouvelle perspective à chaque fois.`;
+
+  const manualPlansInstruction = buildCaptureConstraint();
+
+  const prompt = `Tu es StoryShoot, un moteur de direction artistique UGC.
+
+PHILOSOPHIE FONDAMENTALE :
+Tu ne génères pas de simples images marketing. Tu génères des instants de vie crédibles qui, assemblés, racontent une véritable expérience utilisateur. Chaque image doit donner l'impression qu'elle a été capturée naturellement par une créatrice UGC avec son smartphone, dans le but de partager une expérience authentique — jamais une publicité.
+
+Avant de définir chaque scène, tu dois répondre implicitement à ces questions :
+- Pourquoi cette image existe-t-elle ?
+- À quel moment précis de l'expérience utilisateur a-t-elle été capturée ?
+- Pourquoi une vraie personne sortirait-elle son téléphone à cet instant ?
+- Que doit ressentir le spectateur en regardant cette image ?
+- Quelle information nouvelle cette image apporte-t-elle dans l'histoire ?
+
+AUTHENTICITÉ UGC :
+Smartphone comme unique appareil · lumière naturelle privilégiée · environnements réels et habités · expressions naturelles · gestes spontanés · imperfections crédibles · rendu propre mais jamais publicitaire. Le but n'est pas de produire une image parfaite — c'est de produire une image crédible.
+
+COHÉRENCE NARRATIVE :
+Toutes les images appartiennent à la même histoire. Maintenir une continuité sur : la personne, les vêtements, les accessoires, les lieux, l'heure de la journée, la lumière, les objets du décor. Le spectateur doit avoir l'impression que toutes les images proviennent d'une même expérience réelle.
+
+NARRATION : chaque image représente un moment précis avec un rôle narratif (découverte du problème / frustration / recherche solution / réception produit / premier essai / utilisation quotidienne / constat résultat / retour d'expérience). Les images doivent raconter une progression naturelle.
+
+---
 
 Analyse ce script UGC et retourne UNIQUEMENT un JSON valide (sans markdown, sans explication).
 
@@ -1387,6 +1710,11 @@ SCRIPT :
 """
 ${script}
 """
+
+${hasAvatar ? 'Une image de référence avatar/personne est fournie.' : ''}
+${hasProduit ? 'Une image de référence produit est fournie.' : ''}
+
+${PLANS_LIBRARY}${manualPlansInstruction}
 
 Retourne ce format JSON exact :
 {
@@ -1401,25 +1729,31 @@ Retourne ce format JSON exact :
     {
       "scene": 1,
       "titre": "...",
+      "plan": "nom du plan choisi (ex: Hero Product, Texture, Lifestyle...)",
       "description": "...",
       "emotion": "...",
-      "prompt_image": "UGC photo, shot on iPhone 15 Pro, natural light, authentic imperfection, [emotion], [description visuelle], realistic skin texture, handheld, spontaneous framing. Decor: ${decorInfo}. Product visible: [produit]. NO studio, NO advertising look."
+      "prompt_image": "..."
     }
   ]
 }
 
-Le storyboard doit avoir entre 4 et 8 scènes selon la richesse du script.
-Chaque prompt_image doit être en anglais, ultra-détaillé, dans le style UGC authentique.
-Les prompts doivent intégrer : l'émotion visible sur le visage, le contexte du décor (${decorInfo}), le produit si pertinent dans la scène.`;
+RÈGLES pour chaque prompt_image (en anglais, ultra-détaillé) :
+- Style UGC authentique : shot on iPhone 15 Pro, natural light, authentic imperfection, realistic skin texture
+- Intégrer explicitement le cadrage, l'angle et le mode de capture choisis pour ce plan (ex: "close-up shot, three-quarter angle, handheld selfie style")
+- ${hasAvatar ? 'La personne dans la scène doit être la même que dans la photo référence fournie (IDENTITY LOCKED)' : 'Décrire précisément la personne selon le contexte du script'}
+- ${hasProduit ? 'Le produit visible dans la scène doit correspondre exactement à la photo produit fournie (PRODUCT LOCKED)' : 'Décrire le produit selon le contexte'}
+- Émotion exprimée comme comportement physique observable (jamais nommée)
+- Décor : ${decorInfo}
+- Format portrait 9:16
+- Finir par : NO studio look, NO advertising aesthetic, NO artificial lighting.
+
+Le storyboard doit avoir entre 4 et 8 scènes selon la richesse du script, avec une vraie diversité de plans (jamais deux plans similaires consécutifs).`;
 
   try {
-    const images = [uploads.avatar, uploads.produit].filter(Boolean);
+    const images = [uploads.avatar, uploads.produit, uploads.vetement].filter(Boolean);
     const raw = await callGemini(prompt, images);
     const cleaned = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     const data = JSON.parse(cleaned);
-
-    console.log('RAW RESPONSE:', raw);
-    console.log('PARSED DATA:', JSON.stringify(data));
 
     storyboardData = data;
     renderAnalyse(data);
@@ -1443,9 +1777,9 @@ Les prompts doivent intégrer : l'émotion visible sur le visage, le contexte du
   }
 }
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 // RENDER ANALYSE
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 function renderAnalyse(data) {
   const grid = document.getElementById('analyse-grid');
   const items = [
@@ -1457,7 +1791,6 @@ function renderAnalyse(data) {
     ['Intention marketing', data.intention_marketing],
     ['Type de contenu', data.type_contenu],
   ];
-
   grid.innerHTML = items.map(([k, v]) => `
     <div class="analyse-item">
       <div class="analyse-key">${k}</div>
@@ -1466,25 +1799,24 @@ function renderAnalyse(data) {
   `).join('');
 }
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 // RENDER STORYBOARD
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 function renderStoryboard(data) {
   const scenes = data.storyboard || [];
   const container = document.getElementById('story-scenes');
   const rem = remainingCount(currentCode);
   const isAdmin = CODES[currentCode]?.admin;
 
-  document.getElementById('gen-all-info').textContent =
-    isAdmin
-      ? `${scenes.length} scènes · générations illimitées`
-      : `${scenes.length} scènes · ${rem} photos restantes aujourd'hui`;
+  document.getElementById('gen-all-info').textContent = isAdmin
+    ? `${scenes.length} scènes · générations illimitées`
+    : `${scenes.length} scènes · ${rem} photos restantes aujourd'hui`;
 
   container.innerHTML = scenes.map((s, i) => `
     <div class="scene-card" id="scene-card-${i}">
       <div class="scene-num">${s.scene}</div>
       <div class="scene-body">
-        <div class="scene-title">${s.titre}</div>
+        <div class="scene-title">${s.titre}${s.plan ? ` <span style="font-size:10px; font-weight:500; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">· ${s.plan}</span>` : ''}</div>
         <div class="scene-desc">${s.description}</div>
         <div class="scene-emotion-row">
           <div class="emotion-tag" id="emotion-tag-${i}">✦ ${s.emotion}</div>
@@ -1492,7 +1824,7 @@ function renderStoryboard(data) {
         </div>
       </div>
       <div class="scene-img-area" id="img-area-${i}">
-        <div style="font-size:24px; opacity:0.3;">📷</div>
+        <div style="font-size:18px; opacity:0.3;">9:16</div>
         <button class="scene-gen-btn" onclick="genererScene(${i})" title="Générer cette scène">▶</button>
         <div class="scene-spinner" id="spinner-${i}"></div>
       </div>
@@ -1500,9 +1832,9 @@ function renderStoryboard(data) {
   `).join('');
 }
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 // GÉNÉRER UNE SCÈNE
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 async function genererScene(index) {
   if (!canGenerate(currentCode)) {
     document.getElementById('quota-alert').classList.add('show');
@@ -1517,38 +1849,43 @@ async function genererScene(index) {
   const imgArea = document.getElementById('img-area-' + index);
   const spinner = document.getElementById('spinner-' + index);
 
-  // UI loading
-  imgArea.querySelector('.scene-gen-btn').style.display = 'none';
+  imgArea.querySelector('.scene-gen-btn')?.style && (imgArea.querySelector('.scene-gen-btn').style.display = 'none');
   spinner.style.display = 'block';
 
   try {
-    const imgData = await generateImage(scene.prompt_image);
+    // Construire le prompt final avec verrous identité + produit
+    const finalPrompt = buildImagePrompt(scene.prompt_image);
+    const imgData = await generateImage(finalPrompt);
+
     incrementUsed(currentCode);
     updateQuotaUI();
 
-    // Afficher l'image
+    // Afficher l'image en 9:16
     imgArea.innerHTML = `<img src="${imgData}" alt="Scène ${index + 1}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`;
 
-    // Ajouter bouton download
+    // Bouton download Safari-safe (Blob)
+    const blob = await (await fetch(imgData)).blob();
+    const blobUrl = URL.createObjectURL(blob);
     const dl = document.createElement('a');
-    dl.href = imgData;
+    dl.href = blobUrl;
     dl.download = `storyscene_${index + 1}.png`;
     dl.innerHTML = '⬇';
-    dl.style.cssText = 'position:absolute;bottom:4px;right:4px;background:rgba(14,8,18,0.7);color:white;border-radius:6px;padding:4px 8px;font-size:12px;text-decoration:none;';
+    dl.style.cssText = 'position:absolute;bottom:4px;right:4px;background:rgba(14,8,18,0.7);color:white;border-radius:6px;padding:4px 8px;font-size:12px;text-decoration:none;z-index:2;';
     imgArea.style.position = 'relative';
     imgArea.appendChild(dl);
 
     showToast(`Scène ${index + 1} générée ✦`);
   } catch (err) {
     spinner.style.display = 'none';
-    imgArea.querySelector('.scene-gen-btn').style.display = 'flex';
-    showToast('Erreur génération : ' + (err.message || 'Réessaie'));
+    const genBtn = imgArea.querySelector('.scene-gen-btn');
+    if (genBtn) genBtn.style.display = 'flex';
+    showToast('Erreur : ' + (err.message || 'Réessaie'));
   }
 }
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 // GÉNÉRER TOUT
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 async function genererTout() {
   if (!storyboardData) { showToast('Lance l\'analyse d\'abord'); return; }
 
@@ -1557,10 +1894,7 @@ async function genererTout() {
   const rem = remainingCount(currentCode);
   const toGen = isAdmin ? scenes.length : Math.min(scenes.length, rem);
 
-  if (toGen === 0) {
-    document.getElementById('quota-alert').classList.add('show');
-    return;
-  }
+  if (toGen === 0) { document.getElementById('quota-alert').classList.add('show'); return; }
 
   const btn = document.getElementById('btn-gen-all');
   const spinner = document.getElementById('gen-all-spinner');
@@ -1568,12 +1902,11 @@ async function genererTout() {
 
   btn.disabled = true;
   spinner.style.display = 'inline-block';
-  label.textContent = `Génération en cours...`;
 
   for (let i = 0; i < toGen; i++) {
     label.textContent = `Scène ${i + 1} / ${toGen}...`;
     await genererScene(i);
-    await new Promise(r => setTimeout(r, 800)); // petit délai entre générations
+    await new Promise(r => setTimeout(r, 800));
   }
 
   btn.disabled = false;
@@ -1582,22 +1915,20 @@ async function genererTout() {
   showToast('Shooting terminé 🎬');
 }
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 // EMOTION MODAL
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 function openEmotionModal(sceneIndex) {
   modalCallback = (emotion) => {
     storyboardData.storyboard[sceneIndex].emotion = emotion;
     document.getElementById('emotion-tag-' + sceneIndex).textContent = '✦ ' + emotion;
     closeEmotionModal();
   };
-
   const current = storyboardData?.storyboard[sceneIndex]?.emotion || '';
   const list = document.getElementById('emotion-list');
   list.innerHTML = EMOTIONS.map(e => `
     <div class="emotion-choice ${e === current ? 'selected' : ''}" onclick="selectEmotion('${e}')">${e}</div>
   `).join('');
-
   document.getElementById('emotion-modal').classList.add('open');
 }
 
@@ -1610,9 +1941,9 @@ function closeEmotionModal() {
   modalCallback = null;
 }
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 // TOAST
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════
 let toastTimer;
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -1622,10 +1953,9 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-// ═══════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════
-// Auto-login si session stockée
+// ═══════════════════════════════════════
+// INIT — auto-login session
+// ═══════════════════════════════════════
 (function init() {
   const saved = sessionStorage.getItem('ss_session');
   if (saved && CODES[saved]) {
@@ -1634,16 +1964,6 @@ function showToast(msg) {
     launchApp();
   }
 })();
-
-// Sauvegarder session
-function launchApp() {
-  sessionStorage.setItem('ss_session', currentCode);
-  document.getElementById('splash').style.display = 'none';
-  const app = document.getElementById('app');
-  app.style.display = 'flex';
-  updateQuotaUI();
-  showToast(`Bienvenue ${currentUser.name} ! 🎬`);
-}
 </script>
 </body>
 </html>

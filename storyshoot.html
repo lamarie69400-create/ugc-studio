@@ -960,14 +960,16 @@ ${ctx.histoire.probleme?'Histoire créatrice (problème) : '+ctx.histoire.proble
 ${ctx.histoire.benefices?'Histoire créatrice (bénéfices) : '+ctx.histoire.benefices:''}
 ${ctx.histoire.maintenant?'Histoire créatrice (maintenant) : '+ctx.histoire.maintenant:''}
 
-Format JSON attendu :
+IMPORTANT : toutes les valeurs doivent être des STRINGS (chaînes de texte), jamais des tableaux ou des objets. Si tu as plusieurs éléments, sépare-les avec des virgules dans une seule string.
+
+Format JSON attendu (toutes valeurs = string) :
 {
   "profil": "Description courte du client cible en 1-2 phrases",
-  "defis": "Défis et points de douleur principaux",
-  "deja_essaye": "Ce qu'il a déjà essayé qui n'a pas fonctionné",
-  "vie_avant": "À quoi ressemble sa vie avant le produit ? Ses sentiments ?",
-  "vie_apres": "À quoi ressemble sa vie après avoir utilisé le produit ?",
-  "objections": "Ses objections à l'achat et comment les lever"
+  "defis": "Défi 1, Défi 2, Défi 3 — séparés par des virgules dans une seule string",
+  "deja_essaye": "Ce qu'il a déjà essayé qui n'a pas fonctionné, en une seule string",
+  "vie_avant": "Description de sa vie avant le produit, ses sentiments, en une seule string",
+  "vie_apres": "Description de sa vie après avoir utilisé le produit, en une seule string",
+  "objections": "Objection 1 + comment la lever. Objection 2 + comment la lever. En une seule string."
 }`;
 
   try{
@@ -992,13 +994,21 @@ function renderProfil(editing){
     ['Ce qu\'il a déjà essayé','deja_essaye'],['Vie AVANT le produit','vie_avant'],
     ['Vie APRÈS le produit','vie_apres'],['Objections à l\'achat','objections']
   ];
+  // Sécuriser toutes les valeurs : si tableau ou objet → convertir en string
+  function safeStr(val){
+    if(!val)return'—';
+    if(typeof val==='string')return val;
+    if(Array.isArray(val))return val.map(v=>typeof v==='object'?Object.values(v).join(' : '):v).join(' · ');
+    if(typeof val==='object')return Object.entries(val).map(([k,v])=>`${k} : ${v}`).join(' · ');
+    return String(val);
+  }
   card.innerHTML=`<div class="profile-section-title">👤 Profil client cible généré par StoryShoot</div>`+
     items.map(([label,key])=>`
       <div class="profile-item">
         <div class="profile-key">${label}</div>
         ${editing
-          ?`<textarea class="profile-edit-field" id="pe-${key}">${profilClient[key]||''}</textarea>`
-          :`<div class="profile-val">${profilClient[key]||'—'}</div>`}
+          ?`<textarea class="profile-edit-field" id="pe-${key}">${safeStr(profilClient[key])}</textarea>`
+          :`<div class="profile-val">${safeStr(profilClient[key])}</div>`}
       </div>`).join('');
 }
 
@@ -1066,19 +1076,48 @@ ${ctx.histoire.maintenant?'- Maintenant : '+ctx.histoire.maintenant:''}
 PROFIL CLIENT CIBLE :
 ${profilClient?JSON.stringify(profilClient):'À déduire des infos marque'}
 
-STRUCTURE OBLIGATOIRE — Hook / Body / CTA :
-- Hook (3 secondes max) : accrocher en montrant LE PROBLÈME que vit le client cible. Phrase ou question qui arrête le scroll. Parler AU client (son problème, pas le produit).
-- Body : approfondir le problème avec détail sensoriel (vie avant), présenter le produit comme LA solution découverte (histoire inversée — "moi j'étais dans ta situation"), décrire la transformation vécue avec des images concrètes et sensorielles.
-- CTA : appel à l'action naturel, comme si on conseillait une amie. Pas agressif, pas publicitaire.
+RÈGLE ABSOLUE — PREMIÈRE PERSONNE :
+Le script est écrit à la PREMIÈRE PERSONNE ("je", "moi", "mon", "ma") comme si la créatrice parlait à une amie d'un produit qu'elle vient de tester. JAMAIS de "tu vas adorer", JAMAIS de "ce produit va vous". Toujours : "j'ai essayé", "depuis que je l'utilise", "moi je", "je te jure que". Le tutoiement est toujours utilisé sauf indication contraire.
+
+LA STRUCTURE SACRÉE — 4 étapes obligatoires :
+
+1. HOOK (3 secondes max — LE PLUS IMPORTANT) :
+   - Captiver en 3 secondes — si les gens ne s'arrêtent pas, la vidéo est morte.
+   - 3 types à combiner (au moins 2 sur 3) :
+     * Visuel : choc, surprise (décrit dans notes_realisateur)
+     * Écrit à l'écran : texte affiché
+     * Verbal : phrase ou question percutante dite à voix haute
+   - Doit créer une émotion forte (négative ou positive) qui marque les esprits
+   - Parle du PROBLÈME du client, pas du produit
+
+2. INTRODUCTION PROBLÈME (body partie 1) :
+   - "Moi aussi, j'ai ce problème" — connexion émotionnelle immédiate
+   - Visualisation et storytelling : décris la situation concrète, sensorielle
+   - Utilise le profil client pour personnaliser : reprends ses douleurs exactes
+   - Provoque ses sentiments pour qu'il se reconnaisse dans la situation
+
+3. PRÉSENTATION PRODUIT avec méthode SEP (body partie 2) :
+   Pour chaque point clé du produit à mettre en avant, appliquer la méthode SEP :
+   - Situation : crée un contexte familier où le spectateur s'identifie immédiatement
+   - Émotion : fais ressentir ce que le produit apporte (confort, soulagement, joie, confiance) avec des mots qui évoquent des sensations
+   - Pensées : projette le spectateur dans des pensées positives ou transformatrices sur comment il se sentira après
+   NE JAMAIS parler des caractéristiques techniques, ingrédients ou composants. Uniquement résultats + émotions.
+
+4. CALL TO ACTION :
+   - Guide le spectateur vers l'action souhaitée
+   - Naturel, comme conseiller une amie : "Rends-toi sur leur site", "Le lien est dans ma bio"
+   - Clarté et directivité : les gens ne passent pas à l'action sans incitation explicite
 
 FORMAT UGC CHOISI : ${ctx.format} — adapte le ton, le rythme et la structure en conséquence.
 
 Retourne UNIQUEMENT un JSON valide (sans markdown) :
 {
-  "hook": "texte du hook",
-  "body": "texte du body",
+  "hook": "texte du hook verbal (à dire à voix haute)",
+  "hook_ecran": "texte à afficher à l'écran si différent du hook verbal",
+  "intro_probleme": "texte de l'introduction problème — connexion émotionnelle",
+  "presentation_produit": "texte de présentation produit avec méthode SEP appliquée",
   "cta": "texte du call to action",
-  "notes_realisateur": "conseils visuels pour chaque partie"
+  "notes_realisateur": "conseils visuels : type de hook visuel, plans suggérés pour chaque partie, émotions à montrer à l'écran"
 }`;
 
   try{
@@ -1098,18 +1137,27 @@ function renderScript(editing){
   scriptEditing=editing;
   const box=document.getElementById('script-box');
   if(!scriptData){box.innerHTML='';return;}
+  const parts=[
+    {tag:'hook',label:'🎣 HOOK',key:'hook',color:'hook'},
+    {tag:'hook_ecran',label:'📺 TEXTE ÉCRAN',key:'hook_ecran',color:'hook'},
+    {tag:'intro',label:'😔 INTRO PROBLÈME',key:'intro_probleme',color:'body'},
+    {tag:'produit',label:'✨ PRÉSENTATION PRODUIT (SEP)',key:'presentation_produit',color:'body'},
+    {tag:'cta',label:'🎯 CALL TO ACTION',key:'cta',color:'cta'},
+  ];
   if(editing){
-    box.innerHTML=`
-      <div class="script-section"><div class="script-tag hook">🎣 HOOK</div><textarea class="script-edit" id="se-hook">${scriptData.hook||''}</textarea></div>
-      <div class="script-section"><div class="script-tag body">📖 BODY</div><textarea class="script-edit" id="se-body" style="min-height:140px">${scriptData.body||''}</textarea></div>
-      <div class="script-section"><div class="script-tag cta">🎯 CALL TO ACTION</div><textarea class="script-edit" id="se-cta">${scriptData.cta||''}</textarea></div>
-      ${scriptData.notes_realisateur?`<div class="info-box" style="margin-top:12px">🎬 ${scriptData.notes_realisateur}</div>`:''}`;
+    box.innerHTML=parts.filter(p=>scriptData[p.key]).map(p=>`
+      <div class="script-section">
+        <div class="script-tag ${p.color}">${p.label}</div>
+        <textarea class="script-edit" id="se-${p.tag}" style="${p.key==='presentation_produit'?'min-height:160px':''}">${scriptData[p.key]||''}</textarea>
+      </div>`).join('')+
+      (scriptData.notes_realisateur?`<div class="info-box" style="margin-top:12px">🎬 ${scriptData.notes_realisateur}</div>`:'');
   } else {
-    box.innerHTML=`
-      <div class="script-section"><div class="script-tag hook">🎣 HOOK</div><div class="script-text">${scriptData.hook||''}</div></div>
-      <div class="script-section"><div class="script-tag body">📖 BODY</div><div class="script-text">${scriptData.body||''}</div></div>
-      <div class="script-section"><div class="script-tag cta">🎯 CALL TO ACTION</div><div class="script-text">${scriptData.cta||''}</div></div>
-      ${scriptData.notes_realisateur?`<div class="info-box" style="margin-top:12px">🎬 ${scriptData.notes_realisateur}</div>`:''}`;
+    box.innerHTML=parts.filter(p=>scriptData[p.key]).map(p=>`
+      <div class="script-section">
+        <div class="script-tag ${p.color}">${p.label}</div>
+        <div class="script-text">${scriptData[p.key]||''}</div>
+      </div>`).join('')+
+      (scriptData.notes_realisateur?`<div class="info-box" style="margin-top:12px">🎬 ${scriptData.notes_realisateur}</div>`:'');
   }
 }
 
@@ -1117,9 +1165,11 @@ function toggleEditScript(){
   if(!scriptEditing){
     renderScript(true);
   } else {
-    scriptData.hook=document.getElementById('se-hook')?.value||scriptData.hook;
-    scriptData.body=document.getElementById('se-body')?.value||scriptData.body;
-    scriptData.cta=document.getElementById('se-cta')?.value||scriptData.cta;
+    if(document.getElementById('se-hook'))scriptData.hook=document.getElementById('se-hook').value;
+    if(document.getElementById('se-hook_ecran'))scriptData.hook_ecran=document.getElementById('se-hook_ecran').value;
+    if(document.getElementById('se-intro'))scriptData.intro_probleme=document.getElementById('se-intro').value;
+    if(document.getElementById('se-produit'))scriptData.presentation_produit=document.getElementById('se-produit').value;
+    if(document.getElementById('se-cta'))scriptData.cta=document.getElementById('se-cta').value;
     renderScript(false);
     showToast('Script mis à jour ✦');
   }
@@ -1191,7 +1241,13 @@ async function genererStoryboard(){
   document.getElementById('storyboard-result').style.display='none';
 
   const decorInfo=decorMode==='ia'?(document.getElementById('decor-select').value||'modern apartment'):'custom decor from reference photo';
-  const scriptText=scriptData?`Hook: ${scriptData.hook}\nBody: ${scriptData.body}\nCTA: ${scriptData.cta}`:'';
+  const scriptText=scriptData?[
+    scriptData.hook?`Hook verbal: ${scriptData.hook}`:'',
+    scriptData.hook_ecran?`Hook écran: ${scriptData.hook_ecran}`:'',
+    scriptData.intro_probleme?`Intro problème: ${scriptData.intro_probleme}`:'',
+    scriptData.presentation_produit?`Présentation produit (SEP): ${scriptData.presentation_produit}`:'',
+    scriptData.cta?`CTA: ${scriptData.cta}`:'',
+  ].filter(Boolean).join('\n'):'';
   const format=FORMATS_UGC.find(f=>f.id===selectedFormat)?.name||selectedFormat;
 
   const prompt=`Tu es StoryShoot, une IA de direction artistique UGC.

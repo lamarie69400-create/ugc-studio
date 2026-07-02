@@ -401,30 +401,62 @@ select.field option{background:var(--plum-700)}
     <div id="step-1" style="display:none">
       <div class="app-hero">
         <div class="hero-eyebrow">Étape 1 / 7</div>
-        <h1 class="hero-title">Recherche <em>marque</em></h1>
-        <p class="hero-sub">Ces informations permettent à StoryShoot de construire un script aligné avec l'identité et les valeurs de la marque.</p>
+        <h1 class="hero-title">Recherche <em>marque & produit</em></h1>
+        <p class="hero-sub">Ces informations permettent à StoryShoot de construire un script aligné avec l'identité de la marque et les bénéfices réels du produit.</p>
       </div>
 
-      <div class="card">
-        <div class="field-group">
-          <label class="field-label">Quelle est la mission de la marque ?</label>
-          <textarea class="field" id="m-mission" placeholder="Pourquoi cette marque existe ? Quel problème résout-elle dans le monde ?"></textarea>
+      <!-- DESCRIPTION PRODUIT -->
+      <div class="section">
+        <div class="section-header"><div class="section-num">①</div><div class="section-title">Description du produit</div></div>
+        <div class="section-desc">Décris le produit en détail — c'est la base de tout : script, objections, profil client, SEP.</div>
+        <div class="card">
+          <div class="field-group">
+            <label class="field-label">À quoi sert ce produit concrètement ?</label>
+            <textarea class="field" id="p-usage" placeholder="Ex : C'est un sérum vitamine C qui s'applique le matin sur le visage. Il illumine le teint, réduit les taches et protège la peau des agressions extérieures."></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Quels sont les résultats visibles et ressentis ?</label>
+            <textarea class="field" id="p-resultats" placeholder="Ex : Peau plus lumineuse en 2 semaines, taches atténuées en 4 semaines, teint unifié, sensation de peau protégée toute la journée."></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Comment s'utilise-t-il ? (routine, fréquence, geste)</label>
+            <textarea class="field" id="p-utilisation" placeholder="Ex : 3-4 gouttes le matin sur peau propre avant la crème. Peut se mélanger au fond de teint. S'intègre en 30 secondes dans la routine."></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Qu'est-ce qui le rend différent des autres produits similaires ?</label>
+            <textarea class="field" id="p-difference" placeholder="Ex : Formule sans parfum, convient aux peaux sensibles. Concentration à 15% de vitamine C stable. Texture huile sèche qui ne graisse pas."></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Prix et disponibilité <span class="optional">(optionnel)</span></label>
+            <input type="text" class="field" id="p-prix" placeholder="Ex : 39€ · disponible sur leur site et en pharmacie">
+          </div>
         </div>
-        <div class="field-group">
-          <label class="field-label">Pourquoi la marque a-t-elle été créée ?</label>
-          <textarea class="field" id="m-creation" placeholder="L'histoire de sa création, le déclic fondateur..."></textarea>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Quelles sont ses valeurs fondamentales ?</label>
-          <textarea class="field" id="m-valeurs" placeholder="Naturalité, performance, durabilité, accessibilité, luxe..."></textarea>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Qu'est-ce qui rend cette marque unique ?</label>
-          <textarea class="field" id="m-unique" placeholder="Sa philosophie, son histoire, sa façon de se positionner..."></textarea>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Comment ces valeurs se reflètent-elles dans ce produit ?</label>
-          <textarea class="field" id="m-produit-valeurs" placeholder="En quoi ce produit incarne-t-il ce que la marque défend ?"></textarea>
+      </div>
+
+      <!-- INFOS MARQUE -->
+      <div class="section">
+        <div class="section-header"><div class="section-num">②</div><div class="section-title">La marque</div></div>
+        <div class="card">
+          <div class="field-group">
+            <label class="field-label">Quelle est la mission de la marque ?</label>
+            <textarea class="field" id="m-mission" placeholder="Pourquoi cette marque existe ? Quel problème résout-elle dans le monde ?"></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Pourquoi la marque a-t-elle été créée ?</label>
+            <textarea class="field" id="m-creation" placeholder="L'histoire de sa création, le déclic fondateur..."></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Quelles sont ses valeurs fondamentales ?</label>
+            <textarea class="field" id="m-valeurs" placeholder="Naturalité, performance, durabilité, accessibilité, luxe..."></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Qu'est-ce qui rend cette marque unique ?</label>
+            <textarea class="field" id="m-unique" placeholder="Sa philosophie, son histoire, sa façon de se positionner..."></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Comment ces valeurs se reflètent-elles dans ce produit ?</label>
+            <textarea class="field" id="m-produit-valeurs" placeholder="En quoi ce produit incarne-t-il ce que la marque défend ?"></textarea>
+          </div>
         </div>
       </div>
 
@@ -868,8 +900,10 @@ function validateStep0(){
   goToStep(1);
 }
 function validateStep1(){
-  const fields=['m-mission','m-creation','m-valeurs','m-unique','m-produit-valeurs'];
-  for(const f of fields){if(!document.getElementById(f).value.trim()){showToast('Remplis tous les champs marque 🏷️');return;}}
+  const prodFields=['p-usage','p-resultats','p-utilisation','p-difference'];
+  for(const f of prodFields){if(!document.getElementById(f).value.trim()){showToast('Décris le produit complètement 📦');return;}}
+  const mFields=['m-mission','m-creation','m-valeurs','m-unique','m-produit-valeurs'];
+  for(const f of mFields){if(!document.getElementById(f).value.trim()){showToast('Remplis tous les champs marque 🏷️');return;}}
   goToStep(2);
 }
 function validateStep2(){

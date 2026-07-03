@@ -637,7 +637,7 @@ select.field option{background:var(--plum-700)}
 
       <div style="display:flex;justify-content:space-between;margin-top:20px;gap:12px">
         <button class="btn-ghost" onclick="goToStep(5)">← Retour</button>
-        <button class="btn-secondary" onclick="goToStep(7);genererBroll()">Continuer → B-Roll</button>
+        <button class="btn-secondary" onclick="goToStep(7)">Continuer → B-Roll</button>
       </div>
     </div>
 
@@ -826,8 +826,17 @@ document.getElementById('code-input').addEventListener('keydown',e=>{if(e.key===
 
 // ═══════════════════════════════════════════════════
 // NAVIGATION STEPS
+// Les données sont toujours conservées — goToStep
+// ne réinitialise rien, il change juste l'affichage.
+// Les générations se déclenchent automatiquement
+// uniquement si le résultat n'existe pas encore.
 // ═══════════════════════════════════════════════════
 function goToStep(n){
+  // Bloquer les étapes non encore débloquées
+  // (autoriser si on revient en arrière ou si données existent)
+  const maxReachable = getMaxReachableStep();
+  if(n > maxReachable){ showToast('Complète les étapes précédentes d\'abord'); return; }
+
   for(let i=0;i<8;i++){
     const s=document.getElementById('step-'+i);
     if(s)s.style.display=i===n?'block':'none';
@@ -835,12 +844,56 @@ function goToStep(n){
     if(t){
       t.classList.remove('active','done','locked');
       if(i===n)t.classList.add('active');
-      else if(i<n)t.classList.add('done');
+      else if(i<=maxReachable)t.classList.add('done');
       else t.classList.add('locked');
     }
   }
+  // Remettre l'onglet courant en active (pas done)
+  const tCur=document.getElementById('tab-'+n);
+  if(tCur){tCur.classList.remove('done');tCur.classList.add('active');}
+
   currentStep=n;
   window.scrollTo({top:0,behavior:'smooth'});
+
+  // Déclencher la génération automatique si on arrive sur une étape
+  // qui a besoin d'un résultat et qui n'en a pas encore
+  if(n===3 && !profilClient && !document.getElementById('profil-loading').style.display.includes('block')){
+    genererProfil();
+  }
+  if(n===4 && !scriptData && !document.getElementById('script-loading').style.display.includes('block')){
+    genererScript();
+  }
+  if(n===6 && !storyboardData && !document.getElementById('storyboard-loading').style.display.includes('block')){
+    genererStoryboard();
+  }
+  if(n===7 && !brollData && !document.getElementById('broll-loading').style.display.includes('block')){
+    genererBroll();
+  }
+}
+
+// Détermine jusqu'où on peut naviguer selon ce qui est rempli
+function getMaxReachableStep(){
+  // Étape 0 toujours accessible
+  let max=0;
+  // Étape 1 : produit + type + format renseignés
+  const produit=document.getElementById('ctx-produit')?.value?.trim();
+  const type=document.getElementById('ctx-type')?.value;
+  if(produit && type && selectedFormat) max=1;
+  // Étape 2 : champs marque remplis
+  const mission=document.getElementById('m-mission')?.value?.trim();
+  const usage=document.getElementById('p-usage')?.value?.trim();
+  if(max>=1 && mission && usage) max=2;
+  // Étape 3+ : on a passé l'étape 2 (histoire optionnelle, toujours accessible après 2)
+  if(max>=2) max=3;
+  // Étape 4 : profil client validé
+  if(profilClient) max=4;
+  // Étape 5 : script généré
+  if(scriptData) max=5;
+  // Étape 6 : moteur configuré (toujours ok après 5)
+  if(max>=5) max=6;
+  // Étape 7 : storyboard généré
+  if(storyboardData) max=7;
+  return max;
 }
 
 // ═══════════════════════════════════════════════════
@@ -1078,7 +1131,6 @@ function validerProfil(){
   if(profilEditing)toggleEditProfil();
   showToast('Profil validé ✅');
   goToStep(4);
-  genererScript();
 }
 
 // ═══════════════════════════════════════════════════
@@ -1244,6 +1296,10 @@ function validerScript(){
 }
 
 // ═══════════════════════════════════════════════════
+// STEP 5 — validate → go storyboard
+// ═══════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════
 // STEP 5 — MOTEUR CAPTURE
 // ═══════════════════════════════════════════════════
 function renderCaptureMoteur(){
@@ -1292,7 +1348,6 @@ function buildCaptureConstraint(){
 
 function validateStep5(){
   goToStep(6);
-  genererStoryboard();
 }
 
 // ═══════════════════════════════════════════════════

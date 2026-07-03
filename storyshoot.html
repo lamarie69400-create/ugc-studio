@@ -966,6 +966,13 @@ async function genererProfil(){
     type:document.getElementById('ctx-type').value,
     objectif:document.getElementById('ctx-objectif').value,
     format:selectedFormat,
+    descProduit:{
+      usage:document.getElementById('p-usage').value,
+      resultats:document.getElementById('p-resultats').value,
+      utilisation:document.getElementById('p-utilisation').value,
+      difference:document.getElementById('p-difference').value,
+      prix:document.getElementById('p-prix').value,
+    },
     mission:document.getElementById('m-mission').value,
     creation:document.getElementById('m-creation').value,
     valeurs:document.getElementById('m-valeurs').value,
@@ -980,15 +987,22 @@ async function genererProfil(){
 
   const prompt=`Tu es StoryShoot, une IA de stratégie de contenu UGC.
 
-À partir des informations suivantes sur la marque, génère le profil détaillé du client cible idéal.
+À partir des informations suivantes sur le produit et la marque, génère le profil détaillé du client cible idéal.
 Retourne UNIQUEMENT un JSON valide (sans markdown).
+
+DESCRIPTION DU PRODUIT :
+Usage : ${ctx.descProduit.usage}
+Résultats : ${ctx.descProduit.resultats}
+Utilisation : ${ctx.descProduit.utilisation}
+Différenciation : ${ctx.descProduit.difference}
+${ctx.descProduit.prix?'Prix : '+ctx.descProduit.prix:''}
 
 INFOS MARQUE :
 Produit : ${ctx.produit}
 Mission : ${ctx.mission}
 Pourquoi créée : ${ctx.creation}
 Valeurs : ${ctx.valeurs}
-Différenciation : ${ctx.unique}
+Différenciation marque : ${ctx.unique}
 Valeurs dans le produit : ${ctx.produitValeurs}
 ${ctx.histoire.probleme?'Histoire créatrice (problème) : '+ctx.histoire.probleme:''}
 ${ctx.histoire.benefices?'Histoire créatrice (bénéfices) : '+ctx.histoire.benefices:''}
@@ -1079,6 +1093,13 @@ async function genererScript(){
     type:document.getElementById('ctx-type').value,
     objectif:document.getElementById('ctx-objectif').value,
     format:FORMATS_UGC.find(f=>f.id===selectedFormat)?.name||selectedFormat,
+    descProduit:{
+      usage:document.getElementById('p-usage').value,
+      resultats:document.getElementById('p-resultats').value,
+      utilisation:document.getElementById('p-utilisation').value,
+      difference:document.getElementById('p-difference').value,
+      prix:document.getElementById('p-prix').value,
+    },
     mission:document.getElementById('m-mission').value,
     valeurs:document.getElementById('m-valeurs').value,
     unique:document.getElementById('m-unique').value,
@@ -1095,6 +1116,13 @@ PHILOSOPHIE : Tu ne rédiges pas une pub. Tu rédiges une histoire vraie racont�
 
 Loi fondamentale : le subconscient ne traite pas les faits — il traite les histoires vécues. "Ce produit est efficace" = information rationnelle ignorée. "Ce matin, j'ai touché ma peau et pour la première fois depuis des années, elle était douce comme du velours" = le subconscient vit cette expérience comme réelle.
 
+DESCRIPTION DU PRODUIT :
+Ce que fait le produit : ${ctx.descProduit.usage}
+Résultats visibles : ${ctx.descProduit.resultats}
+Comment l'utiliser : ${ctx.descProduit.utilisation}
+Ce qui le différencie : ${ctx.descProduit.difference}
+${ctx.descProduit.prix?'Prix : '+ctx.descProduit.prix:''}
+
 CONTEXTE :
 Produit : ${ctx.produit}
 Format : ${ctx.format}
@@ -1108,7 +1136,7 @@ ${ctx.histoire.benefices?'- Bénéfices : '+ctx.histoire.benefices:''}
 ${ctx.histoire.maintenant?'- Maintenant : '+ctx.histoire.maintenant:''}
 
 PROFIL CLIENT CIBLE :
-${profilClient?JSON.stringify(profilClient):'À déduire des infos marque'}
+${profilClient?JSON.stringify(profilClient):'À déduire des infos produit et marque'}
 
 RÈGLE ABSOLUE — PREMIÈRE PERSONNE :
 Le script est écrit à la PREMIÈRE PERSONNE ("je", "moi", "mon", "ma") comme si la créatrice parlait à une amie d'un produit qu'elle vient de tester. JAMAIS de "tu vas adorer", JAMAIS de "ce produit va vous". Toujours : "j'ai essayé", "depuis que je l'utilise", "moi je", "je te jure que". Le tutoiement est toujours utilisé sauf indication contraire.

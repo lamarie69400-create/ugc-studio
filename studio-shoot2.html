@@ -992,6 +992,24 @@ async function callGemini(prompt,images=[]){
   return data.candidates?.[0]?.content?.parts?.[0]?.text||'';
 }
 
+// Parse JSON robuste — résistant aux apostrophes et caractères spéciaux français
+function parseJsonRobust(raw){
+  // 1. Supprimer les backticks markdown
+  let s=raw.replace(/```json\n?/g,'').replace(/```\n?/g,'').trim();
+  // 2. Extraire le bloc JSON (entre { et })
+  const m=s.match(/\{[\s\S]*\}/);
+  if(!m)throw new Error('Aucun JSON trouvé dans la réponse');
+  s=m[0];
+  // 3. Tenter le parse direct
+  try{ return JSON.parse(s); }catch(e){}
+  // 4. Nettoyer les apostrophes courbes et guillemets typographiques
+  s=s.replace(/[\u2018\u2019]/g,"'").replace(/[\u201C\u201D]/g,'"');
+  try{ return JSON.parse(s); }catch(e){}
+  // 5. Échapper les apostrophes dans les valeurs string
+  s=s.replace(/"([^"]*?)"/g,(_,v)=>'"'+v.replace(/'/g,"\\'").replace(/\n/g,'\\n')+'"');
+  try{ return JSON.parse(s); }catch(e){ throw new Error('JSON invalide même après nettoyage : '+e.message); }
+}
+
 // ═══════════════════════════════════════════════════
 // GÉNÉRATION IMAGE
 // ═══════════════════════════════════════════════════
@@ -1088,8 +1106,7 @@ Format JSON attendu (toutes valeurs = string) :
 
   try{
     const raw=await callGemini(prompt,[uploads.avatar,uploads.produit].filter(Boolean));
-    const cleaned=raw.replace(/```json\n?/g,'').replace(/```\n?/g,'').trim();
-    profilClient=JSON.parse(cleaned);
+    profilClient=parseJsonRobust(raw);
     renderProfil(false);
     document.getElementById('profil-loading').style.display='none';
     document.getElementById('profil-result').style.display='block';
@@ -1237,20 +1254,37 @@ LA STRUCTURE SACRÉE — 4 étapes obligatoires :
 
 FORMAT UGC CHOISI : ${ctx.format} — adapte le ton, le rythme et la structure en conséquence.
 
-Retourne UNIQUEMENT un JSON valide (sans markdown) :
-{
-  "hook": "texte du hook verbal (à dire à voix haute)",
-  "hook_ecran": "texte à afficher à l'écran si différent du hook verbal",
-  "intro_probleme": "texte de l'introduction problème — connexion émotionnelle",
-  "presentation_produit": "texte de présentation produit avec méthode SEP appliquée",
-  "cta": "texte du call to action",
-  "notes_realisateur": "conseils visuels : type de hook visuel, plans suggérés pour chaque partie, émotions à montrer à l'écran"
-}`;
+Retourne UNIQUEMENT le texte ci-dessous avec les balises remplies, rien d'autre avant ou après :
+
+<HOOK_VERBAL>texte du hook dit à voix haute</HOOK_VERBAL>
+<HOOK_ECRAN>texte affiché à l'écran (vide si identique au hook verbal)</HOOK_ECRAN>
+<INTRO_PROBLEME>texte de l'introduction problème — connexion émotionnelle</INTRO_PROBLEME>
+<PRESENTATION_PRODUIT>texte de présentation produit avec méthode SEP appliquée — plusieurs paragraphes si nécessaire</PRESENTATION_PRODUIT>
+<CTA>texte du call to action</CTA>
+<NOTES_REALISATEUR>conseils visuels détaillés : hook visuel, plans par partie, émotions à montrer physiquement à l'écran</NOTES_REALISATEUR>`;
 
   try{
     const raw=await callGemini(prompt);
-    const cleaned=raw.replace(/```json\n?/g,'').replace(/```\n?/g,'').trim();
-    scriptData=JSON.parse(cleaned);
+
+    // Parser les balises XML — résistant aux apostrophes et guillemets
+    function extractTag(text, tag){
+      const m=text.match(new RegExp(`<${tag}>([\s\S]*?)<\/${tag}>`,'i'));
+      return m?m[1].trim():'';
+    }
+
+    scriptData={
+      hook:          extractTag(raw,'HOOK_VERBAL'),
+      hook_ecran:    extractTag(raw,'HOOK_ECRAN'),
+      intro_probleme:extractTag(raw,'INTRO_PROBLEME'),
+      presentation_produit: extractTag(raw,'PRESENTATION_PRODUIT'),
+      cta:           extractTag(raw,'CTA'),
+      notes_realisateur: extractTag(raw,'NOTES_REALISATEUR'),
+    };
+
+    if(!scriptData.hook && !scriptData.intro_probleme){
+      throw new Error('Réponse vide ou mal formatée — relance');
+    }
+
     renderScript(false);
     document.getElementById('script-loading').style.display='none';
     document.getElementById('script-result').style.display='block';
@@ -1423,11 +1457,7 @@ Génère 4 à 8 scènes. Chaque prompt_image en anglais, ultra-détaillé, style
     const images=[uploads.avatar,uploads.produit,uploads.vetement].filter(Boolean);
     const raw=await callGemini(prompt,images);
     // Extraction JSON robuste
-    let cleaned=raw.trim();
-    const jsonMatch=cleaned.match(/\{[\s\S]*\}/);
-    if(!jsonMatch)throw new Error('Pas de JSON trouvé dans la réponse');
-    cleaned=jsonMatch[0];
-    storyboardData=JSON.parse(cleaned);
+    storyboardData=parseJsonRobust(raw);
     if(!storyboardData.storyboard||!storyboardData.storyboard.length)throw new Error('Storyboard vide');
     renderStoryboard();
     if(loadEl)loadEl.style.display='none';
@@ -1551,8 +1581,7 @@ Retourne UNIQUEMENT un JSON valide :
 
   try{
     const raw=await callGemini(prompt,[uploads.produit].filter(Boolean));
-    const cleaned=raw.replace(/```json\n?/g,'').replace(/```\n?/g,'').trim();
-    brollData=JSON.parse(cleaned);
+    brollData=parseJsonRobust(raw);
     renderBroll();
     document.getElementById('broll-loading').style.display='none';
     document.getElementById('broll-result').style.display='block';
